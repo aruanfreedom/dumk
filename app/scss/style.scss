@@ -1,0 +1,142 @@
+@import "../../app/bower_components/foundation/scss/normalize";
+@import "../../app/bower_components/foundation/scss/foundation";
+
+body{
+  font-family: "Arial", sans-serif;
+  background: url("../img/pattern.jpg") repeat;
+  height: 100%;
+  width: 100%;
+}
+
+#authorization{
+  #form{
+    position: relative;
+    top: 80px;
+    max-width: 855px;
+    img{
+      margin-bottom: 40px;
+    }
+    h1{     
+      font-family: "Arial", sans-serif; 
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #373737;
+      font-size: 1em;
+      font-weight: 100;
+    }
+    .data{
+      border-radius: 3px;
+      border: 1px solid #eaeaea;
+      height: 45px;
+    }
+    label{
+      font-size: 1em;
+      color: #373737;
+    }
+    a{
+      color: #373737;
+      font-size: 0.8125em;
+    }
+    #remember-label{
+      font-size: 0.8125em;
+    }
+    #remember{
+      margin-right: 7px;
+    }
+    button{ 
+      background-image: linear-gradient(#48c322, #2b7e0a);
+      box-shadow: 0 -3px 0 0 rgba(35,99,9,.9) inset;
+      border: none;
+      border-radius: 3px;
+      padding: 11.5px 42px;
+      font-size: 1.125em;
+      font-weight: 500;
+    }
+  }
+}
+
+footer{
+  color: #525252;
+  position: fixed;
+  font-size: 1em;
+  bottom: 10px;
+  width: 100%;
+}
+
+#home{
+  #topic{
+    padding: 0 10px 0 10px;
+    width: 170px;
+    img{
+      width: 155px;
+    }
+  }
+  #person{
+    img{
+      border-radius: 50%;
+    }    
+  }
+  .right{
+    a{
+      .icon-top{
+        margin-top: -5px;
+      }
+    }
+  }
+  #welcome{
+    position: relative;
+    top: 80px;
+    max-width: 822px;
+    h1 {
+      font-family: "Arial", sans-serif; 
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #000;
+      font-size: 1.125em;
+      font-weight: bold;
+      a{
+        color: #373737;
+        border-bottom: 2px dotted #9c9c9d;
+      }
+    }
+    h2{
+      font-family: "Arial", sans-serif; 
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #373737;
+      font-size: 1em;
+      font-weight: 100;
+    }
+    img{
+      width: 100%;
+    }
+  }
+  .blocks{
+    border-radius: 4px;
+    border: 1px solid #d4d6d7;
+    border-bottom: 4px solid #d4d6d7;
+    background: #fbf8f8;
+    height: 290px;
+    transition: background 1s;
+    a{
+      display: block;
+      height: 100%;
+      outline: none;
+    }
+    .link{
+      color: #373737;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 1.125em;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    img{
+      border-radius: 4px;
+    }
+    &:hover{
+      background: #fff;
+    }
+  }
+}
