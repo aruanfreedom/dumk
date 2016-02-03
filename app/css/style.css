@@ -4943,7 +4943,8 @@ a.th {
   .f-dropdown.large {
     max-width: 800px; }
 
-html, body {
+html,
+body {
   font-family: "Arial", sans-serif;
   background: url("../img/pattern.jpg") repeat;
   height: 100%;
@@ -5048,7 +5049,7 @@ nav .right a .icon-top {
   position: relative;
   height: 100%; }
   #cadrs #content {
-    height: 76%; }
+    height: 73.6%; }
   #cadrs .top-link {
     text-align: left;
     margin: 30px 0; }
@@ -5066,6 +5067,7 @@ nav .right a .icon-top {
   #cadrs #wrapper {
     text-align: center;
     position: relative;
+    min-width: 1000px;
     height: 100%; }
     #cadrs #wrapper .tabs-line {
       display: inline-block;
@@ -5137,15 +5139,64 @@ nav .right a .icon-top {
     #cadrs .tab1 .map,
     #cadrs .tab2 .map,
     #cadrs .tab3 .map {
-      left: 0;
-      top: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%; }
+      background: url("../img/map.jpg") no-repeat center center;
+      position: relative;
+      margin: 0 auto;
+      height: 550px;
+      width: 933px; }
       #cadrs .tab1 .map img,
       #cadrs .tab2 .map img,
       #cadrs .tab3 .map img {
-        padding-top: 4%; }
+        cursor: pointer;
+        position: absolute;
+        transition: height 0.5s, width 0.5s, margin 0.5s; }
+        #cadrs .tab1 .map img:hover,
+        #cadrs .tab2 .map img:hover,
+        #cadrs .tab3 .map img:hover {
+          margin-top: -12px;
+          margin-left: -3px;
+          height: 37px;
+          width: 27px; }
+      #cadrs .tab1 .map #petropavlsk,
+      #cadrs .tab2 .map #petropavlsk,
+      #cadrs .tab3 .map #petropavlsk {
+        top: 3.9%;
+        left: 53.4%; }
+      #cadrs .tab1 .map #kostanay,
+      #cadrs .tab2 .map #kostanay,
+      #cadrs .tab3 .map #kostanay {
+        top: 10.5%;
+        left: 41.9%; }
+      #cadrs .tab1 .map #pavlodar,
+      #cadrs .tab2 .map #pavlodar,
+      #cadrs .tab3 .map #pavlodar {
+        top: 18.5%;
+        left: 70.4%; }
+      #cadrs .tab1 .map #astana,
+      #cadrs .tab2 .map #astana,
+      #cadrs .tab3 .map #astana {
+        top: 23%;
+        left: 57.7%; }
+      #cadrs .tab1 .map #uralsk,
+      #cadrs .tab2 .map #uralsk,
+      #cadrs .tab3 .map #uralsk {
+        top: 17.6%;
+        left: 14.5%; }
+      #cadrs .tab1 .map #aktobe,
+      #cadrs .tab2 .map #aktobe,
+      #cadrs .tab3 .map #aktobe {
+        top: 27.4%;
+        left: 26.6%; }
+      #cadrs .tab1 .map #semey,
+      #cadrs .tab2 .map #semey,
+      #cadrs .tab3 .map #semey {
+        top: 25%;
+        left: 77.6%; }
+      #cadrs .tab1 .map #ust,
+      #cadrs .tab2 .map #ust,
+      #cadrs .tab3 .map #ust {
+        top: 26.8%;
+        left: 85.4%; }
   #cadrs .clearfix {
     clear: both; }
 

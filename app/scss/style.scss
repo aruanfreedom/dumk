@@ -1,6 +1,7 @@
 @import "../../app/bower_components/foundation/scss/normalize";
 @import "../../app/bower_components/foundation/scss/foundation";
-html, body {
+html,
+body {
     font-family: "Arial", sans-serif;
     background: url("../img/pattern.jpg") repeat;
     height: 100%;
@@ -136,41 +137,42 @@ nav {
 }
 
 #cadrs {
-  position: relative;
-  height: 100%;
-  #content{
-    height: 76%;
-  }
+    position: relative;
+    height: 100%;
+    #content {
+        height: 73.6%;
+    }
     .top-link {
-      text-align: left;
-      margin: 30px 0;
+        text-align: left;
+        margin: 30px 0;
         a {
             color: #979898;
             text-decoration: underline;
             margin: 0 15px;
             font-size: 1.14em;
             outline: none;
-            &.active{
-              color: #373737;
-              text-decoration: none;
-              font-weight: bold;
-              font-size: 1.5em;
+            &.active {
+                color: #373737;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.5em;
             }
         }
     }
     #wrapper {
-      text-align: center;
-      position: relative;
-      height: 100%;
+        text-align: center;
+        position: relative;
+        min-width: 1000px;
+        height: 100%;
         .tabs-line {
             display: inline-block;
             text-align: center;
             position: relative;
             margin-left: 20px;
             width: 227px;
-            .plus{
-              font-weight: bold;
-              font-size: 1em;
+            .plus {
+                font-weight: bold;
+                font-size: 1em;
             }
         }
         h3 {
@@ -218,45 +220,81 @@ nav {
         width: 100%;
     }
     #wrapper.tab1 .tab1 h3 {
-            background: #fff;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            width: 227px;
+        background: #fff;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        width: 227px;
     }
     #wrapper.tab2 .tab2 h3 {
-            background: #fff;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            width: 227px;
+        background: #fff;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        width: 227px;
     }
     #wrapper.tab3 .tab3 h3 {
-            background: #fff;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            width: 227px;
+        background: #fff;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        width: 227px;
     }
     .tab1,
     .tab2,
     .tab3 {
-      height: 100%;  
-      position:relative;       
-        .map{
-          left: 0;
-          top: 0;
-          margin: 0;   
-          height: 100%;  
-          width: 100%;
-          img{
-            padding-top: 4%;
-          }
-        }               
+        height: 100%;
+        position: relative;
+        .map {
+            background: url("../img/map.jpg") no-repeat center center;
+            position: relative;
+            margin: 0 auto;
+            height: 550px;
+            width: 933px;
+            img {
+                cursor: pointer;
+                position: absolute;
+                transition: height 0.5s, width 0.5s, margin 0.5s;
+                &:hover {
+                    margin-top: -12px;
+                    margin-left: -3px;
+                    height: 37px;
+                    width: 27px
+                }
+            }
+            #petropavlsk {
+                top: 3.9%;
+                left: 53.4%;
+            }
+            #kostanay {
+                top: 10.5%;
+                left: 41.9%;
+            }
+            #pavlodar {
+                top: 18.5%;
+                left: 70.4%;
+            }
+            #astana {
+                top: 23%;
+                left: 57.7%;
+            }
+            #uralsk {
+                top: 17.6%;
+                left: 14.5%;
+            }
+            #aktobe {
+                top: 27.4%;
+                left: 26.6%;
+            }
+            #semey {
+                top: 25%;
+                left: 77.6%;
+            }
+            #ust {
+                top: 26.8%;
+                left: 85.4%;
+            }
+        }
     }
-    .tab2 {
-        
-    }
-    .tab3 {
-        
-    }
+    .tab2 {}
+    .tab3 {}
     .clearfix {
         clear: both;
     }
