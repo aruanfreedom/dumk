@@ -5081,7 +5081,7 @@ nav .right a .icon-top {
     #cadrs #wrapper h3 {
       background: #e2e2e2;
       border: 1px solid #e2e2e2;
-      border-bottom: 0px solid #e2e2e2;
+      border-bottom: 0 solid #e2e2e2;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       padding: 9px 0;
@@ -5144,19 +5144,41 @@ nav .right a .icon-top {
       margin: 0 auto;
       height: 550px;
       width: 933px; }
-      #cadrs .tab1 .map img,
-      #cadrs .tab2 .map img,
-      #cadrs .tab3 .map img {
+      #cadrs .tab1 .map .marker,
+      #cadrs .tab2 .map .marker,
+      #cadrs .tab3 .map .marker {
         cursor: pointer;
         position: absolute;
-        transition: height 0.5s, width 0.5s, margin 0.5s; }
-        #cadrs .tab1 .map img:hover,
-        #cadrs .tab2 .map img:hover,
-        #cadrs .tab3 .map img:hover {
+        transition: height 0.5s, width 0.5s, margin 0.5s;
+        z-index: 1; }
+        #cadrs .tab1 .map .marker:hover,
+        #cadrs .tab2 .map .marker:hover,
+        #cadrs .tab3 .map .marker:hover {
           margin-top: -12px;
           margin-left: -3px;
           height: 37px;
           width: 27px; }
+      #cadrs .tab1 .map .popap,
+      #cadrs .tab2 .map .popap,
+      #cadrs .tab3 .map .popap {
+        display: none;
+        background: #e2e2e2;
+        position: absolute;
+        top: 50px;
+        margin-left: -133px;
+        left: 0;
+        width: 297px;
+        z-index: 2; }
+        #cadrs .tab1 .map .popap h2,
+        #cadrs .tab2 .map .popap h2,
+        #cadrs .tab3 .map .popap h2 {
+          font-size: 0.8em;
+          margin: 10px 0; }
+        #cadrs .tab1 .map .popap img,
+        #cadrs .tab2 .map .popap img,
+        #cadrs .tab3 .map .popap img {
+          position: absolute;
+          top: -8px; }
       #cadrs .tab1 .map #petropavlsk,
       #cadrs .tab2 .map #petropavlsk,
       #cadrs .tab3 .map #petropavlsk {
@@ -5176,7 +5198,10 @@ nav .right a .icon-top {
       #cadrs .tab2 .map #astana,
       #cadrs .tab3 .map #astana {
         top: 23%;
-        left: 57.7%; }
+        left: 56.4%;
+        position: absolute;
+        height: 27px;
+        width: 27px; }
       #cadrs .tab1 .map #uralsk,
       #cadrs .tab2 .map #uralsk,
       #cadrs .tab3 .map #uralsk {
@@ -5192,11 +5217,51 @@ nav .right a .icon-top {
       #cadrs .tab3 .map #semey {
         top: 25%;
         left: 77.6%; }
+      #cadrs .tab1 .map #karaganda,
+      #cadrs .tab2 .map #karaganda,
+      #cadrs .tab3 .map #karaganda {
+        top: 32%;
+        left: 62%; }
+      #cadrs .tab1 .map #atyrau,
+      #cadrs .tab2 .map #atyrau,
+      #cadrs .tab3 .map #atyrau {
+        top: 41%;
+        left: 12.6%; }
       #cadrs .tab1 .map #ust,
       #cadrs .tab2 .map #ust,
       #cadrs .tab3 .map #ust {
-        top: 26.8%;
-        left: 85.4%; }
+        top: 27%;
+        left: 85.5%; }
+      #cadrs .tab1 .map #aktau,
+      #cadrs .tab2 .map #aktau,
+      #cadrs .tab3 .map #aktau {
+        top: 61%;
+        left: 7.9%; }
+      #cadrs .tab1 .map #kyzilorda,
+      #cadrs .tab2 .map #kyzilorda,
+      #cadrs .tab3 .map #kyzilorda {
+        top: 60.5%;
+        left: 43.5%; }
+      #cadrs .tab1 .map #taldykorgan,
+      #cadrs .tab2 .map #taldykorgan,
+      #cadrs .tab3 .map #taldykorgan {
+        top: 56.5%;
+        left: 78.1%; }
+      #cadrs .tab1 .map #almaty,
+      #cadrs .tab2 .map #almaty,
+      #cadrs .tab3 .map #almaty {
+        top: 68.5%;
+        left: 73%; }
+      #cadrs .tab1 .map #taraz,
+      #cadrs .tab2 .map #taraz,
+      #cadrs .tab3 .map #taraz {
+        top: 73%;
+        left: 59.5%; }
+      #cadrs .tab1 .map #shimkent,
+      #cadrs .tab2 .map #shimkent,
+      #cadrs .tab3 .map #shimkent {
+        top: 77%;
+        left: 54.9%; }
   #cadrs .clearfix {
     clear: both; }
 

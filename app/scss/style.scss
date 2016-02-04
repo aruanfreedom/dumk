@@ -178,7 +178,7 @@ nav {
         h3 {
             background: #e2e2e2;
             border: 1px solid #e2e2e2;
-            border-bottom: 0px solid #e2e2e2;
+            border-bottom: 0 solid #e2e2e2;
             border-top-right-radius: 5px;
             border-top-left-radius: 5px;
             padding: 9px 0;
@@ -248,10 +248,11 @@ nav {
             margin: 0 auto;
             height: 550px;
             width: 933px;
-            img {
+            .marker {
                 cursor: pointer;
                 position: absolute;
                 transition: height 0.5s, width 0.5s, margin 0.5s;
+                z-index: 1;
                 &:hover {
                     margin-top: -12px;
                     margin-left: -3px;
@@ -259,6 +260,25 @@ nav {
                     width: 27px
                 }
             }
+            .popap {
+                display: none;
+                background: #e2e2e2;
+                position: absolute;
+                top: 50px;
+                margin-left: -133px;
+                left: 0;
+                width: 297px;
+                z-index: 2;
+                h2 {
+                    font-size: 0.8em;
+                    margin: 10px 0;
+                }
+                img{
+                    position: absolute;
+                    top: -8px;
+                }
+            }
+            
             #petropavlsk {
                 top: 3.9%;
                 left: 53.4%;
@@ -273,7 +293,10 @@ nav {
             }
             #astana {
                 top: 23%;
-                left: 57.7%;
+                left: 56.4%;
+                position: absolute;
+                height: 27px;
+                width: 27px;
             }
             #uralsk {
                 top: 17.6%;
@@ -287,9 +310,41 @@ nav {
                 top: 25%;
                 left: 77.6%;
             }
+            #karaganda {
+                top: 32%;
+                left: 62%;
+            }
+            #atyrau {
+                top: 41%;
+                left: 12.6%;
+            }
             #ust {
-                top: 26.8%;
-                left: 85.4%;
+                top: 27%;
+                left: 85.5%;
+            }
+            #aktau {
+                top: 61%;
+                left: 7.9%;
+            }
+            #kyzilorda {
+                top: 60.5%;
+                left: 43.5%;
+            }
+            #taldykorgan {
+                top: 56.5%;
+                left: 78.1%;
+            }
+            #almaty {
+                top: 68.5%;
+                left: 73%;
+            }
+            #taraz {
+                top: 73%;
+                left: 59.5%;
+            }
+            #shimkent {
+                top: 77%;
+                left: 54.9%;
             }
         }
     }
