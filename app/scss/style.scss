@@ -75,6 +75,15 @@ nav {
             font-weight: 500;
         }
     }
+    footer {
+        color: #525252;
+        position: absolute;
+        font-size: 1em;
+        bottom: 0px;
+        padding: 10px;
+        width: 100%;
+        z-index: 2;
+    }
 }
 
 #home {
@@ -134,22 +143,72 @@ nav {
             background: #fff;
         }
     }
+    footer {
+        color: #525252;
+        position: absolute;
+        font-size: 1em;
+        bottom: 0px;
+        padding: 10px;
+        width: 100%;
+        z-index: 2;
+    }
 }
 
 #cadrs {
     position: relative;
     height: 100%;
     #content {
-        height: 100%;
-        .tree-block{
-            background: #f4f4f4;
+        .tab-container {
+            position: relative;
+            top: 20px;
+            .etabs {
+                text-align: center;
+                margin: 0;
+                margin-bottom: 8px;
+                .tab {
+                    &.active {
+                        a {
+                            background: #fff;
+                            color: #000;
+                            outline: none;
+                        }
+                    }
+                }
+                li {
+                    display: inline-block;
+                    list-style: none;
+                    a {
+                        background: #3c8db7;
+                        border: 1px solid #e2e2e2;
+                        border-bottom: 0 solid #e2e2e2;
+                        border-top-right-radius: 5px;
+                        border-top-left-radius: 5px;
+                        padding: 12px 30px;
+                        margin: 10px;
+                        text-align: center;
+                        color: #fff;
+                        font-family: "Arial", sans-serif;
+                        font-weight: 100;
+                        font-size: 1.1em;
+                        z-index: 2;
+                    }
+                }
+            }
+            .tab-wrapper {
+                background: #fff;
+                padding: 60px 0;
+            }
+        }
+
+        .tree-block {
+            background: #fff;
             border: 1px solid #eaeaea;
             position: relative;
             height: 100%;
-            top: 57px;
             border-top-right-radius: 5px;
             font-size: 1em;
             p {
+                background: #f4f4f4;
                 border: 1px solid #eaeaea;
                 padding: 15px 10px;
                 margin: 0;
@@ -159,68 +218,68 @@ nav {
                 }
             }
         }
-        .right-content{
-            .search{
+        .right-content {
+            .search {
                 border: 1px solid #ccc;
                 background: url("../img/icons/search.png") no-repeat right;
                 background-position: 99%;
                 padding: 0 10px;
                 height: 40px;
             }
-            p{
+            p {
                 color: #3c8db7;
-                margin: 0; 
+                margin: 0;
                 padding-right: 10px;
                 a {
-                    float: right; 
+                    float: right;
                     margin: 10px 3px;
                 }
             }
-            small{
+            small {
                 font-size: 0.8125em;
             }
-             table{
+            table {
                 width: 100%;
-                .fired{
-                    color: #e31010; 
+                .fired {
+                    color: #e31010;
                 }
-                .working{
+                .working {
                     color: #318e0f;
                 }
-                .vacation{
+                .vacation {
                     color: #5b9cce;
                 }
-                .sorting{
+                .sorting {
                     display: none;
                     background: #fff;
                     border-radius: 3px;
-                    border: 1px solid #eaeaea;                    
+                    border: 1px solid #eaeaea;
                     text-align: left;
                     padding: 5px;
                     position: absolute;
                     top: 100%;
                     left: 0;
                     width: 100%;
-                    p{
+                    p {
                         color: #000;
                         position: relative;
                         left: 0;
                         margin: 0;
                         width: 80%;
                     }
-                    input{
+                    input {
                         position: absolute;
                         margin-top: -18px;
                         right: 0;
                         text-align: right;
                     }
                 }
-                thead{    
+                thead {
                     .sort-click {
                         cursor: pointer;
                     }
-                    tr{
-                        th{
+                    tr {
+                        th {
                             position: relative;
                             border: 1px solid #eaeaea;
                             line-height: 130%;
@@ -228,21 +287,21 @@ nav {
                         }
                     }
                 }
-                tbody{
-                    tr{                        
+                tbody {
+                    tr {
                         font-size: 0.875em;
                         text-align: center;
                         cursor: pointer;
-                        &:hover{
+                        &:hover {
                             background: #f5f5f5;
                         }
-                        td{
+                        td {
                             border: 1px solid #eaeaea;
                         }
                     }
                 }
             }
-            .button{
+            .button {
                 margin: 0 0px 15px 10px;
             }
         }
@@ -264,98 +323,9 @@ nav {
             }
         }
     }
-    #wrapper {
-        text-align: center;
-        position: relative;
-        min-width: 1000px;
-        height: 100%;
-        .tabs-line {
-            display: inline-block;
-            text-align: center;
-            position: relative;
-            margin-left: 20px;
-            width: 227px;
-            .plus {
-                font-weight: bold;
-                font-size: 1em;
-            }
-        }
-        h3 {
-            background: #3c8db7;
-            border: 1px solid #e2e2e2;
-            border-bottom: 0 solid #e2e2e2;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            padding: 9px 0;
-            margin: 0 0;
-            margin-right: 15px;
-            margin-bottom: -3px;
-            text-align: center;
-            color: #fff;
-            font-family: "Arial", sans-serif;
-            font-weight: 100;
-            font-size: 1.1em;
-            width: 227px;
-            z-index: 2;
-        }
-    }
-    #wrapper .none {
-        display: none;
-    }  
-    #wrapper.tab1 div.tab1 {
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        border: 1px solid #e2e2e2;
-        border-top: 0;
-        background: #fff;
-        display: block;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-    }
-    #wrapper.tab2 div.tab2 { 
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        border: 1px solid #e2e2e2;
-        border-top: 0;
-        background: #fff;
-        display: block;
-        height: 100%;
-        width: 100%;
-    }
-    #wrapper.tab3 div.tab3 {
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        border: 1px solid #e2e2e2;
-        border-top: 0;
-        background: #fff;
-        display: block;
-        height: 100%;
-        width: 100%;
-    }
-    #wrapper.tab1 .tab1 h3 {
-        background: #fff;
-        color: #000;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        width: 227px;
-    }
-    #wrapper.tab2 .tab2 h3 {
-        background: #fff;
-        color: #000;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        width: 227px;
-    }
-    #wrapper.tab3 .tab3 h3 {
-        background: #fff;
-        color: #000;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        width: 227px;
-    }
     #tabs-map {
         height: 100%;
+        min-width: 933px;
         position: relative;
         .map {
             background: url("../img/map.jpg") no-repeat center center;
@@ -380,7 +350,7 @@ nav {
                 background: #e2e2e2;
                 position: absolute;
                 top: 50px;
-                margin-left: -131px;
+                margin-left: -145px;
                 left: 0;
                 width: 297px;
                 z-index: 2;
@@ -397,108 +367,114 @@ nav {
                     background: #fff;
                     border: 1px solid #e2e2e2;
                     padding: 3px 6px;
-                    p{
-                        font-size: 0.8em; 
+                    p {
+                        font-size: 0.8em;
                         margin: 0;
                     }
                 }
             }
-            .mouse-select{
+            .mouse-select {
                 position: absolute;
                 height: 27px;
                 width: 27px;
             }
-            
+            #kokshetau {
+                top: 16%;
+                left: 56.1%;
+            }
             #petropavlsk {
                 top: 3.9%;
-                left: 52%;
+                left: 53.4%;
             }
             #kostanay {
                 top: 10.1%;
-                left: 40.5%;
+                left: 42%;
             }
             #pavlodar {
                 top: 17.9%;
-                left: 69%;
+                left: 70.5%;
             }
             #astana {
                 top: 23%;
-                left: 56.3%;
+                left: 57.7%;
             }
             #uralsk {
                 top: 17%;
-                left: 13%;
+                left: 14.5%;
             }
             #aktobe {
                 top: 27.4%;
-                left: 25.2%;
+                left: 26.6%;
             }
             #semey {
                 top: 25%;
-                left: 76.2%;
+                left: 77.6%;
             }
             #karaganda {
                 top: 31.9%;
-                left: 60.6%;
+                left: 61.9%;
             }
             #atyrau {
                 top: 41%;
-                left: 11%;
+                left: 12.5%;
             }
             #ust {
                 top: 27%;
-                left: 84%;
+                left: 85.4%;
             }
             #aktau {
                 top: 61%;
-                left: 6.3%;
+                left: 7.8%;
             }
             #kyzilorda {
                 top: 60.5%;
-                left: 42%;
+                left: 43.4%;
             }
             #taldykorgan {
                 top: 56.5%;
-                left: 76.6%;
+                left: 78%;
             }
             #almaty {
                 top: 68.5%;
-                left: 71.7%;
+                left: 73%;
             }
             #taraz {
                 top: 73%;
-                left: 58.2%;
+                left: 59.4%;
             }
             #shimkent {
                 top: 77%;
-                left: 53.5%;
+                left: 54.7%;
             }
         }
     }
-    .tab2 {}
-    .tab3 {}
-    .clearfix {
-        clear: both;
+    footer {
+        color: #525252;
+        position: relative;
+        font-size: 1em;
+        top: 30px;
+        height: 5px;
+        padding: 10px;
+        width: 100%;
+        z-index: 2;
+        small{
+            padding: 10px;
+        }
     }
 }
 
-.button{
+.clearfix {
+    clear: both;
+}
+
+.button {
     background-image: linear-gradient(#faf7f7, #ffffff);
     border-bottom-width: 5px;
     border-radius: 5px;
     border-color: #dfe0e0;
     font-weight: 100;
     width: 140px;
-    &.secondary{
+    &.secondary {
         background: #fcf9f9;
     }
-}
-
-footer {
-    color: #525252;
-    position: absolute;
-    font-size: 1em;
-    bottom: 10px;
-    width: 100%;
-    z-index: 2;
 }

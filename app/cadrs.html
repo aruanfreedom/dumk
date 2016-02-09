@@ -70,11 +70,11 @@
             </div>
             <div id="tab-container" class="tab-container">
               <ul class='etabs'>
-                <li class='tab'><a href="#tabs1-html">Реестр сотрудников</a></li>
-                <li class='tab'><a href="#tabs1-js">Отчеты и статистика</a></li>
-                <li class='tab'><a href="#tabs1-css">Добавить сотрудника <span class="plus">+</span></a></li>
+                <li class='tab'><a href="#tabs-map">Реестр сотрудников</a></li>
+                <li class='tab'><a href="#tabs-statistics">Отчеты и статистика</a></li>
+                <li class='tab'><a href="#tabs-add">Добавить сотрудника <span class="plus">+</span></a></li>
               </ul>
-              <div id="tabs-map">
+              <div id="tabs-map" class="tab-wrapper">
                         <div class="map"> 
                             <div id="petropavlsk" class="mouse-select">
                                 <a href="#petropavlsk">
@@ -112,6 +112,19 @@
                                     </div>
                             </div>
                             <div id="astana" class="mouse-select">
+                                <a href="reestr-employee.html">
+                                    <img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
+                                    </a>
+                                    <div class="popap text-left">
+                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
+                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
+                                        <div class="white-bg">
+                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
+                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div id="kokshetau" class="mouse-select">
                                 <a href="reestr-employee.html">
                                     <img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
                                     </a>
@@ -259,237 +272,22 @@
                                     </div>
                             </div>
                         </div>
-                    </td>
               </div>
-              <div id="tabs1-js">
-                <h2>JS for these tabs</h2>
+              <div id="tabs-statics" class="tab-wrapper">
+                <p>Not Found</p>
                 <!-- content -->
               </div>
-              <div id="tabs1-css">
-                <h2>CSS Styles for these tabs</h2>
+              <div id="tabs-add" class="tab-wrapper">
+                <p>Not Found</p>
                 <!-- content -->
               </div>
-            </div>
-            <div id="wrapper" class="tab1">
-                <div class="tabs-line">
-                    <div class="tab1 tabs">
-                        <div id="reestr" class="reestr">
-                            <h3>Реестр сотрудников</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab2 tabs">
-                        <div id="reports" class="reports">
-                            <h3>Отчеты и статистика</h3></div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab3 tabs">
-                        <div id="add_" class="add_employee">
-                            <h3>Добавить сотрудника <span class="plus">+</span></h3></div>
-                    </div>
-                </div>
-                <div class="tab1 none">
-                    <td>
-                        <div class="map"> 
-                            <div id="petropavlsk" class="mouse-select">
-                                <a href="#petropavlsk">
-                                <img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
-                                </a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="kostanay" class="mouse-select">
-                                <a href="#kostanay"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="pavlodar" class="mouse-select">
-                                <a href="#pavlodar"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="astana" class="mouse-select">
-                                <a href="reestr-employee.html">
-                                    <img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
-                                    </a>
-                                    <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="uralsk" class="mouse-select">
-                            <a href="#uralsk">
-                                <img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
-                                </a>
-                                 <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="aktobe" class="mouse-select">
-                                <a href="#aktobe"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="semey" class="mouse-select">
-                                <a href="#semey"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="karaganda" class="mouse-select">
-                                <a href="#karaganda"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="atyrau" class="mouse-select">
-                                <a href="#atyrau"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="ust" class="mouse-select">
-                                <a href="#ust"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="aktau" class="mouse-select">
-                                <a href="#aktau"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="kyzilorda" class="mouse-select">
-                                <a href="#kyzilorda"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="taldykorgan" class="mouse-select">
-                                <a href="#taldykorgan"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                 <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="almaty" class="mouse-select">
-                                <a href="#almaty"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                 <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="taraz" class="mouse-select">
-                                <a href="#taraz"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div id="shimkent" class="mouse-select">
-                                <a href="#shimkent"><img src="img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
-                                <div class="popap text-left">
-                                        <img src="img/icons/traingle.png" alt="traingle" class="triangle">
-                                        <h2>Представительство Центрального аппарата ДУМК в г. Алматы</h2>
-                                        <div class="white-bg">
-                                            <p><img src="img/icons/star.png" height="12" width="12" alt="star"> Куаныш Мейрамбекулы</p>
-                                            <p><img src="img/icons/person-map.png" height="12" width="12" alt="person"> 138 сотрудников</p>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </td>
-                </div>
-                <div class="tab2 none">
-                    <p>not found</p>                       
-                </div>
-                <div class="tab3 none">
-                    <p>not found</p>                       
-                </div>
             </div>
         </div>
+        <footer class="text-center">
+            <small>DUMK. Copyright © 2016. All rights reserved</small>
+        </footer>
     </div>
-    <footer class="text-center">
-        <small>DUMK. Copyright © 2016. All rights reserved</small>
-    </footer>
+        
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/foundation/js/vendor/jquery.js"></script>

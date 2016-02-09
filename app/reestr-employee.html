@@ -2,7 +2,6 @@
 <html lang="en">
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
 <!--<![endif]-->
 <script src="bower_components/modernizr/modernizr.js"></script>
 
@@ -68,31 +67,17 @@
                 <a href="#">Учебные заведения и учащиеся</a>
                 <a href="#">Осужденные экстремисты</a>
             </div>
-            <div id="wrapper" class="tab1">
-                <div class="tabs-line">
-                    <div class="tab1 tabs">
-                        <div id="reestr" class="reestr">
-                            <h3>Реестр сотрудников</h3></div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab2 tabs">
-                        <div id="reports" class="reports">
-                            <h3>Отчеты и статистика</h3></div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab3 tabs">
-                        <div id="add_" class="add_employee">
-                            <h3>Добавить сотрудника <span class="plus">+</span></h3></div>
-                    </div>
-                </div>
-                <div class="tab1 none">
-                    <div class="large-3 text-left">
+            <div id="tab-container" class="tab-container">
+                <ul class='etabs'>
+                    <li class='tab'><a href="#tabs-emploayee">Реестр сотрудников</a></li>
+                    <li class='tab'><a href="#tabs-statistics">Отчеты и статистика</a></li>
+                    <li class='tab'><a href="#tabs-add">Добавить сотрудника <span class="plus">+</span></a></li>
+                </ul>
+                <div id="tabs-emploayee" class="tab-wrapper">
+                    <div class="large-3 left text-left">
                         <div class="row tree-block">
                             <p>Организационная структура
-                                <a href="#download"><img src="img/icons/download.png" height="16" width="13" alt="download"></a>
-                                <a href="#word"><img src="img/icons/word.png" height="16" width="14" alt="word"></a>
+                                <a href="#download"><img src="img/icons/download.png" alt="download"></a>
                             </p>
                         </div>
                     </div>
@@ -101,8 +86,7 @@
                         <div>
                             <div class="large-8 left ">
                                 <p>Филиал Актюбинской области
-                                    <a href="#download" class="right"><img src="img/icons/download.png" height="16" width="13" alt="download"></a>
-                                    <a href="#word" class="right"><img src="img/icons/word.png" height="16" width="14" alt="word"></a>
+                                    <a href="#download" class="right"><img src="img/icons/download.png" alt="download"></a>
                                 </p>
                                 <small>Мечеть Нурдаулет</small>
                             </div>
@@ -118,20 +102,20 @@
                                     <th>Ф.И.О.</th>
                                     <th>ИИН</th>
                                     <th>Номер телефона</th>
-                                    <th width="140" class="sort-click">Высшее образование 
-	                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
-										<span class="sorting">
-	                                    	<p>Да </p><input type="checkbox" name="yes">
-	                                    	<p>Нет</p><input type="checkbox" name="no">
-	                                    </span>
+                                    <th width="140" class="sort-click">Высшее образование
+                                        <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
+                                        <span class="sorting">
+                                            <p>Да </p><input type="checkbox" name="yes">
+                                            <p>Нет</p><input type="checkbox" name="no">
+                                        </span>
                                     </th>
-                                    <th class="sort-click">Должность 
-                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
-									<span class="sorting">
-	                                    	<p>Бас имам </p><input type="checkbox" name="bas_imam">
-	                                    	<p>Наиб Имам</p><input type="checkbox" name="naib_imam">
-	                                    	<p>Өкiл Имам</p><input type="checkbox" name="okil_imam">
-	                                    </span>
+                                    <th class="sort-click">Должность
+                                        <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
+                                        <span class="sorting">
+                                            <p>Бас имам </p><input type="checkbox" name="bas_imam">
+                                            <p>Наиб Имам</p><input type="checkbox" name="naib_imam">
+                                            <p>Өкiл Имам</p><input type="checkbox" name="okil_imam">
+                                        </span>
                                     </th>
                                     <th class="sort-click">Статус <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom"></th>
                                 </tr>
@@ -212,29 +196,26 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="tab2 none">
-                    <p>not found</p>
+                <div id="tabs-statistics" class="tab-wrapper">
+                    <h2>not found</h2>
                 </div>
-                <div class="tab3 none">
-                    <p>not found</p>
+                <div id="tabs-add" class="tab-wrapper">
+                    <h2>not found</h2>
                 </div>
             </div>
+            <footer class="text-center">
+                <small>DUMK. Copyright © 2016. All rights reserved</small>
+            </footer>
         </div>
     </div>
-    <footer class="text-center">
-        <small>DUMK. Copyright © 2016. All rights reserved</small>
-    </footer>
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
-    <script>
-    document.write('<script src=' +
-        ('__proto__' in {} ? 'bower_components/foundation/js/vendor/zepto' : 'bower_components/foundation/js/vendor/jquery') +
-        '.js><\/script>')
-    </script>
+    <script src="bower_components/foundation/js/vendor/jquery.js"></script>
     <script src="bower_components/foundation/js/foundation/foundation.js"></script>
     <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-     <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+    <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script>
@@ -242,7 +223,10 @@
     </script>
     <script src="js/app.js"></script>
     <script src="js/tabs.js"></script>
-    <!-- <script src="js/tabs.js"></script> -->
+    <script src="js/jquery.tabslet.min.js"></script>
+    <script>
+    $('#tab-container').tabslet();
+    </script>
 </body>
 
 </html>
