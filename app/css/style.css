@@ -3033,7 +3033,7 @@ label.error {
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
   width: 100%;
-  background: #111; }
+  background: #3c8db7; }
   .contain-to-grid .top-bar {
     margin-bottom: 0; }
 
@@ -3061,7 +3061,7 @@ label.error {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #111;
+  background: #3c8db7;
   margin-bottom: 0; }
   .top-bar ul {
     margin-bottom: 0;
@@ -3132,7 +3132,7 @@ label.error {
     height: auto;
     background: transparent; }
     .top-bar.expanded .title-area {
-      background: #111; }
+      background: #3c8db7; }
     .top-bar.expanded .toggle-topbar a {
       color: #888; }
       .top-bar.expanded .toggle-topbar a span {
@@ -3150,13 +3150,13 @@ label.error {
     width: 100%;
     height: auto;
     display: block;
-    background: #222;
+    background: #3c8db7;
     font-size: 16px;
     margin: 0; }
   .top-bar-section .divider,
   .top-bar-section [role="separator"] {
-    border-bottom: solid 1px #2b2b2b;
-    border-top: solid 1px black;
+    border-bottom: solid 1px #5ca4ca;
+    border-top: solid 1px #2f6f91;
     clear: both;
     height: 1px;
     width: 100%; }
@@ -3168,7 +3168,7 @@ label.error {
     padding-left: 15px;
     font-size: 0.8125em;
     font-weight: bold;
-    background: #222; }
+    background: #3c8db7; }
     .top-bar-section ul li > a.button {
       background: #2ba6cb;
       font-size: 0.8125em;
@@ -3189,10 +3189,10 @@ label.error {
       .top-bar-section ul li > a.button.alert:hover {
         background: #970b0e; }
   .top-bar-section ul li:hover > a {
-    background: black;
+    background: #3c8db7;
     color: #fff; }
   .top-bar-section ul li.active > a {
-    background: #090909;
+    background: #3884ab;
     color: #fff; }
   .top-bar-section .has-form {
     padding: 15px; }
@@ -3252,7 +3252,7 @@ label.error {
 
 @media only screen and (min-width: 940px) {
   .top-bar {
-    background: #111;
+    background: #3c8db7;
     *zoom: 1;
     overflow: visible; }
     .top-bar:before, .top-bar:after {
@@ -3275,7 +3275,7 @@ label.error {
       position: relative;
       top: 8px; }
     .top-bar.expanded {
-      background: #111; }
+      background: #3c8db7; }
   .contain-to-grid .top-bar {
     max-width: 62.5em;
     margin: 0 auto;
@@ -3294,14 +3294,14 @@ label.error {
         .top-bar-section ul li .js-generated {
           display: none; }
     .top-bar-section li.hover > a:not(.button) {
-      background: black;
+      background: #3c8db7;
       color: #fff; }
     .top-bar-section li a:not(.button) {
       padding: 0 15px;
       line-height: 45px;
-      background: #111; }
+      background: #3c8db7; }
       .top-bar-section li a:not(.button):hover {
-        background: black; }
+        background: #3c8db7; }
     .top-bar-section .has-dropdown > a {
       padding-right: 35px !important; }
       .top-bar-section .has-dropdown > a:after {
@@ -3336,10 +3336,10 @@ label.error {
         line-height: 1;
         white-space: nowrap;
         padding: 7px 15px;
-        background: #1e1e1e; }
+        background: #499ac3; }
       .top-bar-section .dropdown li label {
         white-space: nowrap;
-        background: #1e1e1e; }
+        background: #499ac3; }
       .top-bar-section .dropdown li .dropdown {
         left: 100%;
         top: 0; }
@@ -3347,13 +3347,13 @@ label.error {
     .top-bar-section > ul > [role="separator"] {
       border-bottom: none;
       border-top: none;
-      border-right: solid 1px #2b2b2b;
-      border-left: solid 1px black;
+      border-right: solid 1px #5ca4ca;
+      border-left: solid 1px #2f6f91;
       clear: none;
       height: 45px;
       width: 0; }
     .top-bar-section .has-form {
-      background: #111;
+      background: #3c8db7;
       padding: 0 15px;
       height: 45px; }
     .top-bar-section ul.right li .dropdown {
@@ -3362,10 +3362,10 @@ label.error {
       .top-bar-section ul.right li .dropdown li .dropdown {
         right: 100%; }
   .no-js .top-bar-section ul li:hover > a {
-    background: black;
+    background: #3c8db7;
     color: #fff; }
   .no-js .top-bar-section ul li:active > a {
-    background: #090909;
+    background: #3884ab;
     color: #fff; }
   .no-js .top-bar-section .has-dropdown:hover > .dropdown {
     display: block; } }
@@ -4742,7 +4742,7 @@ table {
     table thead tr td,
     table tfoot tr th,
     table tfoot tr td {
-      padding: 0.5em 0.625em 0.625em;
+      padding: 0.75em 0.625em 0.625em;
       font-size: 0.875em;
       color: #222;
       text-align: left; }
@@ -4750,16 +4750,16 @@ table {
   table tr td {
     padding: 0.5625em 0.625em;
     font-size: 0.875em;
-    color: #222; }
+    color: #000; }
   table tr.even, table tr.alt, table tr:nth-of-type(even) {
-    background: #f9f9f9; }
+    background: #fff; }
   table thead tr th,
   table tfoot tr th,
   table tbody tr td,
   table tr td,
   table tfoot tr td {
     display: table-cell;
-    line-height: 1.125em; }
+    line-height: 3.125em; }
 
 /* Image Thumbnails */
 .th {
@@ -5049,7 +5049,84 @@ nav .right a .icon-top {
   position: relative;
   height: 100%; }
   #cadrs #content {
-    height: 73.6%; }
+    height: 100%; }
+    #cadrs #content .tree-block {
+      background: #f4f4f4;
+      border: 1px solid #eaeaea;
+      position: relative;
+      height: 100%;
+      top: 57px;
+      border-top-right-radius: 5px;
+      font-size: 1em; }
+      #cadrs #content .tree-block p {
+        border: 1px solid #eaeaea;
+        padding: 15px 10px;
+        margin: 0; }
+        #cadrs #content .tree-block p a {
+          float: right;
+          margin: 0 3px; }
+    #cadrs #content .right-content .search {
+      border: 1px solid #ccc;
+      background: url("../img/icons/search.png") no-repeat right;
+      background-position: 99%;
+      padding: 0 10px;
+      height: 40px; }
+    #cadrs #content .right-content p {
+      color: #3c8db7;
+      margin: 0;
+      padding-right: 10px; }
+      #cadrs #content .right-content p a {
+        float: right;
+        margin: 10px 3px; }
+    #cadrs #content .right-content small {
+      font-size: 0.8125em; }
+    #cadrs #content .right-content table {
+      width: 100%; }
+      #cadrs #content .right-content table .fired {
+        color: #e31010; }
+      #cadrs #content .right-content table .working {
+        color: #318e0f; }
+      #cadrs #content .right-content table .vacation {
+        color: #5b9cce; }
+      #cadrs #content .right-content table .sorting {
+        display: none;
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid #eaeaea;
+        text-align: left;
+        padding: 5px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%; }
+        #cadrs #content .right-content table .sorting p {
+          color: #000;
+          position: relative;
+          left: 0;
+          margin: 0;
+          width: 80%; }
+        #cadrs #content .right-content table .sorting input {
+          position: absolute;
+          margin-top: -18px;
+          right: 0;
+          text-align: right; }
+      #cadrs #content .right-content table thead .sort-click {
+        cursor: pointer; }
+      #cadrs #content .right-content table thead tr th {
+        position: relative;
+        border: 1px solid #eaeaea;
+        line-height: 130%;
+        text-align: center; }
+      #cadrs #content .right-content table tbody tr {
+        font-size: 0.875em;
+        text-align: center;
+        cursor: pointer; }
+        #cadrs #content .right-content table tbody tr:hover {
+          background: #f5f5f5; }
+        #cadrs #content .right-content table tbody tr td {
+          border: 1px solid #eaeaea; }
+    #cadrs #content .right-content .button {
+      margin: 0 0px 15px 10px; }
   #cadrs .top-link {
     text-align: left;
     margin: 30px 0; }
@@ -5079,7 +5156,7 @@ nav .right a .icon-top {
         font-weight: bold;
         font-size: 1em; }
     #cadrs #wrapper h3 {
-      background: #e2e2e2;
+      background: #3c8db7;
       border: 1px solid #e2e2e2;
       border-bottom: 0 solid #e2e2e2;
       border-top-right-radius: 5px;
@@ -5089,7 +5166,7 @@ nav .right a .icon-top {
       margin-right: 15px;
       margin-bottom: -3px;
       text-align: center;
-      color: #000;
+      color: #fff;
       font-family: "Arial", sans-serif;
       font-weight: 100;
       font-size: 1.1em;
@@ -5098,172 +5175,157 @@ nav .right a .icon-top {
   #cadrs #wrapper .none {
     display: none; }
   #cadrs #wrapper.tab1 div.tab1 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     border: 1px solid #e2e2e2;
+    border-top: 0;
     background: #fff;
     display: block;
     height: 100%;
     width: 100%;
     z-index: 1; }
   #cadrs #wrapper.tab2 div.tab2 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     border: 1px solid #e2e2e2;
+    border-top: 0;
     background: #fff;
     display: block;
     height: 100%;
     width: 100%; }
   #cadrs #wrapper.tab3 div.tab3 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     border: 1px solid #e2e2e2;
+    border-top: 0;
     background: #fff;
     display: block;
     height: 100%;
     width: 100%; }
   #cadrs #wrapper.tab1 .tab1 h3 {
     background: #fff;
+    color: #000;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     width: 227px; }
   #cadrs #wrapper.tab2 .tab2 h3 {
     background: #fff;
+    color: #000;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     width: 227px; }
   #cadrs #wrapper.tab3 .tab3 h3 {
     background: #fff;
+    color: #000;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     width: 227px; }
-  #cadrs .tab1,
-  #cadrs .tab2,
-  #cadrs .tab3 {
+  #cadrs #tabs-map {
     height: 100%;
     position: relative; }
-    #cadrs .tab1 .map,
-    #cadrs .tab2 .map,
-    #cadrs .tab3 .map {
+    #cadrs #tabs-map .map {
       background: url("../img/map.jpg") no-repeat center center;
       position: relative;
       margin: 0 auto;
       height: 550px;
       width: 933px; }
-      #cadrs .tab1 .map .marker,
-      #cadrs .tab2 .map .marker,
-      #cadrs .tab3 .map .marker {
+      #cadrs #tabs-map .map .marker {
         cursor: pointer;
         position: absolute;
         transition: height 0.5s, width 0.5s, margin 0.5s;
         z-index: 1; }
-        #cadrs .tab1 .map .marker:hover,
-        #cadrs .tab2 .map .marker:hover,
-        #cadrs .tab3 .map .marker:hover {
+        #cadrs #tabs-map .map .marker:hover {
           margin-top: -12px;
           margin-left: -3px;
           height: 37px;
           width: 27px; }
-      #cadrs .tab1 .map .popap,
-      #cadrs .tab2 .map .popap,
-      #cadrs .tab3 .map .popap {
+      #cadrs #tabs-map .map .popap {
         display: none;
         background: #e2e2e2;
         position: absolute;
         top: 50px;
-        margin-left: -133px;
+        margin-left: -131px;
         left: 0;
         width: 297px;
         z-index: 2; }
-        #cadrs .tab1 .map .popap h2,
-        #cadrs .tab2 .map .popap h2,
-        #cadrs .tab3 .map .popap h2 {
+        #cadrs #tabs-map .map .popap h2 {
           font-size: 0.8em;
-          margin: 10px 0; }
-        #cadrs .tab1 .map .popap img,
-        #cadrs .tab2 .map .popap img,
-        #cadrs .tab3 .map .popap img {
+          margin: 3px 6px; }
+        #cadrs #tabs-map .map .popap .triangle {
           position: absolute;
+          left: 50%;
           top: -8px; }
-      #cadrs .tab1 .map #petropavlsk,
-      #cadrs .tab2 .map #petropavlsk,
-      #cadrs .tab3 .map #petropavlsk {
-        top: 3.9%;
-        left: 53.4%; }
-      #cadrs .tab1 .map #kostanay,
-      #cadrs .tab2 .map #kostanay,
-      #cadrs .tab3 .map #kostanay {
-        top: 10.5%;
-        left: 41.9%; }
-      #cadrs .tab1 .map #pavlodar,
-      #cadrs .tab2 .map #pavlodar,
-      #cadrs .tab3 .map #pavlodar {
-        top: 18.5%;
-        left: 70.4%; }
-      #cadrs .tab1 .map #astana,
-      #cadrs .tab2 .map #astana,
-      #cadrs .tab3 .map #astana {
-        top: 23%;
-        left: 56.4%;
+        #cadrs #tabs-map .map .popap .white-bg {
+          background: #fff;
+          border: 1px solid #e2e2e2;
+          padding: 3px 6px; }
+          #cadrs #tabs-map .map .popap .white-bg p {
+            font-size: 0.8em;
+            margin: 0; }
+      #cadrs #tabs-map .map .mouse-select {
         position: absolute;
         height: 27px;
         width: 27px; }
-      #cadrs .tab1 .map #uralsk,
-      #cadrs .tab2 .map #uralsk,
-      #cadrs .tab3 .map #uralsk {
-        top: 17.6%;
-        left: 14.5%; }
-      #cadrs .tab1 .map #aktobe,
-      #cadrs .tab2 .map #aktobe,
-      #cadrs .tab3 .map #aktobe {
+      #cadrs #tabs-map .map #petropavlsk {
+        top: 3.9%;
+        left: 52%; }
+      #cadrs #tabs-map .map #kostanay {
+        top: 10.1%;
+        left: 40.5%; }
+      #cadrs #tabs-map .map #pavlodar {
+        top: 17.9%;
+        left: 69%; }
+      #cadrs #tabs-map .map #astana {
+        top: 23%;
+        left: 56.3%; }
+      #cadrs #tabs-map .map #uralsk {
+        top: 17%;
+        left: 13%; }
+      #cadrs #tabs-map .map #aktobe {
         top: 27.4%;
-        left: 26.6%; }
-      #cadrs .tab1 .map #semey,
-      #cadrs .tab2 .map #semey,
-      #cadrs .tab3 .map #semey {
+        left: 25.2%; }
+      #cadrs #tabs-map .map #semey {
         top: 25%;
-        left: 77.6%; }
-      #cadrs .tab1 .map #karaganda,
-      #cadrs .tab2 .map #karaganda,
-      #cadrs .tab3 .map #karaganda {
-        top: 32%;
-        left: 62%; }
-      #cadrs .tab1 .map #atyrau,
-      #cadrs .tab2 .map #atyrau,
-      #cadrs .tab3 .map #atyrau {
+        left: 76.2%; }
+      #cadrs #tabs-map .map #karaganda {
+        top: 31.9%;
+        left: 60.6%; }
+      #cadrs #tabs-map .map #atyrau {
         top: 41%;
-        left: 12.6%; }
-      #cadrs .tab1 .map #ust,
-      #cadrs .tab2 .map #ust,
-      #cadrs .tab3 .map #ust {
+        left: 11%; }
+      #cadrs #tabs-map .map #ust {
         top: 27%;
-        left: 85.5%; }
-      #cadrs .tab1 .map #aktau,
-      #cadrs .tab2 .map #aktau,
-      #cadrs .tab3 .map #aktau {
+        left: 84%; }
+      #cadrs #tabs-map .map #aktau {
         top: 61%;
-        left: 7.9%; }
-      #cadrs .tab1 .map #kyzilorda,
-      #cadrs .tab2 .map #kyzilorda,
-      #cadrs .tab3 .map #kyzilorda {
+        left: 6.3%; }
+      #cadrs #tabs-map .map #kyzilorda {
         top: 60.5%;
-        left: 43.5%; }
-      #cadrs .tab1 .map #taldykorgan,
-      #cadrs .tab2 .map #taldykorgan,
-      #cadrs .tab3 .map #taldykorgan {
+        left: 42%; }
+      #cadrs #tabs-map .map #taldykorgan {
         top: 56.5%;
-        left: 78.1%; }
-      #cadrs .tab1 .map #almaty,
-      #cadrs .tab2 .map #almaty,
-      #cadrs .tab3 .map #almaty {
+        left: 76.6%; }
+      #cadrs #tabs-map .map #almaty {
         top: 68.5%;
-        left: 73%; }
-      #cadrs .tab1 .map #taraz,
-      #cadrs .tab2 .map #taraz,
-      #cadrs .tab3 .map #taraz {
+        left: 71.7%; }
+      #cadrs #tabs-map .map #taraz {
         top: 73%;
-        left: 59.5%; }
-      #cadrs .tab1 .map #shimkent,
-      #cadrs .tab2 .map #shimkent,
-      #cadrs .tab3 .map #shimkent {
+        left: 58.2%; }
+      #cadrs #tabs-map .map #shimkent {
         top: 77%;
-        left: 54.9%; }
+        left: 53.5%; }
   #cadrs .clearfix {
     clear: both; }
+
+.button {
+  background-image: linear-gradient(#faf7f7, #ffffff);
+  border-bottom-width: 5px;
+  border-radius: 5px;
+  border-color: #dfe0e0;
+  font-weight: 100;
+  width: 140px; }
+  .button.secondary {
+    background: #fcf9f9; }
 
 footer {
   color: #525252;

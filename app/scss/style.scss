@@ -140,7 +140,112 @@ nav {
     position: relative;
     height: 100%;
     #content {
-        height: 73.6%;
+        height: 100%;
+        .tree-block{
+            background: #f4f4f4;
+            border: 1px solid #eaeaea;
+            position: relative;
+            height: 100%;
+            top: 57px;
+            border-top-right-radius: 5px;
+            font-size: 1em;
+            p {
+                border: 1px solid #eaeaea;
+                padding: 15px 10px;
+                margin: 0;
+                a {
+                    float: right;
+                    margin: 0 3px;
+                }
+            }
+        }
+        .right-content{
+            .search{
+                border: 1px solid #ccc;
+                background: url("../img/icons/search.png") no-repeat right;
+                background-position: 99%;
+                padding: 0 10px;
+                height: 40px;
+            }
+            p{
+                color: #3c8db7;
+                margin: 0; 
+                padding-right: 10px;
+                a {
+                    float: right; 
+                    margin: 10px 3px;
+                }
+            }
+            small{
+                font-size: 0.8125em;
+            }
+             table{
+                width: 100%;
+                .fired{
+                    color: #e31010; 
+                }
+                .working{
+                    color: #318e0f;
+                }
+                .vacation{
+                    color: #5b9cce;
+                }
+                .sorting{
+                    display: none;
+                    background: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #eaeaea;                    
+                    text-align: left;
+                    padding: 5px;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    p{
+                        color: #000;
+                        position: relative;
+                        left: 0;
+                        margin: 0;
+                        width: 80%;
+                    }
+                    input{
+                        position: absolute;
+                        margin-top: -18px;
+                        right: 0;
+                        text-align: right;
+                    }
+                }
+                thead{    
+                    .sort-click {
+                        cursor: pointer;
+                    }
+                    tr{
+                        th{
+                            position: relative;
+                            border: 1px solid #eaeaea;
+                            line-height: 130%;
+                            text-align: center;
+                        }
+                    }
+                }
+                tbody{
+                    tr{                        
+                        font-size: 0.875em;
+                        text-align: center;
+                        cursor: pointer;
+                        &:hover{
+                            background: #f5f5f5;
+                        }
+                        td{
+                            border: 1px solid #eaeaea;
+                        }
+                    }
+                }
+            }
+            .button{
+                margin: 0 0px 15px 10px;
+            }
+        }
     }
     .top-link {
         text-align: left;
@@ -176,7 +281,7 @@ nav {
             }
         }
         h3 {
-            background: #e2e2e2;
+            background: #3c8db7;
             border: 1px solid #e2e2e2;
             border-bottom: 0 solid #e2e2e2;
             border-top-right-radius: 5px;
@@ -186,7 +291,7 @@ nav {
             margin-right: 15px;
             margin-bottom: -3px;
             text-align: center;
-            color: #000;
+            color: #fff;
             font-family: "Arial", sans-serif;
             font-weight: 100;
             font-size: 1.1em;
@@ -196,24 +301,33 @@ nav {
     }
     #wrapper .none {
         display: none;
-    }
+    }  
     #wrapper.tab1 div.tab1 {
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
         border: 1px solid #e2e2e2;
+        border-top: 0;
         background: #fff;
         display: block;
         height: 100%;
         width: 100%;
         z-index: 1;
     }
-    #wrapper.tab2 div.tab2 {
+    #wrapper.tab2 div.tab2 { 
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
         border: 1px solid #e2e2e2;
+        border-top: 0;
         background: #fff;
         display: block;
         height: 100%;
         width: 100%;
     }
     #wrapper.tab3 div.tab3 {
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
         border: 1px solid #e2e2e2;
+        border-top: 0;
         background: #fff;
         display: block;
         height: 100%;
@@ -221,25 +335,26 @@ nav {
     }
     #wrapper.tab1 .tab1 h3 {
         background: #fff;
+        color: #000;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
         width: 227px;
     }
     #wrapper.tab2 .tab2 h3 {
         background: #fff;
+        color: #000;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
         width: 227px;
     }
     #wrapper.tab3 .tab3 h3 {
         background: #fff;
+        color: #000;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
         width: 227px;
     }
-    .tab1,
-    .tab2,
-    .tab3 {
+    #tabs-map {
         height: 100%;
         position: relative;
         .map {
@@ -265,86 +380,98 @@ nav {
                 background: #e2e2e2;
                 position: absolute;
                 top: 50px;
-                margin-left: -133px;
+                margin-left: -131px;
                 left: 0;
                 width: 297px;
                 z-index: 2;
                 h2 {
                     font-size: 0.8em;
-                    margin: 10px 0;
+                    margin: 3px 6px;
                 }
-                img{
+                .triangle {
                     position: absolute;
+                    left: 50%;
                     top: -8px;
                 }
+                .white-bg {
+                    background: #fff;
+                    border: 1px solid #e2e2e2;
+                    padding: 3px 6px;
+                    p{
+                        font-size: 0.8em; 
+                        margin: 0;
+                    }
+                }
             }
-            
-            #petropavlsk {
-                top: 3.9%;
-                left: 53.4%;
-            }
-            #kostanay {
-                top: 10.5%;
-                left: 41.9%;
-            }
-            #pavlodar {
-                top: 18.5%;
-                left: 70.4%;
-            }
-            #astana {
-                top: 23%;
-                left: 56.4%;
+            .mouse-select{
                 position: absolute;
                 height: 27px;
                 width: 27px;
             }
+            
+            #petropavlsk {
+                top: 3.9%;
+                left: 52%;
+            }
+            #kostanay {
+                top: 10.1%;
+                left: 40.5%;
+            }
+            #pavlodar {
+                top: 17.9%;
+                left: 69%;
+            }
+            #astana {
+                top: 23%;
+                left: 56.3%;
+            }
             #uralsk {
-                top: 17.6%;
-                left: 14.5%;
+                top: 17%;
+                left: 13%;
             }
             #aktobe {
                 top: 27.4%;
-                left: 26.6%;
+                left: 25.2%;
             }
             #semey {
                 top: 25%;
-                left: 77.6%;
+                left: 76.2%;
             }
             #karaganda {
-                top: 32%;
-                left: 62%;
+                top: 31.9%;
+                left: 60.6%;
             }
             #atyrau {
                 top: 41%;
-                left: 12.6%;
+                left: 11%;
             }
             #ust {
                 top: 27%;
-                left: 85.5%;
+                left: 84%;
             }
             #aktau {
                 top: 61%;
-                left: 7.9%;
+                left: 6.3%;
             }
             #kyzilorda {
                 top: 60.5%;
-                left: 43.5%;
+                left: 42%;
             }
             #taldykorgan {
                 top: 56.5%;
-                left: 78.1%;
+                left: 76.6%;
             }
             #almaty {
                 top: 68.5%;
-                left: 73%;
+                left: 71.7%;
             }
             #taraz {
                 top: 73%;
-                left: 59.5%;
+                left: 58.2%;
             }
             #shimkent {
                 top: 77%;
-                left: 54.9%;
+                left: 53.5%;
             }
         }
     }
@@ -352,6 +479,18 @@ nav {
     .tab3 {}
     .clearfix {
         clear: both;
+    }
+}
+
+.button{
+    background-image: linear-gradient(#faf7f7, #ffffff);
+    border-bottom-width: 5px;
+    border-radius: 5px;
+    border-color: #dfe0e0;
+    font-weight: 100;
+    width: 140px;
+    &.secondary{
+        background: #fcf9f9;
     }
 }
 
