@@ -65,7 +65,7 @@ gulp.task('clean', ['sass'], function() {
 gulp.task('html', function() {
     var assets = useref.assets();
 
-    return gulp.src('app/index.html')
+    return gulp.src('app/*.html')
         .pipe(assets)
         .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', minifyCss()))

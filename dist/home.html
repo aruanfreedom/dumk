@@ -4,7 +4,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-<script src="js/custom.modernizr.js"></script>
+<script src="bower_components/modernizr/modernizr.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -48,7 +48,7 @@
                     <li class="has-dropdown">
                         <a href="#">Арман Ахметов</a>
                         <ul class="dropdown">
-                            <li><a href="#">Профиль</a></li>
+                            <li><a href="my-profile.html">Профиль</a></li>
                             <li><a href="#">Выход из системы</a></li>
                         </ul>
                     </li>
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="large-12 columns large-centered">
                     <div class="row">
-                        <h1 class="text-center">Добро пожаловать, <br /> <a href="profile.hmtl">Арман!</a></h1>
+                        <h1 class="text-center">Добро пожаловать, <br /> <a href="my-profile.html">Арман!</a></h1>
                         <h2 class="text-center">Выберите один из разделов для начала работы:</h2>
                     </div>
                     <div class="row">
@@ -85,15 +85,11 @@
                 </div>
             </div>
         </div>
+        <footer class="text-center">
+          <small>DUMK. Copyright © 2016. All rights reserved</small>
+        </footer>
     </div>
-    <footer class="text-center">
-      <small>DUMK. Copyright © 2016. All rights reserved</small>
-    </footer>
-     <script>
-    document.write('<script src=' +
-        ('__proto__' in {} ? 'js/zepto' : 'js/jquery') +
-        '.js><\/script>')
-    </script>
+    
     <script src="js/vendor.js"></script>
     <script>
     $(document).foundation();

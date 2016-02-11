@@ -1,235 +1,1119 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
 <!--<![endif]-->
-<script src="js/custom.modernizr.js"></script>
+<script src="bower_components/modernizr/modernizr.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <title>Dumk</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <div id="cadrs">
-        <nav class="top-bar" data-topbar role="navigation">
-            <ul class="title-area">
-                <li class="name">
-                    <h1><a href="home.html" id="topic"><img src="img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+<div id="cadrs">
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="home.html" id="topic"><img src="img/logo-min2.png" height="35" width="35"
+                                                        alt="logotip"></a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+        </ul>
+        <section class="top-bar-section">
+            <ul class="left">
+                <li class="has-dropdown">
+                    <a href="#"><img src="img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                    <ul class="dropdown">
+                        <li class="active">
+                            <a href="#"><img src="img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
             </ul>
-            <section class="top-bar-section">
-                <ul class="left">
-                    <li class="has-dropdown">
-                        <a href="#"><img src="img/icons/kz.png" height="24" width="39" alt="kaz"></a>
-                        <ul class="dropdown">
-                            <li class="active">
-                                <a href="#"><img src="img/icons/rus.png" height="24" width="39" alt="rus"></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="right">
-                    <li>
-                        <a href="#"><img class="icon-top" src="img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="icon-top" src="img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
-                    </li>
-                    <li>
-                        <a href="#" id="person"><img src="img/person/person1.png" height="32" width="31" alt="person"></a>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#">Арман Ахметов</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Профиль</a></li>
-                            <li><a href="index.html">Выход из системы</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-        </nav>
-        <div class="large-12 columns" id="content">
-            <div class="top-link">
-                <a href="cadrs.html" class="active">Кадры</a>
-                <a href="#">Учебные заведения и учащиеся</a>
-                <a href="#">Осужденные экстремисты</a>
-            </div>
-            <div id="wrapper" class="tab1">
-                <div class="tabs-line">
-                    <div class="tab1 tabs">
-                        <div id="reestr" class="reestr">
-                            <h3>Реестр сотрудников</h3></div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab2 tabs">
-                        <div id="reports" class="reports">
-                            <h3>Отчеты и статистика</h3></div>
-                    </div>
-                </div>
-                <div class="tabs-line">
-                    <div class="tab3 tabs">
-                        <div id="add_" class="add_employee">
-                            <h3>Добавить сотрудника <span class="plus">+</span></h3></div>
-                    </div>
-                </div>
-                <div class="tab1 none">
-                    <div class="large-3 text-left">
-                        <div class="row tree-block">
-                            <p>Организационная структура
-                                <a href="#download"><img src="img/icons/download.png" height="16" width="13" alt="download"></a>
-                                <a href="#word"><img src="img/icons/word.png" height="16" width="14" alt="word"></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="large-9 columns right right-content text-left">
-                        <input class="search" type="text" placeholder="Поиск по реестру сотрудников...">
-                        <div>
-                            <div class="large-8 left ">
-                                <p>Филиал Актюбинской области
-                                    <a href="#download" class="right"><img src="img/icons/download.png" height="16" width="13" alt="download"></a>
-                                    <a href="#word" class="right"><img src="img/icons/word.png" height="16" width="14" alt="word"></a>
-                                </p>
-                                <small>Мечеть Нурдаулет</small>
-                            </div>
-                            <div class="large-4 right">
-                                <button class="button secondary right">О филиале</button>
-                                <button class="button secondary right">О мечети</button>
-                            </div>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>№</th>
-                                    <th>Ф.И.О.</th>
-                                    <th>ИИН</th>
-                                    <th>Номер телефона</th>
-                                    <th width="140" class="sort-click">Высшее образование 
-	                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
-										<span class="sorting">
-	                                    	<p>Да </p><input type="checkbox" name="yes">
-	                                    	<p>Нет</p><input type="checkbox" name="no">
-	                                    </span>
-                                    </th>
-                                    <th class="sort-click">Должность 
-                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
-									<span class="sorting">
-	                                    	<p>Бас имам </p><input type="checkbox" name="bas_imam">
-	                                    	<p>Наиб Имам</p><input type="checkbox" name="naib_imam">
-	                                    	<p>Өкiл Имам</p><input type="checkbox" name="okil_imam">
-	                                    </span>
-                                    </th>
-                                    <th class="sort-click">Статус <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="text-left">Утепов Алихан Каиргельдинович</td>
-                                    <td>12.01.1988, уд.л. 05214662</td>
-                                    <td>87015624865</td>
-                                    <td>Да</td>
-                                    <td class="text-left">Бас Имам</td>
-                                    <td class="vacation text-left">В отпуске</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="text-left">Амирханов Алтай Агитаевич</td>
-                                    <td>06.08.1972, уд.л. 75435621</td>
-                                    <td>87773201674</td>
-                                    <td>Да</td>
-                                    <td class="text-left">Наиб Имам</td>
-                                    <td class="fired text-left">Уволен</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="text-left">Ахметов Асет Серикович</td>
-                                    <td>31.04.1967, уд.л. 09854327</td>
-                                    <td>87015670982</td>
-                                    <td>Нет</td>
-                                    <td class="text-left">Наиб Имам</td>
-                                    <td class="working text-left">Работает</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="text-left">Халипов Ахмад</td>
-                                    <td>12.09.1963, уд.л. 23896500</td>
-                                    <td>87773670999</td>
-                                    <td>Да</td>
-                                    <td class="text-left">Бас Имам</td>
-                                    <td class="fired text-left">Уволен</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td class="text-left">Турлыбаев Мейрам Асхатулы</td>
-                                    <td>12.01.1988, уд.л. 05214662</td>
-                                    <td>87012322981</td>
-                                    <td>Нет</td>
-                                    <td class="text-left">Наиб Имам</td>
-                                    <td class="working text-left">Работает</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td class="text-left">Куанышбеков Рустам Алтайулы</td>
-                                    <td>06.08.1972, уд.л. 75435621</td>
-                                    <td>87773201674</td>
-                                    <td>Да</td>
-                                    <td class="text-left">Бас Имам</td>
-                                    <td class="vacation text-left">В отпуске</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td class="text-left">Исабеков Каир Бекмамбетулы</td>
-                                    <td>31.04.1967, уд.л. 09854327</td>
-                                    <td>87015670213</td>
-                                    <td>Нет</td>
-                                    <td class="text-left">Өкiл Имам</td>
-                                    <td class="working text-left">Работает</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td class="text-left">Имамбаев Медет Магауияулы</td>
-                                    <td>31.04.1967, уд.л. 09854327</td>
-                                    <td>87015670213</td>
-                                    <td>Да</td>
-                                    <td class="text-left">Өкiл Имам</td>
-                                    <td class="vacation text-left">В отпуске</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tab2 none">
-                    <p>not found</p>
-                </div>
-                <div class="tab3 none">
-                    <p>not found</p>
-                </div>
-            </div>
+            <ul class="right">
+                <li>
+                    <a href="#"><img class="icon-top" src="img/icons/calendar.png" height="18" width="18"
+                                     alt="calendar"> <span>Пт, 11 дек</span></a>
+                </li>
+                <li>
+                    <a href="#"><img class="icon-top" src="img/icons/clock.png" height="18" width="18" alt="clock">
+                        <span>12:36</span></a>
+                </li>
+                <li>
+                    <a href="#" id="person"><img src="img/person/person1.png" height="32" width="31" alt="person"></a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Арман Ахметов</a>
+                    <ul class="dropdown">
+                        <li><a href="my-profile.html">Профиль</a></li>
+                        <li><a href="index.html">Выход из системы</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </nav>
+    <div class="large-12 columns" id="content">
+        <div class="top-link">
+            <a href="cadrs.html" class="active">Кадры</a>
+            <a href="#">Учебные заведения и учащиеся</a>
+            <a href="#">Осужденные экстремисты</a>
         </div>
+        <div id="tab-container" class="tab-container">
+            <ul class='etabs'>
+                <li class='tab'><a href="#tabs-emploayee">Реестр сотрудников</a></li>
+                <li class='tab'><a href="#tabs-statistics">Отчеты и статистика</a></li>
+                <li class='tab'><a href="#tabs-add">Добавить сотрудника <span class="plus">+</span></a></li>
+            </ul>
+            <div id="tabs-emploayee" class="tab-wrapper">
+                <div class="large-3 left text-left">
+                    <div class="row tree-block">
+                        <p>Организационная структура
+                            <a href="#download" ><img src="img/icons/download.png" title="Скачать" alt="download"></a>
+                        </p>
+                        <ul class="mtree">
+                            <li><a href="#">Центральный аппарат ДУМК г. Астана<span class="arrow"></span></a>
+                                <ul>
+                                    <select name="select_area">
+                                        <option value="Akomola">Акмола</option>
+                                        <option value="Akomola">Степногорск</option>
+                                        <option value="Akomola">Кушмурун</option>
+                                    </select>
+                                    <input class="search" type="text" placeholder="Поиск"/>
+                                    <li><a href="#">Центральная мечеть г. Актобе</a></li>
+                                    <li><a href="#">Мечеть Нурдаулет</a></li>
+                                    <li><a href="#">Мечеть Нур Гасыр</a></li>
+                                    <li><a href="#">Мечеть им. Досжан-хазрета</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Представительство Центрального аппарата ДУМК в г. Алматы <span
+                                    class="arrow"></span></a>
+                                <ul>
+                                    <select name="select_area">
+                                        <option value="Akomola">Акмола</option>
+                                        <option value="Akomola">Степногорск</option>
+                                        <option value="Akomola">Кушмурун</option>
+                                    </select>
+                                    <input class="search" type="text" placeholder="Поиск"/>
+                                    <li><a href="#">Центральная мечеть г. Актобе</a></li>
+                                    <li><a href="#">Мечеть Нурдаулет</a></li>
+                                    <li><a href="#">Мечеть Нур Гасыр</a></li>
+                                    <li><a href="#">Мечеть им. Досжан-хазрета</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Филиал Акмолинской области <span class="arrow"></span></a>
+                                <ul>
+                                    <select name="select_area">
+                                        <option value="Akomola">Акмола</option>
+                                        <option value="Akomola">Степногорск</option>
+                                        <option value="Akomola">Кушмурун</option>
+                                    </select>
+                                    <input class="search" type="text" placeholder="Поиск"/>
+                                    <li><a href="#">Центральная мечеть г. Актобе</a></li>
+                                    <li><a href="#">Мечеть Нурдаулет</a></li>
+                                    <li><a href="#">Мечеть Нур Гасыр</a></li>
+                                    <li><a href="#">Мечеть им. Досжан-хазрета</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                    <li><a href="#">Мечеть Бакытжан</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Филиал Актюбинской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Алматинской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Атырауской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Восточно-Казахстанской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Жамбылской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Западно-Казахстанской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Карагандинской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Костанайской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Кызылординской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Мангистауской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Павлодарской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал г. Семей <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Северо-Казахстанской области <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал г. Талдыкорган <span class="arrow"></span></a></li>
+                            <li><a href="#">Филиал Южно-Казахстанской области<span class="arrow"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="large-9 columns right right-content text-left">
+                    <input class="search" type="text" placeholder="Поиск по реестру сотрудников...">
+
+                    <div>
+                        <div class="large-8 left ">
+                            <p>Филиал Актюбинской области
+                                <a href="#download" class="right"><img src="img/icons/download.png" alt="download"></a>
+                            </p>
+                            <small>Мечеть Нурдаулет</small>
+                        </div>
+                        <div class="large-4 right">
+                            <button class="button secondary right">О филиале</button>
+                            <button class="button secondary right">О мечети</button>
+                        </div>
+                    </div>
+                    <div class="table">
+                        <div class="thead">
+                            <div class="tr header-table">
+                                <div class="td numbering">№</div>
+                                <div class="td fio">Ф.И.О. <img src="img/icons/arrow-bottom.png" height="5" width="9"
+                                                                alt="arrow-bottom"></div>
+                                <div class="td iin">ИИН</div>
+                                <div class="td number-phone">Номер телефона <img src="img/icons/arrow-bottom.png"
+                                                                                 height="5" width="9"
+                                                                                 alt="arrow-bottom"></div>
+                                <div width="140" class="sort-click higher td">Высшее образование
+                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
+                                        <span class="sorting">
+                                            <p>Да </p><input type="checkbox" name="yes">
+                                            <p>Нет</p><input type="checkbox" name="no">
+                                        </span>
+                                </div>
+                                <div class="sort-click td position">Должность
+                                    <img src="img/icons/arrow-bottom.png" height="5" width="9" alt="arrow-bottom">
+                                        <span class="sorting">
+                                            <p>Бас имам </p><input type="checkbox" name="bas_imam">
+                                            <p>Наиб Имам</p><input type="checkbox" name="naib_imam">
+                                            <p>Өкiл Имам</p><input type="checkbox" name="okil_imam">
+                                        </span>
+                                </div>
+                                <div class="sort-click td status">Статус <img src="img/icons/arrow-bottom.png"
+                                                                              height="5" width="9" alt="arrow-bottom">
+                                        <span class="sorting">
+                                            <p>В отпуске </p><input type="checkbox" name="bas_imam">
+                                            <p>Уволен</p><input type="checkbox" name="naib_imam">
+                                            <p>Работает</p><input type="checkbox" name="okil_imam">
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="fixed-top">
+                                <div class="tbody">
+                                    <div class="tr">
+                                        <div class="td numbering">1</div>
+                                        <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                        <div class="td iin">12.01.1988, уд.л. 05214662</div>
+                                        <div class="td number-phone">87015624865</div>
+                                        <div class="td higher">Да</div>
+                                        <div class="td position text-left">Бас Имам</div>
+                                        <div class="td vacation status text-left">В отпуске</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">2</div>
+                                        <div class="td text-left">Амирханов Алтай Агитаевич</div>
+                                        <div class="td">06.08.1972, уд.л. 75435621</div>
+                                        <div class="td">87773201674</div>
+                                        <div class="td">Да</div>
+                                        <div class="td text-left">Наиб Имам</div>
+                                        <div class="td fired text-left">Уволен</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">3</div>
+                                        <div class="td text-left">Ахметов Асет Серикович</div>
+                                        <div class="td">31.04.1967, уд.л. 09854327</div>
+                                        <div class="td">87015670982</div>
+                                        <div class="td">Нет</div>
+                                        <div class="td text-left">Наиб Имам</div>
+                                        <div class="td working text-left">Работает</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">4</div>
+                                        <div class="td text-left">Халипов Ахмад</div>
+                                        <div class="td">12.09.1963, уд.л. 23896500</div>
+                                        <div class="td">87773670999</div>
+                                        <div class="td">Да</div>
+                                        <div class="td text-left">Бас Имам</div>
+                                        <div class="td fired text-left">Уволен</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">5</div>
+                                        <div class="td text-left">Турлыбаев Мейрам Асхатулы</div>
+                                        <div class="td">12.01.1988, уд.л. 05214662</div>
+                                        <div class="td">87012322981</div>
+                                        <div class="td">Нет</div>
+                                        <div class="td text-left">Наиб Имам</div>
+                                        <div class="td working text-left">Работает</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">6</div>
+                                        <div class="td text-left">Куанышбеков Рустам Алтайулы</div>
+                                        <div class="td">06.08.1972, уд.л. 75435621</div>
+                                        <div class="td">87773201674</div>
+                                        <div class="td">Да</div>
+                                        <div class="td text-left">Бас Имам</div>
+                                        <div class="td vacation text-left">В отпуске</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">7</div>
+                                        <div class="td text-left">Исабеков Каир Бекмамбетулы</div>
+                                        <div class="td">31.04.1967, уд.л. 09854327</div>
+                                        <div class="td">87015670213</div>
+                                        <div class="td">Нет</div>
+                                        <div class="td text-left">Өкiл Имам</div>
+                                        <div class="td working text-left">Работает</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">8</div>
+                                        <div class="td text-left">Имамбаев Медет Магауияулы</div>
+                                        <div class="td">31.04.1967, уд.л. 09854327</div>
+                                        <div class="td">87015670213</div>
+                                        <div class="td">Да</div>
+                                        <div class="td text-left">Өкiл Имам</div>
+                                        <div class="td vacation text-left">В отпуске</div>
+                                    </div>
+                                    <div class="tr">
+                                        <div class="td">8</div>
+                                        <div class="td text-left">Имамбаев Медет Магауияулы</div>
+                                        <div class="td">31.04.1967, уд.л. 09854327</div>
+                                        <div class="td">87015670213</div>
+                                        <div class="td">Да</div>
+                                        <div class="td text-left">Өкiл Имам</div>
+                                        <div class="td vacation text-left">В отпуске</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="large-9 right columns pagination-centered">
+                    <ul class="pagination">
+                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                        <li class="current"><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li class="unavailable"><a href="">&hellip;</a></li>
+                        <li><a href="">12</a></li>
+                        <li><a href="">13</a></li>
+                        <li class="arrow"><a href="">&raquo;</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="tabs-statistics" class="tab-wrapper">
+                <div class="large-2 left statistics-left text-left">
+                    <div class="row">
+                        <h2>Отчеты для скачивания</h2>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li><a href="#">Отчет 1</a></li>
+                            <li><a href="#">Отчет 2</a></li>
+                            <li><a href="#">Отчет 3</a></li>
+                            <li><a href="#">Отчет 4</a></li>
+                            <li><a href="#">Отчет 5</a></li>
+                            <li><a href="#">Отчет 6</a></li>
+                            <li><a href="#">Отчет 7</a></li>
+                            <li><a href="#">Отчет 8</a></li>
+                            <li><a href="#">Отчет 9</a></li>
+                            <li><a href="#">Отчет 10</a></li>
+                            <li><a href="#">Отчет 11</a></li>
+                            <li><a href="#">Отчет 12</a></li>
+                            <li><a href="#">Отчет 13</a></li>
+                            <li><a href="#">Отчет 14</a></li>
+                            <li><a href="#">Отчет 15</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="large-10 right">
+                    <div class="statistics-right">
+                        <h2>Соотношение сотрудников в филиалах</h2>
+                        <ul>
+                            <li>100 сотрудников</li>
+                            <li>98 сотрудников</li>
+                            <li>80 сотрудников</li>
+                            <li>75 сотрудников</li>
+                            <li>66 сотрудников</li>
+                            <li>56 сотрудников</li>
+                            <li>56 сотрудников</li>
+                            <li>47 сотрудников</li>
+                            <li>45 сотрудников</li>
+                            <li>35 сотрудников</li>
+                            <li>33 сотрудников</li>
+                            <li>24 сотрудников</li>
+                            <li>23 сотрудников</li>
+                            <li>21 сотрудников</li>
+                        </ul>
+                        <div class="row text-center">
+                            <button class="button secondary">Скачать в Excel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="large-10 right">
+                    <div class="statistics-right">
+                        <h2>Динамика роста сотрудников по месяцам</h2>
+                        <select name="filials" id="filials">
+                            <option value="">По всем филиалам</option>
+                        </select>
+                        <img src="img/graphic.jpg" class="text-center" alt="graphic">
+
+                        <div class="row text-center">
+                            <button class="button secondary">Скачать в Excel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="large-10 right">
+                    <div class="statistics-right">
+                        <h2>Динамика роста сотрудников по годам</h2>
+                        <img src="img/graphic.jpg" class="text-center" alt="graphic">
+
+                        <div class="row text-center">
+                            <button class="button secondary">Скачать в Excel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="tabs-add" class="tab-wrapper">
+                <div class="large-12 columns" id="add_employee">
+                    <div class="profile text-center">
+
+                        <p><img src="img/data-person/person.jpg" class="img-profile" height="101" width="105"
+                                alt="person"></p>
+
+                        <p class="download-all">
+                            <a href="#"><img src="img/icons/download.png" height="16" width="30" alt=""> Загрузить фотографию</a>
+                        </p>
+
+
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Общая информация”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Фамилия</b></p>
+
+                                    <p><b>Имя</b></p>
+                                    <p><b>Отчество</b></p>
+                                    <p><b>Дата рождения</b></p>
+                                    <p><b>Пол</b></p>
+                                    <p><b>Национальность</b></p>
+                                    <p><b>Гражданство</b></p>
+                                    <p><b>Семейное положение</b></p>
+                                    <p><b>Автобиография</b></p>
+                                    <p><b>Номер телефона</b></p>
+                                    <p><b>Место работы</b></p>
+                                    <p><b>Должность</b></p>
+                                    <p><b>Статус</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Ахметов" >
+                                    </p>
+
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Асет" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Серикович" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="17 января 1978 г." >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Мужской" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Казах" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="РК" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Женат" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Не указано" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="87773457865" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Не указано" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Начальник отдела по делам молодежи" >
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Работает" >
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Паспортные данные”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Тип документа</b></p>
+
+                                    <p><b>Номер документа</b></p>
+
+                                    <p><b>Дата выдачи</b></p>
+
+                                    <p><b>Срок действия</b></p>
+
+                                    <p><b>Орган выдачи</b></p>
+
+                                    <p><b>ИИН</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <input type="text" value="Не указано">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="45589322">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="03.09.2014">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="03.09.2022">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="МВД РК">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="09128875">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Адрес”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Страна</b></p>
+
+                                    <p><b>Область</b></p>
+
+                                    <p><b>Район</b></p>
+
+                                    <p><b>Город/населенный пункт</b></p>
+
+                                    <p><b>Улица</b></p>
+
+                                    <p><b>Номер дома</b></p>
+
+                                    <p><b>Номер квартиры</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Республика Казахстан">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Акмолинская">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Сарыаркинский">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Астана">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="пр. Республики">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="17/1">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="15">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Адрес”</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Страна</b></p>
+
+                                    <p><b>Область</b></p>
+
+                                    <p><b>Район</b></p>
+
+                                    <p><b>Город/населенный пункт</b></p>
+
+                                    <p><b>Улица</b></p>
+
+                                    <p><b>Номер дома</b></p>
+
+                                    <p><b>Номер квартиры</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Республика Казахстан">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Акмолинская">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Сарыаркинский">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="Астана">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="пр. Республики">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="17/1">
+                                    </p>
+
+                                    <p>
+                                        <input type="text" value="15">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Среднее образование”</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Учебное заведение</b></p>
+
+                                    <p><b>Местонахождение</b></p>
+
+                                    <p><b>Год поступления</b></p>
+
+                                    <p><b>Год окончания</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="СШ № 1"></p>
+
+                                    <p><input type="text" value="Караганда"></p>
+
+                                    <p><input type="text" value="1978"></p>
+
+                                    <p><input type="text" value="1988"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Средне-специальное образование”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Учебное заведение</b></p>
+
+                                    <p><b>Местонахождение</b></p>
+
+                                    <p><b>Год поступления</b></p>
+
+                                    <p><b>Год окончания</b></p>
+
+                                    <p><b>Факультет</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="СШ № 1"></p>
+
+                                    <p><input type="text" value="Караганда"></p>
+
+                                    <p><input type="text" value="1978"></p>
+
+                                    <p><input type="text" value="1988"></p>
+
+                                    <p><input type="text" value="Филологический"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Высшее образование”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Учебное заведение</b></p>
+
+                                    <p><b>Местонахождение</b></p>
+
+                                    <p><b>Год поступления</b></p>
+
+                                    <p><b>Год окончания</b></p>
+
+                                    <p><b>Факультет</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="СШ № 1"></p>
+
+                                    <p><input type="text" value="Караганда"></p>
+
+                                    <p><input type="text" value="1978"></p>
+
+                                    <p><input type="text" value="1988"></p>
+
+                                    <p><input type="text" value="Филологический"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Ученая степень”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Категория</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Доктор наук"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Ученая степень”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Учебное заведение</b></p>
+
+                                    <p><b>Местонахождение</b></p>
+
+                                    <p><b>Год поступления</b></p>
+
+                                    <p><b>Год окончания</b></p>
+
+                                    <p><b>Факультет</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="СШ № 1"></p>
+
+                                    <p><input type="text" value="Караганда"></p>
+
+                                    <p><input type="text" value="1978"></p>
+
+                                    <p><input type="text" value="1988"></p>
+
+                                    <p><input type="text" value="Филологический"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Стажировки”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Место нахождения</b></p>
+
+                                    <p><b>Организация</b></p>
+
+                                    <p><b>Год прохождения стажировки</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Стажировки”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Место нахождения</b></p>
+
+                                    <p><b>Организация</b></p>
+
+                                    <p><b>Год прохождения стажировки</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Выезды за рубеж”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Место выезда</b></p>
+
+                                    <p><b>Цель выезда за рубеж</b></p>
+
+                                    <p><b>Дата выезда из Казахстана</b></p>
+
+                                    <p><b>Дата возвращения в Казахстан</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Узбекистан"></p>
+
+                                    <p><input type="text" value="В целях повышения квалификации"></p>
+
+                                    <p><input type="text" value="09.09.2012"></p>
+
+                                    <p><input type="text" value="04.12.2013"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Наличие судимости”</h3>
+                                    <span class="edit-section">Добавить файл</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Статус</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p><input type="text" value="Нет"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Трудовая деятельность”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Наименование организации</b></p>
+
+                                    <p><b>Место нахождения организации</b></p>
+
+                                    <p><b>Дата начала работы в организации</b></p>
+
+                                    <p><b>Дата окончания работы в организации</b></p>
+
+                                    <p><b>Причина увольнения</b></p>
+
+                                    <p><b>Характеристики по месту прежней работы</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="ТОО Коркем"></p>
+
+                                    <p><input type="text" value="Караганда"></p>
+
+                                    <p><input type="text" value="08.12.2013"></p>
+
+                                    <p><input type="text" value="04.06.2015"></p>
+
+                                    <p><input type="text" value="По собственному желанию"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Место предпринимательства</b></p>
+
+                                    <p><b>Сфера</b></p>
+
+                                    <p><b>Цель</b></p>
+
+                                    <p><b>Срок предпринимательства</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Усть-Каменогорск"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="23.09.2014 - 23.11.2015"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Причина поощрения</b></p>
+
+                                    <p><b>Кем</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Взыскания”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Причина поощрения</b></p>
+
+                                    <p><b>Кем</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Результаты аттестации”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Начало прохождения аттестации</b></p>
+
+                                    <p><b>Окончание прохождения аттестации</b></p>
+
+                                    <p><b>Место прохождения аттестации</b></p>
+
+                                    <p><b>Результаты</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+
+                                    <p><input type="text" value="Не указано"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Кадровый резерв”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Состоит</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Да"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="row">
+                                <div class="large-6 columns large-centered">
+                                    <h3 class="section-edit">Раздел “Отпуск”</h3>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns text-right">
+                                    <p><b>Период получения трудового отпуска</b></p>
+
+                                    <p><b>Оставшееся количество дней отпуска</b></p>
+                                </div>
+                                <div class="large-6 columns edit-input text-left">
+                                    <p>
+                                        <span class="edit-section">Добавить файл</span>
+                                        <input type="text" value="Нет"></p>
+
+                                    <p><input type="text" value="Нет"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button secondary edit-profile">Сохранить</button>
+                        </div>
+                    </div>
+                    <footer class="text-center">
+                        <small>DUMK. Copyright © 2016. All rights reserved</small>
+                    </footer>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+        </div>
+        <footer class="text-center">
+            <small>DUMK. Copyright © 2016. All rights reserved</small>
+        </footer>
     </div>
-    <footer class="text-center">
-        <small>DUMK. Copyright © 2016. All rights reserved</small>
-    </footer>
-     <script>
-    document.write('<script src=' +
-        ('__proto__' in {} ? 'js/zepto' : 'js/jquery') +
-        '.js><\/script>')
-    </script>
-    <script src="js/vendor.js"></script>
-    <script>
+</div>
+<script src="js/vendor.js"></script>
+<script>
     $(document).foundation();
-    </script>
-    <script src="js/app.js"></script>
-    <script src="js/tabs.js"></script>
-    <!-- <script src="js/tabs.js"></script> -->
+</script>
+<script src="js/app.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/jquery.tabslet.min.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/tree.js"></script>
+<script>
+    $('#tab-container').tabslet();
+</script>
+<script>
+    (function ($) {
+        $(window).load(function () {
+            $(".fixed-top").mCustomScrollbar({
+                setWidth: false,
+                setLeft: 0,
+                theme: "dark"
+            });
+        });
+    })(jQuery);
+</script>
 </body>
 
 </html>
