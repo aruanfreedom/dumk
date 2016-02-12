@@ -4,7 +4,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-<script src="bower_components/modernizr/modernizr.js"></script>
+<script src="/static/bower_components/modernizr/modernizr.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- Main:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <!--<link rel="stylesheet" href="css/media.css">-->
     <!-- endcss -->
     <!-- endbuild -->
@@ -27,30 +27,30 @@
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
-                    <h1><a href="home.html" id="topic"><img src="img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+                    <h1><a href="home.html" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
             </ul>
             <section class="top-bar-section">
                 <ul class="left">
                     <li class="has-dropdown">
-                        <a href="#"><img src="img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                        <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
                         <ul class="dropdown">
                             <li class="active">
-                                <a href="#"><img src="img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                                <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="right">
                     <li>
-                        <a href="#"><img class="icon-top" src="img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
                     </li>
                     <li>
-                        <a href="#"><img class="icon-top" src="img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
                     </li>
                     <li>
-                        <a href="#" id="person"><img src="img/person/person1.png" height="32" width="31" alt="person"></a>
+                        <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
                     </li>
                     <li class="has-dropdown">
                         <a href="#">Арман Ахметов</a>
@@ -72,19 +72,19 @@
                     <div class="row">
                         <div class="large-4 columns">
                             <div class="blocks">
-                              <p><a href="cadrs.html"><img src="img/cadrs.jpg" height="159" width="216" alt="Кадры"></a></p>
+                              <p><a href="cadrs.html"><img src="/static/img/cadrs.jpg" height="159" width="216" alt="Кадры"></a></p>
                               <a href="cadrs.html" class="link">Кадры</a>
                             </div>
                         </div>
                         <div class="large-4 columns">
                             <div class="blocks">
-                              <p><a href="#"><img src="img/univer.jpg" height="157" width="216" alt="Учебные заведения"></a></p>
+                              <p><a href="#"><img src="/static/img/univer.jpg" height="157" width="216" alt="Учебные заведения"></a></p>
                               <a href="#" class="link">Учебные заведения <br /> и обучающиеся</a>
                             </div>
                         </div>
                         <div class="large-4 columns">
                             <div class="blocks">
-                              <p><a href="#"><img src="img/ekstremizm.jpg" height="159" width="216" alt="Осужденные экстремисты"></a></p>
+                              <p><a href="#"><img src="/static/img/ekstremizm.jpg" height="159" width="216" alt="Осужденные экстремисты"></a></p>
                               <a href="#" class="link">Осужденные <br /> экстремисты</a>
                             </div>
                         </div>
@@ -99,20 +99,16 @@
     
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
-    <script>
-    document.write('<script src=' +
-        ('__proto__' in {} ? 'bower_components/foundation/js/vendor/zepto' : 'bower_components/foundation/js/vendor/jquery') +
-        '.js><\/script>')
-    </script>
-    <script src="bower_components/foundation/js/foundation/foundation.js"></script>
-    <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-     <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+    <script src="/static/bower_components/foundation/js/vendor/jquery.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+     <script src="/static/bower_components/foundation/js/foundation/foundation.abide.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script>
     $(document).foundation();
     </script>
-    <script src="js/app.js"></script>
+    <script src="/static/js/app.js"></script>
     <!-- <script src="js/tabs.js"></script> -->
 </body>
 

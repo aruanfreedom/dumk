@@ -3,7 +3,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <!--<![endif]-->
-<script src="bower_components/modernizr/modernizr.js"></script>
+<script src="/static/bower_components/modernizr/modernizr.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- Main:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <!--<link rel="stylesheet" href="css/media.css">-->
     <!-- endcss -->
     <!-- endbuild -->
@@ -26,30 +26,30 @@
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
-                    <h1><a href="home.html" id="topic"><img src="img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+                    <h1><a href="home.html" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
             </ul>
             <section class="top-bar-section">
                 <ul class="left">
                     <li class="has-dropdown">
-                        <a href="#"><img src="img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                        <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
                         <ul class="dropdown">
                             <li class="active">
-                                <a href="#"><img src="img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                                <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="right">
                     <li>
-                        <a href="#"><img class="icon-top" src="img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
                     </li>
                     <li>
-                        <a href="#"><img class="icon-top" src="img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
                     </li>
                     <li>
-                        <a href="#" id="person"><img src="img/person/person1.png" height="32" width="31" alt="person"></a>
+                        <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
                     </li>
                     <li class="has-dropdown">
                         <a href="#">Арман Ахметов</a>
@@ -65,16 +65,17 @@
             <div class="profile text-center">
                 <a class="back" href="home.html"> &#60; Назад в реестр</a>
                 <h2>Ахметов Асет Серикович</h2>
-                <p><img src="img/data-person/person.jpg" class="img-profile" height="101" width="105" alt="person"></p>
+                <p><img src="/static/img/data-person/person.jpg" class="img-profile" height="101" width="105" alt="person"></p>
                 <p class="download-all">
-                    <a href="#"><img src="img/icons/download.png" height="16" width="30" alt="">Скачать все</a>
+                    <a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать</a>
                 </p>
                 <div><button class="button secondary edit-profile">Редактировать все</button></div>
                 <div class="section">
+                    <form action="" data-abide>
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Общая информация”</h3>
-                            <span class="edit-section">Редактировать</span>
+                            <button type="submit" class="edit-section">Редактировать</button>
                         </div>
                     </div>
                     <div class="row">
@@ -95,10 +96,12 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <input type="text" value="Ахметов" disabled>
+                                <input type="text" required pattern="[a-zA-Z-а-яА-ЯёЁa]+" value="Ахметов" disabled>
+                                <small class="error">Неккоектное Имя</small>
                             </p>
                             <p>
-                                <input type="text" value="Асет" disabled>
+                                <input type="text" required value="Асет" disabled>
+                                <small class="error">Неккоектное dsfsdfdsfsdfds</small>
                             </p>
                             <p>
                                 <input type="text" value="Серикович" disabled>
@@ -107,7 +110,11 @@
                                 <input type="text" value="17 января 1978 г." disabled>
                             </p>
                             <p>
-                                <input type="text" value="Мужской" disabled>
+                                <select name="gender" id="">
+                                    <option type="text" value="Мужской">Мужской</option>
+                                    <option type="text" value="Мужской">Женский</option>
+                                </select>
+                                <input type="text" value="17 января 1978 г." disabled>
                             </p>
                             <p>
                                 <input type="text" value="Казах" disabled>
@@ -135,6 +142,7 @@
                             </p>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="section">
                     <div class="row">
@@ -595,7 +603,7 @@
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p><b><a href="#"><img src="img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                          <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
@@ -608,7 +616,7 @@
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p><b><a href="#"><img src="img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                          <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
@@ -621,7 +629,7 @@
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p class="download-all"><b><a href="#"><img src="img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                          <p class="download-all"><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
@@ -633,19 +641,19 @@
     </div>
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/foundation/js/vendor/jquery.js"></script>
-    <script src="bower_components/foundation/js/foundation/foundation.js"></script>
-    <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
-    <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+    <script src="/static/bower_components/foundation/js/vendor/jquery.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.abide.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script>
     $(document).foundation();
     </script>
-    <script src="js/app.js"></script>
-    <script src="js/tabs.js"></script>
-    <script src="js/jquery.tabslet.min.js"></script>
-    <script src="js/tree.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/tabs.js"></script>
+    <script src="/static/js/jquery.tabslet.min.js"></script>
+    <script src="/static/js/tree.js"></script>
     <script>
     $('#tab-container').tabslet();
     </script>

@@ -15,7 +15,7 @@ var gulp = require("gulp"),
 
 //autoprefixer
 gulp.task('autoprefixer', function () {
-    return gulp.src('app/scss/style.scss')
+    return gulp.src('app/static/scss/style.scss')
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
@@ -34,24 +34,24 @@ gulp.task('connect', function() {
 
 //Autoprefix
 gulp.task('autoprefixer', function () {
-    gulp.src('app/css/*.css')
+    gulp.src('app/static/css/*.css')
         .pipe(autoprefixer());
 });
 
 gulp.task('sass', function() {
-    gulp.src('app/scss/*.scss')
+    gulp.src('app/static/scss/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('app/css/'))
+        .pipe(gulp.dest('app/static/css/'))
         .pipe(connect.reload());
 });
 
 gulp.task('uncss', function() {
-    return gulp.src('app/css/style.css')
+    return gulp.src('app/static/css/style.css')
         .pipe(uncss({
             html: ['app/index.html', 'app/auth.html'],
             ignore: [/^meta.foundation/, /f-topbar-fixed/, /contain-to-grid/, /sticky/, /fixed/]
         }))
-        .pipe(gulp.dest('app/css/'));
+        .pipe(gulp.dest('app/static/css/'));
 
 });
 
@@ -77,7 +77,7 @@ gulp.task('html', function() {
 gulp.task('bower', function() {
     gulp.src('app/index.html')
         .pipe(wiredep({
-            directory: "app/bower_components"
+            directory: "app/static/bower_components"
         }))
         .pipe(gulp.dest('app'));
 }); 
@@ -88,17 +88,17 @@ gulp.task('hml', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src('app/js/*.js')
+    gulp.src('app/static/js/*.js')
         .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
     gulp.watch('bower.json', ['bower']);
     gulp.watch('app/*.html', ['hml']);
-    gulp.watch('app/js/*.js', ['js']);
-    gulp.watch('app/scss/*.scss', ['sass']);
-    gulp.watch('app/scss/media.scss', ['sass']);
-})
+    gulp.watch('app/static/js/*.js', ['js']);
+    gulp.watch('app/static/scss/*.scss', ['sass']);
+    //gulp.watch('app/static/scss/media.scss', ['sass']);
+});
 
 //default
 gulp.task('default', ['connect', 'sass', 'watch', 'hml', 'js']);
