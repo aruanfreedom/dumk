@@ -2615,7 +2615,7 @@ label.error {
   .section-container.horizontal-nav > .section.active > .title,
   .section-container.accordion > section.active > .title,
   .section-container.accordion > .section.active > .title {
-    background: #d6d6d6; }
+    background: #d5d5d5; }
     .section-container.auto > section.active > .title a, .section-container.auto > .section.active > .title a,
     .section-container.vertical-tabs > section.active > .title a,
     .section-container.vertical-tabs > .section.active > .title a,
@@ -2819,7 +2819,7 @@ label.error {
       .section-container.vertical-tabs > section > .content > *:last-child:not(.flex-video), .section-container.vertical-tabs > .section > .content > *:last-child:not(.flex-video) {
         padding-bottom: 0; }
     .section-container.vertical-tabs > section.active > .title, .section-container.vertical-tabs > .section.active > .title {
-      background: #d6d6d6; }
+      background: #d5d5d5; }
       .section-container.vertical-tabs > section.active > .title a, .section-container.vertical-tabs > .section.active > .title a {
         color: #333; }
     .section-container.vertical-tabs > section:not(.active), .section-container.vertical-tabs > .section:not(.active) {
@@ -2827,7 +2827,7 @@ label.error {
     .section-container.vertical-tabs > section.active, .section-container.vertical-tabs > .section.active {
       padding-left: 12.4375em; }
       .section-container.vertical-tabs > section.active > .title, .section-container.vertical-tabs > .section.active > .title {
-        background-color: #d6d6d6; }
+        background-color: #d5d5d5; }
   [data-section='vertical-nav'], .section-container.vertical-nav {
     width: 100%;
     position: relative;
@@ -2892,7 +2892,7 @@ label.error {
       .section-container.vertical-nav > section > .content > *:last-child:not(.flex-video), .section-container.vertical-nav > .section > .content > *:last-child:not(.flex-video) {
         padding-bottom: 0; }
     .section-container.vertical-nav > section.active > .title, .section-container.vertical-nav > .section.active > .title {
-      background: #d6d6d6; }
+      background: #d5d5d5; }
       .section-container.vertical-nav > section.active > .title a, .section-container.vertical-nav > .section.active > .title a {
         color: #333; }
     .section-container.vertical-nav > section:not(.active), .section-container.vertical-nav > .section:not(.active) {
@@ -2963,7 +2963,7 @@ label.error {
       .section-container.horizontal-nav > section > .content > *:last-child:not(.flex-video), .section-container.horizontal-nav > .section > .content > *:last-child:not(.flex-video) {
         padding-bottom: 0; }
     .section-container.horizontal-nav > section.active > .title, .section-container.horizontal-nav > .section.active > .title {
-      background: #d6d6d6; }
+      background: #d5d5d5; }
       .section-container.horizontal-nav > section.active > .title a, .section-container.horizontal-nav > .section.active > .title a {
         color: #333; }
     .section-container.horizontal-nav > section:not(.active), .section-container.horizontal-nav > .section:not(.active) {
@@ -3022,7 +3022,7 @@ label.error {
     .no-js .section-container > section > .content > *:last-child:not(.flex-video), .no-js .section-container > .section > .content > *:last-child:not(.flex-video) {
       padding-bottom: 0; }
   .no-js .section-container > section.active > .title, .no-js .section-container > .section.active > .title {
-    background: #d6d6d6; }
+    background: #d5d5d5; }
     .no-js .section-container > section.active > .title a, .no-js .section-container > .section.active > .title a {
       color: #333; }
   .no-js .section-container > section:not(.active), .no-js .section-container > .section:not(.active) {
@@ -5105,13 +5105,18 @@ nav .right a .icon-top {
       #cadrs #content .tab-container #add_employee .profile {
         margin-top: 0; }
       #cadrs #content .tab-container #add_employee input {
-        border: 1px solid #ccc;
+        border: 1px solid #a3a3a3;
+        border-radius: 3px;
+        padding: 5px; }
+      #cadrs #content .tab-container #add_employee select {
+        border: 1px solid #a3a3a3;
+        border-radius: 3px;
         padding: 5px; }
       #cadrs #content .tab-container #add_employee p {
-        margin: 10px 0; }
-      #cadrs #content .tab-container #add_employee .edit-section {
+        padding: 7px 0; }
+      #cadrs #content .tab-container #add_employee .add-file {
         background: none;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #a3a3a3;
         padding: 0;
         color: #a3a3a3;
         cursor: pointer;
@@ -5119,6 +5124,11 @@ nav .right a .icon-top {
         font-size: 1em;
         top: auto;
         right: -120px; }
+      #cadrs #content .tab-container #add_employee .file_down {
+        border: none;
+        padding-left: 0; }
+        #cadrs #content .tab-container #add_employee .file_down:focus {
+          outline: none; }
       #cadrs #content .tab-container #tabs-statistics h2 {
         border-bottom: 1px solid #ccc;
         color: #393939;
@@ -5514,11 +5524,12 @@ nav .right a .icon-top {
       margin-top: -30px;
       margin-bottom: 0;
       font-size: 0.75em;
-      font-weight: bold;
+      font-weight: 100;
       position: absolute;
-      left: 50%;
+      left: 100%;
       background: #c60f13;
-      color: #fff; }
+      color: #fff;
+      width: 30%; }
     #cadrs .profile .edit-input p {
       margin: 0 0 1.6px 0; }
     #cadrs .profile .edit-input select {
@@ -5571,6 +5582,33 @@ nav .right a .icon-top {
       margin: 0 0 0 0;
       padding: 0;
       height: 30px; }
+  #cadrs #edit-profile .profile {
+    margin-top: 0; }
+  #cadrs #edit-profile input {
+    border: 1px solid #a3a3a3;
+    border-radius: 3px;
+    padding: 5px; }
+  #cadrs #edit-profile select {
+    border: 1px solid #a3a3a3;
+    border-radius: 3px;
+    padding: 5px; }
+  #cadrs #edit-profile p {
+    padding: 7px 0; }
+  #cadrs #edit-profile .add-file {
+    background: none;
+    border-bottom: 1px solid #a3a3a3;
+    padding: 0;
+    color: #a3a3a3;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1em;
+    top: auto;
+    right: -120px; }
+  #cadrs #edit-profile .file_down {
+    border: none;
+    padding-left: 0; }
+    #cadrs #edit-profile .file_down:focus {
+      outline: none; }
 
 .clearfix {
   clear: both; }

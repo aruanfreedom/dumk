@@ -71,7 +71,7 @@ gulp.task('html', function() {
         .pipe(gulpif('*.css', minifyCss()))
         .pipe(assets.restore())
         .pipe(useref())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/static/'));
 });;
 
 gulp.task('bower', function() {
