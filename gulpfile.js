@@ -67,11 +67,11 @@ gulp.task('html', function() {
 
     return gulp.src('app/*.html')
         .pipe(assets)
-        .pipe(gulpif('*.js', uglify()))
-        .pipe(gulpif('*.css', minifyCss()))
+        .pipe(gulpif('/static/js/*.js', uglify()))
+        .pipe(gulpif('/static/css/*.css', minifyCss()))
         .pipe(assets.restore())
         .pipe(useref())
-        .pipe(gulp.dest('dist/static/'));
+        .pipe(gulp.dest('dist/'));
 });;
 
 gulp.task('bower', function() {

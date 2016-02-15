@@ -39,7 +39,6 @@ $(document).ready(function() {
         arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
         replace = $(this).find("img").attr("src", arrow_bottom);
         sorting2.hide();
-        console.log("ok")
     });
                 
 
@@ -74,27 +73,77 @@ $(document).ready(function() {
 
     var editButton = function() {
         var input = $("input"),
+            inputFile = $("input:file"),
+            select = $("select"),
+            selectYes = $("input.select-yes"),
             inputSection = $(".edit-input input"),
             isTrue = true,
             password = $(".password"),
-            edit = $(".edit-profile").html();
-            editSection = $(".edit-section").html();
-
+            edit = $(".edit-profile").html(),
+            editSection = $(".edit-section").html(),
+            download = $(".download-all");
 
         $(".edit-profile").on("click", function() {
-            if (isTrue === true) {
-                $(this).html("Сохранить");
+            var tag = $(this)[0].tagName;
+            if(tag === "SPAN"){
+                $(this).replaceWith(function(){
+                    return "<button type='submit' class='button secondary edit-profile'>Сохранить все</button>";
+                });
+                //$(this).html("Сохранить");
                 input.removeAttr("disabled");
+                selectYes.attr('disabled', 'disabled');
+                ( download.hasClass('none')) ? download.removeClass('none') : true;
+                select.removeAttr("disabled");
                 input.css({
-                    "border-width": "1px",
-                    "padding": "10px"
+                    "border": "1px solid #ccc",
+                    "padding-left": "10px"
+                });
+                select.css({
+                    "border": "1px solid #ccc",
+                    "padding-left": "10px"
+                });
+                inputFile.css({
+                    "border": "0px solid #ccc",
+                    "padding-left": "10px"
                 });
                 password.attr("type", "text");
-                isTrue = false;
-            } else {
-                $(this).html(edit);
+
+                //if( selectOption.attr('class') === "yes"){
+                //    selectOption.removeAttr('disabled');
+                //    selectOption.css({
+                //        "border" : "1px solid #ccc",
+                //        "background": "none"
+                //    });
+                //    console.log("yes");
+                //}
+                //else if( selectOption.attr('class') === "no" ){
+                //    selectOption.attr('disabled', 'disabled');
+                //    selectOption.attr('name', name);
+                //    selectOption.css({
+                //        "border" : "0px solid #ccc",
+                //        "background": "#a3a3a3"
+                //    });
+                //    console.log("no");
+                //}
+
+
+            }
+            if(tag === "BUTTON"){
+                that.replaceWith(function(){
+                    return "<span class='button secondary edit-profile'>Редактировать все</span>";
+                });
                 input.attr("disabled", "disabled");
+                select.attr("disabled", "disabled");
+                ( download.hasClass('none')) ? download.addClass('none') : true;
                 input.css({
+                    "border-width": "0px",
+                    "padding": "0px"
+                });
+                select.css({
+                    "border-width": "0px",
+                    "padding": "0px"
+                });
+                inputFile.css({
                     "border-width": "0px",
                     "padding": "0px"
                 });
@@ -105,20 +154,26 @@ $(document).ready(function() {
 
         $(".edit-section").on("click", function() {
             var section = $(this).parents(".section");
-            oneEdit = section.find(".edit-input input, select option");
+                oneEdit = section.find(".edit-input input, select"),
+                that = $(this),
+                tag = that[0].tagName;
 
-            if (isTrue === true) {
-                $(this).html("Сохранить");
+            if(tag === "SPAN"){
+                that.replaceWith(function(){
+                    return "<button type='submit' class='edit-section'>Сохранить</button>";
+                });
+                //$(this).html("Сохранить");
                 oneEdit.removeAttr("disabled");
                 oneEdit.css({
-                    "border-width": "1px",
-                    "padding": "10px"
+                    "border": "1px solid #ccc",
+                    "padding-left": "10px"
                 });
                 password.attr("type", "text");
-
-                isTrue = false;
-            } else {
-                $(this).html(editSection);
+            }
+            if(tag === "BUTTON"){
+                that.replaceWith(function(){
+                    return "<span class='edit-section'>Редактировать</span>";
+                });
                 oneEdit.attr("disabled", "disabled");
                 oneEdit.css({
                     "border-width": "0px",
@@ -133,12 +188,45 @@ $(document).ready(function() {
 
     editButton();
 
+    //Select NO
+
+    var selectNo = function(){
+        $("select").on("change", function(){
+            var
+                section = $(this).parents(".section"),
+                select = section.find("select option:selected"),
+                selectYes = section.find(".select-yes");
+
+            select.each(function() {
+                if( $(this).attr('class') === "yes"){
+                    selectYes.removeAttr('disabled');
+                    selectYes.removeAttr('name');
+                    selectYes.css({
+                        "border" : "1px solid #ccc",
+                        "background": "none"
+                    });
+                }
+                else if( $(this).attr('class') === "no" ){
+                    selectYes.attr('disabled', 'disabled');
+                    selectYes.css({
+                        "border" : "0px solid #ccc",
+                        "background": "#a3a3a3"
+                    });
+                }
+            });
+        });
+    };
+
+    selectNo();
+
+    //End Select NO
+
     var saveScroll = function() {
         var scrollBtn = $(".edit-profile, .save-profile"),
         bg = scrollBtn.parent();
         $(window).scroll(function() {
             var scroll = $(window).scrollTop();
-            if (scroll >= 300) {
+            if (scroll >= 350) {
                 bg.addClass("scroll-btn");
             } else {
                 bg.removeClass("scroll-btn");

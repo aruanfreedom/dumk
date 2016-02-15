@@ -3,12 +3,12 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <!--<![endif]-->
-<script src="/static/bower_components/modernizr/modernizr.js"></script>
+<script src="/static/modernizr.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <title>Dumk</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,82 +62,114 @@
                 <p class="download-all">
                     <a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать</a>
                 </p>
-                <div><button class="button secondary edit-profile">Редактировать все</button></div>
+                <form action="" data-abide="">
+                    <div>
+                        <span  class="button secondary edit-profile">Редактировать все</span>
+                    </div>
                 <div class="section">
-                    <form action="" data-abide>
-                    <div class="row">
-                        <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Общая информация”</h3>
-                            <button type="submit" class="edit-section">Редактировать</button>
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">Раздел “Общая информация”</h3>
+                                <span class="edit-section">Редактировать</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-6 columns text-right">
-                            <p><b>Фамилия</b></p>
-                            <p><b>Имя</b></p>
-                            <p><b>Отчество</b></p>
-                            <p><b>Дата рождения</b></p>
-                            <p><b>Пол</b></p>
-                            <p><b>Национальность</b></p>
-                            <p><b>Гражданство</b></p>
-                            <p><b>Семейное положение</b></p>
-                            <p><b>Автобиография</b></p>
-                            <p><b>Номер телефона</b></p>
-                            <p><b>Место работы</b></p>
-                            <p><b>Должность</b></p>
-                            <p><b>Статус</b></p>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>Фамилия</b></p>
+                                <p><b>Имя</b></p>
+                                <p><b>Отчество</b></p>
+                                <p><b>Дата рождения</b></p>
+                                <p><b>Пол</b></p>
+                                <p><b>Национальность</b></p>
+                                <p><b>Гражданство</b></p>
+                                <p><b>Семейное положение</b></p>
+                                <p><b>Автобиография</b></p>
+                                <p><b>Номер телефона</b></p>
+                                <p><b>Место работы</b></p>
+                                <p><b>Должность</b></p>
+                                <p><b>Статус</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" disabled="disabled" name="last_name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">Неккоректная Фамилия</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">Неккоректное Имя</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">Неккоректное Отчество</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="name" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                </p>
+                                <p>
+                                    <select disabled="disabled" name="gender" required >
+                                        <option name="select_gender" value="">Выберите пол</option>
+                                        <option name="man" value="man">Мужской</option>
+                                        <option name="woman" value="woman">Женский</option>
+                                    </select>
+                                    <small class="error">Выберите пол</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="nationality" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">Неккоректное Национальность</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" required="" name="citizenship" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">Неккоректное Гражданство</small>
+                                </p>
+                                <p>
+                                    <select disabled="disabled" name="marital_status" required="" >
+                                        <option name="select_marital_status" value="">Выберите пол</option>
+                                        <option value="Женат">Женат</option>
+                                        <option value="Холост">Холост</option>
+                                    </select>
+                                    <small class="error">Семейное положение</small>
+                                </p>
+                                <p>
+                                    <!-- <span class="file_down">
+                                                <input type="file" disabled=disabled" value="Добавить файл" name="autobiograph">
+                                            </span> -->
+                                    <input type="file" disabled="disabled" class="file_down" required="" name="autobiograph">
+                                    <small class="error">Файл не выбран</small>
+                                </p>
+                                <p>
+                                    <input type="tel" name="phone" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+" maxlength="11">
+                                    <small class="error">Неккоректный телефон. Только цифры</small>
+                                </p>
+                                <p>
+                                    <select disabled="disabled" name="job" required="" >
+                                        <option value="">Выберите место работы</option>
+                                        <option value="Центральный Аппарат ДУМК">Центральный Аппарат ДУМК</option>
+                                        <option value="Kazdream">Kazdream</option>
+                                    </select>
+                                    <small class="error">Выберите место работы</small>
+                                </p>
+                                <p>
+                                    <select disabled="disabled" name="position" required="" >
+                                        <option value="">Выберите должность</option>
+                                        <option value="Начальник отдела по делам молодежи">Начальник отдела по делам молодежи</option>
+                                        <option value="Директор">Директор</option>
+                                    </select>
+                                    <small class="error">Выберите должность</small>
+                                </p>
+                                <p>
+                                    <select disabled="disabled" name="job_status" required="" >
+                                        <option value="">Выберите статус</option>
+                                        <option value="Работает">Работает</option>
+                                        <option value="Не Работает">Не работает</option>
+                                    </select>
+                                    <small class="error">Выберите статус</small>
+                                </p>
+                            </div>
                         </div>
-                        <div class="large-6 columns edit-input text-left">
-                            <p>
-                                <input type="text" required pattern="[a-zA-Z-а-яА-ЯёЁa]+" value="Ахметов" disabled>
-                                <small class="error">Неккоектное Имя</small>
-                            </p>
-                            <p>
-                                <input type="text" required value="Асет" disabled>
-                                <small class="error">Неккоектное dsfsdfdsfsdfds</small>
-                            </p>
-                            <p>
-                                <input type="text" value="Серикович" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="17 января 1978 г." disabled>
-                            </p>
-                            <p>
-                                <select name="gender" id="">
-                                    <option type="text" value="Мужской">Мужской</option>
-                                    <option type="text" value="Мужской">Женский</option>
-                                </select>
-                                <input type="text" value="17 января 1978 г." disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Казах" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="РК" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Женат" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Не указано" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="87773457865" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Не указано" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Начальник отдела по делам молодежи" disabled>
-                            </p>
-                            <p>
-                                <input type="text" value="Работает" disabled>
-                            </p>
-                        </div>
-                    </div>
-                    </form>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Паспортные данные”</h3>
@@ -155,27 +187,69 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <input type="text" value="Не указано" disabled="">
+                                <input type="text" disabled="disabled" name="type_document" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное тип документа</small>
                             </p>
                             <p>
-                                <input type="text" value="45589322" disabled="">
+                                <input type="text" disabled="disabled" name="number_document" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                <small class="error">Неккоректное номер документа</small>
                             </p>
                             <p>
-                                <input type="text" value="03.09.2014" disabled="">
+                                <input type="text" disabled="disabled" name="date_of_issue" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                             </p>
                             <p>
-                                <input type="text" value="03.09.2022" disabled="">
+                                <input type="text" disabled="disabled" name="validity" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                             </p>
                             <p>
-                                <input type="text" value="МВД РК" disabled="">
+                                <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное Орган выдачи</small>
                             </p>
                             <p>
-                                <input type="text" value="09128875" disabled="">
+                                <input type="text" disabled="disabled" name="iin" required="" maxlength="12" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                <small class="error">Неккоректное ИИН</small>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
+                    <div class="row">
+                        <div class="large-6 columns large-centered">
+                            <h3 class="section-edit">Раздел “Состав семьи”</h3>
+                            <span class="edit-section">Редактировать</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-6 columns text-right">
+                            <p><b>Отец</b></p>
+                            <p><b>Мать</b></p>
+                            <p><b>Жена</b></p>
+                            <p><b>Дети</b></p>
+                        </div>
+                        <div class="large-6 columns edit-input text-left">
+                            <p>
+                                <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное ввод</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Адрес”</h3>
@@ -194,72 +268,262 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <input type="text" disabled="" value="Республика Казахстан">
+                                <select disabled="disabled" name="country" required="" >
+                                    <option value="">Выберите страну</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Абхазия">Абхазия</option>
+                                    <option value="Австралия">Австралия</option>
+                                    <option value="Австрия">Австрия</option>
+                                    <option value="Азербайджан">Азербайджан</option>
+                                    <option value="Албания">Албания</option>
+                                    <option value="Алжир">Алжир</option>
+                                    <option value="Ангола">Ангола</option>
+                                    <option value="Андорра">Андорра</option>
+                                    <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+                                    <option value="Аргентина">Аргентина</option>
+                                    <option value="Армения">Армения</option>
+                                    <option value="Афганистан">Афганистан</option>
+                                    <option value="Багамские Острова">Багамские Острова</option>
+                                    <option value="Бангладеш">Бангладеш</option>
+                                    <option value="Барбадос">Барбадос</option>
+                                    <option value="Бахрейн">Бахрейн</option>
+                                    <option value="Беларусь">Беларусь</option>
+                                    <option value="Белиз">Белиз</option>
+                                    <option value="Бельгия">Бельгия</option>
+                                    <option value="Бенин">Бенин</option>
+                                    <option value="Болгария">Болгария</option>
+                                    <option value="Боливия">Боливия</option>
+                                    <option value="Босния и Герцеговина">Босния и Герцеговина</option>
+                                    <option value="Ботсвана">Ботсвана</option>
+                                    <option value="Бразилия">Бразилия</option>
+                                    <option value="Бруней">Бруней</option>
+                                    <option value="Буркина Фасо">Буркина Фасо</option>
+                                    <option value="Бурунди">Бурунди</option>
+                                    <option value="Бутан">Бутан</option>
+                                    <option value="Вануату">Вануату</option>
+                                    <option value="Ватикан">Ватикан</option>
+                                    <option value="Великобритания">Великобритания</option>
+                                    <option value="Венгрия">Венгрия</option>
+                                    <option value="Венесуэла">Венесуэла</option>
+                                    <option value="Восточный Тимоp">Восточный Тимоp</option>
+                                    <option value="Вьетнам">Вьетнам</option>
+                                    <option value="Габон">Габон</option>
+                                    <option value="Гаити">Гаити</option>
+                                    <option value="Гайана">Гайана</option>
+                                    <option value="Гамбия">Гамбия</option>
+                                    <option value="Гана">Гана</option>
+                                    <option value="Гватемала">Гватемала</option>
+                                    <option value="Гвинея">Гвинея</option>
+                                    <option value="Гвинея-Бисау">Гвинея-Бисау</option>
+                                    <option value="Германия">Германия</option>
+                                    <option value="Гондурас">Гондурас</option>
+                                    <option value="Гренада">Гренада</option>
+                                    <option value="Греция">Греция</option>
+                                    <option value="Грузия">Грузия</option>
+                                    <option value="Дания">Дания</option>
+                                    <option value="Демократическая Республика Конго">Демократическая Республика Конго</option>
+                                    <option value="Джибути">Джибути</option>
+                                    <option value="Доминиканская Республика">Доминиканская Республика</option>
+                                    <option value="Доминикана">Доминикана</option>
+                                    <option value="Египет">Египет</option>
+                                    <option value="Замбия">Замбия</option>
+                                    <option value="Зимбабве">Зимбабве</option>
+                                    <option value="Израиль">Израиль</option>
+                                    <option value="Индия">Индия</option>
+                                    <option value="Индонезия">Индонезия</option>
+                                    <option value="Иордания">Иордания</option>
+                                    <option value="Ирак">Ирак</option>
+                                    <option value="Иран">Иран</option>
+                                    <option value="Ирландия">Ирландия</option>
+                                    <option value="Испания">Испания</option>
+                                    <option value="Италия">Италия</option>
+                                    <option value="Йемен">Йемен</option>
+                                    <option value="Кабо-Верде">Кабо-Верде</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Камбоджа">Камбоджа</option>
+                                    <option value="Камерун">Камерун</option>
+                                    <option value="Канада">Канада</option>
+                                    <option value="Катар">Катар</option>
+                                    <option value="Кения">Кения</option>
+                                    <option value="Кипр">Кипр</option>
+                                    <option value="Киргизия">Киргизия</option>
+                                    <option value="Кирибати">Кирибати</option>
+                                    <option value="Китай">Китай</option>
+                                    <option value="Колумбия">Колумбия</option>
+                                    <option value="Коморские острова">Коморские острова</option>
+                                    <option value="КНДР">КНДР</option>
+                                    <option value="Коста-Рика">Коста-Рика</option>
+                                    <option value="Кот-д’Ивуар">Кот-д’Ивуар</option>
+                                    <option value="Куба">Куба</option>
+                                    <option value="Кувейт">Кувейт</option>
+                                    <option value="Лаос">Лаос</option>
+                                    <option value="Латвия">Латвия</option>
+                                    <option value="Лесото">Лесото</option>
+                                    <option value="Либерия">Либерия</option>
+                                    <option value="Ливан">Ливан</option>
+                                    <option value="Ливия">Ливия</option>
+                                    <option value="Литва">Литва</option>
+                                    <option value="Лихтенштейн">Лихтенштейн</option>
+                                    <option value="Люксембург">Люксембург</option>
+                                    <option value="Маврикий">Маврикий</option>
+                                    <option value="Мавритания">Мавритания</option>
+                                    <option value="Мадагаскар">Мадагаскар</option>
+                                    <option value="Македония">Македония</option>
+                                    <option value="Малави">Малави</option>
+                                    <option value="Малайзия">Малайзия</option>
+                                    <option value="Мали">Мали</option>
+                                    <option value="Мальдивы">Мальдивы</option>
+                                    <option value="Мальта">Мальта</option>
+                                    <option value="Марокко">Марокко</option>
+                                    <option value="Маршалловы Острова">Маршалловы Острова</option>
+                                    <option value="Мексика">Мексика</option>
+                                    <option value="Микронезия">Микронезия</option>
+                                    <option value="Мозамбик">Мозамбик</option>
+                                    <option value="Молдова">Молдова</option>
+                                    <option value="Монако">Монако</option>
+                                    <option value="Монголия">Монголия</option>
+                                    <option value="Мьянма">Мьянма</option>
+                                    <option value="Намибия">Намибия</option>
+                                    <option value="Науру">Науру</option>
+                                    <option value="Непал">Непал</option>
+                                    <option value="Нигер">Нигер</option>
+                                    <option value="Нигерия">Нигерия</option>
+                                    <option value="Нидерланды">Нидерланды</option>
+                                    <option value="Никарагуа">Никарагуа</option>
+                                    <option value="Новая Зеландия">Новая Зеландия</option>
+                                    <option value="Норвегия">Норвегия</option>
+                                    <option value="ОАЭ">ОАЭ</option>
+                                    <option value="Оман">Оман</option>
+                                    <option value="Пакистан">Пакистан</option>
+                                    <option value="Палау">Палау</option>
+                                    <option value="Панама">Панама</option>
+                                    <option value="Папуа-Новая Гвинея">Папуа-Новая Гвинея</option>
+                                    <option value="Парагвай">Парагвай</option>
+                                    <option value="Перу">Перу</option>
+                                    <option value="Польша">Польша</option>
+                                    <option value="Португалия">Португалия</option>
+                                    <option value="Республика Конго">Республика Конго</option>
+                                    <option value="Республика Корея">Республика Корея</option>
+                                    <option value="Россия">Россия</option>
+                                    <option value="Руанда">Руанда</option>
+                                    <option value="Румыния">Румыния</option>
+                                    <option value="Сальвадор">Сальвадор</option>
+                                    <option value="Самоа">Самоа</option>
+                                    <option value="Сан-Марино">Сан-Марино</option>
+                                    <option value="Сан-Томе и Принсипи">Сан-Томе и Принсипи</option>
+                                    <option value="Саудовская Аравия">Саудовская Аравия</option>
+                                    <option value="Свазиленд">Свазиленд</option>
+                                    <option value="Северные Марианские острова">Северные Марианские острова</option>
+                                    <option value="Сейшелы">Сейшелы</option>
+                                    <option value="Сенегал">Сенегал</option>
+                                    <option value="Сент-Винсент и Гренадины">Сент-Винсент и Гренадины</option>
+                                    <option value="Сент-Китс и Невис">Сент-Китс и Невис</option>
+                                    <option value="Сент-Люсия">Сент-Люсия</option>
+                                    <option value="Сербия">Сербия</option>
+                                    <option value="Сингапур">Сингапур</option>
+                                    <option value="Сирия">Сирия</option>
+                                    <option value="Словакия">Словакия</option>
+                                    <option value="Словения">Словения</option>
+                                    <option value="Соединённые Штаты Америки">Соединённые Штаты Америки</option>
+                                    <option value="Соломоновы Острова">Соломоновы Острова</option>
+                                    <option value="Сомали">Сомали</option>
+                                    <option value="Судан">Судан</option>
+                                    <option value="Сьерра-Леоне">Сьерра-Леоне</option>
+                                    <option value="Таджикистан">Таджикистан</option>
+                                    <option value="Таиланд">Таиланд</option>
+                                    <option value="Танзания">Танзания</option>
+                                    <option value="Того">Того</option>
+                                    <option value="Тонга">Тонга</option>
+                                    <option value="Тринидад и Тобаго">Тринидад и Тобаго</option>
+                                    <option value="Тувалу">Тувалу</option>
+                                    <option value="Тунис">Тунис</option>
+                                    <option value="Туркмения">Туркмения</option>
+                                    <option value="Турция">Турция</option>
+                                    <option value="Уганда">Уганда</option>
+                                    <option value="Узбекистан">Узбекистан</option>
+                                    <option value="Украина">Украина</option>
+                                    <option value="Уругвай">Уругвай</option>
+                                    <option value="Фиджи">Фиджи</option>
+                                    <option value="Филиппины">Филиппины</option>
+                                    <option value="Финляндия">Финляндия</option>
+                                    <option value="Франция">Франция</option>
+                                    <option value="Хорватия">Хорватия</option>
+                                    <option value="Центральноафриканская Республика">Центральноафриканская Республика</option>
+                                    <option value="Чад">Чад</option>
+                                    <option value="Черногория">Черногория</option>
+                                    <option value="Чехия">Чехия</option>
+                                    <option value="Чили">Чили</option>
+                                    <option value="Швейцария">Швейцария</option>
+                                    <option value="Швеция">Швеция</option>
+                                    <option value="Шри-Ланка">Шри-Ланка</option>
+                                    <option value="Эквадор">Эквадор</option>
+                                    <option value="Экваториальная Гвинея">Экваториальная Гвинея</option>
+                                    <option value="Эритрея">Эритрея</option>
+                                    <option value="Эстония">Эстония</option>
+                                    <option value="Эфиопия">Эфиопия</option>
+                                    <option value="Южно-Африканская Республика">Южно-Африканская Республика</option>
+                                    <option value="Южный Судан">Южный Судан</option>
+                                    <option value="Ямайка">Ямайка</option>
+                                    <option value="Япония">Япония</option>
+                                </select>
+                                <small class="error">Выберите страну</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="Акмолинская">
+                                <select disabled="disabled" name="state" required="" >
+                                    <option value="">Выберите область</option>
+                                    <option value="Акмолинской области">Акмолинской области</option>
+                                    <option value="Актюбинской области">Актюбинской области</option>
+                                    <option value="Алматинской области">Алматинской области</option>
+                                    <option value="Алматинской области">Алматинской области</option>
+                                    <option value="Атырауской области">Атырауской области</option>
+                                    <option value="Восточно-Казахстанской области">Восточно-Казахстанской области</option>
+                                    <option value="Жамбылской области">Жамбылской области</option>
+                                    <option value="Западно-Казахстанской области">Западно-Казахстанской области</option>
+                                    <option value="Карагандинской области">Карагандинской области</option>
+                                    <option value="Костанайской области">Костанайской области</option>
+                                    <option value="Кызылординской области">Кызылординской области</option>
+                                    <option value="Мангистауской области">Мангистауской области</option>
+                                    <option value="Павлодарской области">Павлодарской области</option>
+                                    <option value="г.Семей">г.Семей</option>
+                                    <option value="Северо-Казахстанской области">Северо-Казахстанской области</option>
+                                    <option value="г.Талдыкорган">г.Талдыкорган</option>
+                                    <option value="Южно-Казахстанской области">Южно-Казахстанской области</option>
+                                </select>
+                                <small class="error">Выберите область</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="Сарыаркинский">
+                                <select disabled="disabled" name="raion" required="" >
+                                    <option value="">Выберите район</option>
+                                    <option value="Сарыаркинский">Сарыаркинский</option>
+                                    <option value="Алматинский">Алматинский</option>
+                                </select>
+                                <small class="error">Выберите район</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="Астана">
+                                <select disabled="disabled" name="city" required="" >
+                                    <option value="">Выберите город</option>
+                                    <option value="Астана">Астана</option>
+                                    <option value="Алмата">Алмата</option>
+                                </select>
+                                <small class="error">Выберите город</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="пр. Республики">
+                                <input type="text" disabled="disabled" name="street" required="">
+                                <small class="error">Неккоректное ввод</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="17/1">
+                                <input type="text" disabled="disabled" name="numver_home" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                <small class="error">Неккоректное номер дома</small>
                             </p>
                             <p>
-                                <input type="text" disabled="" value="15">
+                                <input type="text" disabled="disabled" name="apartment" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                <small class="error">Неккоректное номер квартиры</small>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="row">
-                        <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Адрес”</h3>
-                            <span class="edit-section">Редактировать</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-6 columns text-right">
-                            <p><b>Страна</b></p>
-                            <p><b>Область</b></p>
-                            <p><b>Район</b></p>
-                            <p><b>Город/населенный пункт</b></p>
-                            <p><b>Улица</b></p>
-                            <p><b>Номер дома</b></p>
-                            <p><b>Номер квартиры</b></p>
-                        </div>
-                        <div class="large-6 columns edit-input text-left">
-                            <p>
-                                <input type="text" disabled="" value="Республика Казахстан">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="Акмолинская">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="Сарыаркинский">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="Астана">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="пр. Республики">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="17/1">
-                            </p>
-                            <p>
-                                <input type="text" disabled="" value="15">
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Среднее образование”</h3>
@@ -268,20 +532,40 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
+                            <p><b>Наличие</b></p>
                             <p><b>Учебное заведение</b></p>
                             <p><b>Местонахождение</b></p>
                             <p><b>Год поступления</b></p>
                             <p><b>Год окончания</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="СШ № 1"></p>
-                        <p><input type="text" disabled="" value="Караганда"></p>
-                        <p><input type="text" disabled="" value="1978"></p>
-                        <p><input type="text" disabled="" value="1988"></p>
+                            <p>
+                                <select disabled="disabled" name="middle_select">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="unversitety" disabled="disabled" class="select-yes" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное учебное заведение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="location" disabled="disabled" class="select-yes" required="">
+                                <small class="error">Неккоректное Местонахождение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="year_start" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="year_end" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Средне-специальное образование”</h3>
@@ -290,6 +574,7 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
+                            <p><b>Наличие</b></p>
                             <p><b>Учебное заведение</b></p>
                             <p><b>Местонахождение</b></p>
                             <p><b>Год поступления</b></p>
@@ -297,15 +582,37 @@
                             <p><b>Факультет</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="СШ № 1"></p>
-                        <p><input type="text" disabled="" value="Караганда"></p>
-                        <p><input type="text" disabled="" value="1978"></p>
-                        <p><input type="text" disabled="" value="1988"></p>
-                        <p><input type="text" disabled="" value="Филологический"></p>
+                            <p>
+                                <select disabled="disabled" name="middle_spec_select">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="unversitety_middle" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное учебное заведение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="location_middle" required="">
+                                <small class="error">Неккоректное Местонахождение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_start_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_end_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="faculty_middle" required="">
+                                <small class="error">Введите факультет</small>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Высшее образование”</h3>
@@ -314,6 +621,7 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
+                            <p><b>Наличие</b></p>
                             <p><b>Учебное заведение</b></p>
                             <p><b>Местонахождение</b></p>
                             <p><b>Год поступления</b></p>
@@ -321,15 +629,37 @@
                             <p><b>Факультет</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="СШ № 1"></p>
-                        <p><input type="text" disabled="" value="Караганда"></p>
-                        <p><input type="text" disabled="" value="1978"></p>
-                        <p><input type="text" disabled="" value="1988"></p>
-                        <p><input type="text" disabled="" value="Филологический"></p>
+                            <p>
+                                <select disabled="disabled" name="status_higher">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="unversitety_higher" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректное учебное заведение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="location_higher" required="">
+                                <small class="error">Неккоректное Местонахождение</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_start_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_end_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="faculty_higher" required="">
+                                <small class="error">Введите факультет</small>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Ученая степень”</h3>
@@ -341,35 +671,18 @@
                             <p><b>Категория</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="Доктор наук"></p>
+                            <p>
+                                <select disabled="disabled" name="academic_degree" required="" >
+                                    <option value="">Выберите категорию</option>
+                                    <option value="Бакалвр">Бакалвр</option>
+                                </select>
+                                <small class="error">Выберите категорию</small>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="row">
-                        <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Ученая степень”</h3>
-                            <span class="edit-section">Редактировать</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-6 columns text-right">
-                            <p><b>Учебное заведение</b></p>
-                            <p><b>Местонахождение</b></p>
-                            <p><b>Год поступления</b></p>
-                            <p><b>Год окончания</b></p>
-                            <p><b>Факультет</b></p>
-                        </div>
-                        <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="СШ № 1"></p>
-                        <p><input type="text" disabled="" value="Караганда"></p>
-                        <p><input type="text" disabled="" value="1978"></p>
-                        <p><input type="text" disabled="" value="1988"></p>
-                        <p><input type="text" disabled="" value="Филологический"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Стажировки”</h3>
@@ -378,38 +691,265 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                            <p><b>Место нахождения</b></p>
+                            <p><b>Наличие</b></p>
+                            <p><b>Место прохождения (страна)</b></p>
+                            <p><b>Область</b></p>
+                            <p><b>Город</b></p>
                             <p><b>Организация</b></p>
                             <p><b>Год прохождения стажировки</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="Не указано"></p>
-                        <p><input type="text" disabled="" value="Не указано"></p>
-                        <p><input type="text" disabled="" value="Не указано"></p>
+                            <p>
+                                <select disabled="disabled" name="status_country_interships">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="country_internships" class="select-yes" disabled="disabled" required="" >
+                                    <option value="">Выберите страну</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Абхазия">Абхазия</option>
+                                    <option value="Австралия">Австралия</option>
+                                    <option value="Австрия">Австрия</option>
+                                    <option value="Азербайджан">Азербайджан</option>
+                                    <option value="Албания">Албания</option>
+                                    <option value="Алжир">Алжир</option>
+                                    <option value="Ангола">Ангола</option>
+                                    <option value="Андорра">Андорра</option>
+                                    <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+                                    <option value="Аргентина">Аргентина</option>
+                                    <option value="Армения">Армения</option>
+                                    <option value="Афганистан">Афганистан</option>
+                                    <option value="Багамские Острова">Багамские Острова</option>
+                                    <option value="Бангладеш">Бангладеш</option>
+                                    <option value="Барбадос">Барбадос</option>
+                                    <option value="Бахрейн">Бахрейн</option>
+                                    <option value="Беларусь">Беларусь</option>
+                                    <option value="Белиз">Белиз</option>
+                                    <option value="Бельгия">Бельгия</option>
+                                    <option value="Бенин">Бенин</option>
+                                    <option value="Болгария">Болгария</option>
+                                    <option value="Боливия">Боливия</option>
+                                    <option value="Босния и Герцеговина">Босния и Герцеговина</option>
+                                    <option value="Ботсвана">Ботсвана</option>
+                                    <option value="Бразилия">Бразилия</option>
+                                    <option value="Бруней">Бруней</option>
+                                    <option value="Буркина Фасо">Буркина Фасо</option>
+                                    <option value="Бурунди">Бурунди</option>
+                                    <option value="Бутан">Бутан</option>
+                                    <option value="Вануату">Вануату</option>
+                                    <option value="Ватикан">Ватикан</option>
+                                    <option value="Великобритания">Великобритания</option>
+                                    <option value="Венгрия">Венгрия</option>
+                                    <option value="Венесуэла">Венесуэла</option>
+                                    <option value="Восточный Тимоp">Восточный Тимоp</option>
+                                    <option value="Вьетнам">Вьетнам</option>
+                                    <option value="Габон">Габон</option>
+                                    <option value="Гаити">Гаити</option>
+                                    <option value="Гайана">Гайана</option>
+                                    <option value="Гамбия">Гамбия</option>
+                                    <option value="Гана">Гана</option>
+                                    <option value="Гватемала">Гватемала</option>
+                                    <option value="Гвинея">Гвинея</option>
+                                    <option value="Гвинея-Бисау">Гвинея-Бисау</option>
+                                    <option value="Германия">Германия</option>
+                                    <option value="Гондурас">Гондурас</option>
+                                    <option value="Гренада">Гренада</option>
+                                    <option value="Греция">Греция</option>
+                                    <option value="Грузия">Грузия</option>
+                                    <option value="Дания">Дания</option>
+                                    <option value="Демократическая Республика Конго">Демократическая Республика Конго</option>
+                                    <option value="Джибути">Джибути</option>
+                                    <option value="Доминиканская Республика">Доминиканская Республика</option>
+                                    <option value="Доминикана">Доминикана</option>
+                                    <option value="Египет">Египет</option>
+                                    <option value="Замбия">Замбия</option>
+                                    <option value="Зимбабве">Зимбабве</option>
+                                    <option value="Израиль">Израиль</option>
+                                    <option value="Индия">Индия</option>
+                                    <option value="Индонезия">Индонезия</option>
+                                    <option value="Иордания">Иордания</option>
+                                    <option value="Ирак">Ирак</option>
+                                    <option value="Иран">Иран</option>
+                                    <option value="Ирландия">Ирландия</option>
+                                    <option value="Испания">Испания</option>
+                                    <option value="Италия">Италия</option>
+                                    <option value="Йемен">Йемен</option>
+                                    <option value="Кабо-Верде">Кабо-Верде</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Камбоджа">Камбоджа</option>
+                                    <option value="Камерун">Камерун</option>
+                                    <option value="Канада">Канада</option>
+                                    <option value="Катар">Катар</option>
+                                    <option value="Кения">Кения</option>
+                                    <option value="Кипр">Кипр</option>
+                                    <option value="Киргизия">Киргизия</option>
+                                    <option value="Кирибати">Кирибати</option>
+                                    <option value="Китай">Китай</option>
+                                    <option value="Колумбия">Колумбия</option>
+                                    <option value="Коморские острова">Коморские острова</option>
+                                    <option value="КНДР">КНДР</option>
+                                    <option value="Коста-Рика">Коста-Рика</option>
+                                    <option value="Кот-д’Ивуар">Кот-д’Ивуар</option>
+                                    <option value="Куба">Куба</option>
+                                    <option value="Кувейт">Кувейт</option>
+                                    <option value="Лаос">Лаос</option>
+                                    <option value="Латвия">Латвия</option>
+                                    <option value="Лесото">Лесото</option>
+                                    <option value="Либерия">Либерия</option>
+                                    <option value="Ливан">Ливан</option>
+                                    <option value="Ливия">Ливия</option>
+                                    <option value="Литва">Литва</option>
+                                    <option value="Лихтенштейн">Лихтенштейн</option>
+                                    <option value="Люксембург">Люксембург</option>
+                                    <option value="Маврикий">Маврикий</option>
+                                    <option value="Мавритания">Мавритания</option>
+                                    <option value="Мадагаскар">Мадагаскар</option>
+                                    <option value="Македония">Македония</option>
+                                    <option value="Малави">Малави</option>
+                                    <option value="Малайзия">Малайзия</option>
+                                    <option value="Мали">Мали</option>
+                                    <option value="Мальдивы">Мальдивы</option>
+                                    <option value="Мальта">Мальта</option>
+                                    <option value="Марокко">Марокко</option>
+                                    <option value="Маршалловы Острова">Маршалловы Острова</option>
+                                    <option value="Мексика">Мексика</option>
+                                    <option value="Микронезия">Микронезия</option>
+                                    <option value="Мозамбик">Мозамбик</option>
+                                    <option value="Молдова">Молдова</option>
+                                    <option value="Монако">Монако</option>
+                                    <option value="Монголия">Монголия</option>
+                                    <option value="Мьянма">Мьянма</option>
+                                    <option value="Намибия">Намибия</option>
+                                    <option value="Науру">Науру</option>
+                                    <option value="Непал">Непал</option>
+                                    <option value="Нигер">Нигер</option>
+                                    <option value="Нигерия">Нигерия</option>
+                                    <option value="Нидерланды">Нидерланды</option>
+                                    <option value="Никарагуа">Никарагуа</option>
+                                    <option value="Новая Зеландия">Новая Зеландия</option>
+                                    <option value="Норвегия">Норвегия</option>
+                                    <option value="ОАЭ">ОАЭ</option>
+                                    <option value="Оман">Оман</option>
+                                    <option value="Пакистан">Пакистан</option>
+                                    <option value="Палау">Палау</option>
+                                    <option value="Панама">Панама</option>
+                                    <option value="Папуа-Новая Гвинея">Папуа-Новая Гвинея</option>
+                                    <option value="Парагвай">Парагвай</option>
+                                    <option value="Перу">Перу</option>
+                                    <option value="Польша">Польша</option>
+                                    <option value="Португалия">Португалия</option>
+                                    <option value="Республика Конго">Республика Конго</option>
+                                    <option value="Республика Корея">Республика Корея</option>
+                                    <option value="Россия">Россия</option>
+                                    <option value="Руанда">Руанда</option>
+                                    <option value="Румыния">Румыния</option>
+                                    <option value="Сальвадор">Сальвадор</option>
+                                    <option value="Самоа">Самоа</option>
+                                    <option value="Сан-Марино">Сан-Марино</option>
+                                    <option value="Сан-Томе и Принсипи">Сан-Томе и Принсипи</option>
+                                    <option value="Саудовская Аравия">Саудовская Аравия</option>
+                                    <option value="Свазиленд">Свазиленд</option>
+                                    <option value="Северные Марианские острова">Северные Марианские острова</option>
+                                    <option value="Сейшелы">Сейшелы</option>
+                                    <option value="Сенегал">Сенегал</option>
+                                    <option value="Сент-Винсент и Гренадины">Сент-Винсент и Гренадины</option>
+                                    <option value="Сент-Китс и Невис">Сент-Китс и Невис</option>
+                                    <option value="Сент-Люсия">Сент-Люсия</option>
+                                    <option value="Сербия">Сербия</option>
+                                    <option value="Сингапур">Сингапур</option>
+                                    <option value="Сирия">Сирия</option>
+                                    <option value="Словакия">Словакия</option>
+                                    <option value="Словения">Словения</option>
+                                    <option value="Соединённые Штаты Америки">Соединённые Штаты Америки</option>
+                                    <option value="Соломоновы Острова">Соломоновы Острова</option>
+                                    <option value="Сомали">Сомали</option>
+                                    <option value="Судан">Судан</option>
+                                    <option value="Сьерра-Леоне">Сьерра-Леоне</option>
+                                    <option value="Таджикистан">Таджикистан</option>
+                                    <option value="Таиланд">Таиланд</option>
+                                    <option value="Танзания">Танзания</option>
+                                    <option value="Того">Того</option>
+                                    <option value="Тонга">Тонга</option>
+                                    <option value="Тринидад и Тобаго">Тринидад и Тобаго</option>
+                                    <option value="Тувалу">Тувалу</option>
+                                    <option value="Тунис">Тунис</option>
+                                    <option value="Туркмения">Туркмения</option>
+                                    <option value="Турция">Турция</option>
+                                    <option value="Уганда">Уганда</option>
+                                    <option value="Узбекистан">Узбекистан</option>
+                                    <option value="Украина">Украина</option>
+                                    <option value="Уругвай">Уругвай</option>
+                                    <option value="Фиджи">Фиджи</option>
+                                    <option value="Филиппины">Филиппины</option>
+                                    <option value="Финляндия">Финляндия</option>
+                                    <option value="Франция">Франция</option>
+                                    <option value="Хорватия">Хорватия</option>
+                                    <option value="Центральноафриканская Республика">Центральноафриканская Республика</option>
+                                    <option value="Чад">Чад</option>
+                                    <option value="Черногория">Черногория</option>
+                                    <option value="Чехия">Чехия</option>
+                                    <option value="Чили">Чили</option>
+                                    <option value="Швейцария">Швейцария</option>
+                                    <option value="Швеция">Швеция</option>
+                                    <option value="Шри-Ланка">Шри-Ланка</option>
+                                    <option value="Эквадор">Эквадор</option>
+                                    <option value="Экваториальная Гвинея">Экваториальная Гвинея</option>
+                                    <option value="Эритрея">Эритрея</option>
+                                    <option value="Эстония">Эстония</option>
+                                    <option value="Эфиопия">Эфиопия</option>
+                                    <option value="Южно-Африканская Республика">Южно-Африканская Республика</option>
+                                    <option value="Южный Судан">Южный Судан</option>
+                                    <option value="Ямайка">Ямайка</option>
+                                    <option value="Япония">Япония</option>
+                                </select>
+                                <small class="error">Выберите страну</small>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="state_internships" class="select-yes" disabled="disabled" required="" >
+                                    <option value="">Выберите область</option>
+                                    <option value="Акмолинской области">Акмолинской области</option>
+                                    <option value="Актюбинской области">Актюбинской области</option>
+                                    <option value="Алматинской области">Алматинской области</option>
+                                    <option value="Алматинской области">Алматинской области</option>
+                                    <option value="Атырауской области">Атырауской области</option>
+                                    <option value="Восточно-Казахстанской области">Восточно-Казахстанской области</option>
+                                    <option value="Жамбылской области">Жамбылской области</option>
+                                    <option value="Западно-Казахстанской области">Западно-Казахстанской области</option>
+                                    <option value="Карагандинской области">Карагандинской области</option>
+                                    <option value="Костанайской области">Костанайской области</option>
+                                    <option value="Кызылординской области">Кызылординской области</option>
+                                    <option value="Мангистауской области">Мангистауской области</option>
+                                    <option value="Павлодарской области">Павлодарской области</option>
+                                    <option value="г.Семей">г.Семей</option>
+                                    <option value="Северо-Казахстанской области">Северо-Казахстанской области</option>
+                                    <option value="г.Талдыкорган">г.Талдыкорган</option>
+                                    <option value="Южно-Казахстанской области">Южно-Казахстанской области</option>
+                                </select>
+                                <small class="error">Выберите область</small>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="city_interships" class="select-yes" disabled="disabled" required="" >
+                                    <option value="">Выберите город</option>
+                                    <option value="Астана">Астана</option>
+                                    <option value="Алмата">Алмата</option>
+                                </select>
+                                <small class="error">Выберите город</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="organization_interships" class="select-yes" disabled="disabled" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <small class="error">Неккоректная организация</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="year_organization" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="row">
-                        <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Стажировки”</h3>
-                            <span class="edit-section">Редактировать</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-6 columns text-right">
-                            <p><b>Место нахождения</b></p>
-                            <p><b>Организация</b></p>
-                            <p><b>Год прохождения стажировки</b></p>
-                        </div>
-                        <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="Не указано"></p>
-                        <p><input type="text" disabled="" value="Не указано"></p>
-                        <p><input type="text" disabled="" value="Не указано"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Выезды за рубеж”</h3>
@@ -418,62 +958,331 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                            <p><b>Место выезда</b></p>
+                            <p><b>Наличие</b></p>
+                            <p><b>Место выезда (страна)</b></p>
+                            <p><b>Город</b></p>
                             <p><b>Цель выезда за рубеж</b></p>
                             <p><b>Дата выезда из Казахстана</b></p>
                             <p><b>Дата возвращения в Казахстан</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Узбекистан"></p>
-                            <p><input type="text" disabled="" value="В целях повышения квалификации"></p>
-                            <p><input type="text" disabled="" value="09.09.2012"></p>
-                            <p><input type="text" disabled="" value="04.12.2013"></p>
+                            <p>
+                                <select disabled="disabled" name="status_trips_aboard">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="country_trips_abroad" class="select-yes" disabled="disabled" required="" >
+                                    <option value="">Выберите страну</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Абхазия">Абхазия</option>
+                                    <option value="Австралия">Австралия</option>
+                                    <option value="Австрия">Австрия</option>
+                                    <option value="Азербайджан">Азербайджан</option>
+                                    <option value="Албания">Албания</option>
+                                    <option value="Алжир">Алжир</option>
+                                    <option value="Ангола">Ангола</option>
+                                    <option value="Андорра">Андорра</option>
+                                    <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+                                    <option value="Аргентина">Аргентина</option>
+                                    <option value="Армения">Армения</option>
+                                    <option value="Афганистан">Афганистан</option>
+                                    <option value="Багамские Острова">Багамские Острова</option>
+                                    <option value="Бангладеш">Бангладеш</option>
+                                    <option value="Барбадос">Барбадос</option>
+                                    <option value="Бахрейн">Бахрейн</option>
+                                    <option value="Беларусь">Беларусь</option>
+                                    <option value="Белиз">Белиз</option>
+                                    <option value="Бельгия">Бельгия</option>
+                                    <option value="Бенин">Бенин</option>
+                                    <option value="Болгария">Болгария</option>
+                                    <option value="Боливия">Боливия</option>
+                                    <option value="Босния и Герцеговина">Босния и Герцеговина</option>
+                                    <option value="Ботсвана">Ботсвана</option>
+                                    <option value="Бразилия">Бразилия</option>
+                                    <option value="Бруней">Бруней</option>
+                                    <option value="Буркина Фасо">Буркина Фасо</option>
+                                    <option value="Бурунди">Бурунди</option>
+                                    <option value="Бутан">Бутан</option>
+                                    <option value="Вануату">Вануату</option>
+                                    <option value="Ватикан">Ватикан</option>
+                                    <option value="Великобритания">Великобритания</option>
+                                    <option value="Венгрия">Венгрия</option>
+                                    <option value="Венесуэла">Венесуэла</option>
+                                    <option value="Восточный Тимоp">Восточный Тимоp</option>
+                                    <option value="Вьетнам">Вьетнам</option>
+                                    <option value="Габон">Габон</option>
+                                    <option value="Гаити">Гаити</option>
+                                    <option value="Гайана">Гайана</option>
+                                    <option value="Гамбия">Гамбия</option>
+                                    <option value="Гана">Гана</option>
+                                    <option value="Гватемала">Гватемала</option>
+                                    <option value="Гвинея">Гвинея</option>
+                                    <option value="Гвинея-Бисау">Гвинея-Бисау</option>
+                                    <option value="Германия">Германия</option>
+                                    <option value="Гондурас">Гондурас</option>
+                                    <option value="Гренада">Гренада</option>
+                                    <option value="Греция">Греция</option>
+                                    <option value="Грузия">Грузия</option>
+                                    <option value="Дания">Дания</option>
+                                    <option value="Демократическая Республика Конго">Демократическая Республика Конго</option>
+                                    <option value="Джибути">Джибути</option>
+                                    <option value="Доминиканская Республика">Доминиканская Республика</option>
+                                    <option value="Доминикана">Доминикана</option>
+                                    <option value="Египет">Египет</option>
+                                    <option value="Замбия">Замбия</option>
+                                    <option value="Зимбабве">Зимбабве</option>
+                                    <option value="Израиль">Израиль</option>
+                                    <option value="Индия">Индия</option>
+                                    <option value="Индонезия">Индонезия</option>
+                                    <option value="Иордания">Иордания</option>
+                                    <option value="Ирак">Ирак</option>
+                                    <option value="Иран">Иран</option>
+                                    <option value="Ирландия">Ирландия</option>
+                                    <option value="Испания">Испания</option>
+                                    <option value="Италия">Италия</option>
+                                    <option value="Йемен">Йемен</option>
+                                    <option value="Кабо-Верде">Кабо-Верде</option>
+                                    <option value="Казахстан">Казахстан</option>
+                                    <option value="Камбоджа">Камбоджа</option>
+                                    <option value="Камерун">Камерун</option>
+                                    <option value="Канада">Канада</option>
+                                    <option value="Катар">Катар</option>
+                                    <option value="Кения">Кения</option>
+                                    <option value="Кипр">Кипр</option>
+                                    <option value="Киргизия">Киргизия</option>
+                                    <option value="Кирибати">Кирибати</option>
+                                    <option value="Китай">Китай</option>
+                                    <option value="Колумбия">Колумбия</option>
+                                    <option value="Коморские острова">Коморские острова</option>
+                                    <option value="КНДР">КНДР</option>
+                                    <option value="Коста-Рика">Коста-Рика</option>
+                                    <option value="Кот-д’Ивуар">Кот-д’Ивуар</option>
+                                    <option value="Куба">Куба</option>
+                                    <option value="Кувейт">Кувейт</option>
+                                    <option value="Лаос">Лаос</option>
+                                    <option value="Латвия">Латвия</option>
+                                    <option value="Лесото">Лесото</option>
+                                    <option value="Либерия">Либерия</option>
+                                    <option value="Ливан">Ливан</option>
+                                    <option value="Ливия">Ливия</option>
+                                    <option value="Литва">Литва</option>
+                                    <option value="Лихтенштейн">Лихтенштейн</option>
+                                    <option value="Люксембург">Люксембург</option>
+                                    <option value="Маврикий">Маврикий</option>
+                                    <option value="Мавритания">Мавритания</option>
+                                    <option value="Мадагаскар">Мадагаскар</option>
+                                    <option value="Македония">Македония</option>
+                                    <option value="Малави">Малави</option>
+                                    <option value="Малайзия">Малайзия</option>
+                                    <option value="Мали">Мали</option>
+                                    <option value="Мальдивы">Мальдивы</option>
+                                    <option value="Мальта">Мальта</option>
+                                    <option value="Марокко">Марокко</option>
+                                    <option value="Маршалловы Острова">Маршалловы Острова</option>
+                                    <option value="Мексика">Мексика</option>
+                                    <option value="Микронезия">Микронезия</option>
+                                    <option value="Мозамбик">Мозамбик</option>
+                                    <option value="Молдова">Молдова</option>
+                                    <option value="Монако">Монако</option>
+                                    <option value="Монголия">Монголия</option>
+                                    <option value="Мьянма">Мьянма</option>
+                                    <option value="Намибия">Намибия</option>
+                                    <option value="Науру">Науру</option>
+                                    <option value="Непал">Непал</option>
+                                    <option value="Нигер">Нигер</option>
+                                    <option value="Нигерия">Нигерия</option>
+                                    <option value="Нидерланды">Нидерланды</option>
+                                    <option value="Никарагуа">Никарагуа</option>
+                                    <option value="Новая Зеландия">Новая Зеландия</option>
+                                    <option value="Норвегия">Норвегия</option>
+                                    <option value="ОАЭ">ОАЭ</option>
+                                    <option value="Оман">Оман</option>
+                                    <option value="Пакистан">Пакистан</option>
+                                    <option value="Палау">Палау</option>
+                                    <option value="Панама">Панама</option>
+                                    <option value="Папуа-Новая Гвинея">Папуа-Новая Гвинея</option>
+                                    <option value="Парагвай">Парагвай</option>
+                                    <option value="Перу">Перу</option>
+                                    <option value="Польша">Польша</option>
+                                    <option value="Португалия">Португалия</option>
+                                    <option value="Республика Конго">Республика Конго</option>
+                                    <option value="Республика Корея">Республика Корея</option>
+                                    <option value="Россия">Россия</option>
+                                    <option value="Руанда">Руанда</option>
+                                    <option value="Румыния">Румыния</option>
+                                    <option value="Сальвадор">Сальвадор</option>
+                                    <option value="Самоа">Самоа</option>
+                                    <option value="Сан-Марино">Сан-Марино</option>
+                                    <option value="Сан-Томе и Принсипи">Сан-Томе и Принсипи</option>
+                                    <option value="Саудовская Аравия">Саудовская Аравия</option>
+                                    <option value="Свазиленд">Свазиленд</option>
+                                    <option value="Северные Марианские острова">Северные Марианские острова</option>
+                                    <option value="Сейшелы">Сейшелы</option>
+                                    <option value="Сенегал">Сенегал</option>
+                                    <option value="Сент-Винсент и Гренадины">Сент-Винсент и Гренадины</option>
+                                    <option value="Сент-Китс и Невис">Сент-Китс и Невис</option>
+                                    <option value="Сент-Люсия">Сент-Люсия</option>
+                                    <option value="Сербия">Сербия</option>
+                                    <option value="Сингапур">Сингапур</option>
+                                    <option value="Сирия">Сирия</option>
+                                    <option value="Словакия">Словакия</option>
+                                    <option value="Словения">Словения</option>
+                                    <option value="Соединённые Штаты Америки">Соединённые Штаты Америки</option>
+                                    <option value="Соломоновы Острова">Соломоновы Острова</option>
+                                    <option value="Сомали">Сомали</option>
+                                    <option value="Судан">Судан</option>
+                                    <option value="Сьерра-Леоне">Сьерра-Леоне</option>
+                                    <option value="Таджикистан">Таджикистан</option>
+                                    <option value="Таиланд">Таиланд</option>
+                                    <option value="Танзания">Танзания</option>
+                                    <option value="Того">Того</option>
+                                    <option value="Тонга">Тонга</option>
+                                    <option value="Тринидад и Тобаго">Тринидад и Тобаго</option>
+                                    <option value="Тувалу">Тувалу</option>
+                                    <option value="Тунис">Тунис</option>
+                                    <option value="Туркмения">Туркмения</option>
+                                    <option value="Турция">Турция</option>
+                                    <option value="Уганда">Уганда</option>
+                                    <option value="Узбекистан">Узбекистан</option>
+                                    <option value="Украина">Украина</option>
+                                    <option value="Уругвай">Уругвай</option>
+                                    <option value="Фиджи">Фиджи</option>
+                                    <option value="Филиппины">Филиппины</option>
+                                    <option value="Финляндия">Финляндия</option>
+                                    <option value="Франция">Франция</option>
+                                    <option value="Хорватия">Хорватия</option>
+                                    <option value="Центральноафриканская Республика">Центральноафриканская Республика</option>
+                                    <option value="Чад">Чад</option>
+                                    <option value="Черногория">Черногория</option>
+                                    <option value="Чехия">Чехия</option>
+                                    <option value="Чили">Чили</option>
+                                    <option value="Швейцария">Швейцария</option>
+                                    <option value="Швеция">Швеция</option>
+                                    <option value="Шри-Ланка">Шри-Ланка</option>
+                                    <option value="Эквадор">Эквадор</option>
+                                    <option value="Экваториальная Гвинея">Экваториальная Гвинея</option>
+                                    <option value="Эритрея">Эритрея</option>
+                                    <option value="Эстония">Эстония</option>
+                                    <option value="Эфиопия">Эфиопия</option>
+                                    <option value="Южно-Африканская Республика">Южно-Африканская Республика</option>
+                                    <option value="Южный Судан">Южный Судан</option>
+                                    <option value="Ямайка">Ямайка</option>
+                                    <option value="Япония">Япония</option>
+                                </select>
+                                <small class="error">Выберите страну</small>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="city_trips_abroad" class="select-yes" disabled="disabled" >
+                                    <option value="">Выберите город</option>
+                                    <option value="Астана">Астана</option>
+                                    <option value="Алмата">Алмата</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="target_trips_abroad" class="select-yes" disabled="disabled" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="date_exit" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="date_return" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
                         </div>
                     </div>
-                </div>                
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Наличие судимости”</h3>
+                            <h3 class="section-edit">Раздел “Судимость”</h3>
                             <span class="edit-section">Редактировать</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                            <p><b>Статус</b></p>
+                            <p><b>Наличие</b></p>
+                            <p><b>Срок осуждения</b></p>
+                            <p><b>Статья осуждения</b></p>
+                            <p><b>Место исправительного учреждения</b></p>
+                            <p><b>Примечание</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                        <p><input type="text" disabled="" value="Нет"></p>
+                            <p>
+                                <select disabled="disabled" name="status_conviction">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="term__conviction">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="article_conviction">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="place_conviction">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="note_conviction">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
                         </div>
                     </div>
-                </div>               
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Трудовая деятельность”</h3>
+                            <h3 class="section-edit">Раздел “Опыт работы”</h3>
                             <span class="edit-section">Редактировать</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
                             <p><b>Наименование организации</b></p>
-                            <p><b>Место нахождения организации</b></p>
+                            <p><b>Место нахождение организации</b></p>
                             <p><b>Дата начала работы в организации</b></p>
-                            <p><b>Дата окончания работы в организации</b></p>
                             <p><b>Причина увольнения</b></p>
-                            <p><b>Характеристики по месту прежней работы</b></p>
+                            <p><b>Характеристики по месту работы</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="ТОО Коркем"></p>
-                            <p><input type="text" disabled="" value="Караганда"></p>
-                            <p><input type="text" disabled="" value="08.12.2013"></p>
-                            <p><input type="text" disabled="" value="04.06.2015"></p>
-                            <p><input type="text" disabled="" value="По собственному желанию"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
+                            <p>
+                                <input type="text" disabled="disabled" required="" name="name_organization_job_skill">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <select disabled="disabled" name="city_job_skill" required="" >
+                                    <option value="">Выберите город</option>
+                                    <option value="Астана">Астана</option>
+                                    <option value="Алмата">Алмата</option>
+                                </select>
+                                <small class="error">Выберите город</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="date_start_job_skill" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="cause_job_skill" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="haracteristic_job_skill" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
                         </div>
                     </div>
-                </div>              
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3>
@@ -482,38 +1291,65 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                           <p><b>Место предпринимательства</b></p>
-                           <p><b>Сфера</b></p>
-                           <p><b>Цель</b></p>
-                           <p><b>Срок предпринимательства</b></p>
+                            <p><b>Наличие</b></p>
+                            <p><b>Место предпринимательства</b></p>
+                            <p><b>Сфера</b></p>
+                            <p><b>Цель</b></p>
+                            <p><b>Срок предпринимательства</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Усть-Каменогорск"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="23.09.2014 - 23.11.2015"></p>
+                            <p>
+                                <select disabled="disabled" name="status_entrepreneurship">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="place_entrepreneurship" >
+                                <small class="error">Нееккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="sphere_entrepreneurship" >
+                                <small class="error">Нееккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="target_entrepreneurship" >
+                                <small class="error">Нееккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="date_start_job_skill"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
                         </div>
                     </div>
-                </div>             
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3>
+                            <h3 class="section-edit">Раздел “Поощрения”</h3>
                             <span class="edit-section">Редактировать</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                          <p><b>Причина поощрения</b></p>
-                          <p><b>Кем</b></p>
+                            <p><b>Причина поощрения</b></p>
+                            <p><b>Кем</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
+                            <p>
+                                <input type="text" disabled="disabled" name="cause_promotions" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="who_promotions" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
                         </div>
                     </div>
-                </div>           
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Взыскания”</h3>
@@ -522,16 +1358,23 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                          <p><b>Причина поощрения</b></p>
-                          <p><b>Кем</b></p>
+                            <p><b>Причина взыскания</b></p>
+                            <p><b>Кем</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
+                            <p>
+                                <input type="text" disabled="disabled" name="cause_recovery" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="who_recovery" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
                         </div>
                     </div>
-                </div>          
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Результаты аттестации”</h3>
@@ -540,20 +1383,33 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                          <p><b>Начало прохождения аттестации</b></p>
-                          <p><b>Окончание прохождения аттестации</b></p>
-                          <p><b>Место прохождения аттестации</b></p>
-                          <p><b>Результаты</b></p>
+                            <p><b>Начало прохождения аттестации</b></p>
+                            <p><b>Окончание прохождения аттестации</b></p>
+                            <p><b>Место прохождения аттестации</b></p>
+                            <p><b>Результаты</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
-                            <p><input type="text" disabled="" value="Не указано"></p>
+                            <p>
+                                <input type="text" disabled="disabled" name="start_atestation" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="end_atestation" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="place_atestation" required="">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
+                            <p>
+                                <input type="file" disabled="disabled" class="file_down" required="" name="file_atetation">
+                                <small class="error">Файл не выбран</small>
+                            </p>
                         </div>
                     </div>
-                </div>         
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Кадровый резерв”</h3>
@@ -562,14 +1418,47 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                          <p><b>Состоит</b></p>
+                            <p><b>Состоит</b></p>
+                            <p><b>Примечание</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Да"></p>
+                            <p>
+                                <select disabled="disabled" name="status_reserv">
+                                    <option name="No" value="No" selected="selected" class="no">Нет</option>
+                                    <option name="Yes" value="Yes" class="yes">Да</option>
+                                </select>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="note_reserv">
+                                <small class="error">Неккоректный ввод</small>
+                            </p>
                         </div>
                     </div>
-                </div>     
+                </div>
                 <div class="section">
+
+                    <div class="row">
+                        <div class="large-6 columns large-centered">
+                            <h3 class="section-edit">Раздел “Справки”</h3>
+                            <span class="edit-section">Редактировать</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-6 columns text-right">
+                            <p>
+                                <b>Справки</b>
+                            </p>
+                        </div>
+                        <div class="large-6 columns edit-input text-left">
+                            <p>
+                                <input type="file" disabled="disabled" class="file_down" required="" name="file_references">
+                                <small class="error">Файл не выбран</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Отпуск”</h3>
@@ -578,16 +1467,28 @@
                     </div>
                     <div class="row">
                         <div class="large-6 columns text-right">
-                          <p><b>Период получения трудового отпуска</b></p>
-                          <p><b>Оставшееся количество дней отпуска</b></p>
+                            <p><b>Начала даты получения трудового отпуска</b></p>
+                            <p><b>Окончание даты трудового отпуска</b></p>
+                            <p><b>Оставшееся количество дней отпуска</b></p>
                         </div>
                         <div class="large-6 columns edit-input text-left">
-                            <p><input type="text" disabled="" value="Нет"></p>
-                            <p><input type="text" disabled="" value="Нет"></p>
+                            <p>
+                                <input type="text" disabled="disabled" name="start_holiday" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="end_holiday" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                            </p>
+                            <p>
+                                <input type="text" disabled="disabled" name="start_holiday" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                <small class="error">Введите цифры</small>
+                            </p>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Документы”</h3>
@@ -596,24 +1497,26 @@
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                            <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
-                            <h3 class="section-edit">Раздел “Примечания/заметки по сотруднику”</h3>
+                            <h3 class="section-edit">Раздел “Примечания по сотруднику”</h3>
                             <span class="edit-section">Редактировать</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                            <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
                 <div class="section">
+
                     <div class="row">
                         <div class="large-6 columns large-centered">
                             <h3 class="section-edit">Раздел “Должностная инструкция”</h3>
@@ -622,17 +1525,18 @@
                     </div>
                     <div class="row">
                         <div class="large-6 large-centered columns text-center">
-                          <p class="download-all"><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
+                            <p><b><a href="#"><img src="/static/img/icons/download.png" height="16" width="30" alt="">Скачать .doc</a></b></p>
                         </div>
                     </div>
                 </div>
+                    </form>
             </div>
             <footer class="text-center">
                 <small>DUMK. Copyright © 2016. All rights reserved</small>
             </footer>
         </div>
     </div>
-    <script src="js/vendor.js"></script>
+    <script src="/static/js/vendor.js"></script>
     <script>
     $(document).foundation();
     </script>
