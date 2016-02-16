@@ -5065,7 +5065,7 @@ nav .right a .icon-top {
 
 #cadrs {
   position: relative;
-  height: 100%; }
+  height: 75%; }
   #cadrs #content {
     height: 100%; }
     #cadrs #content .tab-container {
@@ -5102,6 +5102,8 @@ nav .right a .icon-top {
         padding: 2% 0 0 0; }
         #cadrs #content .tab-container .tab-wrapper#tabs-emploayee {
           height: 100%; }
+          #cadrs #content .tab-container .tab-wrapper#tabs-emploayee .left-block {
+            height: 100%; }
       #cadrs #content .tab-container #add_employee .profile {
         margin-top: 0; }
       #cadrs #content .tab-container #add_employee input {
@@ -5169,11 +5171,14 @@ nav .right a .icon-top {
             font-size: 0.75em; }
         #cadrs #content .tab-container #tabs-statistics .statistics-right .button {
           width: 200px; }
+      #cadrs #content .tab-container #tabs-statistics footer {
+        position: relative;
+        bottom: -20px; }
     #cadrs #content .tree-block {
       background: #fff;
       border: 1px solid #eaeaea;
       position: relative;
-      height: 90%;
+      height: 100%;
       border-top-right-radius: 5px;
       font-size: 1em; }
       #cadrs #content .tree-block select {
@@ -5205,8 +5210,9 @@ nav .right a .icon-top {
           float: right;
           margin: 0 3px; }
       #cadrs #content .tree-block .mtree {
-        max-height: 350px;
-        overflow: auto;
+        overflow-y: scroll;
+        height: 90%;
+        position: absolute;
         list-style-position: inside;
         list-style-image: url("../img/icons/book-grey.png");
         padding-right: 15px;
@@ -5245,7 +5251,8 @@ nav .right a .icon-top {
     #cadrs #content .pagination {
       padding-top: 10px; }
     #cadrs #content .right-content {
-      height: 100%; }
+      height: 100%;
+      overflow: hidden; }
       #cadrs #content .right-content .search {
         border: 1px solid #ccc;
         background: url("../img/icons/search.png") no-repeat right;
@@ -5306,7 +5313,7 @@ nav .right a .icon-top {
           top: 0;
           font-weight: bold; }
         #cadrs #content .right-content .table .fixed-top {
-          height: 30%; }
+          height: 54%; }
         #cadrs #content .right-content .table .tbody {
           display: table;
           width: 100%; }
@@ -5478,22 +5485,22 @@ nav .right a .icon-top {
       #cadrs #tabs-map .map #ushkonir {
         top: 65%;
         left: 70%; }
-  #cadrs footer {
-    color: #525252;
-    position: relative;
-    font-size: 1em;
-    top: 10px;
-    height: 5px;
-    padding: 0;
-    width: 100%;
-    z-index: 2; }
-    #cadrs footer small {
-      padding: 10px; }
+    #cadrs #tabs-map footer {
+      color: #525252;
+      position: absolute;
+      font-size: 1em;
+      bottom: -10px;
+      height: 5px;
+      padding: 0;
+      width: 100%;
+      z-index: 2; }
+      #cadrs #tabs-map footer small {
+        padding: 10px; }
   #cadrs .profile {
     background: #fff;
     height: auto;
-    padding-bottom: 2%;
-    margin-bottom: 4%;
+    padding-bottom: 2.8%;
+    margin-bottom: 1%;
     position: relative;
     margin-top: 1%;
     border-radius: 4px; }
@@ -5571,6 +5578,7 @@ nav .right a .icon-top {
         box-shadow: none; }
     #cadrs .profile .button {
       margin-top: 1%;
+      margin-bottom: 8px;
       font-weight: bold;
       width: 212px;
       z-index: 2; }

@@ -79,11 +79,11 @@ $(document).ready(function() {
             inputSection = $(".edit-input input"),
             isTrue = true,
             password = $(".password"),
-            edit = $(".edit-profile").html(),
+            edit = $(".edit-profile, .edit-profile-no-scroll").html(),
             editSection = $(".edit-section").html(),
             download = $(".download-all");
 
-        $(".edit-profile").on("click", function() {
+        $(".edit-profile, .edit-profile-no-scroll").on("click", function() {
             var tag = $(this)[0].tagName;
             if(tag === "SPAN"){
                 $(this).replaceWith(function(){

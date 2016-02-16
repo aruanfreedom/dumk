@@ -157,7 +157,10 @@ nav {
 
 #cadrs {
   position: relative;
-  height: 100%;
+  height: 75%;
+  //&.registry{
+  //  height: 70%;
+  //}
   #content {
     height: 100%;
     .tab-container {
@@ -202,6 +205,9 @@ nav {
         padding: 2% 0 0 0;
         &#tabs-emploayee {
           height: 100%;
+          .left-block{
+            height: 100%;
+          }
         }
       }
 
@@ -294,13 +300,17 @@ nav {
             width: 200px;
           }
         }
+        footer{
+          position: relative;
+          bottom: -20px;
+        }
       }
     }
     .tree-block {
       background: #fff;
       border: 1px solid #eaeaea;
       position: relative;
-      height: 90%;
+      height: 100%;
       border-top-right-radius: 5px;
       font-size: 1em;
       select {
@@ -339,8 +349,9 @@ nav {
         }
       }
       .mtree {
-        max-height: 350px;
-        overflow: auto;
+        overflow-y: scroll;
+        height: 90%;
+        position: absolute;
         list-style-position: inside;
         list-style-image: url("../img/icons/book-grey.png");
         padding-right: 15px;
@@ -400,6 +411,7 @@ nav {
     }
     .right-content {
       height: 100%;
+      overflow: hidden;
       .search {
         border: 1px solid #ccc;
         background: url("../img/icons/search.png") no-repeat right;
@@ -476,7 +488,7 @@ nav {
           font-weight: bold;
         }
         .fixed-top {
-          height: 30%;
+          height: 54%;
         }
         .tbody {
           display: table;
@@ -703,25 +715,28 @@ nav {
         left: 70%;
       }
     }
-  }
-  footer {
-    color: #525252;
-    position: relative;
-    font-size: 1em;
-    top: 10px;
-    height: 5px;
-    padding: 0;
-    width: 100%;
-    z-index: 2;
-    small {
-      padding: 10px;
+    footer {
+      color: #525252;
+      position: absolute;
+      font-size: 1em;
+      bottom: -10px;
+      height: 5px;
+      padding: 0;
+      width: 100%;
+      z-index: 2;
+      small {
+        padding: 10px;
+      }
     }
   }
+
+
+
   .profile {
     background: #fff;
     height: auto;
-    padding-bottom: 2%;
-    margin-bottom: 4%;
+    padding-bottom: 2.8%;
+    margin-bottom: 1%;
     position: relative;
     margin-top: 1%;
     border-radius: 4px;
@@ -823,6 +838,7 @@ nav {
     }
     .button {
       margin-top: 1%;
+      margin-bottom: 8px;
       font-weight: bold;
       width: 212px;
       z-index: 2;
