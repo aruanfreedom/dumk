@@ -4943,12 +4943,14 @@ a.th {
   .f-dropdown.large {
     max-width: 800px; }
 
-html,
-body {
+html, body {
   font-family: "Arial", sans-serif;
   background: url("../img/pattern.jpg") repeat;
   height: 100%;
   width: 100%; }
+
+a:focus {
+  outline: none; }
 
 nav #topic {
   padding: 0 10px 0 10px;
@@ -5131,7 +5133,7 @@ nav .right a .icon-top {
         right: -120px; }
       #cadrs #content .tab-container #add_employee .file_down {
         border: none;
-        padding-left: 0; }
+        padding: 0; }
         #cadrs #content .tab-container #add_employee .file_down:focus {
           outline: none; }
       #cadrs #content .tab-container #tabs-statistics h2 {
@@ -5266,6 +5268,8 @@ nav .right a .icon-top {
         #cadrs #content .right-content p a {
           float: right;
           margin: 10px 3px; }
+      #cadrs #content .right-content button {
+        width: auto; }
       #cadrs #content .right-content small {
         font-size: 0.8125em; }
       #cadrs #content .right-content .download-all {
@@ -5384,6 +5388,10 @@ nav .right a .icon-top {
         text-decoration: none;
         font-weight: bold;
         font-size: 1.5em; }
+    #cadrs .top-link .maps-text {
+      margin-top: 5px; }
+      #cadrs .top-link .maps-text img {
+        margin-top: -5px; }
   #cadrs #tabs-map {
     height: 100%;
     min-width: 933px;
@@ -5606,6 +5614,11 @@ nav .right a .icon-top {
     #cadrs .profile .select-yes {
       background: #a3a3a3;
       border: 0px solid #a3a3a3; }
+    #cadrs .profile .file_down {
+      border: none;
+      padding: 0; }
+      #cadrs .profile .file_down:focus {
+        outline: none; }
   #cadrs #edit-profile .profile {
     margin-top: 0; }
   #cadrs #edit-profile input {
@@ -5630,7 +5643,7 @@ nav .right a .icon-top {
     right: -120px; }
   #cadrs #edit-profile .file_down {
     border: none;
-    padding-left: 0; }
+    padding: 0; }
     #cadrs #edit-profile .file_down:focus {
       outline: none; }
 

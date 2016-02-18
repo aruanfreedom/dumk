@@ -11,10 +11,14 @@ var gulp = require("gulp"),
     connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
     autoprefixer = require('gulp-autoprefixer'),
-    clean = require('gulp-clean');
+    clean = require('gulp-clean'),
+    jade = require('gulp-jade'),
+    plumber = require('gulp-plumber');
+
+
 
 //autoprefixer
-gulp.task('autoprefixer', function () {
+gulp.task('autoprefixer', function() {
     return gulp.src('app/static/scss/style.scss')
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
@@ -33,15 +37,26 @@ gulp.task('connect', function() {
 });
 
 //Autoprefix
-gulp.task('autoprefixer', function () {
+gulp.task('autoprefixer', function() {
     gulp.src('app/static/css/*.css')
         .pipe(autoprefixer());
 });
 
 gulp.task('sass', function() {
     gulp.src('app/static/scss/*.scss')
+        .pipe(plumber())
         .pipe(sass())
         .pipe(gulp.dest('app/static/css/'))
+        .pipe(connect.reload());
+});
+
+//Jade
+gulp.task('jade', function() {
+    return gulp.src('app/template/*.jade')
+        .pipe(jade({
+            pretty: true
+        }))
+        .pipe(gulp.dest("app/builds/"))
         .pipe(connect.reload());
 });
 
@@ -67,12 +82,12 @@ gulp.task('html', function() {
 
     return gulp.src('app/*.html')
         .pipe(assets)
-        .pipe(gulpif('/static/js/*.js', uglify()))
-        .pipe(gulpif('/static/css/*.css', minifyCss()))
+        .pipe(gulpif('js/*.js', uglify()))
+        .pipe(gulpif('css/*.css', minifyCss()))
         .pipe(assets.restore())
         .pipe(useref())
-        .pipe(gulp.dest('dist/'));
-});;
+        .pipe(gulp.dest("dist"));
+});
 
 gulp.task('bower', function() {
     gulp.src('app/index.html')
@@ -80,7 +95,7 @@ gulp.task('bower', function() {
             directory: "app/static/bower_components"
         }))
         .pipe(gulp.dest('app'));
-}); 
+});
 
 gulp.task('hml', function() {
     gulp.src('app/*.html')

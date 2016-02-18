@@ -54,9 +54,6 @@ $(document).ready(function() {
         });
     };
 
-
-
-
     sorting();
     //Checkbox select one
     // function checkbox() {
@@ -87,7 +84,7 @@ $(document).ready(function() {
             var tag = $(this)[0].tagName;
             if(tag === "SPAN"){
                 $(this).replaceWith(function(){
-                    return "<button type='submit' class='button secondary edit-profile'>Сохранить все</button>";
+                    return "<button type='submit' class='button secondary edit-profile'>Сохранить</button>";
                 });
                 //$(this).html("Сохранить");
                 input.removeAttr("disabled");
@@ -125,8 +122,6 @@ $(document).ready(function() {
                 //    });
                 //    console.log("no");
                 //}
-
-
             }
             if(tag === "BUTTON"){
                 that.replaceWith(function(){
