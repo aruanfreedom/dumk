@@ -18,7 +18,7 @@
     <!-- endcss -->
     <!-- endbuild -->
     <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -178,7 +178,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="large-9 columns right right-content text-left">
+                    <td class="large-9 columns right right-content text-left">
                         <input class="search" type="text" placeholder="Поиск по реестру сотрудников...">
                         <div>
                             <div class="large-4 left ">
@@ -191,7 +191,7 @@
                                 <button class="button secondary right">О мечети</button>
                             </div>
                         </div>
-                        <table class="display nowrap fixed-top" cellspacing="0" width="50%">
+                        <table class="display nowrap fixed-top" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>№</th>
@@ -380,14 +380,8 @@
     <script>
         $(document).ready(function() {
             $('.fixed-top').DataTable({
-                "scrollY": true,
-                "scrollCollapse": 10,
-                paging: false,
-                "scrollX": false,
-                searching: false,
-                ordering:  false,
-                select: false,
-                info: false
+                "scrollY": 200,
+                "scrollX": false
             });
         });
     </script>

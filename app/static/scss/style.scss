@@ -413,6 +413,10 @@ nav {
         .right-content {
             height: 100%;
             overflow: hidden;
+            .fixed-top {
+                height: 100%;
+                    margin-bottom: 0;
+                }
             .search {
                 border: 1px solid #ccc;
                 background: url("../img/icons/search.png") no-repeat right;
@@ -439,6 +443,7 @@ nav {
                 padding-left: 25px;
                 padding-top: 13px;
             }
+
             .table {
                 display: table;
                 border-spacing: 0;
@@ -492,7 +497,11 @@ nav {
                     font-weight: bold;
                 }
                 .fixed-top {
-                    height: 54%;
+                    margin-bottom: 0;
+                }
+                .display {
+                    width: 800px;
+                    margin: 0 auto;
                 }
                 .tbody {
                     display: table;
