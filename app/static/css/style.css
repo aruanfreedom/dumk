@@ -5164,6 +5164,15 @@ nav .right a .icon-top {
           position: absolute;
           left: 35px;
           width: 400px; }
+        #cadrs #content .tab-container #tabs-statistics .statistics-right .staff {
+          width: 8%; }
+        #cadrs #content .tab-container #tabs-statistics .statistics-right .colors {
+          margin-top: 6px;
+          width: 33.33%; }
+          #cadrs #content .tab-container #tabs-statistics .statistics-right .colors li {
+            border-radius: 20px;
+            margin-bottom: 15px;
+            height: 14px; }
         #cadrs #content .tab-container #tabs-statistics .statistics-right ul {
           padding-left: 25px;
           list-style: none; }
@@ -5291,6 +5300,12 @@ nav .right a .icon-top {
           cursor: pointer; }
           #cadrs #content .right-content .table .tr:hover {
             background: #f5f5f5; }
+        #cadrs #content .right-content .table .header-table {
+          background: #f5f5f5;
+          top: 0;
+          font-weight: bold; }
+          #cadrs #content .right-content .table .header-table .td {
+            background: url("../img/icons/arrow-bottom.png") 90% no-repeat; }
         #cadrs #content .right-content .table .td {
           border: 1px solid #eaeaea;
           height: 100%;
@@ -5301,21 +5316,21 @@ nav .right a .icon-top {
           float: none;
           display: table-cell; }
           #cadrs #content .right-content .table .td.numbering {
-            width: 5%; }
+            background: none;
+            width: 6%; }
           #cadrs #content .right-content .table .td.fio {
+            background: url("../img/icons/arrow-bottom.png") 60% no-repeat;
             width: 26%; }
           #cadrs #content .right-content .table .td.number-phone {
+            background: none;
             width: 12%; }
           #cadrs #content .right-content .table .td.iin {
+            background: none;
             width: 22%; }
           #cadrs #content .right-content .table .td.position {
             width: 13%; }
           #cadrs #content .right-content .table .td.status {
             width: 10%; }
-        #cadrs #content .right-content .table .header-table {
-          background: #f5f5f5;
-          top: 0;
-          font-weight: bold; }
         #cadrs #content .right-content .table .fixed-top {
           height: 54%; }
         #cadrs #content .right-content .table .tbody {

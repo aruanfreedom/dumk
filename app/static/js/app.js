@@ -16,41 +16,7 @@ $(document).ready(function() {
     /*Table menu menu sorting*/
     var sorting = function() {
         $(".sort-click").on("click", function() {
-            var
-                arrow_src = $(this).find("img").attr("src"),
-                arrow_top = arrow_src.replace("bottom", "top"),
-
-                replace = $(this).find("img").attr("src", arrow_top),
-                src = arrow_src.indexOf("top"),
-                sorting = $(this).find(".sorting"),
-                img = $(this).find("img, b"),
-
-                hide = sorting.css("display");
-
-                img.on("click", function(){
-                    arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-                    replace = $(this).find("img").attr("src", arrow_bottom);                   
-                    sorting.hide();
-                });
-
-                    var ok = $(".ok"),
-        sorting2 = $(".sort-click").find(".sorting");
-    ok.on("click", function(){
-        arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-        replace = $(this).find("img").attr("src", arrow_bottom);
-        sorting2.hide();
-    });
-                
-
-            if (src === 16 && hide === "none") { //Проверка есть ли слово "top"
-                arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-                replace = $(this).find("img").attr("src", arrow_bottom);
-            }
-            else{
-                $(".sorting").hide();
-                sorting.show();
-            }            
-
+           
         });
     };
 
@@ -82,14 +48,14 @@ $(document).ready(function() {
 
         $(".edit-profile, .edit-profile-no-scroll").on("click", function() {
             var tag = $(this)[0].tagName;
-            if(tag === "SPAN"){
-                $(this).replaceWith(function(){
+            if (tag === "SPAN") {
+                $(this).replaceWith(function() {
                     return "<button type='submit' class='button secondary edit-profile'>Сохранить</button>";
                 });
                 //$(this).html("Сохранить");
                 input.removeAttr("disabled");
                 selectYes.attr('disabled', 'disabled');
-                ( download.hasClass('none')) ? download.removeClass('none') : true;
+                (download.hasClass('none')) ? download.removeClass('none'): true;
                 select.removeAttr("disabled");
                 input.css({
                     "border": "1px solid #ccc",
@@ -123,13 +89,13 @@ $(document).ready(function() {
                 //    console.log("no");
                 //}
             }
-            if(tag === "BUTTON"){
-                that.replaceWith(function(){
+            if (tag === "BUTTON") {
+                that.replaceWith(function() {
                     return "<span class='button secondary edit-profile'>Редактировать все</span>";
                 });
                 input.attr("disabled", "disabled");
                 select.attr("disabled", "disabled");
-                ( download.hasClass('none')) ? download.addClass('none') : true;
+                (download.hasClass('none')) ? download.addClass('none'): true;
                 input.css({
                     "border-width": "0px",
                     "padding": "0px"
@@ -149,12 +115,12 @@ $(document).ready(function() {
 
         $(".edit-section").on("click", function() {
             var section = $(this).parents(".section");
-                oneEdit = section.find(".edit-input input, select"),
+            oneEdit = section.find(".edit-input input, select"),
                 that = $(this),
                 tag = that[0].tagName;
 
-            if(tag === "SPAN"){
-                that.replaceWith(function(){
+            if (tag === "SPAN") {
+                that.replaceWith(function() {
                     return "<button type='submit' class='edit-section'>Сохранить</button>";
                 });
                 //$(this).html("Сохранить");
@@ -165,8 +131,8 @@ $(document).ready(function() {
                 });
                 password.attr("type", "text");
             }
-            if(tag === "BUTTON"){
-                that.replaceWith(function(){
+            if (tag === "BUTTON") {
+                that.replaceWith(function() {
                     return "<span class='edit-section'>Редактировать</span>";
                 });
                 oneEdit.attr("disabled", "disabled");
@@ -185,26 +151,25 @@ $(document).ready(function() {
 
     //Select NO
 
-    var selectNo = function(){
-        $("select").on("change", function(){
+    var selectNo = function() {
+        $("select").on("change", function() {
             var
                 section = $(this).parents(".section"),
                 select = section.find("select option:selected"),
                 selectYes = section.find(".select-yes");
 
             select.each(function() {
-                if( $(this).attr('class') === "yes"){
+                if ($(this).attr('class') === "yes") {
                     selectYes.removeAttr('disabled');
                     selectYes.removeAttr('name');
                     selectYes.css({
-                        "border" : "1px solid #ccc",
+                        "border": "1px solid #ccc",
                         "background": "none"
                     });
-                }
-                else if( $(this).attr('class') === "no" ){
+                } else if ($(this).attr('class') === "no") {
                     selectYes.attr('disabled', 'disabled');
                     selectYes.css({
-                        "border" : "0px solid #ccc",
+                        "border": "0px solid #ccc",
                         "background": "#a3a3a3"
                     });
                 }
@@ -218,7 +183,7 @@ $(document).ready(function() {
 
     var saveScroll = function() {
         var scrollBtn = $(".edit-profile, .save-profile"),
-        bg = scrollBtn.parent();
+            bg = scrollBtn.parent();
         $(window).scroll(function() {
             var scroll = $(window).scrollTop();
             if (scroll >= 350) {
@@ -232,5 +197,57 @@ $(document).ready(function() {
     saveScroll();
 
     /*End edit button*/
+
+/*For diagramm lines*/
+    var staffFunc = function() {
+        var staff = $(".staff"),
+            li = staff.children("li"),
+            i = 0,
+            colors, statusColor,
+            elem, count, rand = 0,
+            result,
+            countArray = [],
+            colorLine = {
+                blue: "739ed0",
+                purple: "554396",
+                darkBlue: "547ca9",
+                lightGreen: "5fa997",
+                green: "75b552",
+                darkGreen: "88b44e",
+                lightYellow: "bec443",
+                yellow: "dcbd37",
+                orange: "de8c2e",
+                darkOrange: "d15032",
+                red: "c73232",
+                lightPink: "ce3a69",
+                pink: "cb4193",
+                darkPink: "934796"
+            };
+
+        function objectsColor() {
+
+            li.each(function(i, elem) {
+                count = parseInt($(elem).text());
+                statusColor = $(this).parents(".status-color");
+                countArray.push(count);
+            });
+
+            for (key in colorLine) {
+                if( Math.random() < 1/++rand){
+                    result = key;
+                }
+                colorBg = colorLine[result];
+                colors = statusColor.find(".colors ul");
+                colors.append(" <li style='background: #" + colorBg + "; width:" + countArray[i] + "%;'></li>");
+                i++;
+            }
+        }
+
+        objectsColor();
+
+    };
+
+    staffFunc();
+/*End diagramm lines*/
 
 });

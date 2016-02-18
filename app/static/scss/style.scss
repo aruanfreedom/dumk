@@ -289,6 +289,18 @@ nav {
                         left: 35px;
                         width: 400px;
                     }
+                    .staff{
+                        width: 8%;
+                    }
+                    .colors{
+                        margin-top: 6px;
+                        width: 33.33%;
+                        li{
+                            border-radius: 20px;
+                            margin-bottom: 15px;
+                            height: 14px;
+                        }
+                    }
                     ul {
                         padding-left: 25px;
                         list-style: none;
@@ -458,7 +470,16 @@ nav {
                         background: #f5f5f5;
                     }
                 }
-                .td {
+
+                .header-table {
+                    background: #f5f5f5;
+                    top: 0;
+                    font-weight: bold;
+                    .td{
+                        background: url("../img/icons/arrow-bottom.png") 90% no-repeat;
+                    }
+                }
+                 .td {
                     border: 1px solid #eaeaea;
                     height: 100%;
                     vertical-align: middle;
@@ -468,15 +489,19 @@ nav {
                     float: none;
                     display: table-cell;
                     &.numbering {
-                        width: 5%;
+                        background: none;
+                        width: 6%;
                     }
                     &.fio {
+                        background: url("../img/icons/arrow-bottom.png") 60% no-repeat;
                         width: 26%;
                     }
                     &.number-phone {
+                        background: none;
                         width: 12%;
                     }
                     &.iin {
+                        background: none;
                         width: 22%;
                     }
                     &.position {
@@ -485,11 +510,6 @@ nav {
                     &.status {
                         width: 10%;
                     }
-                }
-                .header-table {
-                    background: #f5f5f5;
-                    top: 0;
-                    font-weight: bold;
                 }
                 .fixed-top {
                     height: 54%;
