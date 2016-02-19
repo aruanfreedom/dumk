@@ -19,17 +19,15 @@
     <div id="authorization">
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
-                <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
             </ul>
             <section class="top-bar-section">
                 <ul class="left">
-                    <li class="has-dropdown">
-                        <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                    <li class="has-dropdown top">
+                        <a href="#rus"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
                         <ul class="dropdown">
-                            <!-- <li><a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a></li> -->
-                            <li class="active">
-                                <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                            <li class="bottom">
+                                <a href="#kaz"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
                             </li>
                         </ul>
                     </li>
@@ -41,7 +39,7 @@
                 <form action="home.html">
                     <div class="large-8 columns large-centered">
                         <div class="row">
-                            <img src="/static/img/logo.png" height="134" width="181" alt="logo">
+                            <img src="/static/img/rus-img.png" height="134" width="181" alt="logo">
                             <h1 class="text-center">Введите данные для входа в систему:</h1>
                             <div class="large-1 columns">
                                 <label for="login" class="right inline">Логин</label>
@@ -62,7 +60,7 @@
                         </div>
                         <div class="row">
                             <div class="large-10 push-1 columns text-left">
-                                <a href="#">Забыли пароль?</a>
+                                <a href="#" class="answer-pass">Забыли пароль?</a>
                                 <label class="right" id="remember-label" for="remember">Запомнить меня</label>
                                 <input id="remember" class="right" type="checkbox">
                             </div>
@@ -71,20 +69,19 @@
                     <div class="large-12 columns">
                         <button class="button large success">Войти</button>
                     </div>
-           
-            </form>
+                </form>
+            </div>
         </div>
-        </div>
-        <footer class="text-center">
-            <small>DUMK. Copyright © 2016. All rights reserved</small>
-        </footer>
     </div>
-
+    <footer class="text-center">
+        <small>DUMK. Copyright © 2016. All rights reserved</small>
+    </footer>
     <script src="/static/js/vendor.js"></script>
     <script>
     $(document).foundation();
     </script>
     <script src="/static/js/app.js"></script>
+    <script src="/static/js/lang.js"></script>
     <!-- <script src="js/tabs.js"></script> -->
 </body>
 
