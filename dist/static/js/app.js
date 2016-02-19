@@ -16,45 +16,19 @@ $(document).ready(function() {
     /*Table menu menu sorting*/
     var sorting = function() {
         $(".sort-click").on("click", function() {
-            var
-                arrow_src = $(this).find("img").attr("src"),
-                arrow_top = arrow_src.replace("bottom", "top"),
-
-                replace = $(this).find("img").attr("src", arrow_top),
-                src = arrow_src.indexOf("top"),
-                sorting = $(this).find(".sorting"),
-                img = $(this).find("img, b"),
-
-                hide = sorting.css("display");
-
-                img.on("click", function(){
-                    arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-                    replace = $(this).find("img").attr("src", arrow_bottom);                   
-                    sorting.hide();
-                });
-
-                    var ok = $(".ok"),
-        sorting2 = $(".sort-click").find(".sorting");
-    ok.on("click", function(){
-        arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-        replace = $(this).find("img").attr("src", arrow_bottom);
-        sorting2.hide();
-    });
-                
-
-            if (src === 16 && hide === "none") { //Проверка есть ли слово "top"
-                arrow_bottom = arrow_src.replace("top", "bottom"); //Если есть меняем рисунок
-                replace = $(this).find("img").attr("src", arrow_bottom);
-            }
-            else{
-                $(".sorting").hide();
-                sorting.show();
-            }            
-
+            $(".sorting").hide();
+            $(this).find(".sorting").show();
         });
+
+        $(".sort-click").mouseenter(function() {
+            $(this).find(".sorting").show();
+        });
+
+        $(".sort-click").mouseleave(function() {
+            $(".sorting").hide();
+        });
+
     };
-
-
 
 
     sorting();
@@ -79,20 +53,20 @@ $(document).ready(function() {
             inputSection = $(".edit-input input"),
             isTrue = true,
             password = $(".password"),
-            edit = $(".edit-profile").html(),
+            edit = $(".edit-profile, .edit-profile-no-scroll").html(),
             editSection = $(".edit-section").html(),
             download = $(".download-all");
 
-        $(".edit-profile").on("click", function() {
+        $(".edit-profile, .edit-profile-no-scroll").on("click", function() {
             var tag = $(this)[0].tagName;
-            if(tag === "SPAN"){
-                $(this).replaceWith(function(){
-                    return "<button type='submit' class='button secondary edit-profile'>Сохранить все</button>";
+            if (tag === "SPAN") {
+                $(this).replaceWith(function() {
+                    return "<button type='submit' class='button secondary edit-profile'>Сохранить</button>";
                 });
                 //$(this).html("Сохранить");
                 input.removeAttr("disabled");
                 selectYes.attr('disabled', 'disabled');
-                ( download.hasClass('none')) ? download.removeClass('none') : true;
+                (download.hasClass('none')) ? download.removeClass('none'): true;
                 select.removeAttr("disabled");
                 input.css({
                     "border": "1px solid #ccc",
@@ -125,16 +99,14 @@ $(document).ready(function() {
                 //    });
                 //    console.log("no");
                 //}
-
-
             }
-            if(tag === "BUTTON"){
-                that.replaceWith(function(){
+            if (tag === "BUTTON") {
+                that.replaceWith(function() {
                     return "<span class='button secondary edit-profile'>Редактировать все</span>";
                 });
                 input.attr("disabled", "disabled");
                 select.attr("disabled", "disabled");
-                ( download.hasClass('none')) ? download.addClass('none') : true;
+                (download.hasClass('none')) ? download.addClass('none'): true;
                 input.css({
                     "border-width": "0px",
                     "padding": "0px"
@@ -154,12 +126,12 @@ $(document).ready(function() {
 
         $(".edit-section").on("click", function() {
             var section = $(this).parents(".section");
-                oneEdit = section.find(".edit-input input, select"),
+            oneEdit = section.find(".edit-input input, select"),
                 that = $(this),
                 tag = that[0].tagName;
 
-            if(tag === "SPAN"){
-                that.replaceWith(function(){
+            if (tag === "SPAN") {
+                that.replaceWith(function() {
                     return "<button type='submit' class='edit-section'>Сохранить</button>";
                 });
                 //$(this).html("Сохранить");
@@ -170,8 +142,8 @@ $(document).ready(function() {
                 });
                 password.attr("type", "text");
             }
-            if(tag === "BUTTON"){
-                that.replaceWith(function(){
+            if (tag === "BUTTON") {
+                that.replaceWith(function() {
                     return "<span class='edit-section'>Редактировать</span>";
                 });
                 oneEdit.attr("disabled", "disabled");
@@ -190,26 +162,25 @@ $(document).ready(function() {
 
     //Select NO
 
-    var selectNo = function(){
-        $("select").on("change", function(){
+    var selectNo = function() {
+        $("select").on("change", function() {
             var
                 section = $(this).parents(".section"),
                 select = section.find("select option:selected"),
                 selectYes = section.find(".select-yes");
 
             select.each(function() {
-                if( $(this).attr('class') === "yes"){
+                if ($(this).attr('class') === "yes") {
                     selectYes.removeAttr('disabled');
                     selectYes.removeAttr('name');
                     selectYes.css({
-                        "border" : "1px solid #ccc",
+                        "border": "1px solid #ccc",
                         "background": "none"
                     });
-                }
-                else if( $(this).attr('class') === "no" ){
+                } else if ($(this).attr('class') === "no") {
                     selectYes.attr('disabled', 'disabled');
                     selectYes.css({
-                        "border" : "0px solid #ccc",
+                        "border": "0px solid #ccc",
                         "background": "#a3a3a3"
                     });
                 }
@@ -223,7 +194,7 @@ $(document).ready(function() {
 
     var saveScroll = function() {
         var scrollBtn = $(".edit-profile, .save-profile"),
-        bg = scrollBtn.parent();
+            bg = scrollBtn.parent();
         $(window).scroll(function() {
             var scroll = $(window).scrollTop();
             if (scroll >= 350) {
@@ -237,5 +208,30 @@ $(document).ready(function() {
     saveScroll();
 
     /*End edit button*/
+
+    // Searching
+
+    var search = function() {
+        $(".search").keyup(function() {
+            var word = $(this).val().toLowerCase(),
+                res, searchIndex,
+                aText = $(this).parents(".tree-search").find(".tree-list li a");
+
+            aText.each(function(i, elem) {
+                res = $(this).html().toLowerCase();
+                searchIndex = res.indexOf(word);
+                if (searchIndex === -1) {
+                    $(this).parent("li").hide();
+                } else {
+                    $(this).parent("li").show();
+                }
+            });
+
+        });
+    };
+
+    search();
+
+    // End Searching
 
 });
