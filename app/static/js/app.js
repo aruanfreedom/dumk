@@ -233,10 +233,10 @@ $(document).ready(function() {
             });
 
             for (key in colorLine) {
-                if( Math.random() < 1/++rand){
-                    result = key;
-                }
-                colorBg = colorLine[result];
+                // if( Math.random() < 1/++rand){
+                //     result = key;
+                // }
+                colorBg = colorLine[key];
                 colors = statusColor.find(".colors ul");
                 colors.append(" <li style='background: #" + colorBg + "; width:" + countArray[i] + "%;'></li>");
                 i++;

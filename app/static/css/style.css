@@ -5264,6 +5264,9 @@ nav .right a .icon-top {
     #cadrs #content .right-content {
       height: 100%;
       overflow: hidden; }
+      #cadrs #content .right-content .fixed-top {
+        height: 100%;
+        margin-bottom: 0; }
       #cadrs #content .right-content .search {
         border: 1px solid #ccc;
         background: url("../img/icons/search.png") no-repeat right;
@@ -5332,7 +5335,10 @@ nav .right a .icon-top {
           #cadrs #content .right-content .table .td.status {
             width: 10%; }
         #cadrs #content .right-content .table .fixed-top {
-          height: 54%; }
+          margin-bottom: 0; }
+        #cadrs #content .right-content .table .display {
+          width: 800px;
+          margin: 0 auto; }
         #cadrs #content .right-content .table .tbody {
           display: table;
           width: 100%; }

@@ -3,10 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1db6f5a6-ae12-4714-a716-48fb0d2007fb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/style.css" afterPath="$PROJECT_DIR$/app/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/js/app.js" afterPath="$PROJECT_DIR$/app/static/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/scss/style.scss" afterPath="$PROJECT_DIR$/app/static/scss/style.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/statistics.html" afterPath="$PROJECT_DIR$/app/statistics.html" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/reestr-employee.html" afterPath="$PROJECT_DIR$/app/reestr-employee.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/style.css" afterPath="$PROJECT_DIR$/app/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/scss/style.scss" afterPath="$PROJECT_DIR$/app/static/scss/style.scss" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
     </list>
     <ignored path="dumk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +36,53 @@
     <splitter split-orientation="horizontal" split-proportion="0.50752556">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
           <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/dist/home.html">
+=======
+          <file leaf-file-name="reestr-employee.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/reestr-employee.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="2.9897728">
+                  <caret line="357" column="45" selection-start-line="357" selection-start-column="45" selection-end-line="357" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="add_employee.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/dist/add_employee.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="1596" column="33" selection-start-line="1596" selection-start-column="33" selection-end-line="1596" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/gulpfile.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="anketa.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/dist/anketa.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="1538" column="25" selection-start-line="1538" selection-start-column="25" selection-end-line="1538" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cadrs.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/dist/cadrs.html">
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-5.6923075">
                   <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
@@ -90,16 +141,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="reestr-employee.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dist/reestr-employee.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="353" column="21" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -107,6 +148,7 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/static/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.5459098">
                   <caret line="242" column="34" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
                   <folding>
@@ -117,6 +159,11 @@
                     <marker date="1455789660059" expanded="true" signature="8468:8517" placeholder="..." />
                     <marker date="1455789660059" expanded="true" signature="8468:8519" placeholder="..." />
                   </folding>
+=======
+                <state vertical-scroll-proportion="0.44079718">
+                  <caret line="496" column="17" selection-start-line="496" selection-start-column="17" selection-end-line="496" selection-end-column="17" />
+                  <folding />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
                 </state>
               </provider>
             </entry>
@@ -124,9 +171,18 @@
           <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/static/scss/style.scss">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="-2.3375">
                   <caret line="293" column="27" selection-start-line="293" selection-start-column="27" selection-end-line="293" selection-end-column="27" />
                   <folding />
+=======
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+                  <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+                  <folding>
+                    <marker date="1455716353341" expanded="true" signature="4573:4587" placeholder="{...}" />
+                  </folding>
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
                 </state>
               </provider>
             </entry>
@@ -153,7 +209,11 @@
         <option value="$PROJECT_DIR$/app/add_employee.html" />
         <option value="$PROJECT_DIR$/app/cadrs.html" />
         <option value="$PROJECT_DIR$/app/mechet.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/reestr-employee.html" />
+=======
+        <option value="$PROJECT_DIR$/app/static/js/app.js" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
         <option value="$PROJECT_DIR$/dist/statistics.html" />
         <option value="$PROJECT_DIR$/dist/reestr-employee.html" />
         <option value="$PROJECT_DIR$/dist/recovery.html" />
@@ -165,9 +225,14 @@
         <option value="$PROJECT_DIR$/dist/anketa.html" />
         <option value="$PROJECT_DIR$/dist/add_employee.html" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/static/scss/style.scss" />
         <option value="$PROJECT_DIR$/app/static/js/app.js" />
         <option value="$PROJECT_DIR$/app/statistics.html" />
+=======
+        <option value="$PROJECT_DIR$/app/reestr-employee.html" />
+        <option value="$PROJECT_DIR$/app/static/scss/style.scss" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
       </list>
     </option>
   </component>
@@ -216,6 +281,10 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -290,7 +359,10 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,7 +430,11 @@
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14178705" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1444563" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -396,6 +472,7 @@
     <entry file="file://$PROJECT_DIR$/app/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
           <folding>
@@ -405,6 +482,12 @@
             <marker date="1455789660059" expanded="true" signature="8468:8505" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8517" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8519" placeholder="..." />
+=======
+          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding>
+            <marker date="1455716353341" expanded="true" signature="4573:4587" placeholder="{...}" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           </folding>
         </state>
       </provider>
@@ -429,7 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="353" column="21" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -447,12 +529,16 @@
           <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
           <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#2287#6677#0" expanded="false" />
             <element signature="e#6745#7688#0" expanded="false" />
             <marker date="1455789660059" expanded="true" signature="8468:8484" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8505" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8517" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8519" placeholder="..." />
+=======
+            <marker date="1455716353341" expanded="true" signature="4573:4587" placeholder="{...}" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           </folding>
         </state>
       </provider>
@@ -525,7 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="353" column="21" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -550,12 +635,16 @@
           <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
           <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#2287#6677#0" expanded="false" />
             <element signature="e#6745#7688#0" expanded="false" />
             <marker date="1455789660059" expanded="true" signature="8468:8484" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8505" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8517" placeholder="..." />
             <marker date="1455789660059" expanded="true" signature="8468:8519" placeholder="..." />
+=======
+            <marker date="1455716353341" expanded="true" signature="4573:4587" placeholder="{...}" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           </folding>
         </state>
       </provider>
@@ -628,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="342" column="21" selection-start-line="342" selection-start-column="21" selection-end-line="342" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -689,17 +777,31 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/app/statistics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.923077">
+          <caret line="149" column="29" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding>
+            <marker date="1455716353341" expanded="true" signature="4573:4587" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
     <entry file="file://$PROJECT_DIR$/app/mechet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.538462">
           <caret line="77" column="68" selection-start-line="77" selection-start-column="68" selection-end-line="77" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/reestr-employee.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.690909">
-          <caret line="96" column="34" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -714,7 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="353" column="21" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,20 +885,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/home.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-5.6923075">
           <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/scss/style.scss">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-2.3375">
           <caret line="293" column="27" selection-start-line="293" selection-start-column="27" selection-end-line="293" selection-end-column="27" />
+=======
+        <state vertical-scroll-proportion="0.44079718">
+          <caret line="496" column="17" selection-start-line="496" selection-start-column="17" selection-end-line="496" selection-end-column="17" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5459098">
@@ -817,6 +929,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41535777">
           <caret line="113" column="45" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="45" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/reestr-employee.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.9897728">
+          <caret line="357" column="45" selection-start-line="357" selection-start-column="45" selection-end-line="357" selection-end-column="45" />
+>>>>>>> 98d7a84f651abab79bd6b6cd9ba47a71359887bf
           <folding />
         </state>
       </provider>
