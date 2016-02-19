@@ -5231,6 +5231,8 @@ nav .right a .icon-top {
         #cadrs #content .tree-block .mtree ul {
           list-style-position: inside;
           list-style-image: url("../img/icons/book-grey.png"); }
+        #cadrs #content .tree-block .mtree .tree-list {
+          height: 200px; }
         #cadrs #content .tree-block .mtree li {
           position: relative;
           border-top: 1px solid #e3e3e3;
@@ -5248,17 +5250,14 @@ nav .right a .icon-top {
           #cadrs #content .tree-block .mtree li.mtree-open {
             list-style-image: url("../img/icons/book-green.png");
             overflow: hidden; }
-          #cadrs #content .tree-block .mtree li.mtree-node {
-            max-height: 300px;
-            overflow-y: auto; }
           #cadrs #content .tree-block .mtree li.mtree-active {
             background: #eaeaea; }
             #cadrs #content .tree-block .mtree li.mtree-active a {
               color: #3c8db7; }
             #cadrs #content .tree-block .mtree li.mtree-active ul li a {
               color: #000; }
-          #cadrs #content .tree-block .mtree li .mtree-active .arrow {
-            background: url("../img/icons/arrow-bottom.png") no-repeat !important; }
+            #cadrs #content .tree-block .mtree li.mtree-active .arrow {
+              background: url("../img/icons/arrow-bottom.png") no-repeat !important; }
     #cadrs #content .pagination {
       padding-top: 10px; }
     #cadrs #content .right-content {
@@ -5335,7 +5334,8 @@ nav .right a .icon-top {
           #cadrs #content .right-content .table .td.status {
             width: 10%; }
         #cadrs #content .right-content .table .fixed-top {
-          margin-bottom: 0; }
+          margin-bottom: 0;
+          height: 300px; }
         #cadrs #content .right-content .table .display {
           width: 800px;
           margin: 0 auto; }
@@ -5433,6 +5433,12 @@ nav .right a .icon-top {
           margin-left: -3px;
           height: 37px;
           width: 27px; }
+        #cadrs #tabs-map .map .marker.radius-30 {
+          transform: rotate(30deg);
+          margin-left: 15px; }
+        #cadrs #tabs-map .map .marker.radius-120 {
+          transform: rotate(-30deg);
+          margin-left: -15px; }
       #cadrs #tabs-map .map .popap {
         display: none;
         background: #e2e2e2;

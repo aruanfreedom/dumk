@@ -374,6 +374,9 @@ nav {
                     list-style-position: inside;
                     list-style-image: url("../img/icons/book-grey.png");
                 }
+                .tree-list{
+                    height: 200px;
+                }
                 li {
                     position: relative;
                     border-top: 1px solid #e3e3e3;
@@ -395,8 +398,8 @@ nav {
                         overflow: hidden;
                     }
                     &.mtree-node {
-                        max-height: 300px;
-                        overflow-y: auto;
+                        // max-height: 300px;
+                        // overflow-y: auto;
                     }
                     &.mtree-active {
                         background: #eaeaea;
@@ -410,8 +413,6 @@ nav {
                                 }
                             }
                         }
-                    }
-                    .mtree-active {
                         .arrow {
                             background: url("../img/icons/arrow-bottom.png") no-repeat !important;
                         }
@@ -518,6 +519,7 @@ nav {
                 }
                 .fixed-top {
                     margin-bottom: 0;
+                    height: 300px;
                 }
                 .display {
                     width: 800px;
@@ -646,6 +648,14 @@ nav {
                     margin-left: -3px;
                     height: 37px;
                     width: 27px
+                }
+                &.radius-30{
+                    transform: rotate(30deg);
+                    margin-left: 15px;
+                }
+                &.radius-120{
+                    transform: rotate(-30deg);
+                    margin-left: -15px;
                 }
             }
             .popap {

@@ -16,9 +16,20 @@ $(document).ready(function() {
     /*Table menu menu sorting*/
     var sorting = function() {
         $(".sort-click").on("click", function() {
-           
+            $(".sorting").hide();
+            $(this).find(".sorting").show();
         });
+
+        $(".sort-click").mouseenter(function() {
+            $(this).find(".sorting").show();
+        });
+
+        $(".sort-click").mouseleave(function() {
+            $(".sorting").hide();
+        });
+
     };
+
 
     sorting();
     //Checkbox select one
@@ -198,7 +209,7 @@ $(document).ready(function() {
 
     /*End edit button*/
 
-/*For diagramm lines*/
+    /*For diagramm lines*/
     var staffFunc = function() {
         var staff = $(".staff"),
             li = staff.children("li"),
@@ -247,7 +258,33 @@ $(document).ready(function() {
 
     };
 
-    staffFunc();
-/*End diagramm lines*/
+    // staffFunc();
+    /*End diagramm lines*/
+
+    // Searching
+
+    var search = function(){
+        $(".search").keydown(function(){
+            var word =  $( this).val().toLowerCase(),
+                res, searchIndex,
+                aText = $(this).parents(".tree-search").find(".tree-list li a");
+
+                aText.each(function(i, elem) {
+                   res = $(this).html().toLowerCase();
+                   searchIndex = res.indexOf(word);
+                   console.log(res + " : " + word + "result = " + searchIndex);
+                   if (searchIndex === -1){
+                    $(this).parent("li").hide();
+                   }else{
+                    $(this).parent("li").show();
+                   }
+                })
+
+        });
+    };
+
+    search();
+
+    // End Searching
 
 });
