@@ -4943,7 +4943,8 @@ a.th {
   .f-dropdown.large {
     max-width: 800px; }
 
-html, body {
+html,
+body {
   font-family: "Arial", sans-serif;
   background: url("../img/pattern.jpg") repeat;
   height: 100%;
@@ -4964,50 +4965,45 @@ nav #person img {
 nav .right a .icon-top {
   margin-top: -5px; }
 
-#authorization #form {
-  position: relative;
-  top: 80px;
-  max-width: 855px; }
-  #authorization #form img {
-    margin-bottom: 40px; }
-  #authorization #form h1 {
-    font-family: "Arial", sans-serif;
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #373737;
-    font-size: 1em;
-    font-weight: 100; }
-  #authorization #form .data {
-    border-radius: 3px;
-    border: 1px solid #eaeaea;
-    height: 45px; }
-  #authorization #form label {
-    font-size: 1em;
-    color: #373737; }
-  #authorization #form a {
-    color: #373737;
-    font-size: 0.8125em; }
-  #authorization #form #remember-label {
-    font-size: 0.8125em; }
-  #authorization #form #remember {
-    margin-right: 7px; }
-  #authorization #form button {
-    background-image: linear-gradient(#48c322, #2b7e0a);
-    box-shadow: 0 -3px 0 0 rgba(35, 99, 9, 0.9) inset;
-    border: none;
-    border-radius: 3px;
-    padding: 11.5px 42px;
-    font-size: 1.125em;
-    font-weight: 500; }
-
-#authorization footer {
-  color: #525252;
+#authorization {
   position: absolute;
-  font-size: 1em;
-  bottom: 0px;
-  padding: 10px;
   width: 100%;
-  z-index: 2; }
+  height: 100%; }
+  #authorization #form {
+    position: relative;
+    top: 80px;
+    max-width: 855px; }
+    #authorization #form img {
+      margin-bottom: 40px; }
+    #authorization #form h1 {
+      font-family: "Arial", sans-serif;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #373737;
+      font-size: 1em;
+      font-weight: 100; }
+    #authorization #form .data {
+      border-radius: 3px;
+      border: 1px solid #eaeaea;
+      height: 45px; }
+    #authorization #form label {
+      font-size: 1em;
+      color: #373737; }
+    #authorization #form a {
+      color: #373737;
+      font-size: 0.8125em; }
+    #authorization #form #remember-label {
+      font-size: 0.8125em; }
+    #authorization #form #remember {
+      margin-right: 7px; }
+    #authorization #form button {
+      background-image: linear-gradient(#48c322, #2b7e0a);
+      box-shadow: 0 -3px 0 0 rgba(35, 99, 9, 0.9) inset;
+      border: none;
+      border-radius: 3px;
+      padding: 11.5px 42px;
+      font-size: 1.125em;
+      font-weight: 500; }
 
 #home #welcome {
   position: relative;
@@ -5056,18 +5052,10 @@ nav .right a .icon-top {
   #home .blocks:hover {
     background: #fff; }
 
-#home footer {
-  color: #525252;
-  position: absolute;
-  font-size: 1em;
-  bottom: 0px;
-  padding: 10px;
-  width: 100%;
-  z-index: 2; }
-
 #cadrs {
   position: relative;
-  height: 75%; }
+  height: 75%;
+  margin-bottom: 50px; }
   #cadrs #content {
     height: 100%; }
     #cadrs #content .tab-container {
@@ -5182,9 +5170,6 @@ nav .right a .icon-top {
             font-size: 0.75em; }
         #cadrs #content .tab-container #tabs-statistics .statistics-right .button {
           width: 200px; }
-      #cadrs #content .tab-container #tabs-statistics footer {
-        position: relative;
-        bottom: -20px; }
     #cadrs #content .tree-block {
       background: #fff;
       border: 1px solid #eaeaea;
@@ -5434,11 +5419,9 @@ nav .right a .icon-top {
           height: 37px;
           width: 27px; }
         #cadrs #tabs-map .map .marker.radius-30 {
-          transform: rotate(30deg);
-          margin-left: 15px; }
+          margin-left: 8px; }
         #cadrs #tabs-map .map .marker.radius-120 {
-          transform: rotate(-30deg);
-          margin-left: -15px; }
+          margin-left: -8px; }
       #cadrs #tabs-map .map .popap {
         display: none;
         background: #e2e2e2;
@@ -5466,18 +5449,36 @@ nav .right a .icon-top {
         position: absolute;
         height: 27px;
         width: 27px; }
+        #cadrs #tabs-map .map .mouse-select h3 {
+          color: #352D24;
+          font-size: 1em;
+          font-weight: bold;
+          position: absolute;
+          margin-top: 38px;
+          margin-left: -45px; }
       #cadrs #tabs-map .map #kokshetau {
         top: 16%;
         left: 56.1%; }
+        #cadrs #tabs-map .map #kokshetau h3 {
+          font-size: 1em;
+          font-weight: bold;
+          position: absolute;
+          margin-top: 30px;
+          margin-left: -70px; }
       #cadrs #tabs-map .map #petropavlsk {
         top: 3.9%;
         left: 53.4%; }
       #cadrs #tabs-map .map #kostanay {
         top: 10.1%;
         left: 42%; }
+        #cadrs #tabs-map .map #kostanay h3 {
+          margin-top: 35px;
+          margin-left: -30px; }
       #cadrs #tabs-map .map #pavlodar {
         top: 17.9%;
         left: 70.5%; }
+        #cadrs #tabs-map .map #pavlodar h3 {
+          margin-left: -30px; }
       #cadrs #tabs-map .map #astana {
         top: 23%;
         left: 57.7%; }
@@ -5487,21 +5488,40 @@ nav .right a .icon-top {
       #cadrs #tabs-map .map #aktobe {
         top: 27.4%;
         left: 26.6%; }
+        #cadrs #tabs-map .map #aktobe h3 {
+          margin-top: 35px;
+          margin-left: -20px; }
       #cadrs #tabs-map .map #semey {
         top: 25%;
         left: 77.6%; }
+        #cadrs #tabs-map .map #semey h3 {
+          margin-top: 35px;
+          margin-left: -15px; }
       #cadrs #tabs-map .map #karaganda {
         top: 31.9%;
         left: 61.9%; }
+        #cadrs #tabs-map .map #karaganda h3 {
+          margin-top: 30px;
+          margin-left: -25px; }
       #cadrs #tabs-map .map #atyrau {
         top: 41%;
         left: 12.5%; }
+        #cadrs #tabs-map .map #atyrau h3 {
+          margin-top: 20px;
+          margin-left: 20px; }
       #cadrs #tabs-map .map #ust {
         top: 27%;
         left: 85.4%; }
+        #cadrs #tabs-map .map #ust h3 {
+          width: 150px;
+          margin-top: 20px;
+          margin-left: 20px; }
       #cadrs #tabs-map .map #aktau {
         top: 61%;
         left: 7.8%; }
+        #cadrs #tabs-map .map #aktau h3 {
+          margin-top: 20px;
+          margin-left: 20px; }
       #cadrs #tabs-map .map #kyzilorda {
         top: 60.5%;
         left: 43.4%; }
@@ -5511,26 +5531,28 @@ nav .right a .icon-top {
       #cadrs #tabs-map .map #almaty {
         top: 68.5%;
         left: 73%; }
+        #cadrs #tabs-map .map #almaty h3 {
+          margin-top: 20px;
+          margin-left: 25px; }
       #cadrs #tabs-map .map #taraz {
         top: 73%;
         left: 59.4%; }
+        #cadrs #tabs-map .map #taraz h3 {
+          margin-top: 15px;
+          margin-left: 20px; }
       #cadrs #tabs-map .map #shimkent {
         top: 77%;
         left: 54.7%; }
+        #cadrs #tabs-map .map #shimkent h3 {
+          margin-top: 30px;
+          margin-left: -70px; }
       #cadrs #tabs-map .map #ushkonir {
         top: 65%;
         left: 70%; }
-    #cadrs #tabs-map footer {
-      color: #525252;
-      position: absolute;
-      font-size: 1em;
-      bottom: -10px;
-      height: 5px;
-      padding: 0;
-      width: 100%;
-      z-index: 2; }
-      #cadrs #tabs-map footer small {
-        padding: 10px; }
+        #cadrs #tabs-map .map #ushkonir h3 {
+          font-size: 0.7em;
+          margin-top: 20px;
+          margin-left: -50px; }
   #cadrs .profile {
     background: #fff;
     height: auto;
@@ -5538,7 +5560,8 @@ nav .right a .icon-top {
     margin-bottom: 1%;
     position: relative;
     margin-top: 1%;
-    border-radius: 4px; }
+    border-radius: 4px;
+    width: 100%; }
     #cadrs .profile h2 {
       border-bottom: 1px solid #e3e3e3;
       font-size: 1.5em;
@@ -5686,3 +5709,15 @@ nav .right a .icon-top {
   width: 140px; }
   .button.secondary {
     background: #fcf9f9; }
+
+footer {
+  color: #525252;
+  position: absolute;
+  font-size: 1em;
+  bottom: 20px;
+  height: 5px;
+  padding: 0;
+  width: 100%;
+  z-index: 2; }
+  footer small {
+    padding: 10px; }
