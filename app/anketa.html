@@ -100,18 +100,22 @@
                                 <p>
                                     <input type="text" disabled="disabled" name="last_name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                     <small class="error">Неккоректная Фамилия</small>
+                                    <span class="error_backend">Неккоректная Фамилия</span>
                                 </p>
                                 <p>
                                     <input type="text" disabled="disabled" name="name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                     <small class="error">Неккоректное Имя</small>
+                                    <span class="error_backend">Неккоректное Имя</span>
                                 </p>
                                 <p>
                                     <input type="text" disabled="disabled" name="name" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                     <small class="error">Неккоректное Отчество</small>
+                                    <span class="error_backend">Неккоректное Отчество</span>
                                 </p>
                                 <p>
                                     <input type="text" disabled="disabled" name="name" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                     <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                    <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                 </p>
                                 <p>
                                     <select disabled="disabled" name="gender" required >
@@ -120,14 +124,17 @@
                                         <option name="woman" value="woman">Женский</option>
                                     </select>
                                     <small class="error">Выберите пол</small>
+                                    <span class="error_backend">Выберите пол</span>
                                 </p>
                                 <p>
                                     <input type="text" disabled="disabled" name="nationality" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                     <small class="error">Неккоректное Национальность</small>
+                                    <span class="error_backend">Неккоректное Национальность</span>
                                 </p>
                                 <p>
                                     <input type="text" disabled="disabled" required="" name="citizenship" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                     <small class="error">Неккоректное Гражданство</small>
+                                    <span class="error_backend">Неккоректное Гражданство</span>
                                 </p>
                                 <p>
                                     <select disabled="disabled" name="marital_status" required="" >
@@ -136,6 +143,7 @@
                                         <option value="Холост">Холост</option>
                                     </select>
                                     <small class="error">Семейное положение</small>
+                                    <span class="error_backend">Семейное положение</span>
                                 </p>
                                 <p>
                                     <!-- <span class="file_down">
@@ -143,10 +151,12 @@
                                             </span> -->
                                     <input type="file" disabled="disabled" class="file_down" required="" name="autobiograph">
                                     <small class="error">Файл не выбран</small>
+                                    <span class="error_backend">Файл не выбран</span>
                                 </p>
                                 <p>
                                     <input type="tel" name="phone" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+" maxlength="11">
                                     <small class="error">Неккоректный телефон. Только цифры</small>
+                                    <span class="error_backend">Неккоректный телефон. Только цифры</span>
                                 </p>
                                 <p>
                                     <select disabled="disabled" name="job" required="" >
@@ -155,6 +165,7 @@
                                         <option value="Kazdream">Kazdream</option>
                                     </select>
                                     <small class="error">Выберите место работы</small>
+                                    <span class="error_backend">Выберите место работы</span>
                                 </p>
                                 <p>
                                     <select disabled="disabled" name="position" required="" >
@@ -163,6 +174,7 @@
                                         <option value="Директор">Директор</option>
                                     </select>
                                     <small class="error">Выберите должность</small>
+                                    <span class="error_backend">Выберите должность</span>
                                 </p>
                                 <p>
                                     <select disabled="disabled" name="job_status" required="" >
@@ -171,6 +183,7 @@
                                         <option value="Не Работает">Не работает</option>
                                     </select>
                                     <small class="error">Выберите статус</small>
+                                    <span class="error_backend">Выберите статус</span>
                                 </p>
                             </div>
                         </div>
@@ -196,26 +209,32 @@
                             <p>
                                 <input type="text" disabled="disabled" name="type_document" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное тип документа</small>
+                                <span class="error_backend">Неккоректное тип документа</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="number_document" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                 <small class="error">Неккоректное номер документа</small>
+                                <span class="error_backend">Неккоректное номер документа</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="date_of_issue" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="validity" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное Орган выдачи</small>
+                                <span class="error_backend">Неккоректное Орган выдачи</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="iin" required="" maxlength="12" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                 <small class="error">Неккоректное ИИН</small>
+                                <span class="error_backend">Неккоректное ИИН</span>
                             </p>
                         </div>
                     </div>
@@ -239,18 +258,22 @@
                             <p>
                                 <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное ввод</small>
+                                <span class="error_backend">Неккоректное ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное ввод</small>
+                                <span class="error_backend">Неккоректное ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное ввод</small>
+                                <span class="error_backend">Неккоректное ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="organ" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное ввод</small>
+                                <span class="error_backend">Неккоректное ввод</span>
                             </p>
                         </div>
                     </div>
@@ -474,6 +497,7 @@
                                     <option value="Япония">Япония</option>
                                 </select>
                                 <small class="error">Выберите страну</small>
+                                <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="state" required="" >
@@ -497,6 +521,7 @@
                                     <option value="Южно-Казахстанской области">Южно-Казахстанской области</option>
                                 </select>
                                 <small class="error">Выберите область</small>
+                                <span class="error_backend">Выберите область</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="raion" required="" >
@@ -505,6 +530,7 @@
                                     <option value="Алматинский">Алматинский</option>
                                 </select>
                                 <small class="error">Выберите район</small>
+                                <span class="error_backend">Выберите район</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="city" required="" >
@@ -513,18 +539,22 @@
                                     <option value="Алмата">Алмата</option>
                                 </select>
                                 <small class="error">Выберите город</small>
+                                <span class="error_backend">Выберите город</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="street" required="">
                                 <small class="error">Неккоректное ввод</small>
+                                <span class="error_backend">Неккоректное ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="numver_home" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                 <small class="error">Неккоректное номер дома</small>
+                                <span class="error_backend">Неккоректное номер дома</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="apartment" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                 <small class="error">Неккоректное номер квартиры</small>
+                                <span class="error_backend">Неккоректное номер квартиры</span>
                             </p>
                         </div>
                     </div>
@@ -555,18 +585,22 @@
                             <p>
                                 <input type="text" disabled="disabled" name="unversitety" disabled="disabled" class="select-yes" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
+                                <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="location" disabled="disabled" class="select-yes" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
+                                <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="year_start" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="year_end" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                         </div>
                     </div>
@@ -598,22 +632,27 @@
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="unversitety_middle" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
+                                <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="location_middle" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
+                                <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_start_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_end_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="faculty_middle" required="">
                                 <small class="error">Введите факультет</small>
+                                <span class="error_backend">Введите факультет</span>
                             </p>
                         </div>
                     </div>
@@ -645,22 +684,27 @@
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="unversitety_higher" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
+                                <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="location_higher" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
+                                <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_start_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_end_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="faculty_higher" required="">
                                 <small class="error">Введите факультет</small>
+                                <span class="error_backend">Введите факультет</span>
                             </p>
                         </div>
                     </div>
@@ -684,6 +728,7 @@
                                     <option value="Бакалвр">Бакалвр</option>
                                 </select>
                                 <small class="error">Выберите категорию</small>
+                                <span class="error_backend">Выберите категорию</span>
                             </p>
                         </div>
                     </div>
@@ -912,6 +957,7 @@
                                     <option value="Япония">Япония</option>
                                 </select>
                                 <small class="error">Выберите страну</small>
+                                <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="state_internships" class="select-yes" disabled="disabled" required="" >
@@ -935,6 +981,7 @@
                                     <option value="Южно-Казахстанской области">Южно-Казахстанской области</option>
                                 </select>
                                 <small class="error">Выберите область</small>
+                                <span class="error_backend">Выберите область</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="city_interships" class="select-yes" disabled="disabled" required="" >
@@ -943,14 +990,17 @@
                                     <option value="Алмата">Алмата</option>
                                 </select>
                                 <small class="error">Выберите город</small>
+                                <span class="error_backend">Выберите город</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="organization_interships" class="select-yes" disabled="disabled" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректная организация</small>
+                                <span class="error_backend">Неккоректная организация</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="year_organization" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                         </div>
                     </div>
@@ -1179,6 +1229,7 @@
                                     <option value="Япония">Япония</option>
                                 </select>
                                 <small class="error">Выберите страну</small>
+                                <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="city_trips_abroad" class="select-yes" disabled="disabled" >
@@ -1190,14 +1241,17 @@
                             <p>
                                 <input type="text" disabled="disabled" name="target_trips_abroad" class="select-yes" disabled="disabled" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="date_exit" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="date_return" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                         </div>
                     </div>
@@ -1228,18 +1282,22 @@
                             <p>
                                 <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="term__conviction">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="article_conviction">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="place_conviction">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="note_conviction">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                         </div>
                     </div>
@@ -1264,6 +1322,7 @@
                             <p>
                                 <input type="text" disabled="disabled" required="" name="name_organization_job_skill">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <select disabled="disabled" name="city_job_skill" required="" >
@@ -1272,18 +1331,22 @@
                                     <option value="Алмата">Алмата</option>
                                 </select>
                                 <small class="error">Выберите город</small>
+                                <span class="error_backend">Выберите город</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="date_start_job_skill" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="cause_job_skill" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="haracteristic_job_skill" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                         </div>
                     </div>
@@ -1314,18 +1377,22 @@
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="place_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
+                                <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="sphere_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
+                                <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="target_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
+                                <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="date_start_job_skill"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                         </div>
                     </div>
@@ -1347,10 +1414,12 @@
                             <p>
                                 <input type="text" disabled="disabled" name="cause_promotions" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="who_promotions" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                         </div>
                     </div>
@@ -1372,10 +1441,12 @@
                             <p>
                                 <input type="text" disabled="disabled" name="cause_recovery" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="who_recovery" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                         </div>
                     </div>
@@ -1399,18 +1470,22 @@
                             <p>
                                 <input type="text" disabled="disabled" name="start_atestation" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="end_atestation" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="place_atestation" required="">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
                                 <input type="file" disabled="disabled" class="file_down" required="" name="file_atetation">
                                 <small class="error">Файл не выбран</small>
+                                <span class="error_backend">Файл не выбран</span>
                             </p>
                         </div>
                     </div>
@@ -1438,6 +1513,7 @@
                             <p>
                                 <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="note_reserv">
                                 <small class="error">Неккоректный ввод</small>
+                                <span class="error_backend">Неккоректный ввод</span>
                             </p>
                         </div>
                     </div>
@@ -1460,6 +1536,7 @@
                             <p>
                                 <input type="file" disabled="disabled" class="file_down" required="" name="file_references">
                                 <small class="error">Файл не выбран</small>
+                                <span class="error_backend">Файл не выбран</span>
                             </p>
                         </div>
                     </div>
@@ -1482,14 +1559,17 @@
                             <p>
                                 <input type="text" disabled="disabled" name="start_holiday" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="end_holiday" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
+                                <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
                                 <input type="text" disabled="disabled" name="start_holiday" required="" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                 <small class="error">Введите цифры</small>
+                                <span class="error_backend">Введите цифры</span>
                             </p>
                         </div>
                     </div>
