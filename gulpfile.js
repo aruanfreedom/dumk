@@ -45,7 +45,9 @@ gulp.task('autoprefixer', function() {
 gulp.task('sass', function() {
     gulp.src('app/static/scss/*.scss')
         .pipe(plumber())
-        .pipe(sass())
+        .pipe(sass({
+            outputStyle: 'compressed'
+            }))
         .pipe(gulp.dest('app/static/css/'))
         .pipe(connect.reload());
 });

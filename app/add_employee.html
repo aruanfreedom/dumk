@@ -544,16 +544,16 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Среднее образование”</h3>
+                                            <h3 class="section-edit">Раздел “Среднее образование”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Наличие</b></p>
-                                            <p><b>Учебное заведение</b></p>
-                                            <p><b>Местонахождение</b></p>
-                                            <p><b>Год поступления</b></p>
-                                            <p><b>Год окончания</b></p>
+                                            <p class="two-visible"><b>Наличие</b></p>
+                                            <p class="select-new-add-left"><b>Учебное заведение</b></p>
+                                            <p class="select-new-add-left"><b>Местонахождение</b></p>
+                                            <p class="select-new-add-left"><b>Год поступления</b></p>
+                                            <p class="select-new-add-left"><b>Год окончания</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -562,39 +562,43 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="unversitety" disabled="disabled" class="select-yes" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                                 <span class="error_backend">Неккоректное учебное заведение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="location" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Неккоректное Местонахождение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_start" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_end" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Средне-специальное образование”</h3>
+                                            <h3 class="section-edit">Раздел “Средне-специальное образование”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Учебное заведение</b></p>
-                                            <p><b>Местонахождение</b></p>
-                                            <p><b>Год поступления</b></p>
-                                            <p><b>Год окончания</b></p>
-                                            <p><b>Факультет</b></p>
+                                            <p class="select-new-add-left"><b>Учебное заведение</b></p>
+                                            <p class="select-new-add-left"><b>Местонахождение</b></p>
+                                            <p class="select-new-add-left"><b>Год поступления</b></p>
+                                            <p class="select-new-add-left"><b>Год окончания</b></p>
+                                            <p class="select-new-add-left"><b>Факультет</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -603,33 +607,37 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="unversitety_middle" class="select-yes" disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                                 <span class="error_backend">Неккоректное учебное заведение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="location_middle" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Неккоректное Местонахождение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_start_middle" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_end_middle" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="faculty_middle" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Введите факультет</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Высшее образование”</h3>
+                                            <h3 class="section-edit">Раздел “Высшее образование”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -674,7 +682,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Курсы”</h3>
+                                            <h3 class="section-edit">Раздел “Курсы”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -714,7 +722,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Ученая степень”</h3>
+                                            <h3 class="section-edit">Раздел “Ученая степень”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -735,7 +743,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Стажировки”</h3>
+                                            <h3 class="section-edit">Раздел “Стажировки”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1000,7 +1008,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Выезды за рубеж”</h3>
+                                            <h3 class="section-edit">Раздел “Выезды за рубеж”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1245,7 +1253,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Судимость”</h3>
+                                            <h3 class="section-edit">Раздел “Судимость”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1285,7 +1293,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Опыт работы”</h3>
+                                            <h3 class="section-edit">Раздел “Опыт работы”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1332,7 +1340,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3>
+                                            <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1372,7 +1380,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Поощрения”</h3>
+                                            <h3 class="section-edit">Раздел “Поощрения”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1395,7 +1403,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Взыскания”</h3>
+                                            <h3 class="section-edit">Раздел “Взыскания”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1418,7 +1426,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Результаты аттестации”</h3>
+                                            <h3 class="section-edit">Раздел “Результаты аттестации”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1451,7 +1459,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Кадровый резерв”</h3>
+                                            <h3 class="section-edit">Раздел “Кадровый резерв”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1476,7 +1484,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Справки”</h3>
+                                            <h3 class="section-edit">Раздел “Справки”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1496,7 +1504,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Отпуск”</h3>
+                                            <h3 class="section-edit">Раздел “Отпуск”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1524,7 +1532,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Документы”</h3>
+                                            <h3 class="section-edit">Раздел “Документы”</h3><span class="right add_input">+</span>
                                         </div>
                                     </div>
                                     <div class="row">

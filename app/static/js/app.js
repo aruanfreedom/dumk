@@ -167,7 +167,8 @@ $(document).ready(function() {
             var
                 section = $(this).parents(".section"),
                 select = section.find("select option:selected"),
-                selectYes = section.find(".select-yes");
+                selectYes = section.find(".select-yes"),
+                addInput = section.find(".add_input");
 
             select.each(function() {
                 if ($(this).attr('class') === "yes") {
@@ -177,12 +178,23 @@ $(document).ready(function() {
                         "border": "1px solid #ccc",
                         "background": "none"
                     });
+                    addInput.show();
+                    $(addInput).on("click", function() {
+                        var section = $(this).parents(".section"),
+                            left = section.find(".select-add .select-new-add-left").clone(),
+                            right = section.find(".select-add .select-new-add-right").clone(),
+                            leftLeft = section.find(".add-new-left");
+                            findRight = section.find(".add-new-right");
+                            right.appendTo(findRight);
+                            left.appendTo(leftLeft);
+                    });
                 } else if ($(this).attr('class') === "no") {
                     selectYes.attr('disabled', 'disabled');
                     selectYes.css({
                         "border": "0px solid #ccc",
                         "background": "#a3a3a3"
                     });
+                    addInput.hide();
                 }
             });
         });
