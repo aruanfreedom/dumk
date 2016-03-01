@@ -73,7 +73,7 @@ $(document).ready(function() {
                     "padding-left": "10px"
                 });
                 select.css({
-                    "border": "1px solid #ccc",
+                    "border": "1px solid #000",
                     "padding-left": "10px"
                 });
                 inputFile.css({
@@ -112,7 +112,7 @@ $(document).ready(function() {
                     "padding": "0px"
                 });
                 select.css({
-                    "border-width": "0px",
+                    "border": "1px solid #D6D6D6",
                     "padding": "0px"
                 });
                 inputFile.css({
@@ -167,36 +167,70 @@ $(document).ready(function() {
             var
                 section = $(this).parents(".section"),
                 select = section.find("select option:selected"),
+                selectString = section.find(".select-new-add-left"),
                 selectYes = section.find(".select-yes"),
                 addInput = section.find(".add_input");
+                delInput = section.find(".del_input");
 
             select.each(function() {
                 if ($(this).attr('class') === "yes") {
                     selectYes.removeAttr('disabled');
                     selectYes.removeAttr('name');
                     selectYes.css({
-                        "border": "1px solid #ccc",
+                        "border": "1px solid #a3a3a3",
                         "background": "none"
                     });
+                    selectString.css('color', '#393939');
                     addInput.show();
+                    delInput.show();
                     $(addInput).on("click", function() {
                         var section = $(this).parents(".section"),
                             left = section.find(".select-add .select-new-add-left").clone(),
                             right = section.find(".select-add .select-new-add-right").clone(),
                             leftLeft = section.find(".add-new-left");
-                            findRight = section.find(".add-new-right");
-                            right.appendTo(findRight);
-                            left.appendTo(leftLeft);
+                        findRight = section.find(".add-new-right");
+                        right.appendTo(findRight).wrapAll("<div class='new-right' />");
+                        left.appendTo(leftLeft).wrapAll("<div class='new-left'></div>");
+                    });
+                    $(delInput).on("click", function() {
+                        var section = $(this).parents(".section"),
+                            left = section.find(".select-add .select-new-add-left"),
+                            right = section.find(".select-add .select-new-add-right"),
+                            leftLeft = section.find(".new-left"),
+                            findRight = section.find(".new-right");
+
+                        leftLeft.last().remove();
+                        findRight.last().remove();
                     });
                 } else if ($(this).attr('class') === "no") {
                     selectYes.attr('disabled', 'disabled');
+                    selectString.css('color', '#D6D6D6');
                     selectYes.css({
-                        "border": "0px solid #ccc",
-                        "background": "#a3a3a3"
+                        "border": "1px solid #D6D6D6"
                     });
                     addInput.hide();
+                    delInput.hide();
                 }
             });
+        });
+        $(".add_input").on("click", function() {
+           var section = $(this).parents(".section"),
+                left = section.find(".select-add .select-new-add-left").clone(),
+                right = section.find(".select-add .select-new-add-right").clone(),
+                leftLeft = section.find(".add-new-left");
+            findRight = section.find(".add-new-right");
+            right.appendTo(findRight).wrapAll("<div class='new-right' />");
+            left.appendTo(leftLeft).wrapAll("<div class='new-left'></div>");
+        });
+         $(".del_input").on("click", function() {
+            var section = $(this).parents(".section"),
+                left = section.find(".select-add .select-new-add-left"),
+                right = section.find(".select-add .select-new-add-right"),
+                leftLeft = section.find(".new-left"),
+                findRight = section.find(".new-right");
+
+            leftLeft.last().remove();
+            findRight.last().remove();
         });
     };
 

@@ -544,7 +544,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Среднее образование”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Среднее образование”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
                                     <div class="row select-add">
@@ -588,7 +588,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Средне-специальное образование”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Средне-специальное образование”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
                                     <div class="row select-add">
@@ -637,17 +637,17 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Высшее образование”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Высшее образование”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Учебное заведение</b></p>
-                                            <p><b>Местонахождение</b></p>
-                                            <p><b>Год поступления</b></p>
-                                            <p><b>Год окончания</b></p>
-                                            <p><b>Факультет</b></p>
+                                            <p class="select-new-add-left"><b>Учебное заведение</b></p>
+                                            <p class="select-new-add-left"><b>Местонахождение</b></p>
+                                            <p class="select-new-add-left"><b>Год поступления</b></p>
+                                            <p class="select-new-add-left"><b>Год окончания</b></p>
+                                            <p class="select-new-add-left"><b>Факультет</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -656,42 +656,46 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="unversitety_higher" class="select-yes" disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                                 <span class="error_backend">Неккоректное учебное заведение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="location_higher" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Неккоректное Местонахождение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_start_higher" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_end_higher" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="faculty_higher" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Введите факультет</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Курсы”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Курсы”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Учебное заведение</b></p>
-                                            <p><b>Местонахождение</b></p>
-                                            <p><b>Год поступления</b></p>
-                                            <p><b>Год окончания</b></p>
+                                            <p class="select-new-add-left"><b>Учебное заведение</b></p>
+                                            <p class="select-new-add-left"><b>Местонахождение</b></p>
+                                            <p class="select-new-add-left"><b>Год поступления</b></p>
+                                            <p class="select-new-add-left"><b>Год окончания</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -700,29 +704,33 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="unversitety_kurs" class="select-yes" disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                                 <span class="error_backend">Неккоректное учебное заведение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="location_kurs" class="select-yes" disabled="disabled">
                                                 <span class="error_backend">Неккоректное Местонахождение</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_start_kurs" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="year_end_kurs" class="select-yes" disabled="disabled" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Ученая степень”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Ученая степень”</h3>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -743,17 +751,17 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Стажировки”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Стажировки”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Место прохождения (страна)</b></p>
-                                            <p><b>Область</b></p>
-                                            <p><b>Город</b></p>
-                                            <p><b>Организация</b></p>
-                                            <p><b>Год прохождения стажировки</b></p>
+                                            <p class="select-new-add-left"><b>Место прохождения (страна)</b></p>
+                                            <p class="select-new-add-left"><b>Область</b></p>
+                                            <p class="select-new-add-left"><b>Город</b></p>
+                                            <p class="select-new-add-left"><b>Организация</b></p>
+                                            <p class="select-new-add-left"><b>Год прохождения стажировки</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -762,7 +770,7 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select class="select-yes" disabled="disabled" name="country_internships">
                                                     <option value="">Выберите страну</option>
                                                     <option value="Казахстан">Казахстан</option>
@@ -963,7 +971,7 @@
                                                 </select>
                                                 <span class="error_backend">Выберите страну</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select class="select-yes" disabled="disabled" name="state_internships">
                                                     <option value="">Выберите область</option>
                                                     <option value="Акмолинской области">Акмолинской области</option>
@@ -986,7 +994,7 @@
                                                 </select>
                                                 <span class="error_backend">Выберите область</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select class="select-yes" disabled="disabled" name="city_interships">
                                                     <option value="">Выберите город</option>
                                                     <option value="Астана">Астана</option>
@@ -994,31 +1002,35 @@
                                                 </select>
                                                 <span class="error_backend">Выберите город</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="organization_interships" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                                 <span class="error_backend">Неккоректная организация</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="year_organization" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Выезды за рубеж”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Выезды за рубеж”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Место выезда (страна)</b></p>
-                                            <p><b>Город</b></p>
-                                            <p><b>Цель выезда за рубеж</b></p>
-                                            <p><b>Дата выезда из Казахстана</b></p>
-                                            <p><b>Дата возвращения в Казахстан</b></p>
+                                            <p class="select-new-add-left"><b>Место выезда (страна)</b></p>
+                                            <p class="select-new-add-left"><b>Город</b></p>
+                                            <p class="select-new-add-left"><b>Цель выезда за рубеж</b></p>
+                                            <p class="select-new-add-left"><b>Дата выезда из Казахстана</b></p>
+                                            <p class="select-new-add-left"><b>Дата возвращения в Казахстан</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -1027,7 +1039,7 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select class="select-yes" disabled="disabled" name="country_trips_abroad">
                                                     <option value="">Выберите страну</option>
                                                     <option value="Казахстан">Казахстан</option>
@@ -1228,41 +1240,45 @@
                                                 </select>
                                                 <span class="error_backend">Выберите страну</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select class="select-yes" disabled="disabled" name="city_trips_abroad">
                                                     <option value="">Выберите город</option>
                                                     <option value="Астана">Астана</option>
                                                     <option value="Алмата">Алмата</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="target_trips_abroad">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="date_exit" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="date_return" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
                                         </div>
                                     </div>
+                                     <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Судимость”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Судимость”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Срок осуждения</b></p>
-                                            <p><b>Статья осуждения</b></p>
-                                            <p><b>Место исправительного учреждения</b></p>
-                                            <p><b>Примечание</b></p>
+                                            <p class="select-new-add-left"><b>Срок осуждения</b></p>
+                                            <p class="select-new-add-left"><b>Статья осуждения</b></p>
+                                            <p class="select-new-add-left"><b>Место исправительного учреждения</b></p>
+                                            <p class="select-new-add-left"><b>Примечание</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -1271,46 +1287,50 @@
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="term__conviction">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="article_conviction">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="place_conviction">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input class="select-yes" disabled="disabled" type="text" name="note_conviction">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Опыт работы”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Опыт работы”</h3><span class="right add_input visible">+</span><span class="right del_input visible">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Наименование организации</b></p>
-                                            <p><b>Место нахождение организации</b></p>
-                                            <p><b>Дата начала работы в организации</b></p>
-                                            <p><b>Дата окончания работы в организации</b></p>
-                                            <p><b>Причина увольнения</b></p>
-                                            <p><b>Характеристики по месту работы</b></p>
+                                            <p class="select-new-add-left black"><b>Наименование организации</b></p>
+                                            <p class="select-new-add-left black"><b>Место нахождение организации</b></p>
+                                            <p class="select-new-add-left black"><b>Дата начала работы в организации</b></p>
+                                            <p class="select-new-add-left black"><b>Дата окончания работы в организации</b></p>
+                                            <p class="select-new-add-left black"><b>Причина увольнения</b></p>
+                                            <p class="select-new-add-left black"><b>Характеристики по месту работы</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="name_organization_job_skill">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select name="city_job_skill">
                                                     <option value="">Выберите город</option>
                                                     <option value="Астана">Астана</option>
@@ -1318,154 +1338,174 @@
                                                 </select>
                                                 <span class="error_backend">Выберите город</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="date_start_job_skill" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="date_end_job_skill" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="cause_job_skill">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="haracteristic_job_skill">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Предпринимательская деятельность”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
                                             <p><b>Наличие</b></p>
-                                            <p><b>Место предпринимательства</b></p>
-                                            <p><b>Сфера</b></p>
-                                            <p><b>Цель</b></p>
-                                            <p><b>Срок предпринимательства</b></p>
+                                            <p class="select-new-add-left"><b>Место предпринимательства</b></p>
+                                            <p class="select-new-add-left"><b>Сфера</b></p>
+                                            <p class="select-new-add-left"><b>Цель</b></p>
+                                            <p class="select-new-add-left"><b>Срок предпринимательства</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <select name="status_entrepreneurship">
                                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                                 </select>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="place_entrepreneurship">
                                                 <span class="error_backend">Нееккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="sphere_entrepreneurship">
                                                 <span class="error_backend">Нееккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="target_entrepreneurship">
                                                 <span class="error_backend">Нееккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" class="select-yes" disabled="disabled" name="date_start_job_skill" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
                                         </div>
+                                    </div>                                    
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
                                     </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Поощрения”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Поощрения”</h3><span class="right add_input visible">+</span><span class="right del_input visible">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Причина поощрения</b></p>
-                                            <p><b>Кем</b></p>
+                                            <p class="select-new-add-left"><b>Причина поощрения</b></p>
+                                            <p class="select-new-add-left"><b>Кем</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="cause_promotions">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="who_promotions">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
                                         </div>
+                                    </div>                                    
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
                                     </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Взыскания”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Взыскания”</h3><span class="right add_input visible">+</span><span class="right del_input visible">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Причина взыскания</b></p>
-                                            <p><b>Кем</b></p>
+                                            <p class="select-new-add-left"><b>Причина взыскания</b></p>
+                                            <p class="select-new-add-left"><b>Кем</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="cause_recovery">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="who_recovery">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Результаты аттестации”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Результаты аттестации”</h3><span class="right add_input visible">+</span><span class="right del_input visible">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Начало прохождения аттестации</b></p>
-                                            <p><b>Окончание прохождения аттестации</b></p>
-                                            <p><b>Место прохождения аттестации</b></p>
-                                            <p><b>Результаты</b></p>
+                                            <p class="select-new-add-left"><b>Начало прохождения аттестации</b></p>
+                                            <p class="select-new-add-left"><b>Окончание прохождения аттестации</b></p>
+                                            <p class="select-new-add-left"><b>Место прохождения аттестации</b></p>
+                                            <p class="select-new-add-left"><b>Результаты</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="start_atestation" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="end_atestation" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="place_atestation">
                                                 <span class="error_backend">Неккоректный ввод</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="file" class="file_down" name="file_atetation">
                                                 <span class="error_backend">Файл не выбран</span>
                                             </p>
                                         </div>
+                                    </div>                                    
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
                                     </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Кадровый резерв”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Кадровый резерв”</h3>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="large-6 columns text-right">
                                             <p><b>Состоит</b></p>
-                                            <p><b>Примечание</b></p>
+                                            <p class="select-new-add-left"><b>Примечание</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
                                             <p>
@@ -1484,7 +1524,7 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Справки”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Справки”</h3><span class="right add_input">+</span><span class="right del_input">-</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1504,35 +1544,39 @@
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Отпуск”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Отпуск”</h3><span class="right add_input visible">+</span><span class="right del_input visible">-</span>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row select-add">
                                         <div class="large-6 columns text-right">
-                                            <p><b>Начала даты получения трудового отпуска</b></p>
-                                            <p><b>Окончание даты трудового отпуска</b></p>
-                                            <p><b>Оставшееся количество дней отпуска</b></p>
+                                            <p class="select-new-add-left"><b>Начала даты получения трудового отпуска</b></p>
+                                            <p class="select-new-add-left"><b>Окончание даты трудового отпуска</b></p>
+                                            <p class="select-new-add-left"><b>Оставшееся количество дней отпуска</b></p>
                                         </div>
                                         <div class="large-6 columns edit-input text-left">
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="start_holiday" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="end_holiday" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                             </p>
-                                            <p>
+                                            <p class="select-new-add-right">
                                                 <input type="text" name="start_holiday" pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
                                                 <span class="error_backend">Введите цифры</span>
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="add-new-left large-6 columns edit-input text-right"></div>
+                                        <div class="add-new-right large-6 columns edit-input text-left"></div>
+                                    </div>
                                 </div>
                                 <div class="section">
                                     <div class="row">
                                         <div class="large-6 columns large-centered">
-                                            <h3 class="section-edit">Раздел “Документы”</h3><span class="right add_input">+</span>
+                                            <h3 class="section-edit">Раздел “Документы”</h3>
                                         </div>
                                     </div>
                                     <div class="row">

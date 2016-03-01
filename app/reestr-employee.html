@@ -201,10 +201,10 @@
                         <div class="table">
                             <div class="thead">
                                 <div class="tr header-table">
-                                    <div class="td numbering">№</div>
+                                    <div class="td numbering-symbol">№</div>
                                     <div class="td fio">Ф.И.О.</div>
                                     <div class="td iin">ИИН</div>
-                                    <div class="td number-phone">Номер телефона</div>
+                                    <div class="td number-phone number-symbol">Номер телефона</div>
                                     <div class="sort-click higher td">
                                         <b>Высшее образование</b>
                                         <span class="sorting">
@@ -216,8 +216,8 @@
                                     </div>
                                     <div class="sort-click td position">
                                         <b>Должность</b>
-                                        <span class="sorting">
-                                            <p>Бас имам </p><input type="checkbox" name="bas_imam">
+                                        <span class="sorting width-text">
+                                            <p>Специалист отдела международного сотрудничества и протокола</p><input type="checkbox" name="bas_imam">
                                             <p>Наиб Имам</p><input type="checkbox" name="naib_imam">
                                             <p>Өкiл Имам</p><input type="checkbox" name="okil_imam">
                                             <!-- <p class="text-center last">Нажмите</p><input class="ok" type="button"
@@ -381,6 +381,9 @@
                 theme: "dark"
             });
         });
+        if (parseInt($(window).height()) <= 800) {
+            $(".fixed-top").css("height", "300px");
+        }
     })(jQuery);
     </script>
 </body>
