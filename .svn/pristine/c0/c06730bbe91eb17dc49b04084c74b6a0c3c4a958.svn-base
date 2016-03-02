@@ -1,0 +1,41 @@
+<?php
+require_once 'smarty/Smarty.class.php';
+
+class view extends Smarty
+{
+        public $aCSSFiles = Array();
+        public $aJSFiles = Array();
+        public $sTitle = '';
+         
+        function __construct()
+        {
+                parent::__construct();
+                $this->template_dir = APP_SMARTY_TPL_DIR;
+                $this->compile_dir  = APP_SMARTY_COMPILE_DIR;  
+        }
+         
+        function add_js($sFilename)
+        {
+                $this->aJSFiles[] = '<script type="text/javascript" src="'.$sFilename.'"></script>';
+        }
+        
+        function add_css($sFilename)
+        {
+                $this->aCSSFiles[] = '<link rel="stylesheet" type="text/css" href="'.$sFilename.'" />';
+        }
+        
+        function page_title( $sTitle )
+        {
+                $this->sTitle = $sTitle;
+        }
+        
+        function display($sResourceName, $iCacheID = null, $iCompileID = null)
+        {
+                $this->assign("css_files", implode("\n", $this->aCSSFiles));
+                $this->assign("js_files", implode("\n", $this->aJSFiles));
+                $this->assign('page_title', $this->sTitle);
+
+                parent::display( $sResourceName, $iCacheID, $iCompileID);
+        }
+}
+?>

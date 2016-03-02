@@ -73,7 +73,7 @@ $(document).ready(function() {
                     "padding-left": "10px"
                 });
                 select.css({
-                    "border": "1px solid #000",
+                    "border": "1px solid #ccc",
                     "padding-left": "10px"
                 });
                 inputFile.css({
@@ -81,6 +81,9 @@ $(document).ready(function() {
                     "padding-left": "10px"
                 });
                 password.attr("type", "text");
+
+                $(".replacment").hide();
+                $(".selectings").show();
 
                 //if( selectOption.attr('class') === "yes"){
                 //    selectOption.removeAttr('disabled');
@@ -120,6 +123,8 @@ $(document).ready(function() {
                     "padding": "0px"
                 });
                 password.attr("type", "password");
+                $(".replacment").show();
+                $(".selectings").hide();
                 isTrue = true;
             }
         });
@@ -127,6 +132,8 @@ $(document).ready(function() {
         $(".edit-section").on("click", function() {
             var section = $(this).parents(".section");
             oneEdit = section.find(".edit-input input, select"),
+            selectings = section.find(".selectings"),
+            replacment = section.find(".replacment"),
                 that = $(this),
                 tag = that[0].tagName;
 
@@ -141,6 +148,8 @@ $(document).ready(function() {
                     "padding-left": "10px"
                 });
                 password.attr("type", "text");
+                replacment.hide();
+                selectings.show();
             }
             if (tag === "BUTTON") {
                 that.replaceWith(function() {
@@ -153,6 +162,8 @@ $(document).ready(function() {
                 });
                 password.attr("type", "password");
                 isTrue = true;
+                replacment.show();
+                selectings.hide();
             }
         });
 
@@ -213,7 +224,7 @@ $(document).ready(function() {
                 }
             });
         });
-        $(".add_input").on("click", function() {
+        $(".click2").on("click", function() {
            var section = $(this).parents(".section"),
                 left = section.find(".select-add .select-new-add-left").clone(),
                 right = section.find(".select-add .select-new-add-right").clone(),
@@ -222,7 +233,7 @@ $(document).ready(function() {
             right.appendTo(findRight).wrapAll("<div class='new-right' />");
             left.appendTo(leftLeft).wrapAll("<div class='new-left'></div>");
         });
-         $(".del_input").on("click", function() {
+         $(".click2-visible").on("click", function() {
             var section = $(this).parents(".section"),
                 left = section.find(".select-add .select-new-add-left"),
                 right = section.find(".select-add .select-new-add-right"),

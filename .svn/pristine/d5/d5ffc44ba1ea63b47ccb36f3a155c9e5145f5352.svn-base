@@ -1,0 +1,52 @@
+<?php
+
+defined('BASEPATH') or die('No direct script access allowed');
+require_once APPPATH . "core/app_controller.php";
+
+class Auth extends App_Controller
+{
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function login() {
+//        print_r($sPass = $this->users_model->generate_password('123654qW', APP_ENC_SULT));
+        if ($this->session->userdata('logged_in')) {
+            redirect();
+        }
+
+        $this->view->page_title('Вход');
+        $this->view->display('mod_auth/page_login.tpl');
+    }
+
+    public function forget() {
+        if ($this->session->userdata('logged_in')) {
+            redirect();
+        }
+
+        $this->view->page_title('Востановление пароля');
+        $this->view->display('mod_auth/page_forget.tpl');
+    }
+
+    public function reset($sHash) {
+        $aUserData = $this->users_model->check_hash($sHash);
+        if ($aUserData) {
+            $aUserData['logged_in'] = 1;
+            $sHash = $this->users_model->generate_password(123456, APP_ENC_SULT);
+            $this->users_model->update_custom_fields($aUserData['id'], array('password' => $sHash, 'hash' => ''));
+        } else {
+            $aData['success'] = -1; // User not found
+        }
+        redirect('/');
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect();
+    }
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

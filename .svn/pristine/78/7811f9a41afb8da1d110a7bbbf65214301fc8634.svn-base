@@ -1,0 +1,17 @@
+<div id="block_news">
+	<div class="inner">
+		<h3>Новости и события</h3>
+		<ul>
+		{foreach from=$news_list item=item}
+			<li>
+				<a href="/news/{$item.url}" class="pic" style="background-image:url('{$item.teaser}');background-size:cover">&nbsp;</a>
+				<a href="/news/{$item.url}" class="title">{$item.title}</a>
+				<span class="dt">{$item.fake_dt_str}</span>
+			</li>
+		{/foreach}
+		</ul>
+		<p class="buttons_wrap">
+			<a href="/news">Все новости</a>
+		</p>
+	</div>
+</div>{* block_news *}

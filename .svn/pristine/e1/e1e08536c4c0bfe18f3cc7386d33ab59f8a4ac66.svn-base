@@ -1,0 +1,51 @@
+<?php
+
+class Locale_model extends CI_Model
+{
+    private $sTable = 'locale';
+    private static $aList = array();
+
+    function __construct() {
+        CI_Model::__construct();
+        if (!count(self::$aList)) {
+            foreach ($this->db->select('*')->from($this->sTable)->get()->result_array() AS $aV) {
+                self::$aList[md5($aV['ru'])] = $aV;
+            }
+        }
+    }
+
+    public function get($sVal) {
+        $sVal = trim($sVal);
+        if (!strlen($sVal)) {
+            return $sVal;
+        }
+
+        if (isset(self::$aList[md5($sVal)])) {
+            if (!empty(self::$aList[md5($sVal)][$this->session->userdata['locale']])) {
+                return self::$aList[md5($sVal)][$this->session->userdata['locale']];
+            }
+        } else {
+            $this->set($sVal);
+        }
+
+        return $sVal;
+    }
+
+    private function set($sVal) {
+        $sDateNow = date('Y-m-d H:i:s', time());
+        $this->db->insert($this->sTable, array(
+            'created_at' => $sDateNow,
+            'edited_at' => $sDateNow,
+            'ru' => $sVal
+        ));
+
+        self::$aList[md5($sVal)] = array(
+            'ru' => $sVal,
+            'kz' => '',
+            'en' => ''
+        );
+
+        return $sVal;
+    }
+
+}

@@ -1,0 +1,403 @@
+<?php
+
+$config['documentolog_version'] = '5.19';
+
+$config['page_welcome'] = array(
+	'orbit_menu'=>array(
+		"current"=>0,
+		"icons_path"=>"/static/files/orbit_menu",
+		"data"=>array(
+			array(
+				"icon"=>"icon_mail",
+				"title"=>"Почта",
+				"text"=>"Отправка<br />уведомлений по электронной почте",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#mail"
+			),
+			array(
+				"icon"=>"icon_comment",
+				"title"=>"Календарь",
+				"text"=>"Управление<br />событиями и личным временем сотрудников",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#calendar"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"Архив",
+				"text"=>"Архивирование и длительное хранения<br />дел и документов",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#arc"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"ЭЦП",
+				"text"=>"Поддерживается<br />НУЦ и УЦГО",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#ecp"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"LDAP",
+				"text"=>"Интеграция<br />с внутренней доменной структурой компании.",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#ldap"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"iPhone<br />Android",
+				"text"=>"Мобильное<br />приложение для Documentolog.",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#cross"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"Сканирование",
+				"text"=>"Сканирование<br />бумажных носителей",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#scan"
+			),
+			array(
+				"icon"=>"icon_note",
+				"title"=>"Локализация",
+				"text"=>"Поддерживаются казахский, русский и английский языки",
+				"url"=>"/page/vozmozhnosti-platformy-documentlog#loc"
+			)
+		)
+	),
+	'block_futures'=>array(
+		/* IMAGES_HERE: /static/files/futures_images/* */
+		array(
+			'illust_direction'=>'left',
+			'title'=>'5 шагов к организации<br />юридически значимой<br />СЭД',
+			'description'=>'Даст возможность эффективно планировать,<br />
+							контролировать и анализировать работу<br />
+							сотрудников, обеспечит налаженную<br />
+							совместную работу, сократит оборот бумажных<br />
+							документов.',
+			'url'=>'/page/main-sed',
+			'illust'=>'illust_1.gif'
+		),
+		array(
+			'illust_direction'=>'right',
+			'title'=>'Оптимизируйте любые<br />кадровые операций',
+			'description'=>'Заключение трудового договора, издание приказа,<br />
+							ведение кадровых документов, должностные<br />
+							инструкции, отчетность о численности персонала<br />
+							по структурным подразделениям и т.д.',
+			'url'=>'/page/main-hrm',
+			'illust'=>'illust_2.gif'
+		),
+		array(
+			'illust_direction'=>'left',
+			'title'=>'Стройте<br />индивидуальные<br />отношения с клиентами',
+			'description'=>'Управление продажами, автоматизация<br />
+							документооборота, анализ поведения<br />
+							клиентов, анализ работы менеджеров<br />
+							попродажам, анализ активности конкурентов и<br />
+							многое другое.',
+			'url'=>'/page/main-crm',
+			'illust'=>'illust_3.gif'
+		)
+	),
+	'block_success_stories'=>array(
+		/* LOGOS: /static/files/block_success_stories/* */
+		array(
+			'title'=>'Для Администрации Президента Республики Казахстан',
+			'short_story'=>'Была разработана и внедрена информационная система «Внешний веб-портал».
+							Назначение системы - оперативное взаимодействие с государственными органами, контроль исполнения поручений
+							Президента, сбор аналитической информации. Система разработана на платформе Documentolog.',
+			'url'=>'/page/story-ap',
+			'logo'=>'sinoil.png'
+		),
+		array(
+			'title'=>'История 2',
+			'short_story'=>'Текст 2',
+			'url'=>'/page/story-2',
+			'logo'=>'ap.png'
+		),
+		array(
+			'title'=>'История 3',
+			'short_story'=>'Текст 3',
+			'url'=>'/page/story-3',
+			'logo'=>'palata.png'
+		),
+		array(
+			'title'=>'История 4',
+			'short_story'=>'Текст 4',
+			'url'=>'/page/story-4',
+			'logo'=>'a.png'
+		),
+		array(
+			'title'=>'История 5',
+			'short_story'=>'Текст 5',
+			'url'=>'/page/story-5',
+			'logo'=>'magnum.png'
+		),
+		array(
+			'title'=>'История 6',
+			'short_story'=>'Текст 6',
+			'url'=>'/page/story-6',
+			'logo'=>'kazutu.png'
+		)
+	),
+	"block_partners"=>array(
+		// UPLOAD: /static/files/block_partners
+		array(
+			"hint"=>"",
+			"logo"=>"ammatech.png",
+			"url"=>"/partners/too-nauchno-issledovatelskaya-laboratoriya-gamma-tekhnologii"
+		),
+		array(
+			"hint"=>"",
+			"logo"=>"kazdoc.png",
+			"url"=>"/partners/too-kazdoc-technology"
+		),
+		array(
+			"hint"=>"",
+			"logo"=>"tmgroup.png",
+			"url"=>"/partners/too-tim-soft"
+		)
+	)
+);
+
+$config['module_news'] = array(
+	'submenu' => array(
+		'list' => array(
+			'НОВОСТИ' => '/news',
+			'СТАТЬИ' => '/articles',
+		//	'РЕЛИЗЫ' => '/releases',
+		),
+		'item' => array(
+			'НОВОСТИ' => '/news',
+			'СТАТЬИ' => '/articles',
+		//	'РЕЛИЗЫ' => '/releases',
+		)
+	),
+	'item_form' => array(
+		'date' => array(
+			'year' => array(
+				'min_value' => 2007,
+				'max_value' => 2020
+			),
+			'month' => array(
+				'values' => array(
+					'январь',
+					'февраль',
+					'март',
+					'апрель',
+					'май',
+					'июнь',
+					'июль',
+					'август',
+					'сентябрь',
+					'октябрь',
+					'ноябрь',
+					'декабрь'
+				)
+			),
+		),
+	)
+);
+
+$config['module_clients'] = array(
+	'submenu' => array(
+		'list' => array(
+			'КЛИЕНТЫ' => '/clients/stat',
+			'ПАРТНЕРЫ' => '/partners',
+			'ОТЗЫВЫ' => '/reviews',
+		),
+		'item' => array(
+			'КЛИЕНТЫ' => '/clients/stat',
+			'ПАРТНЕРЫ' => '/partners',
+			'ОТЗЫВЫ' => '/reviews',
+		)
+	)
+);
+
+$config['footer_menu'] = array(
+	array(
+		"title"=>"Информация",
+		"childs"=>array(
+			array(
+				"url"=>"/news",
+				"title"=>"Новости"
+			),
+			array(
+				"url"=>"/page/documentation",
+				"title"=>"Документация"
+			),
+			array(
+				"url"=>"/clients/stat",
+				"title"=>"Клиенты"
+			)
+		)
+	),
+	array(
+		"title"=>"Партнерство",
+		"childs"=>array(
+				array(
+					"url"=>"/partners",
+					"title"=>"Партнеры"
+				),
+				array(
+					"url"=>"/page/sluzhba-tekhnicheskoy-podderzhki",
+					"title"=>"Служба поддержки"
+				),
+				array(
+					"url"=>"/page/video-kursy",
+					"title"=>"Видео курсы"
+				)
+			)
+	),
+	array(
+		"title"=>"Решения",
+		"childs"=>array(
+			array(
+				"url"=>"/page/documentolog-sed",
+				"title"=>"Documentolog СЭД"
+			),
+					array(
+				"url"=>"/page/documentolog-hrm",
+				"title"=>"Documentolog HRM"
+			),
+					array(
+				"url"=>"http://doc24.kz/",
+				"title"=>"Documentolog SaaS"
+			)
+		)
+	),
+	array(
+		"title"=>"Компания",
+		"childs"=>array(
+			array(
+				"url"=>"/page/o-kompanii-newinttech",
+				"title"=>"О NewInttech"
+			),
+			array(
+				"url"=>"/page/vakansii",
+				"title"=>"Вакансии"
+			),
+			array(
+				"url"=>"/page/kontakty",
+				"title"=>"Контакты"
+			)
+		)
+	)
+);
+
+$config['admin_menu'] = array(
+	"page_general"=>array(
+		"title"=>"Система",
+		"page"=>"general",
+		"visible"=>false
+		),
+	"page_uploader"=>array(
+		"title"=>"Файлы",
+		"page"=>"uploader",
+		"visible"=>true
+		),
+	"page_pages_list"=>array(
+		"title"=>"Страницы",
+		"page"=>"pages",
+		"visible"=>true
+		),
+	"page_news"=>array(
+		"title"=>"Новости",
+		"page"=>"news",
+		"visible"=>true
+		),
+	"page_feedbacks"=>array(
+		"title"=>"Обратная связь",
+		"page"=>"feedbacks",
+		"visible"=>false
+		),
+	"page_menu"=>array(
+		"title"=>"Меню",
+		"page"=>"menu",
+		"visible"=>true
+		),
+	"page_contacts"=>array(
+		"title"=>"Контакты",
+		"page"=>"contacts",
+		"visible"=>false
+		),
+	"page_partners"=>array(
+		"title"=>"Партнеры",
+		"page"=>"accounts",
+		"visible"=>true
+		),
+	"page_demo" => array(
+		"title" => "Заявки на демо",
+		"page" => "demo",
+		"visible" => true
+	),
+	"page_partner" => array(
+		"title" => "Заявки на партнерство",
+		"page" => "partner",
+		"visible" => true
+	),
+	"page_support_requests" => array(
+		"title" => "Служба поддержки",
+		"page" => "support_requests",
+		"visible" => true
+	),
+	"page_config" => array(
+		"title" => "Настройка",
+		"page" => "configedit",
+		"visible" => true
+	),
+);
+
+$config['soap'] = array(
+	"ws_login" => "documentolog",
+	"ws_password" => "secret",
+	"ws_url_wsdl" => "http://portal.newinttech.kz/ws/workflow/create?wsdl",
+	"ws_metod_create" => "Заявка_с_саппорта",
+	"ws_metod_create_demo" => "Заявка_с_сайта",
+);
+
+$config["meta"] = array(
+	"welcome" => array(
+		"keywords" => "документооборот рк, организация документооборота, система документооборота, система электронного документооборота, управление документооборотом, электронный документооборот +в рк, электронный документооборот программы, документооборот программа, сэд электронный документооборот, сэд документооборот, правила электронного документооборота, облачный документооборот, автоматизация процессов управления, автоматизация бизнес-процессов, автоматизация учета, автоматизация делопроизводства",
+		"description" => "Documentolog - это первая казахстанская платформа, предназначенная для создания бизнес-решений для совместной работы и позволяющая автоматизировать деятельность организации без программирования."
+	),
+	"news" => array(
+		"keywords" => "документооборот рк, организация документооборота, система документооборота, система электронного документооборота, управление документооборотом, электронный документооборот +в рк, электронный документооборот программы, документооборот программа, сэд электронный документооборот, сэд документооборот, правила электронного документооборота, облачный документооборот, автоматизация процессов управления, автоматизация бизнес-процессов, автоматизация учета, автоматизация делопроизводства",
+		"description" => "Documentolog - это первая казахстанская платформа, предназначенная для создания бизнес-решений для совместной работы и позволяющая автоматизировать деятельность организации без программирования."
+	),
+	"stat" => array(
+		'clients' => array(
+			'description' => '',
+			'keywords' => '',
+			'title' => '',
+		),
+		'releases' => array(
+			'description' => '',
+			'keywords' => '',
+			'title' => '',
+		),
+	),
+);
+
+$config['categories'] = array(
+	'Новости',
+	'Релизы',
+	'Статьи',
+	'Клиенты',
+	'Партнеры',
+	'Отзывы',
+);
+
+$config['branches'] = array(
+	'Государственный сектор',
+	'Добывающая промышленность',
+	'ЖКХ',
+	'Информационные технологии',
+	'Медицина и фармацевтика',
+	'Наука и образование',
+	'Общественное объединение',
+	'Проектирование и инженерные работы',
+	'Прочее',
+	'СМИ',
+	'Сельскохозяйственный сектор',
+	'Спорт',
+	'Строительный сектор',
+	'Торговля',
+	'Транспорт и связь',
+	'Услуги',
+	'Финансы, банки, страхование',
+	'Энергетика'
+);

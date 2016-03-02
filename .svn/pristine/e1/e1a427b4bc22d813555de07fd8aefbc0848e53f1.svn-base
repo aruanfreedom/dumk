@@ -1,0 +1,155 @@
+<?php
+
+class Validate_model extends CI_Model
+{
+    protected $oV;
+    private $sDelimiterPrefix = '&mdash;&nbsp;&nbsp;';
+    private $sDelimiterSuffix = '<br />';
+    private $aErrors = array();
+    private $aValidateFields = array();
+    private $aOldFields = array();
+    private $aConfigFields = array();
+    private $aFiles = array();
+    private $aUploadData = array();
+
+    public function __construct() {
+        CI_Model::__construct();
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('&mdash;&nbsp;&nbsp;', '<br />');
+    }
+
+    public function set_error_delimiters($sPrefix, $sSuffix) {
+        $this->sDelimiterPrefix = $sPrefix;
+        $this->sDelimiterSuffix = $sSuffix;
+        $this->form_validation->set_error_delimiters($sPrefix, $sSuffix);
+    }
+
+    public function is_valid() {
+        if ($this->form_validation->run() == FALSE) {
+            foreach ($this->aValidateFields as $sName => $sValue) {
+                $this->aErrors['errors'][$sName] = $this->form_validation->error($sName, $this->sDelimiterPrefix, $this->sDelimiterSuffix);
+            }
+            return false;
+        }
+
+        return $this->upload();
+    }
+
+    public function upload() {
+        if (count($this->aFiles)) {
+            $config['upload_path'] = APP_UPLOADS_FILES_PATH;
+            $config['allowed_types'] = 'gif|jpg|png|bmp|jpeg|txt|zip|rar|xls|doc|pdf|docx|xlsx|odt|odx';
+            $config['max_size'] = '20480'; // Kb
+            $config['max_width'] = '3000';
+            $config['max_height'] = '3000';
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload', $config);
+            $aData = array();
+
+            foreach ($this->aFiles as $key => $value) {
+                if (isset($this->aConfigFields[$key]['allowed_types'])) {
+                    $config['allowed_types'] = $this->aConfigFields[$key]['allowed_types'];
+                }
+                $this->upload->initialize($config);
+
+                if (!$this->do_upload($key, $config)) {
+                    $this->aErrors['errors'][$key] = $this->upload->display_errors();
+                    return false;
+                }
+            }
+
+            foreach ($this->aUploadData as $sKey => $aUploadData) {
+                $sFileName = time() . "_" . $aUploadData['file_name'];
+
+                rename(
+                        APP_UPLOADS_FILES_PATH . '/' . $aUploadData['file_name'], APP_UPLOADS_FILES_PATH . '/' . $sFileName
+                );
+
+                $this->aValidateFields[$sKey] = $sFileName;
+            }
+        }
+
+        return true;
+    }
+
+    function do_upload($sFile, $config) {
+//        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload($sFile)) {
+            return false;
+        } else {
+            $this->aUploadData[$sFile] = $this->upload->data();
+        }
+
+        return true;
+    }
+
+    public function getErrors() {
+        return $this->aErrors;
+    }
+
+    public function getFields() {
+        $this->fixFields();
+        return $this->aValidateFields;
+    }
+
+    public function setParems($aParams = array(), $aOldValue = array()) {
+        $this->aOldFields = $aOldValue;
+        $this->aConfigFields = $aParams;
+        $aPost = $this->input->post(NULL, true);
+        foreach ($aPost as $sName => $sValue) {
+            if (array_key_exists($sName, $aParams)) {
+                $this->aValidateFields[$sName] = $sValue;
+                $this->form_validation->set_rules($sName, $aParams[$sName]['title'], $aParams[$sName]['rules']);
+            }
+        }
+
+        foreach ($_FILES as $sName => $sValue) {
+            if (array_key_exists($sName, $aParams)) {
+                $this->form_validation->set_rules($sName, $aParams[$sName]['title'], $aParams[$sName]['rules']);
+                if (!empty($sValue['name'])) {
+                    $this->aFiles[$sName] = $sValue;
+                }
+            }
+        }
+    }
+
+    private function fixFields() {
+        foreach ($this->aValidateFields as $key => $value) {
+            // Удаление старых файлов
+            if (isset($this->aConfigFields[$key]['type']) && $this->aConfigFields[$key]['type'] === 'file' && isset($this->aOldFields[$key]) && $value !== $this->aOldFields[$key] && file_exists(APP_UPLOADS_FILES_PATH . '/' . $this->aOldFields[$key])) {
+                unlink(APP_UPLOADS_FILES_PATH . '/' . $this->aOldFields[$key]);
+            }
+        }
+
+        // Объединение полей для поиска по всем полям
+        if (isset($this->aConfigFields['search_union'])) {
+            $this->aOldFields = array_merge($this->aOldFields, $this->aValidateFields);
+            $this->aValidateFields['search_union'] = '';
+            foreach ($this->aOldFields as $key => $value) {
+//                if ($key == 'middle_educational_institution') {
+//                    echo '<pre>';
+//                    print_r($this->aOldFields['middle_educational_institution']);
+//                    exit;
+//                }
+                if (isset($this->aConfigFields[$key]['type']) && $this->aConfigFields[$key]['type'] === 'array' && count($this->aOldFields[$key])) {
+                    $this->aValidateFields['search_union'] .= isset($this->aConfigFields[$key]['search_ignore']) && $this->aConfigFields[$key]['search_ignore'] ? '' : implode('', $this->aOldFields[$key]);
+                    $this->aValidateFields[$key] = json_encode($this->aOldFields[$key]);
+                } else {
+                    $this->aValidateFields['search_union'] .= isset($this->aConfigFields[$key]['search_ignore']) && $this->aConfigFields[$key]['search_ignore'] ? '' : $value;
+                }
+            }
+            $this->aValidateFields['search_union'] = mb_strtolower($this->aValidateFields['search_union']);
+        }
+
+        // Кодируем пароль
+        if (isset($this->aValidateFields['password'])) {
+            if (!empty($this->aValidateFields['password'])) {
+                $this->aValidateFields['password'] = $this->users_model->generate_password($this->aValidateFields['password'], APP_ENC_SULT);
+            } else {
+                unset($this->aValidateFields['password']);
+            }
+        }
+    }
+
+}

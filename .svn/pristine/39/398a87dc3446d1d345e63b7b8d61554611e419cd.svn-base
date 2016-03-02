@@ -1,0 +1,16 @@
+<?php
+
+class Date
+{
+	public $aShortMonths = array('Янв', 'Фев', 'Мар','Апр', 'Мая', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек');
+
+	public function get_short_date($iTimeStamp)
+	{
+		$sRes = date('j n', $iTimeStamp);
+		$sRes = explode(" ", $sRes);
+		$sRes = $sRes[0].' '.mb_strtolower($this->aShortMonths[ $sRes[1]-1 ]);
+
+		return $sRes;
+	}
+
+}

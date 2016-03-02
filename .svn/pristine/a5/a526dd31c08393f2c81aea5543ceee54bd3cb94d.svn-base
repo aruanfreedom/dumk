@@ -1,0 +1,66 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}page_cp page_uploader{/block}
+{block name="page_context"}page_uploader{/block}
+
+{block name="header"}
+    {assign "page_context" "page_uploader"}
+    {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div id="content">
+    <div class="inner" style="max-width:100%">
+        <form action="/cp/upload/file" enctype="multipart/form-data" method="post" class="simple_form" id="upload_form">
+            <p>
+                <strong>Выберите файл для загрузки</strong><br />
+                <input type="file" name="file" value="Выбрать файл" /><br />
+            </p>
+            <p>Допустимые форматы: gif, jpg, png, pdf, doc, zip, rar, docx, xls, xlsx, ppt, txt</p>
+            <p><input type="submit" value="Загрузить" class="btn relief" /></p>
+        </form>
+    
+        <br />
+        {if $last_uploaded_file}
+        <div class="simple_contrast high bold relief" class="simple_form" id="form_uploaded">
+            <h2>Файл успешно загружен!</h2>
+            <p>
+                <strong>Ссылка на файл</strong><br />
+                <input type="text" value="{$last_uploaded_file.url}" />
+            </p>
+            <p><a href="{$last_uploaded_file.url}" target="_blank">Открыть файл</a></p>
+        </div>
+        {/if}
+
+        {*
+        <br />
+        <h3 class="space_top space_bottom">
+            Загруженные ранее файлы<br />
+            <span style="font-size:9pt;">Новые файлы располагаются вначале списка. Скопируйте ссылку на изображение для вставки в редактор или в новость</span>
+        </h3>
+        <table id="files_list" class="native_table">
+            <tr class="title bold">
+                <td>Название</td>
+                <td>Ссылка на файл для вставки</td>
+            </tr>
+
+            {foreach from=$files item=file}
+                <tr>
+                    <td><a target="_blank" href="/uploads/files/{$file}">{$file}</a></td>
+                    <td>/uploads/files/{$file}</td>
+                </tr>
+            {foreachelse}
+            <tr><td>Файлов нет</td></tr>
+        {/foreach}
+        </table>*}
+    </div>
+</div>
+{/block}{* content *}
+
+{block name="head_js"}
+
+{/block}
+
+{block name="js_before_init_page"}
+{/block}

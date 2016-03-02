@@ -120,7 +120,8 @@
                                     <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                                 </p>
                                 <p>
-                                    <select disabled="disabled" name="gender" required >
+                                    <input disabled="disabled" class="replacment" type="text" value="">
+                                    <select disabled="disabled" class="selectings" name="gender" required >
                                         <option name="select_gender" value="">Выберите пол</option>
                                         <option name="man" value="man">Мужской</option>
                                         <option name="woman" value="woman">Женский</option>
@@ -139,7 +140,8 @@
                                     <span class="error_backend">Неккоректное Гражданство</span>
                                 </p>
                                 <p>
-                                    <select disabled="disabled" name="marital_status" required="" >
+                                    <input type="text" value="" class="replacment">
+                                    <select disabled="disabled" class="selectings" name="marital_status" required="" >
                                         <option name="select_marital_status" value="">Выберите пол</option>
                                         <option value="Женат">Женат</option>
                                         <option value="Холост">Холост</option>
@@ -161,7 +163,8 @@
                                     <span class="error_backend">Неккоректный телефон. Только цифры</span>
                                 </p>
                                 <p>
-                                    <select disabled="disabled" name="job" required="" >
+                                    <input type="text" value="" class="replacment">
+                                    <select disabled="disabled" class="selectings" name="job" required="" >
                                         <option value="">Выберите место работы</option>
                                         <option value="Центральный Аппарат ДУМК">Центральный Аппарат ДУМК</option>
                                         <option value="Kazdream">Kazdream</option>
@@ -170,7 +173,8 @@
                                     <span class="error_backend">Выберите место работы</span>
                                 </p>
                                 <p>
-                                    <select disabled="disabled" name="position" required="" >
+                                    <input type="text" value="" class="replacment">
+                                    <select disabled="disabled" class="selectings" name="position" required="" >
                                         <option value="">Выберите должность</option>
                                         <option value="Начальник отдела по делам молодежи">Начальник отдела по делам молодежи</option>
                                         <option value="Директор">Директор</option>
@@ -179,7 +183,8 @@
                                     <span class="error_backend">Выберите должность</span>
                                 </p>
                                 <p>
-                                    <select disabled="disabled" name="job_status" required="" >
+                                    <input type="text" value="" class="replacment">
+                                    <select disabled="disabled" class="selectings" name="job_status" required="" >
                                         <option value="">Выберите статус</option>
                                         <option value="Работает">Работает</option>
                                         <option value="Не Работает">Не работает</option>
@@ -300,7 +305,8 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="country" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="country" required="" >
                                     <option value="">Выберите страну</option>
                                     <option value="Казахстан">Казахстан</option>
                                     <option value="Абхазия">Абхазия</option>
@@ -502,7 +508,8 @@
                                 <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="state" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="state" required="" >
                                     <option value="">Выберите область</option>
                                     <option value="Акмолинской области">Акмолинской области</option>
                                     <option value="Актюбинской области">Актюбинской области</option>
@@ -526,7 +533,8 @@
                                 <span class="error_backend">Выберите область</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="raion" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="raion" required="" >
                                     <option value="">Выберите район</option>
                                     <option value="Сарыаркинский">Сарыаркинский</option>
                                     <option value="Алматинский">Алматинский</option>
@@ -535,7 +543,8 @@
                                 <span class="error_backend">Выберите район</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="city" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="city" required="" >
                                     <option value="">Выберите город</option>
                                     <option value="Астана">Астана</option>
                                     <option value="Алмата">Алмата</option>
@@ -579,28 +588,29 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="middle_select">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="middle_select">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="unversitety" disabled="disabled" class="select-yes" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <input type="text" disabled="disabled" name="unversitety" disabled="disabled" class="select-yes selecting" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
                                 <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="location" disabled="disabled" class="select-yes" required="">
+                                <input type="text" disabled="disabled" name="location" disabled="disabled" class="select-yes selecting" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
                                 <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="year_start" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" name="year_start" disabled="disabled" class="select-yes selecting" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="year_end" disabled="disabled" class="select-yes" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" name="year_end" disabled="disabled" class="select-yes selecting" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
@@ -626,33 +636,34 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="middle_spec_select">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="middle_spec_select">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="unversitety_middle" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled"  name="unversitety_middle" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
                                 <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="location_middle" required="">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled"  name="location_middle" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
                                 <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_start_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled"  name="year_start_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="year_end_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled"  name="year_end_middle" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled"  name="faculty_middle" required="">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled"  name="faculty_middle" required="">
                                 <small class="error">Введите факультет</small>
                                 <span class="error_backend">Введите факультет</span>
                             </p>
@@ -678,33 +689,34 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_higher">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_higher">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="unversitety_higher" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="unversitety_higher" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректное учебное заведение</small>
                                 <span class="error_backend">Неккоректное учебное заведение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="location_higher" required="">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="location_higher" required="">
                                 <small class="error">Неккоректное Местонахождение</small>
                                 <span class="error_backend">Неккоректное Местонахождение</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_start_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="year_start_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="year_end_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="year_end_higher" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="faculty_higher" required="">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="faculty_higher" required="">
                                 <small class="error">Введите факультет</small>
                                 <span class="error_backend">Введите факультет</span>
                             </p>
@@ -725,7 +737,8 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="academic_degree" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="academic_degree" required="" >
                                     <option value="">Выберите категорию</option>
                                     <option value="Бакалвр">Бакалвр</option>
                                 </select>
@@ -754,13 +767,14 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_country_interships">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_country_interships">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <select disabled="disabled" name="country_internships" class="select-yes" disabled="disabled" required="" >
+                                <select disabled="disabled" name="country_internships" class="select-yes selecting" disabled="disabled" required="" >
                                     <option value="">Выберите страну</option>
                                     <option value="Казахстан">Казахстан</option>
                                     <option value="Абхазия">Абхазия</option>
@@ -962,7 +976,7 @@
                                 <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="state_internships" class="select-yes" disabled="disabled" required="" >
+                                <select disabled="disabled" name="state_internships" class="select-yes selecting" disabled="disabled" required="" >
                                     <option value="">Выберите область</option>
                                     <option value="Акмолинской области">Акмолинской области</option>
                                     <option value="Актюбинской области">Актюбинской области</option>
@@ -986,7 +1000,7 @@
                                 <span class="error_backend">Выберите область</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="city_interships" class="select-yes" disabled="disabled" required="" >
+                                <select disabled="disabled" name="city_interships" class="select-yes selecting" disabled="disabled" required="" >
                                     <option value="">Выберите город</option>
                                     <option value="Астана">Астана</option>
                                     <option value="Алмата">Алмата</option>
@@ -995,12 +1009,12 @@
                                 <span class="error_backend">Выберите город</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="organization_interships" class="select-yes" disabled="disabled" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                <input type="text" disabled="disabled" name="organization_interships" class="select-yes selecting" disabled="disabled" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
                                 <small class="error">Неккоректная организация</small>
                                 <span class="error_backend">Неккоректная организация</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="year_organization" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" name="year_organization" class="select-yes selecting" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
@@ -1026,13 +1040,14 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_trips_aboard">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_trips_aboard">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <select disabled="disabled" name="country_trips_abroad" class="select-yes" disabled="disabled" required="" >
+                                <select disabled="disabled" name="country_trips_abroad" class="select-yes selecting" disabled="disabled" required="" >
                                     <option value="">Выберите страну</option>
                                     <option value="Казахстан">Казахстан</option>
                                     <option value="Абхазия">Абхазия</option>
@@ -1234,24 +1249,24 @@
                                 <span class="error_backend">Выберите страну</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="city_trips_abroad" class="select-yes" disabled="disabled" >
+                                <select disabled="disabled" name="city_trips_abroad" class="select-yes selecting" disabled="disabled" >
                                     <option value="">Выберите город</option>
                                     <option value="Астана">Астана</option>
                                     <option value="Алмата">Алмата</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="target_trips_abroad" class="select-yes" disabled="disabled" required="">
+                                <input type="text" disabled="disabled" name="target_trips_abroad" class="select-yes selecting" disabled="disabled" required="">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="date_exit" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" name="date_exit" class="select-yes selecting" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" name="date_return" class="select-yes" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" name="date_return" class="select-yes selecting" disabled="disabled" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
@@ -1276,28 +1291,29 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_conviction">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_conviction">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="term__conviction">
+                                <input class="select-yes selecting" disabled="disabled" type="text" disabled="disabled" name="term__conviction">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
-                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="article_conviction">
+                                <input class="select-yes selecting" disabled="disabled" type="text" disabled="disabled" name="article_conviction">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
-                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="place_conviction">
+                                <input class="select-yes selecting" disabled="disabled" type="text" disabled="disabled" name="place_conviction">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
-                                <input class="select-yes" disabled="disabled" type="text" disabled="disabled" name="note_conviction">
+                                <input class="select-yes selecting" disabled="disabled" type="text" disabled="disabled" name="note_conviction">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
@@ -1327,7 +1343,8 @@
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>
                             <p>
-                                <select disabled="disabled" name="city_job_skill" required="" >
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="city_job_skill" required="" >
                                     <option value="">Выберите город</option>
                                     <option value="Астана">Астана</option>
                                     <option value="Алмата">Алмата</option>
@@ -1371,28 +1388,29 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_entrepreneurship">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_entrepreneurship">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="place_entrepreneurship" >
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="place_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
                                 <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="sphere_entrepreneurship" >
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="sphere_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
                                 <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="target_entrepreneurship" >
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="target_entrepreneurship" >
                                 <small class="error">Нееккоректный ввод</small>
                                 <span class="error_backend">Нееккоректный ввод</span>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="date_start_job_skill"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="date_start_job_skill"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
                                 <small class="error">Введите в формате <br> ДД/ММ/ГГГГ</small>
                                 <span class="error_backend">Введите в формате <br> ДД/ММ/ГГГГ</span>
                             </p>
@@ -1507,13 +1525,14 @@
                         </div>
                         <div class="large-6 columns edit-input text-left">
                             <p>
-                                <select disabled="disabled" name="status_reserv">
+                                <input type="text" value="" class="replacment">
+                                <select disabled="disabled" class="selectings" name="status_reserv">
                                     <option name="No" value="No" selected="selected" class="no">Нет</option>
                                     <option name="Yes" value="Yes" class="yes">Да</option>
                                 </select>
                             </p>
                             <p>
-                                <input type="text" disabled="disabled" class="select-yes" disabled="disabled" name="note_reserv">
+                                <input type="text" disabled="disabled" class="select-yes selecting" disabled="disabled" name="note_reserv">
                                 <small class="error">Неккоректный ввод</small>
                                 <span class="error_backend">Неккоректный ввод</span>
                             </p>

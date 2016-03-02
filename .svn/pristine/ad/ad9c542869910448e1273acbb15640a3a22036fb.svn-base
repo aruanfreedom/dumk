@@ -1,0 +1,39 @@
+<?php
+/**
+ *
+ */
+function check_authenticate($aParams)
+{
+      $CI =& get_instance();
+      
+      $aUser = array(
+            'user_id'=>0, 
+            'logged_in'=>0, 
+            'login'=>'', 
+            'fullname'=>'', 
+            'is_admin'=>0,
+            'role'=>'user',
+            'profile_data'=>''
+            );
+      
+      if ($CI->session->userdata('logged_in'))
+      {
+            $aUser = array(
+                  'user_id'=>$CI->session->userdata('user_id'),
+                  'logged_in'=>1,
+                  'login'=>$CI->session->userdata('login'),
+                  'fullname'=>$CI->session->userdata('fullname'),
+                  'is_admin'=>$CI->session->userdata('is_admin'),
+                  'role'=>$CI->session->userdata('user_role'),
+                  'profile_data'=>$CI->session->userdata('profile_data')
+            );
+      }
+
+      $CI->view->assign('MY_USER_ID', $aUser['user_id']);
+      $CI->view->assign('IS_LOGGED_IN', $aUser['logged_in']);
+      $CI->view->assign('IS_ADMIN', $aUser['is_admin']);
+      $CI->view->assign('MY_LOGIN', $aUser['login']);
+      $CI->view->assign('MY_NAME', $aUser['fullname']);
+      $CI->view->assign('MY_ROLE', $aUser['role']);
+      $CI->view->assign('MY_PROFILE_DATA', $aUser['profile_data']);
+}

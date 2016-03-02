@@ -1,0 +1,10 @@
+<div id="block_feedback">
+	<div class="inner" itemscope itemtype="http://schema.org/Organization">
+		<h4 itemprop="name">Свяжитесь с нами</h4>
+		<p class="subtext">Получите бесплатную консультацию и ответы на все свои вопросы</p>
+		<a href="callto:+77078820292" class="iconed phone"><span itemprop="telephone">+7 (707) 882 02 92</span></a>
+		<a href="callto:+77273275636" class="iconed phone"><span itemprop="telephone">+7 (727) 327 56 36</span></a>
+		<a href="callto:+77017324041" class="iconed phone"><span itemprop="telephone">+7 (701) 732 40 41</span></a>
+		<a href="callto:+77019939904" class="iconed phone"><span itemprop="telephone">+7 (701) 993 99 04</span></a>
+	</div>
+</div>

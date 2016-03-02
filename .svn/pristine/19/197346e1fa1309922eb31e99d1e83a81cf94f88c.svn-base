@@ -1,0 +1,295 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_reports{/block}
+
+{block name="header"}
+    {assign "page_context" "page_reports"}
+      {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="top-link">
+        <a href="/staff/1" class="active">{$oL->get('Кадры')}</a>
+        <a href="#">{$oL->get('Учебные заведения и учащиеся')}</a>
+        <a href="#">{$oL->get('Осужденные экстремисты')}</a>
+        <div class="text-right right maps-text">
+            <a href="/map"><img src="/static/img/icons/map-back.png" alt="map"> Карта</a>
+        </div>
+    </div>
+    <div id="tab-container" class="tab-container">
+        <ul class='etabs'>
+            <li class='tab'><a href="/staff/1" >{$oL->get('Реестр сотрудников')}</a></li>
+            <li class='tab active'><a href="/reports" >{$oL->get('Отчеты и статистика')}</a></li>
+            <li class='tab'><a href="/account/create" >{$oL->get('Добавить сотрудника')} <span class="plus">+</span></a></li>
+        </ul>
+        <div id="tabs-statistics" class="tab-wrapper">
+            <div class="large-2 left statistics-left text-left">
+                <div class="row">
+                    <h2>{$oL->get('Отчеты для скачивания')}</h2>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li><a href="/reports/download/general">{$oL->get('Общий отчет')}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="large-10 right">
+                <div class="statistics-right">
+                    <div class="status-color">
+                        <h2>{$oL->get('Соотношение сотрудников в филиалах')}</h2>
+                        <ul class="staff left">
+                            {foreach from=$subdivisions item=item}
+                                <li>{$item.employee_count} {$oL->get('сотрудников')}</li>
+                            {/foreach}
+                        </ul>
+                        <div class="colors left">
+                            <ul></ul>
+                        </div>
+                        <ul class="subd left">
+                            {foreach from=$subdivisions item=item}
+                                <li>{$item.title}</li>
+                            {/foreach}
+                        </ul>
+                        <div class="left test_chart">
+                            <canvas id="chart-area" id="pie" class="chart chart-pie" width="300" height="300" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row text-center">
+                        <button class="button secondary" onclick="location.href='/reports/download/employee_count'" >{$oL->get('Скачать в Excel')}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="large-10 right">
+                <div class="statistics-right">
+                    <h2>{$oL->get('Динамика роста сотрудников по месяцам текущего года')}</h2>
+                    <select name="filials" id="changeDataObject2">
+                        {foreach from=$eibcy key=key item=item}
+                            <option value="{$key}" >{$item.title}</option>
+                        {/foreach}
+                    </select>
+                    <br/>
+                    <div style="width: 500px;">
+                        <canvas id="chart-area-2" style="width:100%;height:100%" chart-legend="false" ></canvas>
+                    </div>
+                    <div class="row text-center">
+                        <button id="secondary_chart_download" class="button secondary" onclick="location.href='/reports/download/employee_in_year'">{$oL->get('Скачать в Excel')}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="large-10 right">
+                <div class="statistics-right">
+                    <h2>{$oL->get('Динамика роста сотрудников ДУМК по Республике Казахстан за предыдущие года')}</h2>
+                    <div style="width: 500px;">
+                        <canvas id="chart-area-3" style="width:100%;height:100%"></canvas>
+                    </div>
+                    <div class="row text-center">
+                        <button class="button secondary" onclick="location.href='/reports/download/employee_by_years'">{$oL->get('Скачать в Excel')}</button>
+                    </div>
+                </div>
+            </div>
+        <div class="clearfix"></div>
+        </div>
+        <div id="tabs-add" class="tab-wrapper">
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+    <script src="/static/js/color.line.js"></script>
+    <script src="/static/js/Chart.bundle.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        var aColors = [];
+        var aSubds = [];
+        console.log('START');
+        $('div.colors li').each(function(i, elem) {
+            if($(elem).css('width') !== '0px'){
+                aColors.push($(elem).css('background-color'));
+                aSubds.push($('ul.subd li:nth-child(' + (i+1) + ')').text());
+            }
+   
+        });
+        
+        var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {foreach from=$subdivisions item=item}
+                       {if $item.employee_count > 0}{$item.employee_count},{/if}
+                    {/foreach}
+                ],
+                backgroundColor:aColors,
+            }],
+            labels: aSubds
+            }
+        };
+        
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+        {$iMax = 0}
+        var aDatasets2 = {
+        {foreach from=$eibcy key=key item=item}
+                    '{$key}':[
+                            {foreach from=$item key=key2 item=item2}
+                                {if $key2 != 'title'}{if $iMax < $item2}{$iMax = $item2}{/if}{/if}
+                                {if $key2 != 'title'}{$item2},{/if}
+                            {/foreach}
+                    ],
+        {/foreach}
+        };
+        
+        var config2 = {
+            type: 'line',
+            data: {
+                labels: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+                datasets: [{
+                    label: "Количество",
+                    data: [
+                        {foreach from=$eibcy.all key=key item=item}
+                            {if $key != 'title'}{$item},{/if}
+                        {/foreach}
+                    ],
+                    fill: true,
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    borderDash: [5, 5],
+                }]
+            },
+            options: {
+                responsive: true,
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Месяц'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Количество'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: {$iMax},
+                        }
+                    }]
+                }
+            }
+        };
+        
+        var ctx2 = document.getElementById("chart-area-2").getContext("2d");
+        window.myLine = new Chart(ctx2, config2);
+        
+        $('#changeDataObject2').change(function() {
+            $('#secondary_chart_download').attr('onclick', "location.href='/reports/download/employee_in_year?branch=" + (~~$(this).val() + 1) + "'");
+            config2.data.datasets = [{
+                    label: "Количество",
+                    data: aDatasets2[$(this).val()],
+                    fill: true,
+                }];
+            
+            // Update the chart
+            window.myLine.update();
+        });
+        {$iCount3 = 0}
+        var config3 = {
+            type: 'line',
+            data: {
+                labels: [
+                        {foreach from=$eiby key=key item=item}
+                            {$key},
+                        {/foreach}
+                        ],
+                datasets: [{
+                    label: "Количество",
+                    data: [
+                        {foreach from=$eiby key=key item=item}
+                           {$iCount3 = $iCount3+$item}
+                           {$iCount3},
+                        {/foreach}
+                    ],
+                    fill: true,
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    borderDash: [5, 5],
+                }]
+            },
+            options: {
+                responsive: true,
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Год'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Количество'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: {$iCount3},
+                        }
+                    }]
+                }
+            }
+        };
+        
+        var ctx3 = document.getElementById("chart-area-3").getContext("2d");
+        window.myLine3 = new Chart(ctx3, config3);
+    });
+    
+    </script>
+{/block}
+
+
+{block name="connect_js"}
+{/block}

@@ -1,0 +1,337 @@
+<?php
+
+class Ref_model extends CI_Model
+{
+    private $aRefs = array();
+    public $SUBDIVISION_DUMK = 'subdivisionDUMK';
+    public $POST = 'post';
+    public $USER_STATUS = 'user_status';
+    public $RANK = 'rank';
+    public $SEX = 'sex';
+    public $BOOLEAN = 'boolean';
+
+    function __construct() {
+        CI_Model::__construct();
+        $this->setRefs();
+    }
+
+    /**
+     * Получить значения справочника
+     * @param String $sName - Назваине справочника (static переменные этого класса)
+     */
+    private static $aDbRefResults = array();
+
+    public function get($sName = '', $exp = array()) {
+        $aExp = array();
+
+        if (is_string($exp) && !empty($exp)) {
+            foreach (explode(",", $exp) as $sV) {
+                list($sKey, $sValue) = explode(':', $sV);
+                $aExp[$sKey] = $sValue === 'null' ? null : $sValue;
+            }
+        } else if (is_array($exp)) {
+            $aExp = $exp;
+        }
+
+        $aValues = array();
+        if (array_key_exists($sName, $this->aRefs)) {
+            if ($this->aRefs[$sName]['type'] === 'enum') {
+                if (isset($aExp['parent_id'])) {
+                    $aValues = $this->aRefs[$sName]['value'][$aExp['parent_id']];
+                } else {
+                    $aValues = $this->aRefs[$sName]['value'];
+                }
+            } else if ($this->aRefs[$sName]['type'] === 'db') {
+                $sMd5Hash = md5(
+                        serialize(
+                                array_merge(
+                                        array(
+                    'name' => $sName
+                                        ), $aExp)
+                        )
+                );
+                if (array_key_exists($sMd5Hash, self::$aDbRefResults)) {
+                    $aValues = self::$aDbRefResults[$sMd5Hash];
+                } else {
+                    $this->db->select('id, title')->from($this->aRefs[$sName]['value']['table'])->order_by('id');
+                    foreach ($aExp as $key => $value) {
+                        $this->db->where($key, $value);
+                    }
+                    foreach ($this->db->get()->result_array() AS $aV) {
+                        $aValues[$aV['id']] = $aV['title'];
+                    }
+
+                    self::$aDbRefResults[$sMd5Hash] = $aValues;
+                }
+            }
+        }
+
+        return $aValues;
+    }
+
+    public function getValue($sName = '', $sVal, $exp = array()) {
+        $aExp = array();
+        $sResult = '';
+
+        if (is_string($exp) && !empty($exp)) {
+            foreach (explode(",", $exp) as $sV) {
+                list($sKey, $sValue) = explode(':', $sV);
+                $aExp[$sKey] = $sValue === 'null' ? null : $sValue;
+            }
+        } else if (is_array($exp)) {
+            $aExp = $exp;
+        }
+
+        $aValues = array();
+        if (array_key_exists($sName, $this->aRefs)) {
+            if ($this->aRefs[$sName]['type'] === 'enum') {
+                if (isset($aExp['parent_id'])) {
+                    $aValues = $this->aRefs[$sName]['value'][$aExp['parent_id']];
+                } else {
+                    $aValues = $this->aRefs[$sName]['value'];
+                }
+            } else if ($this->aRefs[$sName]['type'] === 'db') {
+                $sMd5Hash = md5(
+                        serialize(
+                                array_merge(
+                                        array(
+                    'name' => $sName
+                                        ), $aExp)
+                        )
+                );
+                if (array_key_exists($sMd5Hash, self::$aDbRefResults)) {
+                    $aValues = self::$aDbRefResults[$sMd5Hash];
+                } else {
+                    $this->db->select('id, title')->from($this->aRefs[$sName]['value']['table'])->order_by('id');
+                    foreach ($aExp as $key => $value) {
+                        $this->db->where($key, $value);
+                    }
+                    foreach ($this->db->get()->result_array() AS $aV) {
+                        $aValues[$aV['id']] = $aV['title'];
+                    }
+
+                    self::$aDbRefResults[$sMd5Hash] = $aValues;
+                }
+            }
+        }
+
+        return array_key_exists($sVal, $aValues) ? $aValues[$sVal] : $sVal;
+    }
+
+    private function setRefs() {
+        $this->aRefs = array(
+            'subdivisionDUMK' => array(
+                'type' => 'enum',
+                'value' => array(
+                    1 => 'Центральный аппарат ДУМК',
+                    2 => 'Региональное подразделение'
+                )
+            ),
+            'subdivision' => array(
+                'type' => 'db',
+                'value' => array(
+                    'table' => 'subdivision'
+                )
+            ),
+            'department' => array(
+                'type' => 'enum',
+                'value' => array(
+                    1 => array(
+                        'Председатель ДУМК/Верховный муфтий',
+                        'Советник Верховного Муфтия',
+                        'Наиб-муфтий',
+                        'Руководитель Центрального аппарата',
+                        'Отдел религиозного просвещения',
+                        'Отдел по делам религий',
+                        'Отдел международного сотрудничества и протокола',
+                        'Отдел по делам молодежи',
+                        'Общий отдел'
+                    ),
+                    2 => array(
+                        'Отдел кадров',
+                        'Отдел шариата и фетв',
+                        'Отдел управляющего делами',
+                        'Отдел по делам мечетей',
+                        'Отдел религиозного проповедования и работы с интернетом',
+                        'Отдел хаджа',
+                        'Отдел стандартизации производства халал',
+                        'Финансовый отдел',
+                        'Хозяйственный отдел',
+                        'Юридический отдел',
+                        'Канцелярия'
+                    ),
+                )
+            ),
+            'post_s' => array(
+                'type' => 'enum',
+                'value' => array(
+                    1 => array(
+                        'Председатель ДУМК/Верховный муфтий',
+                        'Советник Верховного Муфтия',
+                        'Наиб-муфтий',
+                        'Руководитель Центрального аппарата',
+                        'Начальник отдела религиозного просвещения',
+                        'Начальник отдела по делам религий',
+                        'Начальник отдела международного сотрудничества и протокола',
+                        'Начальник отдела по делам молодежи',
+                        'Начальник общего отдела',
+                    ),
+                    2 => array(
+                        'Начальник отдела кадров',
+                        'Специалист отдела кадров',
+                        'Начальник отдела шариата и фетв',
+                        'Начальник отдела, управляющего делами',
+                        'Начальник отдела по делам мечетей',
+                        'Начальник отдела религиозного проповедования и работы с интернетом',
+                        'Начальник отдела хаджа',
+                        'Начальник отдела стандартизации производства халал',
+                        'Начальник финансового отдела',
+                        'Начальник хозяйственного отдела',
+                        'Начальник юридического отдела',
+                        'Начальник канцелярии',
+                    ),
+                    3 => array(
+                        'Главный Имам г.Астана'
+                    ),
+                    5 => array(
+                        'Главный Имам г.Алматы'
+                    ),
+                    10 => array(
+                        'Имам Акмолинской области'
+                    ),
+                    11 => array(
+                        'Имам Алматинской области'
+                    ),
+                    12 => array(
+                        'Имам Актюбинской области'
+                    ),
+                    13 => array(
+                        'Имам Атырауской области'
+                    ),
+                    14 => array(
+                        'Имам Восточно-Казахстанской области'
+                    ),
+                    15 => array(
+                        'Имам Жамбылской области'
+                    ),
+                    16 => array(
+                        'Имам Западно-Казахстанской области'
+                    ),
+                    17 => array(
+                        'Имам Карагандинской области'
+                    ),
+                    18 => array(
+                        'Имам Костанайской области'
+                    ),
+                    19 => array(
+                        'Имам Кызылординской области'
+                    ),
+                    20 => array(
+                        'Имам Мангистауской области'
+                    ),
+                    21 => array(
+                        'Имам Павлодарской области'
+                    ),
+                    22 => array(
+                        'Имам г.Семей'
+                    ),
+                    23 => array(
+                        'Имам Северо-Казахстанской области'
+                    ),
+                    24 => array(
+                        'Имам г.Талдыкорган'
+                    ),
+                    25 => array(
+                        'Имам Южно-Казахстанской области'
+                    )
+                )
+            ),
+            'post' => array(
+                'type' => 'db',
+                'value' => array(
+                    'table' => 'ref_posts'
+                )
+            ),
+            'user_status' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'Работает' => 'Работает',
+                    'В отпуске' => 'В отпуске',
+                    'Уволен' => 'Уволен'
+                )
+            ),
+            'rank' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'Действительный студент' => 'Действительный студент',
+                    'Бакалавр' => 'Бакалавр',
+                    'Магистр' => 'Магистр',
+                    'Аспирант' => 'Аспирант',
+                    'Кандидат наук' => 'Кандидат наук',
+                    'Доктор наук' => 'Доктор наук'
+                )
+            ),
+            'sex' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'man' => 'Мужской',
+                    'woman' => 'Женский',
+                )
+            ),
+            'marital' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'married' => 'Женат',
+                    'single' => 'Холост',
+                )
+            ),
+            'boolean' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'No' => 'Нет',
+                    'Yes' => 'Да',
+                )
+            ),
+            'country' => array(
+                'type' => 'db',
+                'value' => array(
+                    'table' => 'countries'
+                )
+            ),
+            'field' => array(
+                'type' => 'db',
+                'value' => array(
+                    'table' => 'regions'
+                )
+            ),
+            'region' => array(
+                'type' => 'enum',
+                'value' => array(
+                    'Астана - Алматинский район' => 'Астана - Алматинский район',
+                    'Астана - Сарыаркинский район' => 'Астана - Сарыаркинский район',
+                    'Астана - Есильский район' => 'Астана - Есильский район',
+                    'Алматы - Алмалинский район' => 'Алматы - Алмалинский район',
+                    'Алматы - Ауэзовский район' => 'Алматы - Ауэзовский район',
+                    'Алматы - Бостандыкский район' => 'Алматы - Бостандыкский район',
+                    'Алматы - Жетысуский район' => 'Алматы - Жетысуский район',
+                    'Алматы - Медеуский_район' => 'Алматы - Медеуский_район',
+                    'Алматы - Турксибский район' => 'Алматы - Турксибский район',
+                    'Алматы - Алатауский район' => 'Алматы - Алатауский район',
+                    'Алматы - Наурызбайский район' => 'Алматы - Наурызбайский район'
+                )
+            ),
+            'city' => array(
+                'type' => 'db',
+                'value' => array(
+                    'table' => 'cities'
+                )
+            ),
+            '' => array(
+                'type' => 'enum',
+                'value' => array(
+                )
+            )
+        );
+    }
+
+}

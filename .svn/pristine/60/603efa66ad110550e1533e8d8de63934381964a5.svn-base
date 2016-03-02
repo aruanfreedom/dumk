@@ -1,0 +1,141 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_account{/block}
+
+{block name="header"}
+    {assign "page_context" "page_account"}
+      {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="profile text-center">
+        <a class="back" href="/"> &#60; {$oL->get('Назад в реестр')}</a>
+        <h2>{$oL->get('Мой профиль')}</h2>
+        <p><img src="{$aData.avatar|default:'/static/img/data-person/person.jpg'}" class="img-profile" height="101" width="105" alt="person">
+        </p>
+        <p class="download-all none">
+            <a href="#" onclick="$('input[name=avatar]').click();return false;"><img src="/static/img/icons/download-blue.png" alt="download"> {$oL->get('Загрузить фотографию')}</a>
+        </p>
+        {if isset($errors.errors.avatar) and $errors.errors.avatar|@count > 0}
+            <span class="error_backend" style="display:block;">{$errors.errors.avatar|default:''}</span>
+        {/if}
+        <form action="" method="post" enctype="multipart/form-data" data-abide="">
+            <p style="display: none;"><input type="file" name="avatar" /></p>
+            <span class="button secondary edit-profile">{$oL->get('Редактировать')}</span>
+            <div class="row">
+                <div class="large-6 columns text-right">
+                    <p><b>{$oL->get('Имя')}</b></p>
+                    <p><b>{$oL->get('Фамилия')}</b></p>
+                    <p><b>{$oL->get('Отчество')}</b></p>
+                    <p><b>{$oL->get('Электронная почта')}</b></p>
+                    <p><b>{$oL->get('Номер сотового телефона')}</b></p>
+                    <p><b>{$oL->get('Номер рабочего телефона'}</b></p>
+                    <p><b>{$oL->get('Подразделение ДУМК')}</b></p>
+                    <p><b>{$oL->get('Должность')}</b></p>
+                    <p><b>{$oL->get('Пароль')}</b></p>
+                </div>
+                <div class="large-6 columns edit-input text-left">
+                    <p>
+                        <input type="text" value="{$aData.name}" name="name" required disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                        <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                    </p>
+                    <p>
+                        <input type="text" value="{$aData.surname}" name="surname" required disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                        <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                    </p>
+                    <p>
+                        <input type="text" value="{$aData.middle_name}" name="middle" required disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                        <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                    </p>
+                    <p>
+                        <input type="email" value="{$aData.email}" name="email" required disabled="disabled">
+                        <small class="error">{$oL->get('Неккоректный email')}</small>
+                    </p>
+                    <p>
+                        <input type="text" value="{$aData.phone_number}" name="phone_number" required disabled="disabled" {literal} pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+" {/literal}>
+                        <small class="error">{$oL->get('Неккоректный ввод. Только числа')}</small>
+                    </p>
+                    <p>
+                        <input type="text" value="{$aData.phone_work}" name="phone_number" required disabled="disabled" {literal} pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+" {/literal}>
+                        <small class="error">{$oL->get('Неккоректный ввод. Только числа')}</small>
+                    </p>
+                    <p>
+                        <select name="place_of_work_s" disabled="disabled" required="">
+                            <option value="">{$oL->get('Выберите место работы')}</option>
+                            {foreach from=$ref->get('subdivision', 'parent_id IS NULL:null') item=iter key=key}
+                                <option {if isset($aData.place_of_work_s) && $aData.place_of_work_s == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                {if isset($aData.place_of_work_s) && $aData.place_of_work_s == $key}
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                getRefValues('post_s', {$key}, $('select[name=post_s]'), '{$aData.post_s}');
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                {/if}
+                            {/foreach}
+                        </select>
+                        <script>
+                            (function($) {
+                                $(window).load(function() {
+                                    $('select[name=place_of_work_s]').on("change", function(){
+                                        getRefValues('post_s', $(this).val(), $('select[name=post_s]'), '');
+                                    });
+                                });
+                            })(jQuery);
+                        </script>
+                        <small class="error">{$oL->get('Выберите место работы')}</small>
+                    </p>
+                    <p>
+                        <select name="post_s" disabled="disabled" required="">
+                            <option name="">{$oL->get('Выберите')}</option>
+                        </select>
+                        <small class="error">{$oL->get('Выберите должность')}</small>
+                    </p>
+                    <p>
+                        <input type="password" class="password" name="password" value="" disabled="disabled" pattern="password">
+                        <small class="error">{$oL->get('Неккоректный ввод. Введите в формате')} <br> [A-z, 0-9]. {$oL->get('Не меньше 8 символов')}</small>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function getRefValues(sRefName, sId, oContainer, sSelected, sFilter){
+        var elem = '<option value="">{$oL->get('Выберите')}</option>';
+        oContainer.empty().append(elem);
+        if(sId === "")return false;
+        $.post( "/getreference", { ref:sRefName, id:sId, filter:sFilter }, function( data ) {
+            if(data.success === 1){
+                var elem = '<option value="">{$oL->get('Выберите')}</option>';
+                for (var item in data.data){
+                    elem += '<option ';
+                    if(sSelected !== '' && sSelected == item){
+                        elem += 'selected="selected"';
+                    }
+                    elem += ' value="' + item + '">' + data.data[item] + '</option>';
+                }
+                oContainer.empty().append(elem);
+            }
+        }, "json");
+    }
+
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+<script type="text/javascript">
+    $("#content form")
+    .on('invalid', function(){
+    });
+</script>
+{/block}
+
+
+{block name="connect_js"}
+{/block}

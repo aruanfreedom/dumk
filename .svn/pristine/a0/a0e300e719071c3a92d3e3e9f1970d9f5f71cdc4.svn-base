@@ -1,0 +1,272 @@
+<?php
+
+class Export_word_user extends CI_Model
+{
+    private $objPHPWord;
+    private $sFilePath = '';
+    private $section;
+    private $table;
+    private $sTitle;
+
+    function __construct() {
+        CI_Model::__construct();
+        /** Error reporting */
+        error_reporting(E_ALL);
+
+        /** Include path * */
+        ini_set('include_path', ini_get('include_path') . ';../../static/libs/');
+
+        /** PHPWord */
+        include '/static/libs/PHPWord.php';
+
+        $this->objPHPWord = new PHPWord();
+    }
+
+    public function execute($iId) {
+        $this->setMeta();
+        $this->setData($iId);
+        $this->save();
+        $this->view();
+    }
+
+    private function setMeta() {
+        // New portrait section
+        $this->section = $this->objPHPWord->createSection();
+        $this->load->model('users_model');
+        $this->load->model('ref_model');
+    }
+
+    private function setData($iId) {
+        $aTitleStyle = array('bold' => true);
+        $aTextStyle = array('bold' => false);
+        $iCellWidth = 4375;
+
+        $aSubdConfFields = $this->users_model->getSearchIgnoreFields();
+        $aSubdFields = $this->users_model->get_item($iId);
+        $this->setTitle($aSubdFields['surname'] . ' ' . $aSubdFields['name'] . ' ' . $aSubdFields['middle_name']);
+        $aSubdConfFields['field_title'] = $aSubdConfFields['field'];
+        $aSubdConfFields['city_title'] = $aSubdConfFields['city'];
+//        echo '<pre>';
+//        print_r($aSubdFields);
+        $sText1 = '';
+        $aArray1 = array();
+
+        $aFields = array(
+            'Общая информация' => array(
+                'surname',
+                'name',
+                'middle_name',
+                'birthday',
+                'sex',
+                'nationality',
+                'citizenship',
+                'marital_status',
+                'email',
+                'phone_number',
+                'place_of_work',
+                'post',
+                'job_start',
+                'job_status'
+            ),
+            'Паспортные данные' => array(
+                'document_type',
+                'document_number',
+                'date_of_issue',
+                'validity',
+                'issuing_authority',
+                'iin'
+            ),
+            'Состав семьи' => array(
+                'father',
+                'mother',
+                'wife',
+                'children'
+            ),
+            'Адрес' => array(
+                'country',
+                'field',
+                'region',
+                'city',
+                'street',
+                'house',
+                'apartment'
+            ),
+            'Среднее образование' => array(
+                'middle_education',
+                'middle_educational_institution',
+                'middle_location',
+                'middle_year_of_entrance',
+                'middle_year_of_ending'
+            ),
+            'Средне-специальное образоваине' => array(
+                'middle_spec_education',
+                'middle_spec_educational_institution',
+                'middle_spec_location',
+                'middle_spec_year_of_entrance',
+                'middle_spec_year_of_ending',
+                'middle_spec_faculty'
+            ),
+            'Высшее образование' => array(
+                'high_education',
+                'high_educational_institution',
+                'high_location',
+                'high_year_of_entrance',
+                'high_year_of_ending',
+                'high_faculty'
+            ),
+            'Курсы' => array(
+                'courses_education',
+                'courses_educational_institution',
+                'courses_location',
+                'courses_year_of_entrance',
+                'courses_year_of_ending'
+            ),
+            'Ученая степень' => array(
+                'rank'
+            ),
+            'Стажировка' => array(
+                'traineeship',
+                'traineeship_country',
+                'traineeship_field',
+                'traineeship_city',
+                'traineeship_organization',
+                'traineeship_year_of_passing'
+            ),
+            'Выезд за рубеж' => array(
+                'departure',
+                'departure_country',
+                'departure_city',
+                'departure_target',
+                'departure_date_out',
+                'departure_date_in'
+            ),
+            'Наличие судимости' => array(
+                'conviction_status',
+                'conviction_date',
+                'conviction_article',
+                'conviction_location',
+                'conviction_description'
+            ),
+            ' Опыт работы' => array(
+                'experience_organization',
+                'experience_location',
+                'experience_start',
+                'experience_end',
+                'experience_reason_for_leaving'
+            ),
+            'Предпринимательская деятельность' => array(
+                'business_status',
+                'business_location',
+                'business_scope',
+                'business_target',
+                'business_life'
+            ),
+            'Поощрения' => array(
+                'promotion_reason',
+                'promotion_whom'
+            ),
+            'Взыскания' => array(
+                'penalties_reason',
+                'penalties_whom'
+            ),
+            'Результат аттестации' => array(
+                'validation_start',
+                'validation_end',
+                'validation_location'
+            ),
+            'Кадровый резерв' => array(
+                'talent_pool',
+                'talent_pool_description'
+            ),
+            'Отпуск' => array(
+                'accommodation_start',
+                'accommodation_end',
+                'accommodation_remaining'
+            )
+        );
+
+        if (!empty($aSubdFields['avatar'])) {
+            $this->section->addImage(ROOTPATH . '/' . $aSubdFields['avatar'], array('align' => 'center'));
+            $this->section->addTextBreak(2);
+        }
+
+        $this->section->addText($aSubdFields['surname'] . ' ' . $aSubdFields['name'] . ' ' . $aSubdFields['middle_name'], array('name' => 'Verdana', 'color' => '006699'), array('align' => 'center'));
+        $this->section->addTextBreak(2);
+
+        $tableStyle = array('cellMarginTop' => 80,
+            'cellMarginLeft' => 80,
+            'cellMarginRight' => 80,
+            'cellMarginBottom' => 80);
+
+        $aBoolean = array(
+            'Yes' => 'Да',
+            'No' => 'Нет'
+        );
+
+        // Add table
+        $this->table = $this->section->addTable($tableStyle);
+
+        foreach ($aFields as $name => $aGroup) {
+
+            if (!empty($name)) {
+                $this->table->addRow();
+                $this->table->addCell($iCellWidth)->addText($name);
+                $this->table->addCell($iCellWidth)->addText("");
+            }
+            $aArray = array();
+            foreach ($aGroup as $key => $sField) {
+                if (isset($aSubdConfFields[$sField]['type']) && $aSubdConfFields[$sField]['type'] == 'array') {
+                    $aArray[] = $sField;
+                } else {
+                    $this->table->addRow();
+                    $aNotArray[] = $sField;
+                    $aSubdFields[$sField] = array_key_exists($aSubdFields[$sField], $aBoolean) ? $aBoolean[$aSubdFields[$sField]] : $aSubdFields[$sField];
+                    $this->table->addCell($iCellWidth)->addText($aSubdConfFields[$sField]['title'], $aTitleStyle, array('align' => 'right'));
+                    $this->table->addCell($iCellWidth)->addText($this->getTrueValue($aSubdConfFields, $sField, $aSubdFields[$sField]), $aTextStyle);
+                }
+            }
+
+            if (count($aArray)) {
+                for ($i = 0; $i < 100; $i++) {
+                    foreach ($aArray as $sFieldAr) {
+                        if (!isset($aSubdFields[$sFieldAr][$i]))
+                            break;
+                        $this->table->addRow();
+                        $this->table->addCell($iCellWidth)->addText($aSubdConfFields[$sFieldAr]['title'], $aTitleStyle, array('align' => 'right'));
+                        $this->table->addCell($iCellWidth)->addText($this->getTrueValue($aSubdConfFields, $sFieldAr, $aSubdFields[$sFieldAr][$i]), $aTextStyle);
+                    }
+                }
+            }
+        }
+    }
+
+    private function setTitle($sTitle) {
+        $this->sTitle = $sTitle;
+    }
+
+    private function getTrueValue($aConf, $sName, $sValue) {
+        return isset($aConf[$sName]['ref']) ? $this->ref_model->getValue($aConf[$sName]['ref'], $sValue) : $sValue;
+    }
+
+    public function save() {
+        // Save File
+        $objWriter = PHPWord_IOFactory::createWriter($this->objPHPWord, 'Word2007');
+        $this->sFilePath = str_replace('.php', '_' . time() . '.docx', __FILE__);
+        $objWriter->save($this->sFilePath);
+    }
+
+    private function view() {
+        $sMime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        $iFileSize = filesize($this->sFilePath);
+
+        header('Content-type: ' . $sMime);
+        header('Content-Disposition: attachment; filename="' . $this->sTitle . '.docx"');
+        header('Content-Length: ' . $iFileSize);
+        readfile($this->sFilePath);
+
+        unlink($this->sFilePath);
+        // Echo done
+        //        echo date('H:i:s') . " Done writing file.\r\n";
+    }
+
+}

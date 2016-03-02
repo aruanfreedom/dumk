@@ -1,0 +1,209 @@
+<?php
+
+class Users_report extends CI_Model
+{
+    private $objPHPExcel;
+    private $sFilePath = '';
+    private $sHeadersStart = array(
+        '№',
+        'ФИО',
+        'ИИН',
+        'Номер телефонв',
+        'Высшее образование',
+        'Должность',
+        'Статус'
+    );
+
+    function __construct() {
+        CI_Model::__construct();
+        /** Error reporting */
+        error_reporting(E_ALL);
+
+        /** Include path * */
+        ini_set('include_path', ini_get('include_path') . ';../../static/libs/');
+
+        /** PHPExcel */
+        include '/static/libs/PHPExcel.php';
+
+        /** PHPExcel_Writer_Excel2007 */
+        include '/static/libs/PHPExcel/Writer/Excel2007.php';
+        // Create new PHPExcel object
+//        echo date('H:i:s') . " Create new PHPExcel object\n";
+        $this->objPHPExcel = new PHPExcel();
+    }
+
+    public function execute() {
+        $this->setMeta();
+        $this->setData();
+        $this->setTitle();
+        $this->save();
+        $this->view();
+    }
+
+    private function setMeta() {
+        // Set properties
+        //        echo date('H:i:s') . " Set properties\n";
+        $this->objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setTitle("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setSubject("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.");
+    }
+
+    private function setData() {
+        $this->objPHPExcel->setActiveSheetIndex(0);
+
+        $iRowPos = 1;
+        foreach ($this->getSubd() as $aV) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, $iRowPos++, $aV['title']);
+        }
+
+        $iRowPos++;
+
+        $iColPos = 0;
+        foreach ($this->sHeadersStart as $iK => $sHeader) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iColPos++, $iRowPos, $sHeader);
+        }
+
+        foreach (range('B', $this->objPHPExcel->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $this->objPHPExcel->getActiveSheet()
+                    ->getColumnDimension($col)
+                    ->setAutoSize(true);
+        }
+
+        $iRowPos++;
+        $aUsers = $this->getUsers();
+        foreach ($aUsers as $iK => $aUser) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, $iRowPos, $aUser['id']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, $iRowPos, $aUser['surname'] . ' ' . $aUser['name'] . ' ' . $aUser['middle_name']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, $iRowPos, $aUser['iin']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $iRowPos, $aUser['phone_number']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $iRowPos, $aUser['high_education'] == 'Yes' ? 'Да' : 'Нет');
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, $iRowPos, $aUser['post_title']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, $iRowPos, $aUser['job_status']);
+            $iRowPos++;
+        }
+    }
+
+    private function getSubd() {
+        $this->load->model('subdivisions_model');
+
+        $sParent_id = isset($_GET['parent_id']) ? 'id = ' . $_GET['parent_id'] : '';
+        $sSubd_id = isset($_GET['sub_id']) ? 'id=' . $_GET['sub_id'] : '';
+
+        $sCondition = $sParent_id . (!empty($sSubd_id) ? ' OR ' . $sSubd_id : '');
+
+        $result = $this->subdivisions_model->get_list(0, '', array($sCondition => null));
+        $aData = array();
+        foreach ($result as $key => $value) {
+            $aData[$key] = $value;
+        }
+
+        return $aData;
+    }
+
+    private function getUsers() {
+        //Филиалы
+        $aData = array();
+
+        //Пагинация
+        $aFields = $this->users_model->getSearchIgnoreFields();
+
+        //Сортировка
+        $aSort = isset($_GET['sort']) ? $_GET['sort'] : array();
+        $sSort = 'surname DESC';
+        if (is_array($aSort) && count($aSort) && array_key_exists($aSort['name'], $aFields) && in_array($aSort['value'], array('ASC', 'DESC'))) {
+            $sSort = $aSort['name'] . ' ' . $aSort['value'];
+        }
+
+        //Фильтрация
+        $aStatusClass = array(
+            'working' => 'Работает',
+            'vacation' => 'В отпуске',
+            'fired' => 'Уволен'
+        );
+
+        $aFilter = isset($_GET['filter']) ? $_GET['filter'] : array();
+        ;
+        $aFilter = is_array($aFilter) ? $aFilter : array();
+        $aExt = array();
+
+        $aOrWhere = array();
+        foreach ($aFilter as $key => $value) {
+            $sVal = $key;
+            $sVal = isset($aStatusClass[$sVal]) ? $aStatusClass[$sVal] : $sVal;
+            if (array_key_exists($value, $aOrWhere)) {
+                $aOrWhere[$value][] = $sVal;
+                unset($aExt[$value]);
+            } else if (array_key_exists($value, $aFields)) {
+                $aExt[$value] = $sVal;
+                $aOrWhere[$value][] = $sVal;
+            }
+        }
+
+        foreach ($aOrWhere as $key => $aV) {
+            $iCount = count($aV);
+            if ($iCount > 1) {
+                $sWhere = "(";
+                foreach ($aV as $sIter => $sValue) {
+                    $sWhere .= ($sIter != 0 ? ' OR ' : '') . $key . "='" . $sValue . "'";
+                }
+                $sWhere .= ")";
+                $aExt[$sWhere] = null;
+            }
+        }
+//        echo '<pre>';
+//        print_r($aExt);
+        //Родственность
+        $iParent = (int) isset($_GET['parent_id']) ? $_GET['parent_id'] : 0;
+        $aExt['place_of_work'] = $iParent . "";
+
+        //Поиск
+        $sSearch = isset($_GET['search']) ? $_GET['search'] : '';
+        if (!empty($sSearch)) {
+            $aExt['search_union like '] = '%' . mb_strtolower($sSearch) . '%';
+        }
+
+        $aData = $this->users_model->get_list(0, 0, $sSort, $aExt);
+
+        return $aData;
+    }
+
+    public function calculate_age($birthday) {
+        $birthday_timestamp = strtotime($birthday);
+        $age = date('Y') - date('Y', $birthday_timestamp);
+        if (date('md', $birthday_timestamp) > date('md')) {
+            $age--;
+        }
+        return $age;
+    }
+
+    private function setTitle() {
+        // Rename sheet
+        //        echo date('H:i:s') . " Rename sheet\n";
+        $this->objPHPExcel->getActiveSheet()->setTitle('Simple');
+    }
+
+    public function save() {
+        // Save Excel 2007 file
+        //        echo date('H:i:s') . " Write to Excel2007 format\n";
+        $objWriter = new PHPExcel_Writer_Excel2007($this->objPHPExcel);
+        $this->sFilePath = str_replace('.php', '_' . time() . '.xlsx', __FILE__);
+        $objWriter->save($this->sFilePath);
+    }
+
+    private function view() {
+        $sMime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        $iFileSize = filesize($this->sFilePath);
+
+        header('Content-type: ' . $sMime);
+        header('Content-Disposition: attachment; filename="' . __CLASS__ . '.xlsx"');
+        header('Content-Length: ' . $iFileSize);
+        readfile($this->sFilePath);
+
+        unlink($this->sFilePath);
+        // Echo done
+        //        echo date('H:i:s') . " Done writing file.\r\n";
+    }
+
+}

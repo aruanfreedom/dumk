@@ -1,0 +1,414 @@
+<?php
+
+class Users_model extends CI_Model
+{
+    protected $table = 'users';
+    private $aFields = array();
+
+    function __construct() {
+        CI_Model::__construct();
+        $this->load->model('validate_model');
+        $this->getFields();
+    }
+
+    private function getFields() {
+        $this->aFields = array_merge(
+                array(// Системные
+            'id' => array('title' => 'Идентификатор', 'rules' => 'trim|required', 'search_ignore' => true),
+            'login' => array('title' => 'Логин', 'rules' => 'trim', 'search_ignore' => true),
+            'password' => array('title' => 'Пароль', 'rules' => 'trim', 'search_ignore' => true),
+            'user_role' => array('title' => 'Роль пользователя', 'rules' => 'trim'),
+            'created_date' => array('title' => 'Дата создания', 'rules' => 'trim', 'search_ignore' => true),
+            'edited_date' => array('title' => 'Дата изменения', 'rules' => 'trim', 'search_ignore' => true),
+            'avatar' => array('title' => 'Аватар', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'gif|jpg|png|bmp|jpeg', 'search_ignore' => true),
+            'search_union' => array('title' => 'Поле объединение для поиска', 'rules' => 'trim', 'search_ignore' => true),
+                ), array(// Общая информация
+            'email' => array('title' => 'Электронная почта', 'rules' => 'trim'),
+            'surname' => array('title' => 'Фамилия', 'rules' => 'trim'),
+            'name' => array('title' => 'Имя', 'rules' => 'trim'),
+            'middle_name' => array('title' => 'Отчество', 'rules' => 'trim'),
+            'birthday' => array('title' => 'Дада рождения', 'rules' => 'trim'),
+            'sex' => array('title' => 'Пол', 'ref' => 'sex', 'rules' => 'trim'),
+            'nationality' => array('title' => 'Национальность', 'rules' => 'trim'),
+            'citizenship' => array('title' => 'Гражданство', 'rules' => 'trim'),
+            'marital_status' => array('title' => 'Семейное положение', 'ref' => 'marital', 'rules' => 'trim'),
+            'autobiography' => array('title' => 'Автобиография', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+            'phone_number' => array('title' => 'Номер телефона', 'rules' => 'trim'),
+            'phone_work' => array('title' => 'Номер рабочего телефона', 'rules' => 'trim'),
+            'place_of_work' => array('title' => 'Место работы', 'ref' => 'subdivision', 'rules' => 'trim'),
+            'place_of_work_s' => array('title' => 'Место работы в профиле', 'ref' => 'subdivisionDUMK', 'rules' => 'trim'),
+            'post' => array('title' => 'Должность', 'ref' => 'post', 'rules' => 'trim'),
+            'post_s' => array('title' => 'Должность в профиле', 'ref' => 'post_s', 'rules' => 'trim'),
+            'job_start' => array('title' => 'Начало работы в организации', 'rules' => 'trim'),
+            'job_status' => array('title' => 'Статус', 'rules' => 'trim'),
+                ), array(// Паспортные данные
+            'document_type' => array('title' => 'Тип документа', 'rules' => 'trim'),
+            'document_number' => array('title' => 'Номер документа', 'rules' => 'trim'),
+            'date_of_issue' => array('title' => 'Дата выдачи', 'rules' => 'trim'),
+            'validity' => array('title' => 'Срок действия', 'rules' => 'trim'),
+            'issuing_authority' => array('title' => 'Орган выдачи', 'rules' => 'trim'),
+            'iin' => array('title' => 'ИИН', 'rules' => 'trim'),
+                ), array(// Состав семьи
+            'father' => array('title' => 'Отец', 'rules' => 'trim'),
+            'mother' => array('title' => 'Мать', 'rules' => 'trim'),
+            'brother' => array('title' => 'Братья/Сестры', 'rules' => 'trim'),
+            'wife' => array('title' => 'Муж/Жена', 'rules' => 'trim'),
+            'children' => array('title' => 'Дети', 'rules' => 'trim'),
+                ), array(// Адрес
+            'country' => array('title' => 'Страна', 'ref' => 'country', 'rules' => 'trim'),
+            'field' => array('title' => 'Область', 'ref' => 'field', 'rules' => 'trim'),
+            'region' => array('title' => 'Район', 'rules' => 'trim'),
+            'city' => array('title' => 'Город', 'ref' => 'city', 'rules' => 'trim'),
+            'street' => array('title' => 'Улица', 'rules' => 'trim'),
+            'house' => array('title' => 'Номер дома', 'rules' => 'trim'),
+            'apartment' => array('title' => 'Номер квартиры', 'rules' => 'trim'),
+                ), array(// Среднее образование
+            'middle_education' => array('title' => 'Среднее образование', 'rules' => 'trim'),
+            'middle_educational_institution' => array('title' => 'Учебное заведение', 'type' => 'array', 'rules' => ''),
+            'middle_location' => array('title' => 'Местонахождение', 'type' => 'array', 'rules' => ''),
+            'middle_year_of_entrance' => array('title' => 'Год поступления', 'type' => 'array', 'rules' => ''),
+            'middle_year_of_ending' => array('title' => 'Год окончания', 'type' => 'array', 'rules' => ''),
+                ), array(// Средне-специальное образоваине
+            'middle_spec_education' => array('title' => 'Средне-специальное образование', 'rules' => 'trim'),
+            'middle_spec_educational_institution' => array('title' => 'Учебное заведение', 'type' => 'array', 'rules' => ''),
+            'middle_spec_location' => array('title' => 'Местонахождение', 'type' => 'array', 'rules' => ''),
+            'middle_spec_year_of_entrance' => array('title' => 'Год поступления', 'type' => 'array', 'rules' => ''),
+            'middle_spec_year_of_ending' => array('title' => 'Год окончания', 'type' => 'array', 'rules' => ''),
+            'middle_spec_faculty' => array('title' => 'Факультет', 'type' => 'array', 'rules' => ''),
+                ), array(// Высшее образование
+            'high_education' => array('title' => 'Высшее образование', 'rules' => 'trim'),
+            'high_educational_institution' => array('title' => 'Учебное заведение', 'type' => 'array', 'rules' => ''),
+            'high_location' => array('title' => 'Местонахождение', 'type' => 'array', 'rules' => ''),
+            'high_year_of_entrance' => array('title' => 'Год поступления', 'type' => 'array', 'rules' => ''),
+            'high_year_of_ending' => array('title' => 'Год окончания', 'type' => 'array', 'rules' => ''),
+            'high_faculty' => array('title' => 'Факультет', 'type' => 'array', 'rules' => ''),
+                ), array(// Курсы
+            'courses_education' => array('title' => 'Курсы', 'rules' => 'trim'),
+            'courses_educational_institution' => array('title' => 'Учебное заведение', 'type' => 'array', 'rules' => ''),
+            'courses_location' => array('title' => 'Местонахождение', 'type' => 'array', 'rules' => ''),
+            'courses_year_of_entrance' => array('title' => 'Год поступления', 'type' => 'array', 'rules' => ''),
+            'courses_year_of_ending' => array('title' => 'Год окончания', 'type' => 'array', 'rules' => ''),
+                ), array(// Ученая степень
+            'rank' => array('title' => 'Категория', 'rules' => 'trim'),
+                ), array(// Стажировка
+            'traineeship' => array('title' => 'Стажировка', 'rules' => 'trim'),
+            'traineeship_country' => array('title' => 'Место прохождения (Страна)', 'ref' => 'country', 'type' => 'array', 'rules' => ''),
+            'traineeship_field' => array('title' => 'Область', 'type' => 'array', 'ref' => 'field', 'rules' => ''),
+            'traineeship_city' => array('title' => 'Город', 'type' => 'array', 'ref' => 'city', 'rules' => ''),
+            'traineeship_organization' => array('title' => 'Организация', 'type' => 'array', 'rules' => ''),
+            'traineeship_year_of_passing' => array('title' => 'Год прохождения стажировки', 'type' => 'array', 'rules' => ''),
+                ), array(// Выезд за рубеж
+            'departure' => array('title' => 'Выезд за рубеж', 'rules' => 'trim'),
+            'departure_country' => array('title' => 'Место выезда (Страна)', 'ref' => 'country', 'type' => 'array', 'rules' => ''),
+            'departure_city' => array('title' => 'Город', 'type' => 'array', 'ref' => 'city', 'rules' => ''),
+            'departure_target' => array('title' => 'Цель выезда за рубеж', 'type' => 'array', 'rules' => ''),
+            'departure_date_out' => array('title' => 'Дата выезда из Казахстана', 'type' => 'array', 'rules' => ''),
+            'departure_date_in' => array('title' => 'Дата возвращения в Казахстан', 'type' => 'array', 'rules' => ''),
+                ), array(// Наличие судимости
+            'conviction_status' => array('title' => 'Статус', 'ref' => 'boolean', 'rules' => 'trim'),
+            'conviction_date' => array('title' => 'Срок осуждения', 'type' => 'array', 'rules' => ''),
+            'conviction_article' => array('title' => 'Статья осуждения', 'type' => 'array', 'rules' => ''),
+            'conviction_location' => array('title' => 'Место исправительного учреждения', 'type' => 'array', 'rules' => ''),
+            'conviction_description' => array('title' => 'Примечание', 'type' => 'array', 'rules' => '')
+                ), array(// Опыт работы
+            'experience_organization' => array('title' => 'Наименование организации', 'type' => 'array', 'rules' => ''),
+            'experience_location' => array('title' => 'Место нахождение организации', 'ref' => 'country', 'type' => 'array', 'rules' => ''),
+            'experience_start' => array('title' => 'Начало работы в организации', 'type' => 'array', 'rules' => ''),
+            'experience_end' => array('title' => 'Дата окончания работы в организации', 'type' => 'array', 'rules' => ''),
+            'experience_reason_for_leaving' => array('title' => 'Причина увольнения', 'type' => 'array', 'rules' => ''),
+            'experience_characteristics' => array('title' => 'Характеристики по месту работы', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                ), array(// Предпринимательская деятельность
+            'business_status' => array('title' => 'Статус', 'rules' => 'trim'),
+            'business_location' => array('title' => 'Место предпринимательства', 'type' => 'array', 'rules' => ''),
+            'business_scope' => array('title' => 'Сфера', 'type' => 'array', 'rules' => ''),
+            'business_target' => array('title' => 'Цель', 'type' => 'array', 'rules' => ''),
+            'business_life' => array('title' => 'Срок предпринимательства', 'type' => 'array', 'rules' => ''),
+            'business_life_end' => array('title' => 'Срок окончания предпринимательства', 'type' => 'array', 'rules' => ''),
+                ), array(// Поощрения
+            'promotion_reason' => array('title' => 'Причина поощрения', 'type' => 'array', 'rules' => ''),
+            'promotion_whom' => array('title' => 'Кем', 'type' => 'array', 'rules' => ''),
+            'promotion_date' => array('title' => 'Дата поощрения', 'type' => 'array', 'rules' => ''),
+                ), array(// Взыскания
+            'penalties_reason' => array('title' => 'Причина взыскания', 'type' => 'array', 'rules' => ''),
+            'penalties_whom' => array('title' => 'Кем', 'type' => 'array', 'rules' => ''),
+            'penalties_date' => array('title' => 'Дата взыскания', 'type' => 'array', 'rules' => ''),
+                ), array(// Результат аттестации
+            'validation_start' => array('title' => 'Начало прохождения аттестации', 'type' => 'array', 'rules' => ''),
+            'validation_end' => array('title' => 'Окончание прохождения аттестации', 'type' => 'array', 'rules' => ''),
+            'validation_location' => array('title' => 'Место прохождения аттестации', 'type' => 'array', 'rules' => ''),
+            'validation_status' => array('title' => 'Результат', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+            'validation_result' => array('title' => 'Результат (Документ)', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                ), array(// Кадровый резерв
+            'talent_pool' => array('title' => 'Состоит', 'rules' => 'trim'),
+            'talent_pool_description' => array('title' => 'Примечание', 'rules' => 'trim'),
+                ), array(// Справки
+            'information' => array('title' => 'Справки', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                ), array(// Отпуск
+            'accommodation_start' => array('title' => 'Начала даты получения трудового отпуска', 'type' => 'array', 'rules' => ''),
+            'accommodation_end' => array('title' => 'Окончание даты трудового отпуска', 'type' => 'array', 'rules' => ''),
+            'accommodation_remaining' => array('title' => 'Оставшееся количество дней отпуска', 'type' => 'array', 'rules' => ''),
+                ), array(// Документы
+            'documentation' => array('title' => 'Документы', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                ), array(// Примечания по сотруднику
+            'notes' => array('title' => 'Примечания', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                ), array(// Должностная инструкция
+            'job_description' => array('title' => 'Документы', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                )
+        );
+    }
+
+    public function getSearchIgnoreFields() {
+        $aFields = $this->aFields;
+        foreach ($aFields AS $sK => $aV) {
+            if (isset($aV['search_ignore'])) {
+                unset($aFields[$sK]);
+            }
+        }
+        return $aFields;
+    }
+
+    /**
+     *
+     */
+    function get_item($iId = 0, $aExpr = array()) {
+        $this->db->select('*')->from($this->table);
+
+        $this->db->where('id', $iId);
+
+        $q = $this->db->get();
+
+        $aItem = $q->row_array();
+
+        if (count($aItem)) {
+            foreach ($this->aFields AS $sKey => $aV) {
+                if (isset($aV['type']) && $aV['type'] == 'file' && !empty($aItem[$sKey])) {
+                    $aItem[$sKey] = APP_UPLOADS_FILES_HREF . '/' . $aItem[$sKey];
+                } else if (isset($aV['type']) && $aV['type'] == 'array') {
+                    $aItem[$sKey] = json_decode($aItem[$sKey], true);
+                }
+            }
+        }
+
+        return $aItem;
+    }
+
+    /**
+     *
+     */
+    function get_item_notNullable($iId = 0, $aExpr = array()) {
+        $this->db->select('*')->from($this->table);
+
+        $this->db->where('id', $iId);
+
+        $q = $this->db->get();
+
+        $aItem = $q->row_array();
+
+        if (count($aItem)) {
+            foreach ($this->aFields AS $sKey => $aV) {
+                if (isset($aV['type']) && $aV['type'] == 'file' && !empty($aItem[$sKey])) {
+                    $aItem[$sKey] = APP_UPLOADS_FILES_HREF . '/' . $aItem[$sKey];
+                } else if (isset($aV['type']) && $aV['type'] == 'array') {
+                    $aItem[$sKey] = json_decode($aItem[$sKey], true);
+                    if (!count($aItem[$sKey]) || empty($aItem[$sKey])) {
+                        $aItem[$sKey] = array('');
+                    }
+                }
+            }
+        }
+
+//        echo '<pre>';
+//        print_r($aItem['middle_educational_institution']);
+//        exit;
+
+        return $aItem;
+    }
+
+    /**
+     *
+     */
+    public function save($iId) {
+        $iId = (int) $iId;
+
+        $aOldValue = $this->get_item($iId);
+
+        $this->validate_model->setParems($this->aFields, $aOldValue);
+        if ($this->validate_model->is_valid()) {
+            if (count($aOldValue)) {
+                $this->db->update(
+                        $this->table, $this->validate_model->getFields(), array('id' => $iId)
+                );
+                return $iId;
+            } else {
+                $this->db->insert(
+                        $this->table, $this->validate_model->getFields()
+                );
+//        print_r($this->db->last_query());
+                return $this->db->insert_id();
+            }
+        } else {
+            return $this->validate_model->getErrors();
+        }
+    }
+
+    public function remove($iID) {
+        $this->db->delete($this->table, array('id' => $iID));
+    }
+
+    public function get_list($iLimit = 0, $iOffset = 0, $sOrderBy = 'id DESC', $aExpr = array()) {
+        $this->db->select('u.*, p.title as post_title')->from('users u, ref_posts p');
+        $this->db->where('u.post = p.id');
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        if ($sOrderBy) {
+            $this->db->order_by($sOrderBy);
+        }
+
+        if ($iLimit)
+            $this->db->limit($iLimit);
+
+        if ($iOffset)
+            $this->db->offset($iOffset * $iLimit);
+
+        $q = $this->db->get();
+
+        $aData = array();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aData[] = $aItem;
+            }
+        }
+
+        return $aData;
+    }
+
+    public function get_list_count($aExpr = array()) {
+        $this->db->select('*');
+        $this->db->from('users');
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        $q = $this->db->get();
+
+        return $q->num_rows();
+    }
+
+    /**
+     *
+     */
+    function generate_password($sPass, $sSalt) {
+        return md5(sha1($sPass) . $sSalt);
+    }
+
+    /**
+     *    Auth user by Login and Password hash
+     *    @param string $sEmail
+     *    @param string $sPass    - Hash of password, generated by $this->generate_password
+     *    @return array user_data | else:0
+     */
+    function check_user($sLogin, $sPass) {
+        $aResult = $this->get_user_data(array('login' => $sLogin, 'password' => $sPass));
+
+        return $aResult;
+    }
+
+    function check_email($sEmail) {
+        $aResult = $this->get_user_data(array('email' => $sEmail));
+
+        return $aResult;
+    }
+
+    function check_hash($sHash) {
+        $aResult = $this->get_user_data(array('hash' => $sHash));
+
+        return $aResult;
+    }
+
+    /**
+     *    Is exists user with $sLogin OR $sEmail
+     *    @param string $sLogin
+     *    @param string $sEmail
+     *    @return integer         - Count of users with same sLogin or E-Mail
+     *    TODO: Caching...
+     */
+    function check_exists($sLogin, $sEmail) {
+        $this->db->or_where(array('login' => $sLogin, 'email' => $sEmail));
+        return $this->db->count_all_results('users');
+    }
+
+    /**
+     *    Регистрация/Обновление регистрационных данных о пользователе
+     *    @param array $aUserInfo
+     *    @param int $JustDoUpdateDataOfThisUserID - id of User whose userdata need updating
+     *    @return integer         - New user ID
+     */
+    function perform_register($aUserInfo, $JustDoUpdateDataOfThisUserID = 0) {
+        if (!$JustDoUpdateDataOfThisUserID) {
+            $this->db->insert('users', array(
+                'login' => $aUserInfo['login'],
+                'password' => $aUserInfo['password'],
+                'email' => $aUserInfo['email'],
+                'fullname' => $aUserInfo['fullname']
+            ));
+            $iUserID = $this->db->insert_id();
+        } else {
+            $iUserID = $JustDoUpdateDataOfThisUserID;
+            $this->db->update('users', array('fullname' => $aUserInfo['fullname']), array('id' => $JustDoUpdateDataOfThisUserID));
+        }
+
+        return $iUserID;
+    }
+
+    function update_userdata($aNewUserData, $iTargetUserID) {
+        return $this->perform_register($aNewUserData, $iTargetUserID);
+    }
+
+    public function save_user_settings($iUserID, $aSettings) {
+        $this->undefine_user_security($iUserID);
+        $this->define_user_security($iUserID, $aSettings['security']);
+    }
+
+    /**
+     *
+     */
+    function get_user_data($aParams) {
+        $this->db->select('u.id user_id,
+                              u.login,
+                              u.email,
+                              u.fullname,
+                              u.is_admin,
+                              u.user_role,'
+                . 'u.' . implode(',u.', array_keys($this->getSearchIgnoreFields()))
+        );
+
+        if (isset($aParams['user_id']))
+            $this->db->where(array('u.id' => (int) $aParams['user_id']));
+
+        if (isset($aParams['login']))
+            $this->db->where(array('u.login' => $aParams['login']));
+
+        if (isset($aParams['password']))
+            $this->db->where(array('u.password' => $aParams['password']));
+
+        $this->db->from('users u');
+        $oQuery = $this->db->get();
+
+        $aResult = $oQuery->row_array();
+
+        return $aResult;
+    }
+
+    function update_custom_fields($sTargetId, $aUserInfo) {
+        $this->db->update(
+                $this->table, $aUserInfo, array('id' => $sTargetId)
+        );
+        return $sTargetId;
+    }
+
+}

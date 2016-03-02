@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<script src="/static/js/modernizr.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dumk</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id="home">
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="home.html" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+        </ul>
+        <section class="top-bar-section">
+            <ul class="left">
+                <li class="has-dropdown">
+                    <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                    <ul class="dropdown">
+                        <li class="active">
+                            <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="right">
+                <li>
+                    <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
+                </li>
+                <li>
+                    <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
+                </li>
+                <li>
+                    <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Арман Ахметов</a>
+                    <ul class="dropdown">
+                        <li><a href="my-profile.html">Профиль</a></li>
+                        <li><a href="#">Выход из системы</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </nav>
+    <div class="large-8 columns large-centered text-center" id="welcome">
+        <div class="row">
+            <div class="large-12 columns large-centered">
+                <div class="row">
+                    <h1 class="text-center">Восстановление пароля</h1>
+                    <h2 class="text-center">Введите Email адрес:</h2>
+                </div>
+                <div class="row">
+                    <div class="recovery-input large-12">
+                        <form action="" data-abide>
+                            <div class="row">
+                            <input type="email" name="recovery_email" required pattern="[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]+" placeholder="Email адрес">
+                            <small class="error">Неккоректный email</small>
+                                </div>
+                            <div class="row">
+                            <input type="submit" class="button secondary" value="Отправить">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <footer class="text-center">
+        <small>DUMK. Copyright © 2016. All rights reserved</small>
+    </footer>
+
+<script src="/static/js/vendor.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<script src="/static/js/app.js"></script>
+<!-- <script src="js/tabs.js"></script> -->
+</body>
+
+</html>

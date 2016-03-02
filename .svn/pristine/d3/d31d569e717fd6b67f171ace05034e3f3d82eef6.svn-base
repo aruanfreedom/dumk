@@ -1,0 +1,229 @@
+<div class="large-9 columns right right-content text-left">
+    <input class="search" type="text" placeholder="Поиск по реестру сотрудников...">
+
+    <div>
+        <div class="large-4 left ">
+            {if $subdivision.parent_id == ''}
+                {$sUrlSubdiv = "parent_id="|cat: $subdivision.id}
+            {else}
+                {$sUrlSubdiv = "sub_id="|cat:$subdivision.parent_id|cat:"&parent_id="|cat:$subdivision.id}
+            {/if}
+            <p>{if $subdivision.parent_id == ''}{$subdivision.title}{else}{$subdivision.parent_name}{/if}</p>
+            {if $subdivision.parent_id != ''}
+            <small>{$subdivision.title}</small>
+            {/if}
+        </div>
+        <div class="large-8 right">
+            <a href="/reports/download/users?{$sUrlSubdiv}" class="structure_download right"><img src="/static/img/icons/download.png" alt="download" class="download-all" title="{$oL->get('Скачать')}"></a>
+            {if $subdivision.type == "center"}
+                <button class="button secondary right" onclick="location.href='/subdivision/view/{$subdivision.id}'">{$oL->get('О центральном аппарате')}</button>
+            {/if}
+            {if $subdivision.type == "agency"}
+                <button class="button secondary right" onclick="location.href='/subdivision/view/{$subdivision.id}'">{$oL->get('О представительстве')}</button>
+            {/if}
+            {if $subdivision.type == "branch"}
+                <button class="button secondary right" onclick="location.href='/subdivision/view/{$subdivision.id}'">{$oL->get('О филиале')}</button>
+            {/if}
+            {if $subdivision.type == "mosque"}
+                <button class="button secondary right" onclick="location.href='/subdivision/view/{$subdivision_first}'">{$oL->get('О филиале')}</button>
+                <button class="button secondary right" onclick="location.href='/subdivision/view/{$subdivision.id}'">{$oL->get('О мечети')}</button>
+            {/if}
+        </div>
+    </div>
+    <div class="table">
+        <div class="thead">
+            <div class="tr header-table">
+                <div class="td numbering">№</div>
+                <div class="td fio action_input" data-type="sort" data-field="surname" data-value="ASC" >{$oL->get('Ф.И.О.')}</div>
+                <div class="td iin">{$oL->get('ИИН')}</div>
+                <div class="td number-phone action_input" data-type="sort" data-field="phone_number" data-value="ASC" >{$oL->get('Номер телефона')}</div>
+                <div class="sort-click higher td">
+                    <b>{$oL->get('Высшее образование')}</b>
+                    <span class="sorting">
+                        <p>{$oL->get('Да')}</p><input class="action_input" data-type="filter" data-field="high_education" type="checkbox" name="Yes">
+                        <p>{$oL->get('Нет')}</p><input class="action_input" data-type="filter" data-field="high_education" type="checkbox" name="No">
+                    </span>
+                </div>
+                <div class="sort-click td position">
+                    <b>{$oL->get('Должность')}</b>
+                    <span class="sorting width-text">
+                        {foreach from=$staff_posts item=sItem key=iter}
+                            <p>{$sItem}</p><input class="action_input" data-type="filter" data-field="post" type="checkbox" name="{$iter}">
+                        {/foreach}
+                    </span>
+                </div>
+                <div class="sort-click td status">
+                    <b>{$oL->get('Статус')}</b>
+                    {$status_class = ['Работает' => 'working', 'В отпуске' => 'vacation', 'Уволен' => 'fired']}
+                    <span class="sorting">
+                        {foreach from=$status_class item=aItem key=iter}
+                            <p>{$oL->get({$iter})} </p><input class="action_input" data-type="filter" data-field="job_status" type="checkbox" name="{$aItem}">
+                        {/foreach}
+                    </span>
+                </div>
+            </div>
+            <div class="fixed-top">
+                <div class="tbody">
+                    {$boolean = ['Yes' => 'Да', 'No' => 'Нет']}
+                    {foreach from=$staff item=aItem key=iter}
+                    <div class="tr">
+                        <div class="td numbering">{$aItem.id}</div>
+                        <div class="td fio text-left" onclick="location.href='/account/view/{$aItem.id}';return false;">{$aItem.surname} {$aItem.name} {$aItem.middle_name}</div>
+                        <div class="td iin">{$aItem.iin}</div>
+                        <div class="td number-phone">{$aItem.phone_number}</div>
+                        <div class="td higher">{$boolean[$aItem.high_education]}</div>
+                        <div class="td position text-left">{$aItem.post_title}</div>
+                        <div class="td {$status_class[$aItem.job_status]} status text-left">{$oL->get($aItem.job_status)}</div>
+                    </div>
+                    {/foreach}
+                </div>
+            </div>
+            {$iPageCount = ($staff_total / $staff_on_page)|ceil}
+            {if $iPageCount > 1}
+            <div class="large-9 right columns pagination-centered">
+                <ul class="pagination">
+
+                </ul>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var iPage = 0;
+var aFilters = {};
+var aSort = {};
+var sSearch = "";
+var setTimeoutId = 0;
+
+    $(document).ready(function () {
+        setPagination(1, {$staff_on_page}, {$staff_total});
+        //setTree();
+        bindSearch();
+    });
+    
+    function addUserContent(data){
+        var elem = "";
+        var status_class = {literal}{'Работает' : 'working', 'В отпуске' : 'vacation', 'Уволен' : 'fired'}{/literal};
+        var boolean = {literal}{'Yes' : 'Да', 'No' : 'Нет'}{/literal};
+        for(var item in data.data){
+            elem += "<div class=\"tr\"><div class=\"td numbering\">" + data.data[item].id + "</div>\
+            <div class=\"td fio text-left\" onclick=\"location.href='/account/view/{$aItem.id}';return false;\">" + data.data[item].surname + " " + data.data[item].name + " " + data.data[item].middle_name + "</div>\
+            <div class=\"td iin\">" + data.data[item].iin + "</div>\
+            <div class=\"td number-phone\">" + data.data[item].phone_number + "</div>\
+            <div class=\"td higher\">" + boolean[data.data[item].high_education] + "</div>\
+            <div class=\"td position text-left\">" + data.data[item].post_title + "</div>\
+            <div class=\"td " + status_class[data.data[item].job_status] + " status text-left\">" + data.data[item].job_status + "</div>\
+            </div>";
+        }
+        
+        $("div.table div.tbody").empty().append(elem);
+
+        setPagination(iPage, data.row_on_page, data.total);
+    }
+    
+    function SearchAction(){
+        sSearch = $("div.right-content .search").val();
+        if(sSearch.length === 0 || sSearch.length > 2){
+            iPage = 0;
+            aFilters = {};
+            $(".action_input[type=checkbox]").prop('checked', false);
+            $.post( "{$url}/filter", { parent_id:{$current_id}, page: iPage, filter: aFilters, sort: aSort, search: sSearch }, function( data ) {
+                if(data.success === 1){
+                    addUserContent(data);
+                }
+            }, "json");
+        }
+    }
+    
+    function bindSearch(){
+        $("div.right-content .search").unbind('keyup').bind('keypress', function(event){
+            clearTimeout(setTimeoutId);
+            setTimeoutId = setTimeout(SearchAction, 1500);
+        });
+    }
+    
+    function bindActions(){
+        $(".action_input").unbind('click').bind('click', function(event){
+            var is_checked = false;
+            var sUrl = "?{$sUrlSubdiv}&search=" +sSearch;;
+            switch($(this).data("type")){
+                case "sort":
+                    var sort_name = $(this).data('field');
+                    var sort_value = $(this).data('value');
+                    sUrl += "&sort[name]=" + sort_name;
+                    sUrl += "&sort[value]=" + sort_value;
+                    aSort = { name: sort_name, value: sort_value };
+                    if($(this).data('value') === "ASC"){
+                        $(this).data('value', "DESC");
+                        $(this).removeClass('asc').addClass('desc');
+                    }else{
+                        $(this).data('value', "ASC");
+                        $(this).removeClass('desc').addClass('asc');
+                    }
+                    break;
+                    
+                case "filter":
+                    $('input[type=checkbox].action_input').each(function(){
+                        if($(this).prop('checked')){
+                            sUrl += "&filter[" + $(this).attr('name') + "]=" + $(this).data('field');
+                            aFilters[$(this).attr('name')] = $(this).data('field');
+                        }else{
+                            delete(aFilters[$(this).attr('name')]);
+                        }
+                    });
+                    break;
+                    
+                case "page":
+                    iPage = $(this).data('page');
+                    break;
+            }
+            
+            $('.structure_download').attr('href', '/reports/download/users' + sUrl);
+            
+            is_checked = true;
+            $.post( "{$url}/filter", { parent_id:{$current_id}, page: iPage, filter: aFilters, sort: aSort }, function( data ) {
+                if(data.success === 1){
+                    addUserContent(data);
+                }
+            }, "json");
+        });
+    }
+    
+    function setPagination(iPage, iOnPage, iTotal){
+        var elem = '';
+        var iPageCount = Math.ceil(iTotal / iOnPage);
+        
+        if(iPage > 3){
+            elem += '<li class="arrow"><a href="#" class="action_input" data-type="page" data-page="1" >&laquo;</a></li>';
+        }
+        
+        var start = iPageCount > 5 && iPage > 2 ? iPage - 2 : 1;
+        var end = start + 5 < iPageCount ? start + 5 : iPageCount;
+
+        for (iter=start; iter <= end; iter++ ){
+            elem += '<li class="' + (iter === iPage ? "current" : "") + '" ><a href="#" class="action_input" data-type="page" data-page="' + iter + '" >' + iter + '</a></li>';
+        }
+        
+        if(iPageCount > 5 && iPage < iPageCount - 3){
+            elem += '<li class="arrow"><a href="#" class="action_input" data-type="page" data-page="' +  iPageCount + '" >&raquo;</a></li>';
+        }
+        
+        $('.pagination').empty().append(elem);
+        
+        bindActions();
+    }
+
+</script>
+<script>
+    (function ($) {
+        $(window).load(function () {
+            $(".fixed-top, .scroll-menu").mCustomScrollbar({
+                setWidth: true,
+                setLeft: 0,
+                theme: "dark"
+            });
+        });
+    })(jQuery);
+</script>

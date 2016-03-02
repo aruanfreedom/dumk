@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<script src="/static/js/custom.modernizr.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dumk</title>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/tabs.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/jquery.tabslet.min.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/js/tree.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id="{block name='contexts'}{/block}">
+	{block name="header"}{/block}
+	{block name="content"}{/block}     
+<script>
+    document.write('<script src=' +
+        ('__proto__' in {} ? '/static/js/zepto' : '/static/js/jquery') +
+        '.js><\/script>')
+</script>
+<script src="/static/js/vendor.js"></script>
+<script>
+    $(document).foundation();
+</script>
+{block name="footer"}{/block}
+</div>
+<script>
+{*    $('#tab-container').tabslet();*}
+</script>
+{block name="connect_js"}{/block}
+
+</body>
+
+</html>

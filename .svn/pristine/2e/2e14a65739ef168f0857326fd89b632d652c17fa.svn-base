@@ -1,0 +1,33 @@
+<?php
+
+class Config_model extends CI_Model {
+
+	function __construct()
+	{
+		CI_Model::__construct();
+	}
+	
+	public function get_config()
+	{
+		$this->db->select('*');
+		$this->db->from('data_bank');
+		
+		$oQuery = $this->db->get();
+		
+		$aRes = array();
+		
+		if ($oQuery->num_rows() > 0)
+		{
+			foreach ($oQuery->result_array() as $aItem)
+			{
+				$aRes[$aItem['key']] = $aItem['value'];
+			}
+		}
+		return $aRes;
+	}
+	
+	public function set_config($sKey, $sValue)
+	{
+		$this->db->where('key', $sKey)->update('data_bank', array('`value`'=>$sValue));
+	}
+}

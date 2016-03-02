@@ -1,0 +1,81 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_staff{/block}
+
+{block name="header"}
+    {assign "page_context" "page_staff"}
+      {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="top-link">
+        <a href="/staff/1" class="active">{$oL->get('Кадры')}</a>
+        <a href="#">{$oL->get('Учебные заведения и учащиеся')}</a>
+        <a href="#">{$oL->get('Осужденные экстремисты')}</a>
+        <div class="text-right right maps-text">
+            <a href="/map"><img src="/static/img/icons/map-back.png" alt="map"> Карта</a>
+        </div>
+    </div>
+    <div id="tab-container" class="tab-container">
+        <ul class='etabs'>
+          <li class='tab active'><a href="/staff/{$subdivision.id}" >{$oL->get('Реестр сотрудников')}</a></li>
+          <li class='tab'><a href="/reports" >{$oL->get('Отчеты и статистика')}</a></li>
+          <li class='tab'><a href="/account/create" >{$oL->get('Добавить сотрудника')} <span class="plus">+</span></a></li>
+        </ul>
+        <div id="tabs-emploayee" class="tab-wrapper">
+            <div class="large-3 left left-block text-left">
+                <div class="row tree-block">
+                    <p>{$oL->get('Организационная структура')}
+                        <a href="/reports/download/structure" ><img src="/static/img/icons/download.png" title="{$oL->get('Скачать')}" alt="download"></a>
+                    </p>
+                    <ul class="mtree">
+                        {$current_subd_title = ''}
+                        {foreach from=$subdivisions item=aItem key=iter}
+                            <li class="{if $aItem.id == $current_id or $aItem.id == $subdivision_first}mtree-active{/if}"><a href="/staff/{$aItem.id}">{$aItem.title}{if $aItem['type'] == "branch"}<span class="arrow"></span>{/if}</a>
+                                {$current_subd_title = $aItem.title}
+                                {if $aItem.type == "branch" AND $subdivision_children|@count > 0 && ($aItem.id === $current_id OR $aItem.id === $subdivision_first)}
+                                    <ul class="tree-search">
+                                        <select name="select_area">
+                                            <option name="select-rayon">{$oL->get('Выберете район')}</option>
+                                            {foreach from=$subdivision_children item=aChild key=iter}
+                                                {if $aChild.type == "area"}
+                                                    <option value="{$aChild.id}">{$aChild.title}</option>
+                                                {/if}
+                                            {/foreach}
+                                        </select>
+                                        <input class="search" type="text" placeholder="{$oL->get('Поиск мечети')}"/>
+                                        <div class="scroll-menu">
+                                        {foreach from=$subdivision_children item=aChild key=iter}
+                                            {if $aChild.type == "mosque"}
+                                                <li data-parent="{$aChild.parent_id}"><a href="/staff/{$aChild.id}" >{$aChild.title}</a></li>
+                                            {/if}
+                                        {/foreach}
+                                        </div>
+                                    </ul>
+                                {/if}
+                            </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+                            
+            {include "mod_staff/page_staff_center.tpl"}
+            
+            <div class="clearfix"></div>
+                                </div>
+
+    </div>
+</div>
+
+{/block}{* content *}
+
+{block name="footer"}
+
+{/block}
+
+
+{block name="connect_js"}
+{/block}

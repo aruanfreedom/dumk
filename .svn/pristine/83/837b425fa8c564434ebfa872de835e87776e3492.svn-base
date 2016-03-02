@@ -1,0 +1,74 @@
+<?php
+
+class Geo_model extends CI_Model {
+
+      function __construct()
+      {
+            CI_Model::__construct();
+      }
+      
+      
+      /**
+       *    Get towns list or one item by iTownID
+       */
+      function get_towns_list($iTownID = 0, $sCountryCode = '')
+      {
+            $this->db->select('id, name, country_code');
+            
+            if ($iTownID)
+                  $this->db->where('id = '.$iTownID);
+                  
+            if ($sCountryCode)
+                  $this->db->where('country_code = \''.$sCountryCode.'\'');
+                  
+            $this->db->order_by('name', 'asc');
+            
+            $this->db->from('towns');
+            
+            $oQuery = $this->db->get();
+            
+            $aList = array();
+            
+            if ($oQuery->num_rows() > 0)
+                  foreach ($oQuery->result_array() as $aItem)
+                  {
+                        $aList[$aItem['id']] = array
+                        (
+                              'name'=>$aItem['name'],
+                              'country_code'=>$aItem['country_code']
+                        );
+                  }
+                  
+            return $aList;
+      }
+      
+      /**
+       *    Get countries list or one item by sCountryCode
+       */
+      function get_countries_list($sCountryCode = '', $sLang = 'ru')
+      {
+            $this->db->select('code, name_'.$sLang.' as name');
+            
+            if ($sCountryCode)
+                  $this->db->where('code = '.$sCountryCode);
+            
+            $this->db->order_by('name_'.$sLang, 'asc');
+            
+            $this->db->from('countries');
+            
+            $oQuery = $this->db->get();
+
+            $aList = array();
+            
+            if ($oQuery->num_rows() > 0)
+                  foreach ($oQuery->result_array() as $aItem)
+                  {
+                        $aList[$aItem['code']] = array
+                        (
+                              'name'=>$aItem['name']
+                        );
+                  }
+                  
+            return $aList;
+      }
+} 

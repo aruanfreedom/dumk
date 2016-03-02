@@ -1,0 +1,21 @@
+<?php
+
+$lang['required'] = 'Поле &laquo;%s&raquo; обязательно для заполнения';
+$lang['isset'] = 'Поле &laquo;%s&raquo; должно содержать значение';
+$lang['valid_email'] = 'В поле &laquo;%s&raquo; должен быть введен корректный адрес электронной почты';
+$lang['valid_emails'] = 'В поле &laquo;%s&raquo; должны быть введены корректные адреса электронной почты';
+$lang['valid_url'] = 'В поле &laquo;%s&raquo; должна содержаться корректная ссылка';
+$lang['valid_ip'] = 'В поле &laquo;%s&raquo; должен содержаться корректный IP';
+$lang['min_length'] = 'Длина поля &laquo;%s&raquo; должна быть не меньше &laquo;%s&raquo; символов';
+$lang['max_length'] = 'Длина поля &laquo;%s&raquo; не может превышать &laquo;%s&raquo; символов';
+$lang['exact_length'] = 'Длина поля &laquo;%s&raquo; должна быть равной &laquo;%s&raquo; символам';
+$lang['alpha'] = 'Поле &laquo;%s&raquo; может содержать только символы алфавита';
+$lang['alpha_numeric'] = 'Поле &laquo;%s&raquo; может содержать только символы алфавита и цифры';
+$lang['alpha_dash'] = 'Поле &laquo;%s&raquo; может содержать только символы алфавита и цифры, подчеркивания и тире';
+$lang['numeric'] = 'Поле &laquo;%s&raquo; должно содержать только цифры';
+$lang['is_numeric'] = 'Поле &laquo;%s&raquo; должно содержать только числовые символы';
+$lang['integer'] = 'Поле &laquo;%s&raquo; должно содержать целое число';
+$lang['matches'] = 'Значение поля &laquo;%s&raquo; не совпадает со значением поля &laquo;%s&raquo;';
+$lang['is_natural'] = 'Поле &laquo;%s&raquo; должно содержать только положительные числа';
+$lang['is_natural_no_zero'] = 'Поле &laquo;%s&raquo; должно содержать только число больше нуля';
+?>

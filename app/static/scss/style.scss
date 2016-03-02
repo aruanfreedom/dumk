@@ -248,6 +248,9 @@ nav {
 					border-radius: 3px;
 					padding: 5px;
 				}
+				.selectings{
+					display: none;
+				}
 				p {
 					padding: 7px 0;
 				}
@@ -452,6 +455,14 @@ nav {
 		.right-content {
 			height: 100%;
 			overflow: hidden;
+			.vertical{
+				display: table;
+				height: 50px;
+			}
+			.child-ver{
+				vertical-align: middle;
+				display: table-cell;
+			}
 			.fixed-top {
 				height: 100%;
 				margin-bottom: 0;
@@ -1024,6 +1035,10 @@ nav {
 			border-radius: 3px;
 			padding: 5px;
 		}
+		.selectings{
+			    border: 1px solid rgb(204, 204, 204);
+					display: none;
+				}
 		p {
 			color: #393939;
 			font-size: 1em;

@@ -1,0 +1,284 @@
+<?php
+
+class Subdivisions_model extends CI_Model
+{
+    protected $table = 'subdivision';
+    private $aFields = array();
+
+    function __construct() {
+        CI_Model::__construct();
+        $this->load->model('validate_model');
+        $this->getFields();
+    }
+
+    private function getFields() {
+        $this->aFields = array_merge(
+                array(// Системные
+            'id' => array('title' => 'Идентификатор', 'rules' => 'trim|required', 'search_ignore' => true),
+            'parent_id' => array('title' => 'Родительское подразделение', 'rules' => 'trim', 'search_ignore' => true),
+            'title' => array('title' => 'Назваине', 'rules' => 'trim'),
+            'type' => array('title' => 'Тип подразделения', 'rules' => 'trim', 'search_ignore' => true),
+            'created_date' => array('title' => 'Дата создания', 'rules' => 'trim', 'search_ignore' => true),
+            'edited_date' => array('title' => 'Дата изменения', 'rules' => 'trim', 'search_ignore' => true),
+                ), array(// Местонахождение
+            'field' => array('title' => 'Область', 'rules' => 'trim'),
+            'city' => array('title' => 'Город / Населенный пункт', 'rules' => 'trim'),
+            'region' => array('title' => 'Район', 'rules' => 'trim'),
+            'street' => array('title' => 'Улица', 'rules' => 'trim'),
+            'house' => array('title' => 'Дом', 'rules' => 'trim'),
+            'office' => array('title' => 'Офис', 'rules' => 'trim'),
+                ), array(// Регистрационные данные
+            'reg_date' => array('title' => 'Дата регистрации', 'rules' => 'trim'),
+            'bin' => array('title' => 'БИН', 'rules' => 'trim')
+                ), array(// Руководитель
+            'surname' => array('title' => 'Фамилия', 'rules' => 'trim'),
+            'name' => array('title' => 'Имя', 'rules' => 'trim'),
+            'middle_name' => array('title' => 'Отчество', 'rules' => 'trim'),
+            'phone_number' => array('title' => 'Номер телефона', 'rules' => 'trim'),
+            'birthday' => array('title' => 'Год рождения', 'rules' => 'trim'),
+            'post' => array('title' => 'Должность', 'rules' => 'trim'),
+            'phone_work' => array('title' => 'Номер рабочего телефона', 'rules' => 'trim'),
+            'email2' => array('title' => 'Электронная почта', 'rules' => 'trim'),
+                ), array(// Контактная информация
+            'phone' => array('title' => 'Номер телефона', 'rules' => 'trim'),
+            'email' => array('title' => 'Электронная почта', 'rules' => 'trim'),
+                ), array(// Сотрудники
+            'employee_count' => array('title' => 'Количество сотрудников', 'rules' => 'trim'),
+            'capacity' => array('title' => 'Вместимость', 'rules' => 'trim'),
+            'year_built' => array('title' => 'Год постройки', 'rules' => 'trim'),
+            'information' => array('title' => 'Дополнительная информация', 'rules' => 'trim'),
+                ), array(// Структура филиала
+            'structure' => array('title' => 'Структура', 'rules' => 'trim'),
+                ), array(// «Документы»
+            'documents' => array('title' => 'Документы', 'rules' => 'trim', 'type' => 'file', 'allowed_types' => 'doc|docx|pdf', 'search_ignore' => true),
+                )
+        );
+    }
+
+    public function get_branch_with_employees_count() {
+        //Филиалы
+        $this->db->select('*');
+        $this->db->from($this->table);
+
+        $this->db->order_by('id');
+
+//        $this->db->where('type', 'branch');
+        $this->db->where('type != ', 'mosque');
+        $this->db->where('type != ', 'area');
+//        print_r($this->db->last_query());
+
+        $q = $this->db->get();
+
+        $aBranch = array();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['employee_count'] = 0;
+                $aBranch[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Мечети
+        $this->db->select('id, parent_id, path');
+        $this->db->from($this->table);
+
+        $this->db->where('path && \'{' . implode(',', $aIds) . '}\'::bigint[]', null);
+        $this->db->where('parent_id is not null', null);
+        $this->db->where('type', 'mosque');
+
+        $aMosque = array();
+
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['branch'] = substr($aItem['path'], 1, strpos($aItem['path'], ',') - 1);
+                $aMosque[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Пользователи
+        $this->db->select('id, place_of_work, ');
+        $this->db->from('users');
+
+        $this->db->where('place_of_work = ANY(\'{' . implode(',', $aIds) . '}\'::int[])', null);
+
+        $q = $this->db->get();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $key => $value) {
+                if (array_key_exists($value['place_of_work'], $aMosque)) {
+                    $aBranch[$aMosque[$value['place_of_work']]['branch']]['employee_count'] ++;
+                } else if (array_key_exists($value['place_of_work'], $aBranch)) {
+                    $aBranch[$value['place_of_work']]['employee_count'] ++;
+                }
+            }
+        }
+
+        return $aBranch;
+    }
+
+    public function getSearchIgnoreFields() {
+        $aFields = $this->aFields;
+        foreach ($aFields AS $sK => $aV) {
+            if (isset($aV['search_ignore'])) {
+                unset($aFields[$sK]);
+            }
+        }
+        return $aFields;
+    }
+
+    /**
+     *
+     */
+    function get_item($iId = 0, $aExpr = array()) {
+//        $iId = 7;
+        $this->db->select('*')->from($this->table);
+
+        $this->db->where('id', $iId);
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        $q = $this->db->get();
+
+        $aItem = $q->row_array();
+
+        //Если не корневой
+        if (count($aItem) &&!empty($aItem['parent_id'])) {
+            $this->db->select('*')->from($this->table);
+            $sBranchId = substr($aItem['path'], 1, strpos($aItem['path'], ',') - 1);
+            $this->db->where('id', $sBranchId);
+            $q = $this->db->get();
+            $aItemHigh = $q->row_array();
+            $aItem['parent_name'] = $aItemHigh['title'];
+        }
+
+//        print_r($aItem);
+        return $aItem;
+    }
+
+    /**
+     *
+     */
+    function get_item_width_titles($iId = 0, $aExpr = array()) {
+//        $iId = 7;
+        $this->db->select('s.*, r.title as field_title, c.title as city_title')->from($this->table . ' s LEFT JOIN regions r ON r.id = s.field::integer LEFT JOIN cities c ON c.id = s.city::integer');
+
+        $this->db->where('s.id', $iId);
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        $q = $this->db->get();
+
+        $aItem = $q->row_array();
+//        print_r($this->db->last_query());
+        //Если не корневой
+        if (count($aItem) && !empty($aItem['parent_id'])) {
+            $this->db->select('*')->from($this->table);
+            $this->db->where('id', $aItem['parent_id']);
+            $q = $this->db->get();
+            $aItemHigh = $q->row_array();
+            $aItem['parent_name'] = $aItemHigh['title'];
+        }
+
+//        print_r($aItem);
+        return $aItem;
+    }
+
+    /**
+     *
+     */
+    function get_item_children($iId = 0, $aExpr = array()) {
+        $this->db->select('*')->from($this->table);
+
+        $this->db->where('parent_id is not null ', null);
+
+        $this->db->where('path && \'{' . $iId . '}\'::bigint[] ', null);
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        $q = $this->db->get();
+
+        $aData = array();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aData[] = $aItem;
+            }
+        }
+
+        return $aData;
+    }
+
+    /**
+     *
+     */
+    public function save($iId) {
+        $iId = (int) $iId;
+        $oQuery = $this->db->select('*')->from($this->table)->where('id', $iId)->get();
+
+        $aOldValue = array();
+        if ($oQuery->num_rows() > 0) {
+            $aOldValue = $oQuery->row_array();
+        }
+        $this->validate_model->setParems($this->aFields, $aOldValue);
+        if ($this->validate_model->is_valid()) {
+            if (count($aOldValue)) {
+                $this->db->update(
+                        $this->table, $this->validate_model->getFields(), array('id' => $iId)
+                );
+                return $iId;
+            } else {
+                $this->db->insert(
+                        $this->table, $this->validate_model->getFields()
+                );
+//        print_r($this->db->last_query());
+                return $this->db->insert_id();
+            }
+        } else {
+            return $this->validate_model->getErrors();
+        }
+    }
+
+    public function remove($iID) {
+        $this->db->delete($this->table, array('id' => $iID));
+    }
+
+    public function get_list($iLimit = 0, $sOrderBy = 'id DESC', $aExpr = array()) {
+        $this->db->select('*');
+        $this->db->from($this->table);
+
+        if ($sOrderBy) {
+            $this->db->order_by($sOrderBy);
+        }
+
+        foreach ($aExpr as $key => $value) {
+            $this->db->where($key, $value);
+        }
+
+        if ($iLimit) {
+            $this->db->limit($iLimit);
+        }
+
+        $q = $this->db->get();
+
+        $aData = array();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aData[$aItem['id']] = $aItem;
+            }
+        }
+
+//        echo $this->db->last_query();
+        return $aData;
+    }
+
+}

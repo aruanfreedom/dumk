@@ -1,0 +1,64 @@
+{extends "base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}page_app page_login{/block}
+{block name="page_context"}page_login{/block}
+
+{block name="header"}
+      {include file="common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-8 columns large-centered text-center" id="welcome">
+    <div class="row">
+        <div class="large-12 columns large-centered">
+            <div class="row">
+                <h1 class="text-center">Восстановление пароля</h1>
+                <h2 class="text-center">Введите Email адрес:</h2>
+            </div>
+            <div class="row">
+                <div class="recovery-input large-12">
+                    <form action="" data-abide>
+                        <div class="row">
+                            <input type="email" name="recovery_email" required {literal}pattern="[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]+"{/literal} placeholder="Email адрес">
+                        <small class="error">Неккоректный email</small>
+                            </div>
+                        <div class="row">
+                        <input type="submit" class="button secondary" value="Отправить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+{literal}
+    jQuery(document).ready(function(){
+        $('form').on('valid', function(){
+            console.log('valid');
+            var email = $('input[name=recovery_email]').val();
+            $.post( "/async/auth/try_forget", { email: email}, function( data ) {
+                console.log( data );
+                if(data.success === 1){
+                    location.href = '/';
+                }
+            }, "json");
+            return false;
+        }).on('submit', function(){
+            return false;
+        });
+    });
+{/literal}
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+<script>
+    $(document).foundation();
+</script>
+      {include file="common/footer.tpl"}
+{/block}
+
+{block name="connect_js"}
+{/block}

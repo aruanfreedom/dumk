@@ -1,0 +1,165 @@
+<?php
+
+class Export_word_subdivision extends CI_Model
+{
+    private $objPHPWord;
+    private $sFilePath = '';
+    private $section;
+    private $table;
+    private $sTitle;
+
+    function __construct() {
+        CI_Model::__construct();
+        /** Error reporting */
+        error_reporting(E_ALL);
+
+        /** Include path * */
+        ini_set('include_path', ini_get('include_path') . ';../../static/libs/');
+
+        /** PHPWord */
+        include '/static/libs/PHPWord.php';
+
+        $this->objPHPWord = new PHPWord();
+    }
+
+    public function execute($iId) {
+        $this->setMeta();
+        $this->setData($iId);
+        $this->setTitle();
+        $this->save();
+        $this->view();
+    }
+
+    private function setMeta() {
+        // New portrait section
+        $this->section = $this->objPHPWord->createSection();
+        $this->load->model('subdivisions_model');
+        $this->load->model('ref_model');
+    }
+
+    private function setData($iId) {
+        $aTitleStyle = array('bold' => true);
+        $aTextStyle = array('bold' => false);
+        $iCellWidth = 4375;
+
+        $aSubdConfFields = $this->subdivisions_model->getSearchIgnoreFields();
+        $aSubdFields = $this->subdivisions_model->get_item_width_titles($iId);
+        $aSubdConfFields['field_title'] = $aSubdConfFields['field'];
+        $aSubdConfFields['city_title'] = $aSubdConfFields['city'];
+//        echo '<br/>';
+//        print_r($aSubdFields);
+//        exit;
+        $sText1 = '';
+        $aArray1 = array();
+
+        if ($aSubdFields['type'] == "center") {
+            $sText1 = 'Руководитель Центрального аппарата';
+            $aSubdFields['structure'] = $this->ref_model->get('department', "parent_id:" . $iId);
+            $aArray1 = array('structure');
+        } else if ($aSubdFields['type'] == "agency") {
+            $sText1 = 'Руководитель Представительства Центрального аппарата';
+            $aSubdFields['structure'] = $this->ref_model->get('department', "parent_id:" . $iId);
+            $aArray1 = array('structure');
+        } else if ($aSubdFields['type'] == "branch") {
+            $sText1 = 'Руководитель Филиала';
+        } else if ($aSubdFields['type'] == "mosque") {
+            $sText1 = 'Главный Имам';
+            $aArray1 = array('capacity', 'year_built');
+        }
+
+        $aFields = array(
+            'Местонахождение' => array(
+                'field_title',
+                'city_title',
+                'region',
+                'street',
+                'house',
+                'office'
+            ),
+            'Регистрационные данные' => array(
+                'reg_date',
+                'bin'
+            ),
+            $sText1 => array(
+                'surname',
+                'name',
+                'middle_name',
+                'birthday',
+                'post',
+                'phone_number',
+                'phone_work',
+                'email2'
+            ),
+            'Контактная информация' => array(
+                'phone',
+                'email'
+            ),
+            'Дополнительная информация' => array_merge(
+                    array(
+                'employee_count',
+                'information'
+                    ), $aArray1
+            )
+        );
+
+        $this->section->addText($aSubdFields['title'], array('name' => 'Verdana', 'color' => '006699'), array('align' => 'center'));
+        $this->section->addTextBreak(2);
+
+        $tableStyle = array('cellMarginTop' => 80,
+            'cellMarginLeft' => 80,
+            'cellMarginRight' => 80,
+            'cellMarginBottom' => 80);
+
+        // Add table
+        $this->table = $this->section->addTable($tableStyle);
+
+        foreach ($aFields as $name => $aGroup) {
+
+            if (!empty($name)) {
+                $this->table->addRow();
+                $this->table->addCell($iCellWidth)->addText($name);
+                $this->table->addCell($iCellWidth)->addText("");
+            }
+
+            foreach ($aGroup as $key => $sField) {
+                // Add Cell
+                $this->table->addRow();
+                $this->table->addCell($iCellWidth)->addText($aSubdConfFields[$sField]['title'], $aTitleStyle, array('align' => 'right'));
+                if (is_array($aSubdFields[$sField])) {
+                    $oCell = $this->table->addCell($iCellWidth);
+                    foreach ($aSubdFields[$sField] AS $sV) {
+                        $oCell->addText($sV);
+                    }
+                } else {
+                    $this->table->addCell($iCellWidth)->addText($aSubdFields[$sField], $aTextStyle);
+                }
+            }
+        }
+    }
+
+    private function setTitle() {
+        $this->sTitle = 'empty';
+    }
+
+    public function save() {
+        // Save File
+        $objWriter = PHPWord_IOFactory::createWriter($this->objPHPWord, 'Word2007');
+        $this->sFilePath = str_replace('.php', '_' . time() . '.docx', __FILE__);
+        $objWriter->save($this->sFilePath);
+    }
+
+    private function view() {
+        $sMime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        $iFileSize = filesize($this->sFilePath);
+
+        header('Content-type: ' . $sMime);
+        header('Content-Disposition: attachment; filename="' . $this->sTitle . '.docx"');
+        header('Content-Length: ' . $iFileSize);
+        readfile($this->sFilePath);
+
+        unlink($this->sFilePath);
+        // Echo done
+        //        echo date('H:i:s') . " Done writing file.\r\n";
+    }
+
+}

@@ -1,0 +1,16 @@
+<?php
+/**
+ *
+ */
+function set_locale($aParams)
+{
+      //$CI =& get_instance();
+      setlocale(LC_ALL, 'rus_RUS');
+}
+
+function get_app_config()
+{
+      $CI =& get_instance();
+      $CI->session->set_userdata('app_config', $CI->config_model->get_config() );
+      $CI->view->assign('app_config', $CI->session->userdata('app_config'));
+}

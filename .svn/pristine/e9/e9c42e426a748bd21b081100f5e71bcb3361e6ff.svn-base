@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<script src="/static/js/custom.modernizr.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>{$page_title}</title>
+        <script src="/static/js/jquery.js"></script>
+	<link rel="stylesheet" href="/static/css/style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="authorization">
+	{block name="header"}{/block}
+	{block name="content"}{/block}
+    </div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/vendor.js"></script>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/lang.js"></script>
+<script>
+    $(document).foundation();
+    </script>
+        {block name="footer"}{/block}
+        
+{block name="connect_js"}{/block}
+
+<!-- <script src="js/tabs.js"></script> -->
+
+</body>
+
+</html>

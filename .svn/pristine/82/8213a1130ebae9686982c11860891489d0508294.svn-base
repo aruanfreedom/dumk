@@ -1,0 +1,54 @@
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="/" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>{$oL->get('Меню')}</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="left">
+            <li class="has-dropdown">
+                <a href="#"><img src="/static/img/icons/{$locale}.png" height="24" width="39" alt="{$locale}"></a>
+                <ul class="dropdown">
+                    <li class="active">
+                        <a href="#" ><img src="/static/img/icons/{if $locale == 'ru'}kz{else}ru{/if}.png" height="24" width="39" alt="{if $locale == 'ru'}kz{else}ru{/if}"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="right">
+            <li>
+                <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>{$human_date}</span></a>
+            </li>
+            <li>
+                <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock"> <span id="top-bar-time"></span></a>
+            </li>
+            <li>
+                <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">{$user_data.surname} {$user_data.name}</a>
+                <ul class="dropdown">
+                    <li><a href="/profile">{$oL->get('Профиль')}</a></li>
+                    <li><a href="/logout">{$oL->get('Выход из системы')}</a></li>
+                </ul>
+            </li>
+        </ul>
+            <script>
+                (function update_time(){
+                    var date = new Date($.now());
+                    var sTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+                    $("#top-bar-time").text((date.getHours()<10?'0':'') + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes());
+                    setTimeout(update_time, 1000);
+                })();
+                $(document).ready(function () {
+                    $(".top-bar-section .active a").on('click', function(){
+                        var lcl = $(this).find('img').attr('alt');
+                        $.post( "/locale", { lang: lcl }, function() {
+                            location.reload();
+                        }, "json");
+                    });
+                });
+            </script>
+    </section>
+</nav>

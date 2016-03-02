@@ -1,0 +1,137 @@
+<?php
+
+class Page_content_model extends CI_Model {
+
+	function __construct()
+	{
+		CI_Model::__construct();
+	}
+
+	/**
+	 *
+	 */
+	function get_content($sHashID)
+	{
+		$this->db->select('p.id,
+				p.content,
+				p.right_content,
+				p.submenu,
+				p.keywords,
+				p.description,
+				p.edited_dt,
+				p.created_dt,
+				p.title,
+				p.hash_id,
+				p.url,
+				p.is_draft,
+				n.id menu_node_id');
+		$this->db->from('pages_content p, menu_nodes n');
+		$this->db->where('p.hash_id = "'.$sHashID.'"');
+		$this->db->where('n.page_id = p.id');
+
+		$oQuery = $this->db->get();
+
+		$aData = array();
+
+		if ($oQuery->num_rows() > 0)
+		{
+			$aData = $oQuery->row_array();
+			$aData['content'] = htmlspecialchars_decode($aData['content']);
+            $aData['right_content'] = htmlspecialchars_decode($aData['right_content']);
+            $aData['description'] = htmlspecialchars_decode($aData['description']);
+			$aData['edited_dt_str'] = date('d.m.Y', $aData['edited_dt']);
+			$aData['created_dt_str'] = date('d.m.Y', $aData['created_dt']);
+			$aData['submenu'] = json_decode($aData['submenu']);//[{t:"", u:""}];
+		}
+
+		return $aData;
+	}
+
+	function get_page_data($sHashID)
+	{
+		$this->db->select('*');
+		$this->db->from('pages_content');
+		$this->db->where('hash_id = "'.$sHashID.'"');
+
+		$oQuery = $this->db->get();
+
+		$aData = array();
+		if ($oQuery->num_rows() > 0)
+		{
+			$aData = $oQuery->row_array();
+			$aData['content'] = htmlspecialchars_decode($aData['content']);
+			$aData['right_content'] = htmlspecialchars_decode($aData['right_content']);
+			$aData['edited_dt_str'] = date('d.m.Y', $aData['edited_dt']);
+			$aData['created_dt_str'] = date('d.m.Y', $aData['created_dt']);
+		//	$aData['submenu'] = json_decode($aData['submenu']);//[{t:"", u:""}];
+		}
+
+		return $aData;
+	}
+
+	public function save_content($aData)
+	{
+		 $this->db->insert('pages_content', array(
+                        'title'        	=>$aData['title'],
+                        'content'      	=>$aData['content'],
+                        'right_content' =>$aData['right_content'],
+                        'submenu'		=>$aData['submenu'],
+                        'keywords'      =>$aData['keywords'],
+                        'description'   =>$aData['description'],
+                        'is_draft'      =>$aData['is_draft'],
+						'hash_id'	=>$aData['hash_id'],
+						'url'		=>$aData['url'],
+						'created_dt'	=>$aData['created_dt'],
+						'edited_dt'	=>0,
+						'user_id'	=>$aData['user_id']
+                ));
+                return $this->db->insert_id();
+	}
+
+	public function update_content($iPageID, $aData)
+	{
+		$this->db->update('pages_content', array(
+                        'title'        	=>$aData['title'],
+                        'keywords'      =>$aData['keywords'],
+                        'description'   =>$aData['description'],
+                        'content'      	=>$aData['content'],
+                        'right_content' =>$aData['right_content'],
+                        'submenu'		=>$aData['submenu'],
+                        'is_draft'      =>$aData['is_draft']?'yes':'no',
+						'hash_id'	=>$aData['hash_id'],
+						'url'		=>$aData['url'],
+						'edited_dt'	=>$aData['edited_dt']
+				), array('id'=>(int)$iPageID));
+
+		return $iPageID;
+	}
+
+	public function remove_page($iPageID)
+	{
+		$this->db->delete('pages_content', array('id'=>$iPageID));
+	}
+
+	public function get_pages_list()
+	{
+		$this->db->select('*');
+		$this->db->from('pages_content');
+
+		$oQuery = $this->db->get();
+
+		$aData = array();
+
+		if ($oQuery->num_rows() > 0)
+		{
+			foreach ($oQuery->result_array() as $aPage)
+			{
+				$aData[$aPage['id']] = $aPage;
+				$aData[$aPage['id']]['edited_dt_str'] = date('d.m.Y', $aPage['edited_dt']);
+				$aData[$aPage['id']]['created_dt_str'] = date('d.m.Y', $aPage['created_dt']);
+				$aData[$aPage['id']]['submenu'] = json_decode($aPage['submenu']); // [{t:"", u:""}];
+			}
+		}
+
+		return $aData;
+	}
+
+}

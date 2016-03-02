@@ -1,0 +1,240 @@
+<?php
+
+defined('BASEPATH') or die('No direct script access allowed');
+include_once '/application/helpers/date_helper.php';
+
+class Admin extends CI_Controller
+{
+    protected $aSiteConf = array();
+    protected $aUserData = array();
+    private $iRowOnPage = 10;
+
+    public function __construct() {
+        parent::__construct();
+
+        if (!$this->session->userdata('logged_in')) {
+            redirect('/login');
+        }
+        $oDateHelper = new dateHelper();
+        $this->view->assign('human_date', $oDateHelper->getHumanDateShort());
+        $this->view->assign('user_data', $this->users_model->get_user_data(array('user_id' => $this->session->userdata['user_id'])));
+        $this->view->assign('oL', $this->locale_model);
+        $this->view->assign('locale', $this->session->userdata['locale']);
+//        print_r($this->session->userdata);
+    }
+
+    public function index() {
+        $this->module_selecting();
+    }
+
+    public function module_selecting() {//Выбор модуля
+        $this->view->page_title('Выбор модуля');
+        $this->view->display('mod_admin/page_selecting.tpl');
+    }
+
+    public function map() {
+        $this->view->page_title('Карта');
+        $this->load->model('subdivisions_model');
+        $this->view->assign('subdivision', $this->subdivisions_model->get_list(0, 'title', array('parent_id IS NULL' => null)));
+        $this->view->display('mod_map/page_map.tpl');
+    }
+
+    public function staff($iId) {
+        $this->view->page_title('Кадры');
+        $this->view->assign('current_id', $iId);
+        $this->view->assign('url', '/staff/' . $iId);
+        $aStaff = $this->users_model->get_list($this->iRowOnPage, 0, 'surname DESC', array('place_of_work' => $iId));
+//        print_r($this->db->last_query());
+        $aPosts = array();
+        foreach ($aStaff as $aV) {
+            if (!array_key_exists($aV['post'], $aPosts)) {
+                $aPosts[$aV['post']] = $aV['post_title'];
+            }
+        }
+        $this->view->assign('staff_posts', $aPosts);
+        $this->view->assign('staff', $aStaff);
+        $this->view->assign('staff_total', $this->users_model->get_list_count(array('place_of_work' => $iId)));
+        $this->view->assign('staff_on_page', $this->iRowOnPage);
+        $this->load->model('subdivisions_model');
+        $aSub = $this->subdivisions_model->get_list(0, 'id', array('parent_id IS NULL' => null));
+        $aTrueSub = array();
+        $i = 2;
+        foreach ($aSub as $key => $aV) {
+            if ($aV['type'] == 'center') {
+                $aTrueSub[0] = $aV;
+            } else if ($aV['type'] == 'agensy') {
+                $aTrueSub[1] = $aV;
+            } else {
+                $aTrueSub[$i++] = $aV;
+            }
+        }
+
+        ksort($aTrueSub);
+
+        $this->view->assign('subdivisions', $aTrueSub);
+        $aSubd = $this->subdivisions_model->get_item($iId);
+        $this->view->assign('subdivision', $aSubd);
+        $sSubdFirst = '';
+        if ($aSubd['type'] == "mosque") {
+            $sSubdFirst = substr($aSubd['path'], 1, strpos($aSubd['path'], ',') - 1);
+            $iId = $sSubdFirst;
+        }
+        $this->view->assign('subdivision_first', $sSubdFirst);
+
+        $this->view->assign('subdivision_children', $this->subdivisions_model->get_item_children($iId));
+        $this->view->display('mod_staff/page_staff.tpl');
+    }
+
+    public function reports() {
+        $this->view->page_title('Отчеты и статистика');
+        $this->load->model('subdivisions_model');
+
+        $this->view->assign('subdivisions', $this->subdivisions_model->get_branch_with_employees_count());
+
+        $this->load->model('employee_increace_by_current_year_report');
+        $this->view->assign('eibcy', $this->employee_increace_by_current_year_report->getBranch());
+
+        $this->load->model('employee_increace_by_years_report');
+        $this->view->assign('eiby', $this->employee_increace_by_years_report->getBranch());
+
+        $this->view->display('mod_reports/page_reports.tpl');
+    }
+
+    public function reports_download($sReport) {
+        switch ($sReport) {
+            case 'general':
+                $this->load->model('general_report');
+                $this->general_report->execute();
+                break;
+
+            case 'employee_count':
+                $this->load->model('employee_count_report');
+                $this->employee_count_report->execute();
+                break;
+
+            case 'structure':
+                $this->load->model('structure_report');
+                $this->structure_report->execute();
+                break;
+
+            case 'users':
+                $this->load->model('users_report');
+                $this->users_report->execute();
+                break;
+
+            case 'employee_in_year':
+                $this->load->model('employee_increace_by_current_year_report');
+                $this->employee_increace_by_current_year_report->execute();
+                break;
+
+            case 'employee_by_years':
+                $this->load->model('employee_increace_by_years_report');
+                $this->employee_increace_by_years_report->execute();
+                break;
+        }
+    }
+
+    public function word_download($sType, $iId) {
+        switch ($sType) {
+            case 'subdivision':
+                $this->load->model('export_word_subdivision');
+                $this->export_word_subdivision->execute($iId);
+                break;
+
+            case 'user':
+                $this->load->model('export_word_user');
+                $this->export_word_user->execute($iId);
+                break;
+        }
+    }
+
+    public function profile() {
+        $this->view->page_title('Пользователь');
+        $this->view->assign('id', 0);
+        $this->load->model('ref_model');
+        $aErrors = array();
+
+        if (count($_POST)) {
+            $result = $this->users_model->save($this->session->userdata['user_id']);
+            if (is_array($result)) {
+                $aErrors = $result;
+            }
+        }
+
+        $this->view->assign('errors', $aErrors);
+        $this->view->assign('aData', $this->users_model->get_item($this->session->userdata['user_id']));
+        $this->view->assign('ref', $this->ref_model);
+        $this->view->display('mod_account/page_account.tpl');
+    }
+
+    public function account_view($iId) {
+        $this->view->page_title('Пользователь');
+        $this->view->assign('id', $iId);
+        $this->load->model('ref_model');
+
+        $aErrors = array();
+
+        if (count($_POST)) {
+            $result = $this->users_model->save($iId);
+            if (is_array($result)) {
+                $aErrors = $result;
+//                print_r($aErrors);
+            }
+        }
+
+        $this->view->assign('errors', $aErrors);
+
+        $this->view->assign('aData', $this->users_model->get_item_notNullable($iId));
+        $this->view->assign('ref', $this->ref_model);
+        $this->view->display('mod_account/page_view.tpl');
+    }
+
+    public function account_create() {
+        $this->view->page_title('Пользователь');
+        $this->load->model('ref_model');
+        $aErrors = array();
+
+        if (count($_POST)) {
+            $result = $this->users_model->save(0);
+            if (is_array($result)) {
+                $aErrors = $result;
+            } else {
+                redirect('/account/view/' . $result);
+            }
+        }
+
+        $this->view->assign('errors', $aErrors);
+
+        $this->view->assign('aData', array());
+        $this->view->assign('ref', $this->ref_model);
+        $this->view->display('mod_account/page_create.tpl');
+    }
+
+    public function subdivision_view($iId) {
+        $this->view->page_title('Подразделение');
+        $this->view->assign('id', $iId);
+        $this->load->model('ref_model');
+        $this->load->model('subdivisions_model');
+
+        $aErrors = array();
+
+        if (count($_POST)) {
+            $result = $this->subdivisions_model->save($iId);
+            if (is_array($result)) {
+                $aErrors = $result;
+//                print_r($aErrors);
+            }
+        }
+
+        $this->view->assign('errors', $aErrors);
+
+//        print_r($this->subdivisions_model->get_item($iId));
+        $this->view->assign('aData', $this->subdivisions_model->get_item($iId));
+        $this->view->assign('ref', $this->ref_model);
+        $this->view->display('mod_subdivision/page_view.tpl');
+    }
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

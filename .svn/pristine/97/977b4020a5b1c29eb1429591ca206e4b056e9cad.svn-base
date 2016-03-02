@@ -1,0 +1,28 @@
+<?php
+
+$config['protocol'] = 'smtp';		// mail, sendmail, smtp	  	Протокол
+// $config['mailpath'] = '/usr/sbin/sendmail';	// /usr/sbin/sendmail		Серверный путь к Sendmail.
+$config['charset'] = 'utf-8';
+
+$config['useragent'] = "documentolog";	//			Почтовый клиент
+$config['smtp_host'] = "ssl://smtp.mail.ru";
+$config['smtp_user'] = "documentolog@bk.ru";
+$config['smtp_pass'] = "1q2w3e4r5t6y";
+$config['smtp_port'] = 465;             // 25
+$config['smtp_timeout'] = 5;		// 
+$config['wordwrap'] = FALSE;		//			Включение переносов.
+$config['wrapchars'] = 76;		// 			Число символов до переноса.
+$config['wordwrap'] = TRUE;		// 
+$config['mailtype'] = "html"; 		// html|text		
+$config['validate'] = FALSE;		// 			Валидация email-адреса.
+$config['priority'] = 3;		// (1|2|3|4|5) 		Email-приоритеты. 1 = самый высокий. 5 = самый низкий. 3 = нормальный.
+$config['newline'] = "\n";		// "\r\n" или "\n" 	Тип переноса на новую строку. (Используйте "\r\n" для соблюдения стандарта RFC 822).
+$config['bcc_batch_mode'] = FALSE;	// 			Включение пакетного режима BCC.
+$config['bcc_batch_size'] = 200;	// 			Количество адресов в одном BCC-пакете.
+
+
+//$aConfig['lms_smtp_host']               = 'smtp.mail.ru';
+//$aConfig['lms_smtp_port']               = 465;
+//$aConfig['lms_smtp_user']               = 'documentolog@bk.ru';
+//$aConfig['lms_smtp_password']           = '1q2w3e4r5t6y';
+//$aConfig['lms_smtp_encryption']           = 'SSL';

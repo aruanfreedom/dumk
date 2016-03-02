@@ -1,0 +1,136 @@
+<?php
+
+class Menu_model extends CI_Model {
+
+	function __construct()
+	{
+		CI_Model::__construct();
+	}
+
+	/**
+	 *
+	 */
+	function get_menu_tree()
+	{
+		$this->db->select('id, title, url, create_dt, edit_dt, hint, page_id, order');
+		$this->db->order_by('order')->from('menu_groups');
+
+        $oQuery = $this->db->get();
+
+		$aData = array();
+		$aTree = array();
+		$aGroupsIDs = array();
+
+		if ($oQuery->num_rows() > 0)
+		{
+			foreach ($oQuery->result_array() as $aGroup)
+			{
+				array_push($aGroupsIDs, $aGroup['id']);
+				$aData[ $aGroup['id'] ] = $aGroup;
+				$aData[ $aGroup['id'] ]['edit_dt_str'] = date('d.m.Y', $aGroup['edit_dt']);
+				$aData[ $aGroup['id'] ]['create_dt_str'] = date('d.m.Y', $aGroup['create_dt']);
+			}
+
+			$this->db->select('id, title, page_id, url, hint, create_dt, edit_dt, parent_id, order, group_id');
+			$this->db->order_by('order')->from('menu_nodes')->where('group_id in (' . join(',', $aGroupsIDs) . ')');
+
+            unset($oQuery);
+
+			$oQuery = $this->db->get();
+
+			if ($oQuery->num_rows() > 0)
+			{
+				foreach ($oQuery->result_array() as $aNode)
+				{
+					if ( !isset($aData[ $aNode['group_id'] ]['nodes']) )
+						$aData[ $aNode['group_id'] ]['nodes'] = array();
+
+					$aData[ $aNode['group_id'] ]['nodes'][ $aNode['id'] ] = $aNode;
+				}
+			}
+		}
+		return $aData;
+	}
+
+
+
+
+	/**
+	 *
+	 */
+	public function add_node($aData)
+	{
+		$this->db->insert('menu_nodes', array(
+			'title' => $aData['title'],
+			'url' => $aData['url'],
+			'group_id' => $aData['group_id'],
+			'create_dt' => $aData['create_dt'],
+			'order' => $aData['order']
+        ));
+
+                return $this->db->insert_id();
+	}
+
+	public function update_node($iID, $aData)
+	{
+		$this->db->update('menu_nodes', array(
+                        'title' => $aData['title'],
+			'url' => $aData['url'],
+			'group_id' => $aData['group_id'],
+			'edit_dt' => $aData['edit_dt'],
+			'order' => $aData['order']
+                ), array('id'=>(int)$iID));
+
+		return $iID;
+	}
+
+	public function remove_node($iID)
+	{
+		$this->db->delete('menu_nodes', array('id'=>$iID));
+	}
+
+
+	/**
+	 *
+	 */
+	public function add_group($aData)
+	{
+		$this->db->insert('menu_groups', array(
+			'title' => $aData['title'],
+			'url' => $aData['url'],
+			'create_dt' => $aData['create_dt'],
+			'order' => $aData['order']
+        ));
+
+                return $this->db->insert_id();
+	}
+
+	public function update_group($iID, $aData)
+	{
+		$this->db->update('menu_groups', array(
+                        'title' => $aData['title'],
+			'url' => $aData['url'],
+			'edit_dt' => $aData['edit_dt'],
+			'order' => $aData['order']
+                ), array('id'=>(int)$iID));
+
+		return $iID;
+	}
+
+	public function remove_group($iID)
+	{
+		$this->db->delete('menu_groups', array('id'=>$iID));
+
+		$this->db->update('menu_nodes', array(
+			'group_id' => 0,
+                ), array('group_id'=>(int)$iID));
+	}
+
+    public function try_save($aData)
+	{
+        $sFilename = str_replace('\\', '/', dirname(dirname(__FILE__)) . '/config/site.php');
+        file_put_contents($sFilename, htmlspecialchars_decode($aData['content'],ENT_QUOTES));
+
+		return 1;
+	}
+}

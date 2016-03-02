@@ -1,0 +1,18 @@
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="left">
+            <li class="has-dropdown top">
+                <a href="#rus"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                <ul class="dropdown">
+                    <li class="bottom">
+                        <a href="#kaz"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</nav>

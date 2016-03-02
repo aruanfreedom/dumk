@@ -1,0 +1,291 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_map{/block}
+
+{block name="header"}
+    {assign "page_context" "page_map"}
+      {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="top-link">
+        <a href="/map" class="active">{$oL->get('Кадры')}</a>
+        <a href="#">{$oL->get('Учебные заведения и учащиеся')}</a>
+        <a href="#">{$oL->get('Осужденные экстремисты')}</a>
+    </div>
+    <div id="tab-container" class="tab-container">
+        <ul class='etabs'>
+            <li class='tab active'><a href="/staff/1">{$oL->get('Реестр сотрудников')}</a></li>
+            <li class='tab'><a href="/reports">{$oL->get('Отчеты и статистика')}</a></li>
+            <li class='tab'><a href="/account/create">{$oL->get('Добавить сотрудника')} <span class="plus">+</span></a></li>
+        </ul>
+        <div id="tabs-map" class="tab-wrapper">
+            <div class="map">
+                <div id="petropavlsk" class="mouse-select">
+                <h3>{$oL->get('Петропавловск')}</h3>
+                    <a href="#petropavlsk">
+                        <img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
+                    </a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[23].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[23].name} {$subdivision[23].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[23].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="kostanay" class="mouse-select">
+                <h3>{$oL->get('Костанай')}</h3>
+                    <a href="/staff/18"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[18].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[18].name} {$subdivision[18].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[18].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="pavlodar" class="mouse-select">
+                <h3>{$oL->get('Павлодар')}</h3>
+                    <a href="/staff/21"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[21].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[21].name} {$subdivision[21].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[21].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="astana" class="mouse-select">
+                    <a href="/staff/3"><img src="/static/img/icons/marker-2.png" class="marker radius-30" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[1].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[1].name} {$subdivision[1].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[1].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="astanaBig" class="mouse-select">
+                   <h3>{$oL->get('Астана')}</h3>
+                    <a href="/staff/1"><img src="/static/img/icons/marker.png" class="marker radius-120" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[3].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[3].name} {$subdivision[3].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[3].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="kokshetau" class="mouse-select">
+                <h3>{$oL->get('Кокшетау')}</h3>
+                    <a href="/staff/10">
+                        <img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
+                    </a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[10].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[10].name} {$subdivision[10].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[10].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="uralsk" class="mouse-select">
+                <h3>{$oL->get('Уральск')}</h3>
+                    <a href="#uralsk">
+                        <img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker">
+                    </a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[16].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[16].name} {$subdivision[16].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[16].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="aktobe" class="mouse-select">
+                <h3>{$oL->get('Актобе')}</h3>
+                    <a href="/staff/12"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[12].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[12].name} {$subdivision[12].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[12].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="semey" class="mouse-select">
+                <h3>{$oL->get('Семей')}</h3>
+                    <a href="/staff/22"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[22].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[22].name} {$subdivision[22].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[22].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="karaganda" class="mouse-select">
+                <h3>{$oL->get('Караганда')}</h3>
+                    <a href="/staff/17"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[17].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[17].name} {$subdivision[17].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[17].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="atyrau" class="mouse-select">
+                <h3>{$oL->get('Атырау')}</h3>
+                    <a href="/staff/13"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[13].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[13].name} {$subdivision[13].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[13].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="ust" class="mouse-select">
+                <h3>{$oL->get('Усть-каменогорск')}</h3>
+                    <a href="#ust"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[14].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[14].name} {$subdivision[14].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[14].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="aktau" class="mouse-select">
+                <h3>{$oL->get('Актау')}</h3>
+                    <a href="#aktau"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[20].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[20].name} {$subdivision[18].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[20].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="kyzilorda" class="mouse-select">
+                <h3>{$oL->get('Кызылорда')}</h3>
+                    <a href="/staff/19"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[19].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[19].name} {$subdivision[19].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[19].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="taldykorgan" class="mouse-select">
+                <h3>{$oL->get('Талдыкорган')}</h3>
+                    <a href="/staff/24"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[24].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[24].name} {$subdivision[24].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[24].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="almaty" class="mouse-select">
+                    <a href="/staff/5"><img src="/static/img/icons/marker.png" class="marker radius-30" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[5].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[5].name} {$subdivision[5].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[5].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="almatyBig" class="mouse-select">
+                <h3>{$oL->get('Алматы')}</h3>
+                    <a href="/staff/2"><img src="/static/img/icons/marker-2.png" class="marker radius-120" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[2].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[2].name} {$subdivision[2].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[2].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="ushkonir" class="mouse-select">
+                <h3>{$oL->get('Ушконыр')}</h3>
+                    <a href="#almaty"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[11].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[11].name} {$subdivision[11].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[11].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="taraz" class="mouse-select">
+                <h3>{$oL->get('Тараз')}</h3>
+                    <a href="#taraz"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[15].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[15].name} {$subdivision[15].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[15].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="shimkent" class="mouse-select">
+                <h3>{$oL->get('Шымкент')}</h3>
+                    <a href="#shimkent"><img src="/static/img/icons/marker.png" class="marker" height="26" width="19" alt="marker"></a>
+                    <div class="popap text-left">
+                        <img src="/static/img/icons/traingle.png" alt="traingle" class="triangle">
+                        <h2>{$subdivision[25].title}</h2>
+                        <div class="white-bg">
+                            <p><img src="/static/img/icons/star.png" height="12" width="12" alt="star"> {$subdivision[25].name} {$subdivision[25].surname}</p>
+                            <p><img src="/static/img/icons/person-map.png" height="12" width="12" alt="person"> {$subdivision[25].employee_count} {$oL->get('сотрудников')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+      
+{/block}
+
+
+{block name="connect_js"}
+{/block}

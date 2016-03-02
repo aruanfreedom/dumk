@@ -1,0 +1,249 @@
+<?php
+
+class Employee_count_report extends CI_Model
+{
+    private $objPHPExcel;
+    private $sHeadersStart = array(
+        '№',
+        'КМДБ өкілдігі',
+        'Мешіттер саны',
+        'Барлык казыметкерлер саны'
+    );
+    private $sFilePath = '';
+    private $iRowCount = 0;
+    private $iColorIter = -1;
+    private $aColors = array(
+        "739ed0",
+        "554396",
+        "547ca9",
+        "5fa997",
+        "75b552",
+        "88b44e",
+        "bec443",
+        "dcbd37",
+        "de8c2e",
+        "d15032",
+        "c73232",
+        "ce3a69",
+        "cb4193",
+        "934796"
+    );
+
+    function __construct() {
+        CI_Model::__construct();
+        /** Error reporting */
+        error_reporting(E_ALL);
+
+        /** Include path * */
+        ini_set('include_path', ini_get('include_path') . ';../../static/libs/');
+
+        /** PHPExcel */
+        include '/static/libs/PHPExcel.php';
+
+        /** PHPExcel_Writer_Excel2007 */
+        include '/static/libs/PHPExcel/Writer/Excel2007.php';
+        // Create new PHPExcel object
+//        echo date('H:i:s') . " Create new PHPExcel object\n";
+        $this->objPHPExcel = new PHPExcel();
+    }
+
+    public function getColor() {
+        $this->iColorIter++;
+        if ($this->iColorIter >= count($this->aColors)) {
+            $this->iColorIter = 0;
+        }
+
+        return $this->aColors[$this->iColorIter];
+    }
+
+    public function execute() {
+        $this->setMeta();
+        $this->setData();
+        $this->setTitle();
+        $this->save();
+        $this->addChart();
+        $this->view();
+    }
+
+    public function addChart() {
+        exec('php "' . ROOTPATH . '\33chartcreate-pie.php" "' . $this->sFilePath . '" ' . $this->iRowCount, $aOut, $iResult);
+        unlink($this->sFilePath);
+        $this->sFilePath = str_replace('.xlsx', '_chart.xlsx', $this->sFilePath);
+    }
+
+    private function setMeta() {
+        // Set properties
+        //        echo date('H:i:s') . " Set properties\n";
+        $this->objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setTitle("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setSubject("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.");
+    }
+
+    private function setData() {
+        $this->objPHPExcel->setActiveSheetIndex(0);
+        // Add some data
+        //        echo date('H:i:s') . " Add some data\n";
+        $aUnicSubd = array();
+        $iColPos = 0;
+        foreach ($this->sHeadersStart as $iK => $sHeader) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iColPos++, 1, $sHeader);
+        }
+
+        $aBranch = $this->getBranch();
+
+        $iRow = 2;
+        $iMosque = 0;
+        $iEmployees = 0;
+        foreach ($aBranch as $aV) {
+            $iCol = 0;
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $iRow - 1);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['title']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['mosque']);
+            $iMosque += $aV['mosque'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['employee_count']);
+            $iEmployees += $aV['employee_count'];
+
+            $iRow++;
+        }
+
+        for ($i = 0; $i < $iRow - 2; $i++) {
+            $arHeadStyle = array(
+                'fill' => array(
+                    'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                    'color' => array('rgb' => $this->getColor()),
+            ));
+            $this->objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($iCol - 1, 2 + $i)->applyFromArray($arHeadStyle);
+        }
+
+        $iCol = 0;
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, $iRow, 'Барлыгы');
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $iMosque);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow( ++$iCol, --$iRow, $iEmployees);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->iRowCount = $iRow - 2;
+    }
+
+    private function fillColor($iCol, $iRow, $iLength, $sColor) {
+        $arHeadStyle = array(
+            'fill' => array(
+                'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                'color' => array('rgb' => $sColor),
+        ));
+        for ($i = 0; $i < $iLength; $i++) {
+            $this->objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($iCol + $i, $iRow)->applyFromArray($arHeadStyle);
+        }
+    }
+
+    private function getBranch() {
+        //Филиалы
+        $this->db->select('*');
+        $this->db->from('subdivision');
+
+        $this->db->order_by('id');
+
+//        $this->db->where('type', 'branch');
+        $this->db->where('type != ', 'mosque');
+        $this->db->where('type != ', 'area');
+
+        $q = $this->db->get();
+
+        $aData = array(
+        );
+
+        $aBranch = array();
+
+        //Филиалы ДУМК
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['mosque'] = 0;
+                $aItem['employee_count'] = 0;
+                $aBranch[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Мечети
+        $this->db->select('id, parent_id, path');
+        $this->db->from('subdivision');
+
+        $this->db->where('path && \'{' . implode(',', $aIds) . '}\'::bigint[]', null);
+        $this->db->where('parent_id is not null', null);
+        $this->db->where('type', 'mosque');
+
+        $aMosque = array();
+
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['branch'] = substr($aItem['path'], 1, strpos($aItem['path'], ',') - 1);
+                $aBranch[$aItem['branch']] ++; //Количество мечетей
+                $aMosque[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Пользователи
+        $this->db->select('u.*, p.title as post_title');
+        $this->db->from('users u, ref_posts p');
+
+        $this->db->where('u.post = p.id');
+        $this->db->where('u.place_of_work = ANY(\'{' . implode(',', $aIds) . '}\'::int[])', null);
+
+        $q = $this->db->get();
+        $aPosts = array();
+        if ($q->num_rows() > 0) {
+            $a = $q->result_array();
+            foreach ($a as $key => $aV) {
+                $iBranchId = 0;
+
+                if (array_key_exists($aV['place_of_work'], $aMosque) || array_key_exists($aV['place_of_work'], $aBranch)) {
+                    if (array_key_exists($aV['place_of_work'], $aMosque)) {
+                        $iBranchId = $aMosque[$aV['place_of_work']]['branch'];
+                    } else if (array_key_exists($aV['place_of_work'], $aBranch)) {
+                        $iBranchId = $aV['place_of_work'];
+                    }
+
+                    $aBranch[$iBranchId]['employee_count'] ++; //Всего количество сотрудников
+                }
+            }
+        }
+
+        return $aBranch;
+    }
+
+    private function setTitle() {
+        // Rename sheet
+        //        echo date('H:i:s') . " Rename sheet\n";
+        $this->objPHPExcel->getActiveSheet()->setTitle('Simple');
+    }
+
+    public function save() {
+        // Save Excel 2007 file
+        //        echo date('H:i:s') . " Write to Excel2007 format\n";
+        $objWriter = new PHPExcel_Writer_Excel2007($this->objPHPExcel);
+        $this->sFilePath = str_replace('.php', '_' . time() . '.xlsx', __FILE__);
+        $objWriter->save($this->sFilePath);
+    }
+
+    private function view() {
+        $sMime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        $iFileSize = filesize($this->sFilePath);
+
+        header('Content-type: ' . $sMime);
+        header('Content-Disposition: attachment; filename="' . __CLASS__ . '.xlsx"');
+        header('Content-Length: ' . $iFileSize);
+        readfile($this->sFilePath);
+
+        unlink($this->sFilePath);
+        // Echo done
+        //        echo date('H:i:s') . " Done writing file.\r\n";
+    }
+
+}

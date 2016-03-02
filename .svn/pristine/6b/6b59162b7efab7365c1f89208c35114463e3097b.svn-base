@@ -1,0 +1,338 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_new_account{/block}
+
+{block name="header"}
+    {assign "page_context" "page_new_account"}
+    {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="profile text-center">
+        <a class="back" href="/staff/{$aData.id}"> &#60; {$oL->get('Назад в реестр')}</a>
+        <h2>
+            {if $aData.type == "center"}
+                {$oL->get('О центральном аппарате')}
+            {/if}
+            {if $aData.type == "agency"}
+                {$oL->get('О представительстве')}
+            {/if}
+            {if $aData.type == "branch"}
+                {$oL->get('О филиале')}
+            {/if}
+            {if $aData.type == "mosque"}
+                {$oL->get('О мечети')}
+            {/if}
+        </h2>
+        <p class="download-all">
+            <a href="/export/download/subdivision/{$aData.id}"><img src="/static/img/icons/download-blue.png" alt="download"> {$oL->get('Скачать')}</a>
+        </p>
+        <form action="" method="post" enctype="multipart/form-data" data-abide>
+            <span class="button secondary edit-profile-no-scroll">{$oL->get('Редактировать')}</span>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Наименование')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.title}" name="title" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">{$oL->get('Местонахождение')}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Область')}</b></p>
+                        <p><b>{$oL->get('Город')}</b></p>
+                        <p><b>{$oL->get('Район')}</b></p>
+                        <p><b>{$oL->get('Улица')}</b></p>
+                        <p><b>{$oL->get('Дом')}</b></p>
+                        <p><b>{$oL->get('Офис')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <select disabled="disabled" name="field" >
+                                <option value="">{$oL->get('Выберите  область')}</option>
+                                {foreach from=$ref->get('field', 'parent_id:38') item=iter key=key}
+                                    <option {if isset($aData.field) && $aData.field == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                {/foreach}
+                            </select>
+                            <small class="error">{$oL->get('Выберите область')}</small>
+                            <script>
+                                (function($) {
+                                    $(window).load(function() {
+                                        $('select[name=field]').on("change", function(){
+                                            getRefValues('city', $(this).val(), $('select[name=city]'), '');
+                                        });
+                                    });
+                                })(jQuery);
+                            </script>
+                        </p>
+                        <p>
+                            <select disabled="disabled" required name="city">
+                                <option value="">{$oL->get('Выберите город')}</option>
+                                {foreach from=$ref->get('city', 'parent_id:' + $aData.field|default:0) item=iter key=key}
+                                    <option {if $aData.city == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                {/foreach}
+                            </select>
+                            <small class="error">{$oL->get('Выберите город')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.region}" name="region" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.street}" name="street" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.house}" name="house" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.office}" name="office" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">
+                            {$oL->get('Регистрационные данные')}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Дата регистрации')}</b></p>
+                        <p><b>{$oL->get('БИН')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.reg_date}" name="reg_date" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.bin}" name="bin" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">
+                            {if $aData.type == "center"}
+                                {$oL->get('Руководитель Центрального аппарата')}
+                            {/if}
+                            {if $aData.type == "agency"}
+                                {$oL->get('Руководитель Представительства Центрального аппарата')}
+                            {/if}
+                            {if $aData.type == "branch"}
+                                {$oL->get('Руководитель Филиала')}
+                            {/if}
+                            {if $aData.type == "mosque"}
+                                {$oL->get('Главный Имам')}
+                            {/if}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Фамилия')}</b></p>
+                        <p><b>{$oL->get('Имя')}</b></p>
+                        <p><b>{$oL->get('Отчество')}</b></p>
+                        <p><b>{$oL->get('Год рождения')}</b></p>
+                        <p><b>{$oL->get('Должность')}</b></p>
+                        <p><b>{$oL->get('Номер сотового телефона')}</b></p>
+                        <p><b>{$oL->get('Номер рабочего телефона')}</b></p>
+                        <p><b>{$oL->get('Электронная почта')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.surname}" name="surname" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.name}" name="name" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.middle_name}" name="middle_name" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.birthday}" name="birthday" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.post}" name="post" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.phone_number}" name="phone_number" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.phone_work}" name="phone_work" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.email2}" name="email2" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">{$oL->get('Контактная информация')}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Номер телефона')}</b></p>
+                        <p><b>{$oL->get('Электронная почта')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.phone}" name="phone" required>
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="email" name="email" value="{$aData.email}" pattern="email">
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">{$oL->get('Дополнительная информация')}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Количество сотрудников')}</b></p>
+                        {if $aData.type == "mosque"}
+                            <p><b>{$oL->get('Вместимость')}</b></p>
+                            <p><b>{$oL->get('Год постройки')}</b></p>
+                        {/if}
+                        <p><b>{$oL->get('Дополнительная информация')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.employee_count}" name="employee_count" pattern="integer">
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        {if $aData.type == "mosque"}
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.capacity}" name="capacity" pattern="integer">
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.year_built}" name="year_built" pattern="integer">
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                        {/if}
+                        <p>
+                            <input type="text" disabled="disabled" value="{$aData.information}" name="information" pattern="integer">
+                            <small class="error">{$oL->get('Неккоректное ввод')}</small>
+                        </p>
+                    </div>
+                </div>
+                {if $aData.type == "center" OR $aData.type == "agency"}
+                    <div class="row">
+                        <div class="large-6 columns text-right">
+                            <p><b>{$oL->get('Структура')}</b></p>
+                        </div>
+                        <div class="large-6 columns edit-input text-left">
+                            {foreach from=$ref->get('department', "parent_id:`$aData.id`") item=iter key=key}
+                                {foreach from=$iter item=iter2 key=key2}
+                                    <p>{$iter2}</p>
+                                {/foreach}
+                            {/foreach}
+                        </div>
+                    </div>
+                {/if}
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="large-6 columns large-centered">
+                        <h3 class="section-edit">{$oL->get('Документы')}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns text-right">
+                        <p><b>{$oL->get('Документы')}</b></p>
+                    </div>
+                    <div class="large-6 columns edit-input text-left">
+                        <p>
+                            <input type="file" disabled="disabled" class="file_down download-all none" name="documents">
+                            {if $aData.documents|default:'' != ''}
+                                <a href="{$aData.documents}" >{$oL->get('Скачать')}</a>
+                            {/if}
+                            <small class="error">{$oL->get('Файл не выбран')}</small>
+                            {if isset($errors.errors) and $errors.errors.documents|@count > 0}
+                                <span class="error_backend" style="display:block;" >
+                                    {$errors.errors.documents}
+                                </span>
+                            {/if}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    function getRefValues(sRefName, sId, oContainer, sSelected, sFilter){
+        var elem = '<option value="">{$oL->get('Выберите')}</option>';
+        oContainer.empty().append(elem);
+        if(sId === "")return false;
+        $.post( "/getreference", { ref:sRefName, id:sId, filter:sFilter }, function( data ) {
+            if(data.success === 1){
+                var elem = '<option value="">{$oL->get('Выберите')}</option>';
+                for (var item in data.data){
+                    elem += '<option ';
+                    if(sSelected !== '' && sSelected == item){
+                        elem += 'selected="selected"';
+                    }
+                    elem += ' value="' + item + '">' + data.data[item] + '</option>';
+                }
+                oContainer.empty().append(elem);
+            }
+        }, "json");
+    }
+
+
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+<script type="text/javascript">
+    $('form').on('invalid', function(){
+        console.log('invalid');
+    });
+</script>
+{/block}
+
+
+{block name="connect_js"}
+{/block}

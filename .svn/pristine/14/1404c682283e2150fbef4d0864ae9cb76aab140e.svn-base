@@ -1,0 +1,1081 @@
+{extends "cp/base.tpl"}
+{block name="pre_title"}{/block}
+
+{block name="contexts"}cadrs{/block}
+{block name="page_context"}page_new_account{/block}
+
+{block name="header"}
+    {assign "page_context" "page_new_account"}
+    {include file="cp/common/header.tpl"}
+{/block}
+
+{block name="content"}
+<div class="large-12 columns" id="content">
+    <div class="top-link">
+        <a href="/map" class="active">{$oL->get('Кадры')}</a>
+        <a href="#">{$oL->get('Учебные заведения и учащиеся')}</a>
+        <a href="#">{$oL->get('Осужденные экстремисты')}</a>
+    </div>
+    <div id="tab-container" class="tab-container">
+        <ul class='etabs'>
+          <li class='tab'><a href="/staff/1" >{$oL->get('Реестр сотрудников')}</a></li>
+          <li class='tab'><a href="/reports" >{$oL->get('Отчеты и статистика')}</a></li>
+          <li class='tab active'><a href="/account/create" >{$oL->get('Добавить сотрудника')} <span class="plus">+</span></a></li>
+        </ul>
+        <div id="tabs-add" class="tab-wrapper">
+            <div class="large-12 columns" id="add_employee">
+                <div class="profile text-center">
+                <form action="#" data-abide>
+                    <p><img src="/static/img/data-person/person.jpg" class="img-profile" height="101" width="105" alt="person"></p>
+                    <p class="download-all">
+                        <a href="#"><img src="/static/img/icons/download-blue.png" alt="download">  {$oL->get('Загрузить фотографию')}</a>
+                    </p>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Общая информация”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Фамилия')}</b></p>
+                                <p><b>{$oL->get('Имя')}</b></p>
+                                <p><b>{$oL->get('Отчество')}</b></p>
+                                <p><b>{$oL->get('Дата рождения')}</b></p>
+                                <p><b>{$oL->get('Пол')}</b></p>
+                                <p><b>{$oL->get('Национальность')}</b></p>
+                                <p><b>{$oL->get('Гражданство')}</b></p>
+                                <p><b>{$oL->get('Семейное положение')}</b></p>
+                                <p><b>{$oL->get('Автобиография')}</b></p>
+                                <p><b>{$oL->get('Номер телефона')}</b></p>
+                                <p><b>{$oL->get('Место работы')}</b></p>
+                                <p><b>{$oL->get('Должность')}</b></p>
+                                <p><b>{$oL->get('Статус')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" name="surname" value="{if isset($aData) and $aData|@count > 0}{$aData.surname}{/if}" required pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректная Фамилия')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="name" value="{if isset($aData) and $aData|@count > 0}{$aData.name}{/if}" required pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное Имя')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="middle_name" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_name}{/if}" required pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное Отчество')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="birthday" value="{if isset($aData) and $aData|@count > 0}{$aData.birthday}{/if}" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <select name="sex" required>
+                                        <option value="">{$oL->get('Выберите пол')}</option>
+                                        {foreach from=$ref->get('sex') item=iter key=key}
+                                            <option {if isset($aData.sex) && $aData.sex == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите пол')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="nationality" value="{if isset($aData) and $aData|@count > 0}{$aData.nationality}{/if}" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное Национальность')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" required="" name="citizenship" value="{if isset($aData) and $aData|@count > 0}{$aData.citizenship}{/if}" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное Гражданство')}</small>
+                                </p>
+                                <p>
+                                    <select name="marital_status" required="">
+                                        <option value="">{$oL->get('Выберите')}</option>
+                                        {foreach from=$ref->get('marital') item=iter key=key}
+                                            <option {if isset($aData.marital_status) && $aData.marital_status == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <small class="error">{$oL->get('Семейное положение')}</small>
+                                </p>
+                                <p>
+                                    <!-- <span class="file_down">
+                                        <input type="file" value="Добавить файл" name="autobiograph">
+                                    </span> -->
+                                    <input type="file" class="file_down" name="autobiography">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                                <p>
+                                    <input type="tel" name="phone_number" value="{if isset($aData) and $aData|@count > 0}{$aData.phone_number}{/if}" required="" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+" maxlength="11">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Неккоректный телефон. Только цифры')}</small>
+                                </p>
+                                <p>
+                                    <select name="place_of_work" required="">
+                                        <option value="">{$oL->get('Выберите место работы')}</option>
+                                        {foreach from=$ref->get('subdivision') item=iter key=key}
+                                            <option {if isset($aData.place_of_work) && $aData.place_of_work == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                            {if isset($aData.place_of_work) && $aData.place_of_work == $key}
+                                                <script>
+                                                    (function($) {
+                                                        $(window).load(function() {
+                                                            getRefValues('post', {if $key > 2}3{else}{$key}{/if}, $('select[name=post]'), {$aData.post});
+                                                        });
+                                                    })(jQuery);
+                                                </script>
+                                            {/if}
+                                        {/foreach}
+                                    </select>
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                $('select[name=place_of_work]').on("change", function(){
+                                                    getRefValues('post', ($(this).val() > 2 ? 3 : $(this).val()), $('select[name=post]'), '');
+                                                });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите место работы')}</small>
+                                </p>
+                                <p>
+                                    <select name="post" required="">{*TODO: Надо сделать скрипт*}
+                                        <option name="">{$oL->get('Выберите')}</option>
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите должность')}</small>
+                                </p>
+                                <p>
+                                    <select name="job_status" required="">
+                                        <option  name="">{$oL->get('Выберите статус')}</option>
+                                        {foreach from=$ref->get('user_status') item=iter key=key}
+                                            <option {if isset($aData.job_status) && $aData.job_status == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите статус')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Паспортные данные”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Тип документа')}</b></p>
+                                <p><b>{$oL->get('Номер документа')}</b></p>
+                                <p><b>{$oL->get('Дата выдачи')}</b></p>
+                                <p><b>{$oL->get('Срок действия')}</b></p>
+                                <p><b>{$oL->get('Орган выдачи')}</b></p>
+                                <p><b>{$oL->get('ИИН')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" name="document_type" value="{if isset($aData) and $aData|@count > 0}{$aData.document_type}{/if}" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное тип документа')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="document_number" value="{if isset($aData) and $aData|@count > 0}{$aData.document_number}{/if}" required="" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Неккоректное номер документа')}</small>                                            
+                                </p>
+                                <p>
+                                    <input type="text" name="date_of_issue" value="{if isset($aData) and $aData|@count > 0}{$aData.date_of_issue}{/if}" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="validity" value="{if isset($aData) and $aData|@count > 0}{$aData.validity}{/if}" required="" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="issuing_authority" value="{if isset($aData) and $aData|@count > 0}{$aData.issuing_authority}{/if}" required="" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное Орган выдачи')}</small>                                            
+                                </p>
+                                <p>
+                                    <input type="text" name="iin" required="" value="{if isset($aData) and $aData|@count > 0}{$aData.iin}{/if}" maxlength="12" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Неккоректное ИИН')}</small>  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Состав семьи”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                               <p><b>{$oL->get('Отец')}</b></p>
+                               <p><b>{$oL->get('Мать')}</b></p>
+                               <p><b>{$oL->get('Жена')}</b></p>
+                               <p><b>{$oL->get('Дети')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" name="father" value="{if isset($aData) and $aData|@count > 0}{$aData.father}{/if}" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное ввод')}</small>        
+                                </p>
+                                <p>
+                                    <input type="text" name="mother" value="{if isset($aData) and $aData|@count > 0}{$aData.mother}{/if}" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное ввод')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="wife" value="{if isset($aData) and $aData|@count > 0}{$aData.wife}{/if}" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное ввод')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="children" value="{if isset($aData) and $aData|@count > 0}{$aData.children}{/if}" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное ввод')}</small> 
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Адрес”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Страна')}</b></p>
+                                <p><b>{$oL->get('Область')}</b></p>
+                                <p><b>{$oL->get('Район')}</b></p>
+                                <p><b>{$oL->get('Город/населенный пункт')}</b></p>
+                                <p><b>{$oL->get('Улица')}</b></p>
+                                <p><b>{$oL->get('Номер дома')}</b></p>
+                                <p><b>{$oL->get('Номер квартиры')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>                                            
+                                    <select name="country" >
+                                        <option value="">{$oL->get('Выберите страну')}</option>
+                                        {foreach from=$ref->get('country') item=iter key=key}
+                                            <option {if isset($aData.country) && $aData.country == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                $('select[name=country]').on("change", function(){
+                                                    getRefValues('field', $(this).val(), $('select[name=field]'), '');
+                                                });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите страну')}</small>
+                                </p>
+                                <p>
+                                    <select name="field" >
+                                        <option data-test1="{$aData.country}" value="">{$oL->get('Выберите  область')}</option>
+                                        {if $aData.country|default:0 > 0}
+                                        {foreach from=$ref->get('field', 'parent_id:' + $aData.country|default:0) item=iter key=key}
+                                            <option {if isset($aData.field) && $aData.field == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                        {/if}
+                                    </select>
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                $('select[name=field]').on("change", function(){
+                                                    getRefValues('city', $(this).val(), $('select[name=city]'), '');
+                                                });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите область')}</small>                                            
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.region}{/if}" name="region" >
+                                    <small class="error">{$oL->get('Выберите район')}</small> 
+                                </p>
+                                <p>
+                                    <select name="city" >
+                                        <option value="">{$oL->get('Выберите город')}</option>
+                                        {if $aData.field|default:0 > 0}
+                                        {foreach from=$ref->get('city', 'parent_id:' + $aData.field|default:0) item=iter key=key}
+                                            <option {if isset($aData.city) && $aData.city == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                        {/if}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите город')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.street}{/if}" name="street" >
+                                    <small class="error">{$oL->get('Неккоректное ввод')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="house" value="{if isset($aData) and $aData|@count > 0}{$aData.house}{/if}" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Неккоректное номер дома')}</small>  
+                                </p>
+                                <p>
+                                    <input type="text" name="apartment" value="{if isset($aData) and $aData|@count > 0}{$aData.apartment}{/if}" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Неккоректное номер квартиры')}</small>  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Среднее образование”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Учебное заведение')}</b></p>
+                                <p><b>{$oL->get('Местонахождение')}</b></p>
+                                <p><b>{$oL->get('Год поступления')}</b></p>
+                                <p><b>{$oL->get('Год окончания')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="middle_educational">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.middle_educational) && $aData.middle_educational == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_educational_institution}{/if}" name="middle_educational_institution" disabled="disabled" class="select-yes"  pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное учебное заведение')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_location}{/if}" name="middle_location" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Неккоректное Местонахождение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_year_of_entrance}{/if}" name="middle_year_of_entrance"  class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_year_of_ending}{/if}" name="middle_year_of_ending"  class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Средне-специальное образование”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Учебное заведение')}</b></p>
+                                <p><b>{$oL->get('Местонахождение')}</b></p>
+                                <p><b>{$oL->get('Год поступления')}</b></p>
+                                <p><b>{$oL->get('Год окончания')}</b></p>
+                                <p><b>{$oL->get('Факультет')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="middle_spec_educational">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.middle_spec_educational) && $aData.middle_spec_educational == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                               <p>
+                                    <input type="text" name="middle_spec_educational_institution" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_spec_educational_institution}{/if}" class="select-yes" disabled="disabled"  pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное учебное заведение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="middle_spec_location" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_spec_location}{/if}" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Неккоректное Местонахождение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="middle_spec_year_of_entrance" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_spec_year_of_entrance}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="middle_spec_year_of_ending" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_spec_year_of_ending}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="middle_spec_faculty" value="{if isset($aData) and $aData|@count > 0}{$aData.middle_spec_faculty}{/if}" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Введите факультет')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Высшее образование”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Учебное заведение')}</b></p>
+                                <p><b>{$oL->get('Местонахождение')}</b></p>
+                                <p><b>{$oL->get('Год поступления')}</b></p>
+                                <p><b>{$oL->get('Год окончания')}</b></p>
+                                <p><b>{$oL->get('Факультет')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="high_education">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.high_education) && $aData.high_education == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input type="text" name="high_educational_institution" value="{if isset($aData) and $aData|@count > 0}{$aData.high_educational_institution}{/if}" class="select-yes" disabled="disabled"  pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное учебное заведение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="high_location" value="{if isset($aData) and $aData|@count > 0}{$aData.high_location}{/if}" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Неккоректное Местонахождение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="high_year_of_entrance" value="{if isset($aData) and $aData|@count > 0}{$aData.high_year_of_entrance}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="high_year_of_ending" value="{if isset($aData) and $aData|@count > 0}{$aData.high_year_of_ending}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="high_faculty" value="{if isset($aData) and $aData|@count > 0}{$aData.high_faculty}{/if}" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Введите факультет')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Курсы”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Учебное заведение')}</b></p>
+                                <p><b>{$oL->get('Местонахождение')}</b></p>
+                                <p><b>{$oL->get('Год поступления')}</b></p>
+                                <p><b>{$oL->get('Год окончания')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="courses_educational">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.courses_educational) && $aData.courses_educational == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                 <p>
+                                    <input type="text" name="courses_educational_institution" value="{if isset($aData) and $aData|@count > 0}{$aData.courses_educational_institution}{/if}" class="select-yes" disabled="disabled" pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректное учебное заведение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="courses_location" value="{if isset($aData) and $aData|@count > 0}{$aData.courses_location}{/if}" class="select-yes" disabled="disabled" >
+                                    <small class="error">{$oL->get('Неккоректное Местонахождение')}</small> 
+                                </p>
+                                <p>
+                                    <input type="text" name="courses_year_of_entrance" value="{if isset($aData) and $aData|@count > 0}{$aData.courses_year_of_entrance}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="courses_year_of_ending" value="{if isset($aData) and $aData|@count > 0}{$aData.courses_year_of_ending}{/if}" class="select-yes" disabled="disabled"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Ученая степень”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Категория')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="rank" >
+                                        <option value="" >{$oL->get('Выберите категорию')}</option>
+                                        {foreach from=$ref->get('rank') item=iter key=key}
+                                            <option {if isset($aData.rank) && $aData.rank == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите категорию')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Стажировки”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Место прохождения (страна)')}</b></p>
+                                <p><b>{$oL->get('Область')}</b></p>
+                                <p><b>{$oL->get('Город')}</b></p>
+                                <p><b>{$oL->get('Организация')}</b></p>
+                                <p><b>{$oL->get('Год прохождения стажировки')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="traineeship">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.traineeship) && $aData.traineeship == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <select class="select-yes" disabled="disabled" name="traineeship_country" >
+                                        <option value="">{$oL->get('Выберите страну')}</option>
+                                        {foreach from=$ref->get('country') item=iter key=key}
+                                            <option {if isset($aData.traineeship_country) && $aData.traineeship_country == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                    $('select[name=traineeship_country]').on("change", function(){
+                                                            getRefValues('field', $(this).val(), $('select[name=traineeship_field]'), '');
+                                                    });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите страну')}</small>
+                                </p>
+                                <p>
+                                    <select class="select-yes" disabled="disabled" name="traineeship_field" >
+                                        <option value="">{$oL->get('Выберите область')}</option>
+                                        {if $aData.traineeship_country|default:0 > 0}
+                                        {foreach from=$ref->get('field', 'parent_id:' + $aData.traineeship_country|default:0) item=iter key=key}
+                                            <option {if isset($aData.traineeship_field) && $aData.traineeship_field == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                        {/if}
+                                    </select>    
+                                    <script>
+                                    (function($) {
+                                        $(window).load(function() {
+                                            $('select[name=traineeship_field]').on("change", function(){
+                                                    getRefValues('city', $(this).val(), $('select[name=traineeship_city]'), '');
+                                            });
+                                        });
+                                    })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите область')}</small>
+                                </p>
+                                <p>
+                                    <select class="select-yes" disabled="disabled" name="traineeship_city" >
+                                        <option value="">{$oL->get('Выберите город')}</option>
+                                        {if $aData.traineeship_field|default:0 > 0}
+                                        {foreach from=$ref->get('city', 'parent_id:' + $aData.traineeship_field|default:0) item=iter key=key}
+                                            <option {if isset($aData.traineeship_city) && $aData.traineeship_city == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                        {/if}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите город')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.traineeship_organization}{/if}" disabled="disabled" name="traineeship_organization"  pattern="[a-zA-Z-а-яА-ЯёЁa]+">
+                                    <small class="error">{$oL->get('Неккоректная организация')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.traineeship_year_of_passing}{/if}" disabled="disabled" name="traineeship_year_of_passing"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Выезды за рубеж”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                               <p><b>{$oL->get('Наличие')}</b></p>
+                               <p><b>{$oL->get('Место выезда (страна)')}</b></p>
+                               <p><b>{$oL->get('Город')}</b></p>
+                               <p><b>{$oL->get('Цель выезда за рубеж')}</b></p>
+                               <p><b>{$oL->get('Дата выезда из Казахстана')}</b></p>
+                               <p><b>{$oL->get('Дата возвращения в Казахстан')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="departure">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.departure) && $aData.departure == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <select class="select-yes" disabled="disabled" name="departure_country" >
+                                        <option value="">{$oL->get('Выберите страну')}</option>
+                                        {foreach from=$ref->get('country') item=iter key=key}
+                                            <option {if isset($aData.departure_country) && $aData.departure_country == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <script>
+                                        (function($) {
+                                            $(window).load(function() {
+                                                    $('select[name=departure_country]').on("change", function(){
+                                                            getRefValues('city', $(this).val(), $('select[name=departure_city]'), '', 'country_id');
+                                                    });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                    <small class="error">{$oL->get('Выберите страну')}</small>
+                                </p>
+                                <p>
+                                    <select class="select-yes" disabled="disabled" name="departure_city" >
+                                        <option value="">{$oL->get('Выберите город')}</option>
+                                        {if $aData.departure_country|default:0 > 0}
+                                        {foreach from=$ref->get('city', 'country_id:' + $aData.departure_country|default:0) item=iter key=key}
+                                            <option {if isset($aData.departure_city) && $aData.departure_city == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                        {/if}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите город')}</small>
+                                </p>
+                                <p>
+                                    <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.departure_target}{/if}" disabled="disabled" type="text" name="departure_target" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.departure_date_out}{/if}" disabled="disabled" type="text" name="departure_date_out"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.departure_date_in}{/if}" disabled="disabled" type="text" name="departure_date_in"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Судимость”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Срок осуждения')}</b></p>
+                                <p><b>{$oL->get('Статья осуждения')}</b></p>
+                                <p><b>{$oL->get('Место исправительного учреждения')}</b></p>
+                                <p><b>{$oL->get('Примечание')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="conviction_status">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.conviction_status) && $aData.conviction_status == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.conviction_date}{/if}" disabled="disabled" type="text" name="conviction_date">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.conviction_article}{/if}" disabled="disabled" type="text" name="conviction_article">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.conviction_location}{/if}" disabled="disabled" type="text" name="conviction_location">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                <input class="select-yes" value="{if isset($aData) and $aData|@count > 0}{$aData.conviction_description}{/if}" disabled="disabled" type="text" name="conviction_description">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Опыт работы”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                               <p><b>{$oL->get('Наименование организации')}</b></p>
+                               <p><b>{$oL->get('Место нахождение организации')}</b></p>
+                               <p><b>{$oL->get('Дата начала работы в организации')}</b></p>
+                               <p><b>{$oL->get('Дата окончания работы в организации')}</b></p>
+                               <p><b>{$oL->get('Причина увольнения')}</b></p>
+                               <p><b>{$oL->get('Характеристики по месту работы')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.experience_organization}{/if}" name="experience_organization">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <select name="experience_location" >
+                                        <option value="">{$oL->get('Выберите город')}</option>
+                                        {foreach from=$ref->get('city') item=iter key=key}
+                                            <option {if isset($aData.experience_location) && $aData.experience_location == $key}selected="selected"{/if} value="{$key}">{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                    <small class="error">{$oL->get('Выберите город')}</small>
+                                </p>
+                                <p>
+                                     <input type="text" name="experience_start" value="{if isset($aData) and $aData|@count > 0}{$aData.experience_start}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                     <input type="text" name="experience_end" value="{if isset($aData) and $aData|@count > 0}{$aData.experience_end}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.experience_reason_for_leaving}{/if}" name="experience_reason_for_leaving" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.experience_characteristics}{/if}" name="experience_characteristics" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Предпринимательская деятельность”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Наличие')}</b></p>
+                                <p><b>{$oL->get('Место предпринимательства')}</b></p>
+                                <p><b>{$oL->get('Сфера')}</b></p>
+                                <p><b>{$oL->get('Цель')}</b></p>
+                                <p><b>{$oL->get('Срок предпринимательства')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="business_status">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.business_status) && $aData.business_status == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.business_location}{/if}" class="select-yes" disabled="disabled" name="business_location" >
+                                    <small class="error">{$oL->get('Нееккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.business_scope}{/if}" class="select-yes" disabled="disabled" name="business_scope" >
+                                    <small class="error">{$oL->get('Нееккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.business_target}{/if}" class="select-yes" disabled="disabled" name="business_target" >
+                                    <small class="error">{$oL->get('Нееккоректный ввод')}</small>
+                                </p>
+                                <p>                                            
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.business_life}{/if}" class="select-yes" disabled="disabled" name="business_life"  pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Поощрения”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Причина поощрения')}</b></p>
+                                <p><b>{$oL->get('Кем')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.promotion_reason}{/if}" name="promotion_reason" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.promotion_whom}{/if}" name="promotion_whom" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Взыскания”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Причина взыскания')}</b></p>
+                                <p><b>{$oL->get('Кем')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.penalties_reason}{/if}" name="penalties_reason" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.penalties_whom}{/if}" name="penalties_whom" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Результаты аттестации”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Начало прохождения аттестации')}</b></p>
+                                <p><b>{$oL->get('Окончание прохождения аттестации')}</b></p>
+                                <p><b>{$oL->get('Место прохождения аттестации')}</b></p>
+                                <p><b>{$oL->get('Результаты')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" name="validation_start" value="{if isset($aData) and $aData|@count > 0}{$aData.validation_start}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="validation_end" value="{if isset($aData) and $aData|@count > 0}{$aData.validation_end}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.validation_location}{/if}" name="validation_location" >
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                                <p>                                        
+                                    <input type="file" class="file_down"  name="validation_result">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Кадровый резерв”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Состоит')}</b></p>
+                                <p><b>{$oL->get('Примечание')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select name="talent_pool">
+                                        {foreach from=$ref->get('boolean') item=iter key=key}
+                                            <option {if isset($aData.talent_pool) && $aData.talent_pool == $key}selected="selected"{/if} value="{$key}" class="{$key|lower}" >{$oL->get($iter)}</option>
+                                        {/foreach}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input type="text" value="{if isset($aData) and $aData|@count > 0}{$aData.talent_pool_description}{/if}" class="select-yes" disabled="disabled" name="talent_pool_description">
+                                    <small class="error">{$oL->get('Неккоректный ввод')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Справки”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p>                                        
+                                <b>{$oL->get('Справки')}</b>
+                                </p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>                                                                                   
+                                    <input type="file" class="file_down"  name="information">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Отпуск”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>{$oL->get('Начала даты получения трудового отпуска')}</b></p>
+                                <p><b>{$oL->get('Окончание даты трудового отпуска')}</b></p>
+                                <p><b>{$oL->get('Оставшееся количество дней отпуска')}</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" name="accommodation_start" value="{if isset($aData) and $aData|@count > 0}{$aData.accommodation_start}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="accommodation_end" value="{if isset($aData) and $aData|@count > 0}{$aData.accommodation_end}{/if}" pattern="(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d">
+                                    <small class="error">{$oL->get('Введите в формате <br> ДД/ММ/ГГГГ')}</small>
+                                </p>
+                                <p>
+                                    <input type="text" name="accommodation_remaining" value="{if isset($aData) and $aData|@count > 0}{$aData.accommodation_remaining}{/if}" {literal}pattern="[?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+]+">
+                                    {/literal}
+                                    <small class="error">{$oL->get('Введите цифры')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>                            
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Документы”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p>                                        
+                                <b>{$oL->get('Документы')}</b>
+                                </p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="file" class="file_down"  name="documentation">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>                      
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Примечания по сотруднику”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p>                                        
+                                <b>{$oL->get('Заметки')}</b>
+                                </p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="file" class="file_down"  name="notes">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>              
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">{$oL->get('Раздел “Должностная инструкция”')}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p>                                        
+                                <b>{$oL->get('Документы')}</b>
+                                </p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                     <input type="file" class="file_down"  name="job_description">
+                                    <small class="error">{$oL->get('Файл не выбран')}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button secondary save-profile">{$oL->get('Сохранить')}</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    (function($) {
+        $(window).load(function() {
+            $(".fixed-top, .mtree-node").mCustomScrollbar({
+                setWidth: false,
+                setLeft: 0,
+                theme: "dark"
+            });
+        });
+    })(jQuery);
+    
+    function getRefValues(sRefName, sId, oContainer, sSelected, sFilter){
+        var elem = '<option value="">{$oL->get('Выберите')}</option>';
+        oContainer.empty().append(elem);
+        if(sId === "")return false;
+        $.post( "/getreference", { ref:sRefName, id:sId, filter:sFilter }, function( data ) {
+            if(data.success === 1){
+                var elem = '<option value="">{$oL->get('Выберите')}</option>';
+                for (var item in data.data){
+                    elem += '<option ';
+                    if(sSelected !== '' && sSelected == item){
+                        elem += 'selected="selected"';
+                    }
+                    elem += ' value="' + item + '">' + data.data[item] + '</option>';
+                }
+                oContainer.empty().append(elem);
+            }
+        }, "json");
+    }
+
+
+</script>
+{/block}{* content *}
+
+{block name="footer"}
+<script type="text/javascript">
+    $('form').on('invalid', function(){
+        console.log('invalid');
+    }).on('valid', function(){
+        var aData = $(this).serialize();
+        $.post( "/account/save/{$id}", aData, function( data ) {
+            console.log( data );
+            if(data.success === 1){
+                location.href = '/account/view/' + data.id;
+            }
+        }, "json");
+        console.log('valid');
+    }).on('submit', function(){
+        console.log('submit');
+        return false;
+    });
+</script>
+{/block}
+
+
+{block name="connect_js"}
+{/block}

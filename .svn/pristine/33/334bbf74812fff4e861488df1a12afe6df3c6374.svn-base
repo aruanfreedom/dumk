@@ -1,0 +1,68 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Upload extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	
+	/*public function image()
+	{
+		$config['upload_path'] 		= APP_UPLOADS_IMAGES_PATH;
+		$config['allowed_types'] 	= 'gif|jpg|png';
+		$config['max_size']		= '2000'; // Kb
+		$config['max_width']  		= '1024';
+		$config['max_height']  		= '768';
+		$config['encrypt_name']  	= TRUE;
+		$this->load->library('upload', $config);
+
+		
+		if ( !$this->upload->do_upload('file'))
+		{
+			echo json_encode(array('success'=>false, 'file_name'=>'', 'errors'=>$this->upload->display_errors()));
+		}	
+		else
+		{
+			$aData = $this->upload->data();
+			
+			echo json_encode(array('success'=>true, 'file_name'=>APP_UPLOADS_IMAGES_HREF.'/'.$aData['file_name'], 'data'=>$aData));
+		}
+	}*/
+	
+	public function file()
+	{
+		$config['upload_path'] 		= APP_UPLOADS_FILES_PATH;
+		$config['allowed_types'] 	= 'gif|jpg|png|pdf|doc|zip|rar|docx|xls|xlsx|ppt|txt';
+		$config['max_size']		= '20000'; // Kb
+		$config['encrypt_name']  	= TRUE;
+		
+		$this->load->library('upload', $config);
+
+		
+		if ( !$this->upload->do_upload('file'))
+		{
+			echo "<html><meta charset='utf-8'><body>";
+			echo "<p>".$this->upload->display_errors()."</p>";
+			echo "<p><a href='/cp/uploader'>Назад</a></p>";
+			echo "</body></html>";
+		}	
+		else
+		{
+			$aData = $this->upload->data();
+			// echo json_encode(array('success'=>true, 'file_name'=>APP_UPLOADS_FILES_HREF.'/'.$aData['file_name'], 'data'=>$aData));
+			$sNewFileName = time()."_".$aData['file_name'];
+			rename( 
+				APP_UPLOADS_FILES_PATH.'/'.$aData['file_name'], 
+				APP_UPLOADS_FILES_PATH.'/'.$sNewFileName
+			);
+			$this->session->set_userdata('last_uploaded_file', array(
+				"title"=>$aData['file_name'],
+				"url"=>APP_UPLOADS_FILES_HREF.'/'.$sNewFileName
+			));
+			redirect('/cp/uploader');
+		}
+	}
+}
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

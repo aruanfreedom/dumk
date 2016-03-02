@@ -1,0 +1,21 @@
+<?php defined('BASEPATH') or die('No direct script access allowed');
+require_once APPPATH."core/app_controller.php";
+
+class Main extends App_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->model('news_model');
+	}
+
+	public function index()
+	{
+		$this->view->display('page_welcome/page_welcome.tpl');
+	}
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

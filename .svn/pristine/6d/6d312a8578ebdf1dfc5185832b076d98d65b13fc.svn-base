@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<script src="/static/js/modernizr.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dumk</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="cadrs">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="home.html" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+                <ul class="left">
+                    <li class="has-dropdown">
+                        <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                        <ul class="dropdown">
+                            <li class="active">
+                                <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="right">
+                    <li>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock"> <span>12:36</span></a>
+                    </li>
+                    <li>
+                        <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Арман Ахметов</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Профиль</a></li>
+                            <li><a href="index.html">Выход из системы</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+        <div class="large-12 columns" id="content">
+            <div class="profile text-center">
+                <a class="back" href="home.html"> &#60; Назад в реестр</a>
+                <h2>О мечети</h2>
+                <p><img src="/static/img/data-person/person.jpg" class="img-profile" height="101" width="105" alt="person">
+                </p>
+                <p class="download-all">
+                    <a href="#"><img src="/static/img/icons/download-blue.png" alt="download"> Скачать все</a>
+                </p>
+                <form action="" data-abide="">
+                    <span class="button secondary edit-profile-no-scroll">Редактировать</span>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">Раздел “Местонахождение”</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>Город</b></p>
+                                <p><b>Улица</b></p>
+                                <p><b>Дом</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <select disabled="disabled" required name="city">
+                                        <option value="">Выберите город</option>
+                                        <option value="Астана">Астана</option>
+                                        <option value="Алмата">Алмата</option>
+                                    </select>
+                                    <small class="error">Выберите город</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="street" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="home" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">Раздел “Имам”</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>Фамилия</b></p>
+                                <p><b>Имя</b></p>
+                                <p><b>Отчество</b></p>
+                                <p><b>Номер телефона</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" disabled="disabled" name="last_name" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="name" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="middle_name" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                                <p>
+                                    <input type="text" disabled="disabled" name="number_phone" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">Раздел “Контактная информация”</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>Номер телефона</b></p>
+                                <p><b>Электронная почта</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" disabled="disabled" name="number_contact" required>
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                                <p>
+                                    <input type="email" name="email" pattern="email">
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="row">
+                            <div class="large-6 columns large-centered">
+                                <h3 class="section-edit">Раздел “Сотрудники”</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns text-right">
+                                <p><b>Количество сотрудников</b></p>
+                            </div>
+                            <div class="large-6 columns edit-input text-left">
+                                <p>
+                                    <input type="text" disabled="disabled" name="count_people" pattern="email">
+                                    <small class="error">Неккоректное ввод</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="/static/js/vendor.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/tabs.js"></script>
+    <script src="/static/js/jquery.tabslet.min.js"></script>
+    <script src="/static/js/tree.js"></script>
+    <script>
+    $('#tab-container').tabslet();
+    </script>
+</body>
+
+</html>

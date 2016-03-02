@@ -1,0 +1,51 @@
+<?php defined('BASEPATH') or die('No direct script access allowed');
+
+class App_Controller extends CI_Controller {
+	public $aUserData = array();
+	public $aSiteConf = array();
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->helper('html');
+		$this->load->helper('url');
+		$this->load->library('pagination');
+		$this->load->model('menu_model');
+
+		$aMenuTree = $this->menu_model->get_menu_tree();
+		$this->view->assign('menu_tree', $aMenuTree );
+
+		$this->config->load("site", true);
+		$this->aSiteConf = $this->config->item("site");
+
+		$this->view->assign("footer_menu", $this->aSiteConf['footer_menu']);
+		$this->view->assign("documentolog_version", $this->aSiteConf['documentolog_version']);
+
+		if ($this->is_logged_in())
+		{
+			$this->aUserData = $this->users_model->get_user_data(array('user_id'=>$this->session->userdata('user_id')));
+			$this->view->assign('user_data', $this->aUserData);
+
+			if ($this->is_admin())
+			{
+				$this->view->assign("admin_menu", $this->aSiteConf['admin_menu']);
+			}
+		}
+	}
+
+	public function is_logged_in()
+	{
+		return $this->session->userdata('logged_in')?true:false;
+	}
+
+	public function get_role()
+	{
+		return $this->session->userdata('user_role');
+	}
+
+	public function is_admin()
+	{
+		return $this->session->userdata('is_admin')==1?true:0;
+	}
+}

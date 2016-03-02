@@ -1,0 +1,362 @@
+<?php
+
+defined('BASEPATH') or die('No direct script access allowed');
+
+class Admin_async extends CI_Controller
+{
+
+    private $iRowOnPage = 10;
+
+    public function __construct() {
+        parent::__construct();
+
+        if (!$this->session->userdata('logged_in')) {
+            $this->access_denied();
+            exit;
+        }
+
+        if ($this->input->is_ajax_request()) {
+            $this->load->library('form_validation');
+        } else {
+            echo json_encode(array('error' => 'Not XMLHttpRequest, sorry man!'));
+            exit;
+        }
+    }
+
+    public function access_denied() {
+        echo json_encode(array('error' => 'Access denied!'));
+    }
+
+    public function locale() {
+        $aData = array('success' => 1);
+        $this->form_validation->set_rules('lang', 'Язык', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $aData['success'] = 0;
+            $aData['errors']['lang'] = form_error('lang');
+        } else {
+            $this->session->set_userdata('locale', set_value('lang'));
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function staff($iId) {
+        $aData = array('success' => 1);
+
+        //Пагинация
+        $iPage = (int) $this->input->post('page', true);
+        $iPage = $iPage > 0 ? --$iPage : 0;
+        $aFields = $this->users_model->getSearchIgnoreFields();
+
+        //Сортировка
+        $aSort = $this->input->post('sort', true);
+        $sSort = 'surname DESC';
+        if (is_array($aSort) && count($aSort) && array_key_exists($aSort['name'], $aFields) && in_array($aSort['value'], array('ASC', 'DESC'))) {
+            $sSort = $aSort['name'] . ' ' . $aSort['value'];
+        }
+
+        //Фильтрация
+        $aStatusClass = array(
+            'working' => 'Работает',
+            'vacation' => 'В отпуске',
+            'fired' => 'Уволен'
+        );
+
+        $aFilter = $this->input->post('filter', true);
+        $aFilter = is_array($aFilter) ? $aFilter : array();
+        $aExt = array();
+
+        $aOrWhere = array();
+        foreach ($aFilter as $key => $value) {
+            $sVal = $key;
+            $sVal = isset($aStatusClass[$sVal]) ? $aStatusClass[$sVal] : $sVal;
+            if (array_key_exists($value, $aOrWhere)) {
+                $aOrWhere[$value][] = $sVal;
+                unset($aExt[$value]);
+            } else if (array_key_exists($value, $aFields)) {
+                $aExt[$value] = $sVal;
+                $aOrWhere[$value][] = $sVal;
+            }
+        }
+
+        foreach ($aOrWhere as $key => $aV) {
+            $iCount = count($aV);
+            if ($iCount > 1) {
+                $sWhere = "(";
+                foreach ($aV as $sIter => $sValue) {
+                    $sWhere .= ($sIter != 0 ? ' OR ' : '') . $key . "='" . $sValue . "'";
+                }
+                $sWhere .= ")";
+                $aExt[$sWhere] = null;
+            }
+        }
+//        echo '<pre>';
+//        print_r($aExt);
+        //Родственность
+        $iParent = (int) $this->input->post('parent_id', true);
+        $aExt['place_of_work'] = $iParent . "";
+
+        //Поиск
+        $sSearch = $this->input->post('search', true);
+        if (!empty($sSearch)) {
+            $aExt['search_union like '] = '%' . mb_strtolower($sSearch) . '%';
+        }
+
+        $aData['data'] = $this->users_model->get_list($this->iRowOnPage, $iPage, $sSort, $aExt);
+//        print_r($this->db->last_query());
+        $aData['total'] = $this->users_model->get_list_count($aExt);
+        $aData['row_on_page'] = $this->iRowOnPage;
+
+        echo json_encode($aData);
+    }
+
+    public function get_reference() {
+        $aData = array('success' => 1);
+        $this->form_validation->set_rules('ref', 'Справочник', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('id', 'Идентификатор', 'trim|required|integer');
+        $this->form_validation->set_rules('filter', 'Фильтр', 'trim|xss_clean');
+
+        if ($this->form_validation->run() == FALSE) {
+            $aData['success'] = 0;
+            $aData['errors']['ref'] = form_error('ref');
+            $aData['errors']['id'] = form_error('id');
+            $aData['errors']['filter'] = form_error('filter');
+        } else {
+            $sFilter = set_value('filter');
+            $sFilter = empty($sFilter) ? 'parent_id' : $sFilter;
+            $this->load->model('ref_model');
+            $aData['data'] = $this->ref_model->get(set_value('ref'), array($sFilter => set_value('id')));
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function update_request_status() {
+        if (!$this->session->userdata('is_admin')) {
+            $this->access_denied();
+            exit;
+        }
+
+        $iId = intval($this->input->post('id'));
+        $sStatus = $this->input->post('status');
+
+
+        $aData['success'] = false;
+
+        if ($iId && $iId > 0 && in_array($sStatus, array("new", "work", "close"))) {
+            $this->load->model('Support_requests_model');
+
+            //
+            $aItemData = array(
+                'status' => $sStatus
+            );
+
+            if ('work' == $sStatus)
+                $aItemData['work_dt'] = time();
+
+            if ('close' == $sStatus)
+                $aItemData['close_dt'] = time();
+
+            $this->Support_requests_model->update_status($iId, $aItemData);
+
+            $aAuthor = $this->Support_requests_model->get_request_author($iId);
+
+
+            $this->load->library('email');
+
+            // Notify request author about status changing
+            $this->email->from('documentolog@bk.ru', 'documentolog@bk.ru');
+            $this->email->to($aAuthor['email']);
+
+            $this->email->set_mailtype("html");
+
+            $this->email->subject('[SUPPORT] Изменен статус заявки №' . $iId . ' - Служба поддержки Documentolog');
+            $this->email->message(
+                    '<h2>Здравствуйте, ' . $aAuthor['fullname'] . '!</h2><br />
+				<p>Статус Вашей <a href="http://documentolog.kz/cabinet/request/' . $iId . '">заявки №' . $iId . '</a> в службу поддержки
+				изменен на ' . $this->Support_requests_model->decode_status($sStatus) . '</p>'
+            );
+
+            $this->email->send();
+
+            // Debug
+            // echo $this->email->print_debugger();
+
+            $aData['success'] = true;
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function account_save($iId) {
+        $aData = array('success' => 1);
+
+        $result = $this->users_model->save($iId);
+        if (is_array($result)) {
+            $aData['success'] = 0;
+            $aData = array_merge($result, $aData);
+        } else {
+            $aData['id'] = $result;
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function subdivision_save($iId) {
+        $aData = array('success' => 1);
+        $this->load->model('subdivisions_model');
+
+        $result = $this->subdivisions_model->save($iId);
+        if (is_array($result)) {
+            $aData['success'] = 0;
+            $aData = array_merge($result, $aData);
+        } else {
+            $aData['id'] = $result;
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function save_profile() {
+        $aData = array('success' => 1);
+
+        $result = $this->users_model->save($this->session->userdata('user_id'));
+        if (is_array($result)) {
+            $aData['success'] = 0;
+            $aData = array_merge($result, $aData);
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function remove_partner() {
+        if (!$this->session->userdata('is_admin')) {
+            $this->access_denied();
+            exit;
+        }
+
+        $aData = array('success' => false);
+
+        $iId = intval($this->input->post('id'));
+
+        if ($iId) {
+
+            $this->db->delete('users', array('id' => $iId));
+            $aData['success'] = true;
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function repass_partner() {
+        if (!$this->session->userdata('is_admin')) {
+            $this->access_denied();
+            exit;
+        }
+
+        $iPartnerId = intval($this->input->post('id'));
+
+        if (!$iPartnerId) {
+            echo json_encode(array(
+                'success' => false
+            ));
+            return;
+        }
+
+        // generate new password
+        $sOriginalPassword = genRandomPassword();
+        $sPassword = $this->users_model->generate_password($sOriginalPassword, APP_ENC_SULT);
+
+        // get partner data
+        $this->db->where(array('id' => $iPartnerId));
+        $this->db->select('*')->from('users');
+        $q = $this->db->get();
+
+        $aData = array();
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aData[] = $aItem;
+            }
+        }
+
+        if (sizeof($aData))
+            $aData = current($aData);
+
+        // update
+        $this->db->where('id', $iPartnerId);
+        $this->db->update('users', array(
+            'password' => $sPassword
+        ));
+
+        // notify partner about new pass
+        $this->notify_partner_new_pass(array(
+            'email' => $aData['email'],
+            'fullname' => $aData['fullname'],
+            'password' => $sOriginalPassword
+        ));
+
+        echo json_encode(array(
+            'success' => isset($aData['email'])
+        ));
+    }
+
+    public function notify_new_partner($aData) {
+        $this->load->library('email');
+
+        $this->email->from('documentolog@bk.ru', 'documentolog@bk.ru');
+        $this->email->to($aData['email']); // partner email
+
+        $this->email->set_mailtype("html");
+
+        $this->email->subject('[ACCOUNT] Вы подключены к службе поддержки Documentolog');
+        $this->email->message(
+                '<h2>Здравствуйте, ' . $aData['fullname'] . '!</h2>
+			<p style="color:#888;">На сайте поддержки системы Documentolog для вас была создана учетная запись.</p><br />
+			<p><strong>Вам предоставлен доступ к личному кабинету.</strong> Для входа используйте E-Mail и Пароль:</p>
+			<p style="margin-top:12px;padding:20px;background:#FFE9A7;border:1px solid #F8B482;border-radius:4px">
+				<strong>E-Mail:</strong> ' . $aData['email'] . '<br />
+				<strong>Пароль:</strong> ' . $aData['password'] . '<br />
+				<a href="http://documentolog.kz/login" style="display:inline-block;margin-top:10px;">Войти в личный кабинет</a>
+			</p>
+			<br />
+			<h3>Возможности личного кабинета</h3>
+			<p>
+				&mdash; Мгновенное уведомление службы поддержки о проблемах в системе<br />
+				&mdash; Отслеживание статуса решения проблемы<br />
+				&mdash; Быстрое получение справки
+			</p>'
+        );
+
+        $this->email->send();
+
+        // Debug
+        // echo $this->email->print_debugger();
+    }
+
+    public function notify_partner_new_pass($aData) {
+        $this->load->library('email');
+
+        $this->email->from('documentolog@bk.ru', 'documentolog@bk.ru');
+        $this->email->to($aData['email']); // partner email
+
+        $this->email->set_mailtype("html");
+
+        $this->email->subject('[ACCOUNT] Новый пароль от личного кабинета - Сайт поддержки Documentolog');
+        $this->email->message(
+                '<h2>Здравствуйте, ' . $aData['fullname'] . '!</h2>
+			<p><strong>Вам предоставлен новый пароль от личного кабинета.</strong> Для входа используйте E-Mail и новый пароль:</p>
+			<p style="margin-top:12px;padding:20px;background:#FFE9A7;border:1px solid #F8B482;border-radius:4px">
+				<strong>E-Mail:</strong> ' . $aData['email'] . '<br />
+				<strong>Пароль:</strong> ' . $aData['password'] . '<br />
+				<a href="http://documentolog.kz/login" style="display:inline-block;margin-top:10px;">Войти в личный кабинет</a>
+			</p>'
+        );
+
+        $this->email->send();
+    }
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

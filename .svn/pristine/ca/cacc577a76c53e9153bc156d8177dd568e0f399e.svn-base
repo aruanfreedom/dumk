@@ -1,0 +1,225 @@
+<?php
+
+class Support_requests_model extends CI_Model {
+
+	protected $table = 'support_requests';
+
+	public $aStatuses = array(
+		'new'=>'Создание',
+        'send'=>'Отправлена',
+		'cancel'=>'Отклонена',
+		'work'=>'В работе',
+		'close'=>'Закрыта'
+	);
+
+	public $aSubjects = array(
+		'b3d4fb8e-c4eb-4b69-bba2-55d6c477028c' => 'Системная ошибка',
+		'd85bb041-86ae-406c-8ff5-55d6c4a901dd' => 'Обслуживание',
+		'ce8f9d37-d514-4b89-8eae-55d6c4c10236' => 'Настройка системы',
+		'b4d5e6ed-5a90-4106-981a-55d6c4ec00c8' => 'Проблема после обновления',
+		'5c4d40c5-e30b-4ce4-9883-55d6c502038b' => 'Предложение'
+	);
+    
+	function __construct()
+	{
+		CI_Model::__construct();
+	}
+      
+	function decode_status($sStatusId)
+	{
+		return isset($this->aStatuses[ $sStatusId ]) ? $this->aStatuses[ $sStatusId ] : "unknown";
+	}
+
+	function decode_subject($iId)
+	{
+		return isset($this->aSubjects[ $iId ]) ? $this->aSubjects[ $iId ] : "unknown";
+	}
+
+	function get_total_count($iUserId = 0)
+	{
+		/*if ($iUserId)
+			$this->db->where('user_id', $iUserId);
+		
+		return $this->db->count_all_results($this->table);*/
+	
+		$this->db->select ( 'COUNT(*) AS `numrows`' );
+		if ($iUserId)
+		    $this->db->where ( array(
+		            'user_id' => $iUserId
+		    ) );
+	    $query = $this->db->get ( $this->table );
+	    return $query->row()->numrows;
+	}
+
+	/**
+	 *    
+	 */
+	function get_request($iId = 0, $aExpr=array())
+	{
+		$this->db->select('sr.*, u.fullname, u.email, u.profile_data');
+		$this->db->from('support_requests sr, users u');
+		
+		if ($iId)
+			$this->db->where('sr.id', $iId);
+
+		if (isset($aExpr['user_id']))
+			$this->db->where('sr.user_id', $aExpr['user_id']);
+		
+		$this->db->where('sr.user_id = u.id');
+
+		$q = $this->db->get();
+		
+		$aData = array();
+		
+		if ($q->num_rows() > 0)
+		{
+			$aData = $q->row_array();
+			$aData['description'] = nl2br(htmlspecialchars_decode($aData['description']));
+			$aData['send_dt_str'] = date('d.m.Y H:i', $aData['send_dt']);
+			$aData['close_dt_str'] = $aData['close_dt']?date('d.m.Y H:i', $aData['close_dt']):"&mdash;";
+			$aData['work_dt_str'] = $aData['work_dt']?date('d.m.Y H:i', $aData['work_dt']):"&mdash;";
+			$aData['status_str'] = $this->aStatuses[ $aData['status'] ];
+			$aData['subject_str'] = $this->aSubjects[ $aData['subject_id'] ];
+			$aData['files'] = json_decode($aData['files']);
+            $aData['executor'] = $aData['executor'];
+            $aData['close_description'] = nl2br(htmlspecialchars_decode($aData['close_description']));
+		}     
+		return $aData;
+	}
+
+
+	function get_request_author($iId = 0, $aExpr=array())
+	{
+		$this->db->select('sr.*, u.fullname, u.email, u.profile_data')
+				->from('support_requests sr, users u')
+				->where('u.id = sr.user_id')
+				->where('sr.id', $iId);
+
+        $q = $this->db->get();
+        
+        return $q->row_array();
+	}
+	
+	/**
+	 *
+	 */
+	public function save($aData)
+	{
+		 $this->db->insert(
+		 	$this->table, 
+		 	array( 
+                'subject_id'=>$aData['subject_id'],
+                'title'=>$aData['title'], 
+                'description'=>$aData['description'], 
+                'user_id'=>$aData['user_id'], 
+                'send_dt'=>time(),
+                'close_dt'=>0,
+                'work_dt'=>0,
+                'files'=>$aData['files'],
+                'status'=>'new',
+                'remote_guid'=>$aData['remote_guid']
+        	)
+        );
+        return $this->db->insert_id();
+	}
+	
+	public function update_status($iID, $aData)
+	{
+		$this->db->update(
+			$this->table, 
+			$aData, 
+        	array(
+        		'id'=>(int)$iID
+        	)
+        );
+
+		// echo $this->db->last_query();
+		
+		return $iID;
+	}
+
+
+	public function update_files($iID, $aFiles)
+	{
+		$this->db->update(
+			$this->table, 
+			array('files'=>json_encode($aFiles)), 
+        	array(
+        		'id'=>(int)$iID
+        	)
+        );
+
+		// echo $this->db->last_query();
+		
+		return $iID;
+	}
+
+	
+	public function remove($iID)
+	{
+		$this->db->delete($this->table, array('id'=>$iID));
+	}
+	
+	public function get_requests($iLimit=0, $sOrderBy='id DESC', $aExpr=array())
+	{
+		$this->db->select('sr.*, u.fullname, u.email, u.profile_data');
+		$this->db->from('support_requests sr, users u')->order_by($sOrderBy);
+		
+		$this->db->where('sr.user_id = u.id');
+
+		if (isset($aExpr['user_id']))
+			$this->db->where('sr.user_id', $aExpr['user_id']);
+
+		if (isset($aExpr['groupby']))
+			$this->db->groupby($aExpr['groupby']);
+
+		if (isset($aExpr['page']))
+			$this->db->limit($aExpr['items_per_page'], $aExpr['page']);
+
+		if ($iLimit)
+			$this->db->limit($iLimit);
+		
+		$q = $this->db->get();
+		
+		$aData = array();
+		
+		if ($q->num_rows() > 0)
+		{
+			foreach ($q->result_array() as $aItem)
+			{
+				$aItem['description'] = htmlspecialchars($aItem['description']);
+                $aItem['close_description'] = htmlspecialchars($aItem['close_description']);
+                $aItem['executor'] = $aItem['executor'];
+				$aItem['send_dt_str'] = date('d.m.Y в H:i', $aItem['send_dt']);
+				$aItem['close_dt_str'] = $aItem['close_dt']?date('d.m.Y в H:i', $aItem['close_dt']):"&mdash;";
+				$aItem['work_dt_str'] = $aItem['work_dt']?date('d.m.Y в H:i', $aItem['work_dt']):"&mdash;";
+				$aItem['status_str'] = $this->aStatuses[ $aItem['status'] ];
+				$aItem['subject_str'] = $this->aSubjects[ $aItem['subject_id'] ];
+				//$aItem['files'] = json_decode($aItem['files']);
+				$aData[] = $aItem;
+			}
+		}
+		
+		// echo $this->db->last_query();
+		return $aData;
+	}
+    
+    public function get_request_by_remote_guid($sId)
+	{
+		$this->db->select('*')
+				->from('support_requests')
+				->where('remote_guid', $sId);
+
+        $q = $this->db->get();
+        
+        if ($q->num_rows() > 0)
+		{
+			$aData = $q->row_array();
+			return  $aData['id'];
+		}    
+        
+        return '';
+        
+	}
+	
+} 

@@ -1,0 +1,160 @@
+<?php
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING
+| -------------------------------------------------------------------------
+| This file lets you re-map URI requests to specific controller functions.
+|
+| Typically there is a one-to-one relationship between a URL string
+| and its corresponding controller class/method. The segments in a
+| URL normally follow this pattern:
+|
+|	example.com/class/method/id/
+|
+| In some instances, however, you may want to remap this relationship
+| so that a different class/function is called than the one
+| corresponding to the URL.
+|
+| Please see the user guide for complete details:
+|
+|	http://codeigniter.com/user_guide/general/routing.html
+|
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|
+| There area two reserved routes:
+|
+|	$route['default_controller'] = 'welcome';
+|
+| This route indicates which controller class should be loaded if the
+| URI contains no data. In the above example, the "welcome" class
+| would be loaded.
+|
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router what URI segments to use if those provided
+| in the URL cannot be matched to a valid route.
+|
+*/
+
+$route['default_controller'] = "admin";
+$route['404_override'] = '';
+
+/**
+ * Module: Auth
+ */
+$route['^(login|logout|forget)$'] = "auth/$1";
+$route['^async/auth/try_(login|forget)$'] = "auth_async/try_$1";
+$route['^reset/([a-z0-9]+)$'] = "auth/reset/$1";
+
+/**
+ * Common
+ */
+$route['^cp/uploader$'] = "admin/uploader";
+$route['^cp/upload/file$'] = "upload/file";
+
+/**
+ * Locale
+ */
+$route['^locale$'] = "admin_async/locale";
+
+/**
+ * Map
+ */
+$route['^map$'] = "admin/map";
+
+/**
+ * Reports
+ */
+$route['^reports$'] = "admin/reports";
+$route['^reports/download/([a-z_]+)$'] = "admin/reports_download/$1";
+$route['^export/download/(subdivision|user)/([0-9]+)$'] = "admin/word_download/$1/$2";
+
+/**
+ * Staff
+ */
+$route['^staff/([0-9]+)$'] = "admin/staff/$1";
+$route['^staff/([0-9]+)/filter$'] = "admin_async/staff/$1";
+
+/**
+ * Account
+ */
+$route['^account/view/([0-9]+)$'] = "admin/account_view/$1";
+$route['^account/create$'] = "admin/account_create";
+$route['^account/save/([0-9]+)$'] = "admin_async/account_save/$1";
+
+/**
+ * Subdivision
+ */
+$route['^subdivision/view/([0-9]+)$'] = "admin/subdivision_view/$1";
+$route['^subdivision/save/([0-9]+)$'] = "admin_async/subdivision_save/$1";
+/**
+ * References
+ */
+$route['^getreference$'] = "admin_async/get_reference";
+
+/**
+ * Profile
+ */
+$route['^profile$'] = "admin/profile";
+$route['^profile/save$'] = "admin_async/save_profile";
+
+/**
+ * Module: Page
+ */
+$route['^page/([0-9a-z\_\-]+)$'] = "main/view_page/$1";
+$route['^cp/pages$'] = "admin/pages";
+$route['^cp/pages/edit/([0-9a-f]{32})$'] = "admin/edit_page/$1";
+$route['^cp/pages/new/([0-9a-z\_\-]+)$'] = "admin/edit_page/new/$1";
+$route['^cpasync/page/(try_save|try_remove|get_node|get_content)$'] = "page_async/$1";
+
+/**
+ * Module: Menu
+ */
+$route['^cp/menu$'] = "admin/menu";
+$route['^cpasync/menu/(add_group|update_group|remove_group|add_node|update_node|remove_node)$'] = "menu_async/$1";
+
+$route['^cp/configedit$'] = "admin/config_editor";
+$route['^cpasync/configedit/try_save$'] = "menu_async/try_save";
+
+/**
+ * Module: Files
+ */
+$route['^upload/(image|file)$'] = "upload/$1";
+$route['^cp/files$'] = "admin/files";
+$route['^cpasync/files/(try_remove)$'] = "files_async/$1";
+
+/**
+ * Module: Contacts
+ */
+$route['^cp/contacts$'] = "admin/contacts";
+
+/*************************************************************************************************
+ *
+ * 		Custom
+ *
+ *************************************************************************************************/
+
+$route['^cabinet/(requests)$'] = "cabinet/requests";
+$route['^cabinet/request/new$'] = "cabinet/new_request";
+$route['^cabinet/request/edit/([0-9]+)$'] = "cabinet/edit_request/$1";
+$route['^cabinet/request/send/([0-9]+)$'] = "cabinet/send_request/$1";
+$route['^cabinet/request/([0-9]+)$'] = "cabinet/request/$1";
+$route['^cp/support_requests$'] = "admin/requests";
+$route['^cp/support_request/([0-9]+)$'] = "admin/request/$1";
+$route['^cpasync/support_request/update_status$'] = "admin_async/update_request_status";
+
+$route['^cp/accounts$'] = "admin/partners";
+$route['^cp/accounts/add$'] = "admin/partners_add";
+$route['^cp/accounts/([0-9]+)/edit$'] = "admin/partners_edit/$1";
+$route['^cpasync/accounts/save$'] = "admin_async/save_partner";
+$route['^cpasync/accounts/remove$'] = "admin_async/remove_partner";
+$route['^cpasync/accounts/repass$'] = "admin_async/repass_partner";
+
+$route['^partner$'] = "main/partner";
+$route['^cp/partner$'] = "admin/partner";
+$route['^async/partner/request$'] = "partner_async/request";
+
+/* End of file routes.php */
+/* Location: ./application/config/routes.php */

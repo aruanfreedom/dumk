@@ -1,0 +1,12 @@
+<?php
+
+class dateHelper
+{
+    private $aShortMonths = array("Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек");
+    private $aShortdays = array("Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс");
+
+    public function getHumanDateShort() {// Пт, 11 дек
+        return $this->aShortdays[date("N", time()) - 1] . ', ' . date("j", time()) . ' ' . $this->aShortMonths[date("n", time()) - 1];
+    }
+
+}

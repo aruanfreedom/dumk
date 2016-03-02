@@ -1,0 +1,183 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Auth_async extends CI_Controller
+{
+
+    public function __construct() {
+        parent::__construct();
+
+        if ($this->input->is_ajax_request()) {
+            $this->load->library('form_validation');
+        } else {
+            echo json_encode(array('error' => 'Not XMLHttpRequest, sorry man!'));
+            exit;
+        }
+    }
+
+    public function try_login() {
+        $aData = array('success' => 1);
+        $this->form_validation->set_rules('login', 'Логин', 'trim|required|min_length[3]|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $aData['success'] = 0;
+            $aData['errors']['login'] = form_error('login');
+            $aData['errors']['password'] = form_error('password');
+        } else {
+            $sPass = $this->users_model->generate_password(set_value('password'), APP_ENC_SULT);
+
+            $aUserData = $this->users_model->check_user(set_value('login'), $sPass);
+
+            if ($aUserData) {
+                $aUserData['logged_in'] = 1;
+                //TODO: Брать из профиля
+                $aUserData['locale'] = 'ru';
+
+                $aData['role'] = $aUserData['user_role'];
+
+                $this->session->set_userdata($aUserData);
+            } else
+                $aData['success'] = -1; // User not found
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function try_forget() {
+        $aData = array('success' => 1);
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[3]|max_length[30]|xss_clean');
+
+        if ($this->form_validation->run() == FALSE) {
+            $aData['success'] = 0;
+            $aData['errors']['email'] = form_error('email');
+        } else {
+            $aUserData = $this->users_model->check_email(set_value('email'));
+
+            if ($aUserData) {
+                $aUserData['logged_in'] = 1;
+                $this->send_email($aUserData);
+            } else
+                $aData['success'] = -1; // User not found
+        }
+
+        echo json_encode($aData);
+    }
+
+    public function send_email($aUserData) {
+        $sHash = $this->users_model->generate_password(rand(11111, 9999999), APP_ENC_SULT);
+        $this->users_model->update_custom_fields($aUserData['user_id'], array('hash' => $sHash));
+        $this->load->library('email');
+
+        $this->email->from('info@staff.lcl', 'info@staff.lcl');
+        $this->email->to($aUserData['email']);
+
+        $this->email->set_mailtype("html");
+
+        $this->email->subject('[SUPPORT] Сброс пароля');
+        $this->email->message(
+                '<h2>Здравствуйте, ' . $aUserData['surname'] . ' ' . $aUserData['name'] . '!</h2><br />
+            <p>Для сброса пароля на 123456 перейдите по ссылке:<br /> <a href="http://http://dumk.ddns.net/reset/' . $sHash . '">http://http://dumk.ddns.net/reset/' . $sHash . '</a></p>'
+        );
+
+        $this->email->send();
+    }
+
+    public function try_register() {
+        $aData = array('good' => 1);
+
+        $this->form_validation->set_rules('login', 'Логин', 'trim|required|min_length[3]|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
+        $this->form_validation->set_rules('email', 'Почта', 'trim|required|valid_email');
+
+        $this->form_validation->set_rules('fullname', 'Имя', 'trim|min_length[5]|max_length[30]|xss_clean');
+
+        $iGender = intval($this->input->post('gender'));
+
+        if ($this->input->post('country_code'))
+            $this->form_validation->set_rules('country_code', 'Город', 'trim|alpha|min_length[2]');
+
+        $this->form_validation->set_rules('town_id', 'Город', 'trim|integer');
+
+        $this->form_validation->set_rules('trouble', 'Диагноз', 'trim|min_length[3]|max_length[60]|xss_clean');
+        $this->form_validation->set_rules('preparates', 'Принимаемые лекарства', 'trim|max_length[255]|xss_clean');
+
+        // TODO valid_data
+        $this->form_validation->set_rules('birthday', 'Дата рождения', 'trim|xss_clean');
+
+        $this->form_validation->set_error_delimiters('<span class="field_error">', '</span>');
+
+        if ($this->form_validation->run() == FALSE) {
+            $aData['good'] = 0;
+            $aData['errors']['login'] = form_error('login');
+            $aData['errors']['password'] = form_error('password');
+            $aData['errors']['email'] = form_error('email');
+
+            $aData['errors']['fullname'] = form_error('fullname');
+            $aData['errors']['town_id'] = form_error('town_id');
+            $aData['errors']['country_code'] = form_error('country_code');
+            $aData['errors']['birthday'] = form_error('birthday');
+
+            $aData['errors']['trouble'] = form_error('trouble');
+            $aData['errors']['preparates'] = form_error('preparates');
+        } else {
+            $iRegTime = time();
+
+            $aRegUserData = array(
+                'login' => set_value('login'),
+                'password' => $this->users_model->generate_password(set_value('password'), APP_ENC_SULT),
+                'email' => set_value('email'),
+                'fullname' => set_value('fullname'),
+                'gender' => $iGender,
+                'country_code' => set_value('country_code'),
+                'town_id' => set_value('town_id'),
+                'perms_group_id' => 1,
+                'reg_dt' => $iRegTime,
+                'trouble' => set_value('trouble'),
+                'preparates' => set_value('preparates')
+            );
+
+            // TODO: Validate date
+            if (set_value('birthday'))
+                $aRegUserData['birthday'] = '"' . set_value('birthday') . '"';
+            else
+                $aRegUserData['birthday'] = '';
+
+            if (!$this->users_model->check_exists($aRegUserData['login'], $aRegUserData['email'])) {
+                $aData['good'] = $this->users_model->perform_register($aRegUserData);
+            } else {
+                $aData['good'] = 0;
+                $aData['errors']['email'] = $aData['errors']['login'] = '<span class="field_error">Пользователь с таким E-Mail или Логином уже зарегистрирован.</span>';
+            }
+
+            if ($aData['good']) {
+                $this->session->set_userdata(array(
+                    'user_id' => $aData['good'],
+                    'login' => $aRegUserData['login'],
+                    'town_id' => $aRegUserData['town_id'],
+                    'email' => $aRegUserData['email'],
+                    'fullname' => $aRegUserData['fullname'],
+                    'gender' => $iGender,
+                    'birthday' => $aRegUserData['birthday'],
+                    'country_code' => $aRegUserData['country_code'],
+                    'town_id' => $aRegUserData['town_id'],
+                    'trouble' => $aRegUserData['trouble'],
+                    'preparates' => $aRegUserData['preparates'],
+                    'show_gender' => false,
+                    'show_birthday' => false,
+                    'show_location' => false,
+                    'logged_in' => 1
+                ));
+            }
+        }
+
+        echo json_encode($aData);
+    }
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

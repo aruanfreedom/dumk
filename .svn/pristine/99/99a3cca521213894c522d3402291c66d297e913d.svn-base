@@ -1,0 +1,387 @@
+<?php
+
+class General_report extends CI_Model
+{
+    private $objPHPExcel;
+    private $sHeadersStart = array(
+        '№',
+        'КМДБ өкілдігі',
+        'Мешіттер саны',
+        'Барлык казыметкерлер саны'
+    );
+    private $sHeadersMiddle = array();
+    private $sHeadersEnd = array(
+        'Жогары діни білімділер',
+        'Орта діни білімділер',
+        'Діни курс щкыгандар',
+        'Мешіт кызметіндегі карилар',
+        'Шетелдік жоғары немесе орта діни білім',
+        'Магистр',
+        'Гылым кандидаты, доктары, аспирант'
+    );
+    private $sFilePath = '';
+    private $iRowCount = 0;
+
+    function __construct() {
+        CI_Model::__construct();
+        /** Error reporting */
+        error_reporting(E_ALL);
+
+        /** Include path * */
+        ini_set('include_path', ini_get('include_path') . ';../../static/libs/');
+
+        /** PHPExcel */
+        include '/static/libs/PHPExcel.php';
+
+        /** PHPExcel_Writer_Excel2007 */
+        include '/static/libs/PHPExcel/Writer/Excel2007.php';
+        // Create new PHPExcel object
+//        echo date('H:i:s') . " Create new PHPExcel object\n";
+        $this->objPHPExcel = new PHPExcel();
+    }
+
+    public function execute() {
+        $this->setMeta();
+        $this->setData();
+        $this->setTitle();
+        $this->save();
+        $this->view();
+    }
+
+    public function chert3() {
+        require './33chartcreate-pie.php';
+    }
+
+    private function setMeta() {
+        // Set properties
+        //        echo date('H:i:s') . " Set properties\n";
+        $this->objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
+        $this->objPHPExcel->getProperties()->setTitle("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setSubject("Office 2007 XLSX Test Document");
+        $this->objPHPExcel->getProperties()->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.");
+    }
+
+    private function setData() {
+        $this->objPHPExcel->setActiveSheetIndex(0);
+        // Add some data
+        //        echo date('H:i:s') . " Add some data\n";
+        $aUnicSubd = array();
+        $iColPos = 0;
+        foreach ($this->sHeadersStart as $iK => $sHeader) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iColPos++, 1, $sHeader);
+        }
+
+        $aBranch = $this->getBranch();
+
+        foreach ($this->sHeadersMiddle as $iK => $sHeader) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iColPos++, 1, $sHeader);
+        }
+
+        $iIter = 0;
+        foreach ($this->sHeadersEnd as $iK => $sHeader) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iColPos++, 1, $sHeader);
+            if ($iIter++ < 3) {
+                --$iColPos;
+                $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iColPos++, 1, $iColPos++, 1);
+            }
+        }
+
+        $iRow = 2;
+        $iMosque = 0;
+        $iEmployees = 0;
+        $aPosts = array();
+        $aEdu = array(
+            'high' => 0,
+            'middle' => 0,
+            'courses' => 0,
+            'elderly' => 0,
+            'high_education_foreign' => 0,
+            'master' => 0,
+            'master+' => 0
+        );
+        foreach ($aBranch as $aV) {
+            $iCol = 0;
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $iRow - 1);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['title']);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['mosque']);
+            $iMosque += $aV['mosque'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['employee_count']);
+            $iEmployees += $aV['employee_count'];
+
+            foreach ($this->sHeadersMiddle as $sPost) {
+                if (!isset($aPosts[$iCol])) {
+                    $aPosts[$iCol] = 0;
+                }
+
+                if (array_key_exists($sPost, $aV['posts'])) {
+                    $aPosts[$iCol] += $aV['posts'][$sPost];
+                    $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['posts'][$sPost]);
+                } else {
+                    $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, 0);
+                }
+            }
+
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['high_education']);
+            $aEdu['high'] += $aV['high_education'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['high_education_percent'] . '%');
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['middle_education']);
+            $aEdu['middle'] += $aV['middle_education'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['middle_education_percent'] . '%');
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['courses_education']);
+            $aEdu['courses'] += $aV['courses_education'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['courses_education_percent'] . '%');
+
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['elderly']);
+            $aEdu['elderly'] += $aV['elderly'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['high_education_foreign']);
+            $aEdu['high_education_foreign'] += $aV['high_education_foreign'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['master']);
+            $aEdu['master'] += $aV['master'];
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol++, $iRow, $aV['master+']);
+            $aEdu['master+'] += $aV['master+'];
+
+            $iRow++;
+        }
+
+        $iCol = 0;
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, $iRow, 'Барлыгы');
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $iMosque);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $iEmployees);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        foreach ($aPosts as $iV) {
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow( ++$iCol, --$iRow, $iV);
+            $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol, ++$iRow, ($iV != 0 ? ceil($iV * 100 / $iEmployees) : 0) . '%');
+        }
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow( ++$iCol, --$iRow, $aEdu['high']);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, ($aEdu['high'] != 0 ? ceil($aEdu['high'] * 100 / $iEmployees) : 0) . '%');
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow( ++$iCol, --$iRow, $aEdu['middle']);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, ($aEdu['middle'] != 0 ? ceil($aEdu['middle'] * 100 / $iEmployees) : 0) . '%');
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $aEdu['courses']);
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, ($aEdu['courses'] != 0 ? ceil($aEdu['courses'] * 100 / $iEmployees) : 0) . '%');
+        $this->objPHPExcel->getActiveSheet()->mergeCellsByColumnAndRow($iCol, $iRow++, $iCol, $iRow);
+
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $aEdu['elderly']);
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol, ++$iRow, ($aEdu['elderly'] != 0 ? ceil($aEdu['elderly'] * 100 / $iEmployees) : 0) . '%');
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $aEdu['high_education_foreign']);
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol, ++$iRow, ($aEdu['high_education_foreign'] != 0 ? ceil($aEdu['high_education_foreign'] * 100 / $iEmployees) : 0) . '%');
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $aEdu['master']);
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol, ++$iRow, ($aEdu['master'] != 0 ? ceil($aEdu['master'] * 100 / $iEmployees) : 0) . '%');
+
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(++$iCol, --$iRow, $aEdu['master+']);
+        $this->objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($iCol, ++$iRow, ($aEdu['master+'] != 0 ? ceil($aEdu['master+'] * 100 / $iEmployees) : 0) . '%');
+
+        $this->iRowCount = $iRow - 2;
+    }
+
+    private function getBranch() {
+        //Филиалы
+        $this->db->select('*');
+        $this->db->from('subdivision');
+
+        $this->db->order_by('id');
+
+//        $this->db->where('type', 'branch');
+        $this->db->where('type != ', 'mosque');
+        $this->db->where('type != ', 'area');
+
+        $q = $this->db->get();
+
+        $aData = array(
+        );
+
+        $aBranch = array();
+
+        //Филиалы ДУМК
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['mosque'] = 0;
+                $aItem['employee_count'] = 0;
+                $aItem['high_education'] = 0;
+                $aItem['high_education_percent'] = 0;
+                $aItem['middle_education'] = 0;
+                $aItem['middle_education_percent'] = 0;
+                $aItem['courses_education'] = 0;
+                $aItem['courses_education_percent'] = 0;
+                $aItem['elderly'] = 0;
+                $aItem['high_education_foreign'] = 0;
+                $aItem['master'] = 0;
+                $aItem['master+'] = 0;
+                $aItem['posts'] = array();
+                $aBranch[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Мечети
+        $this->db->select('id, parent_id, path');
+        $this->db->from('subdivision');
+
+        $this->db->where('path && \'{' . implode(',', $aIds) . '}\'::bigint[]', null);
+        $this->db->where('parent_id is not null', null);
+        $this->db->where('type', 'mosque');
+
+        $aMosque = array();
+
+        $q = $this->db->get();
+        if ($q->num_rows() > 0) {
+            foreach ($q->result_array() as $aItem) {
+                $aItem['branch'] = substr($aItem['path'], 1, strpos($aItem['path'], ',') - 1);
+                $aBranch[$aItem['branch']] ++; //Количество мечетей
+                $aMosque[$aItem['id']] = $aItem;
+                $aIds[] = $aItem['id'];
+            }
+        }
+
+        //Пользователи
+        $this->db->select('u.*, p.title as post_title');
+        $this->db->from('users u, ref_posts p');
+
+        $this->db->where('u.post = p.id');
+        $this->db->where('u.place_of_work = ANY(\'{' . implode(',', $aIds) . '}\'::int[])', null);
+
+        $q = $this->db->get();
+        $aPosts = array();
+        if ($q->num_rows() > 0) {
+            $a = $q->result_array();
+            foreach ($a as $key => $aV) {
+                $iBranchId = 0;
+
+                if (array_key_exists($aV['place_of_work'], $aMosque) || array_key_exists($aV['place_of_work'], $aBranch)) {
+                    if (array_key_exists($aV['place_of_work'], $aMosque)) {
+                        $iBranchId = $aMosque[$aV['place_of_work']]['branch'];
+                    } else if (array_key_exists($aV['place_of_work'], $aBranch)) {
+                        $iBranchId = $aV['place_of_work'];
+                    }
+
+                    $aBranch[$iBranchId]['employee_count'] ++; //Всего количество сотрудников
+                }
+
+                if (!array_key_exists($aV['post_title'], $aPosts)) {
+                    $this->sHeadersMiddle[] = $aV['post_title'];
+                    $aPosts[$aV['post_title']] = 0;
+                }
+
+                $aPosts[$aV['post_title']] ++;
+
+                //Должности
+                if (!array_key_exists($aV['post_title'], $aBranch[$iBranchId]['posts'])) {
+                    try {
+                        $aBranch[$iBranchId]['posts'][$aV['post_title']] = 0;
+                    } catch (Exception $exc) {
+                        echo $exc->getTraceAsString();
+                        echo '<pre>';
+                        print_r($iBranchId);
+                        print_r($aBranch);
+                    }
+                }
+                $aBranch[$iBranchId]['posts'][$aV['post_title']] ++;
+
+                //Сотрудники с Высшим образованием
+                if ($aV['high_education'] == 'Yes') {
+                    $aBranch[$iBranchId]['high_education'] ++;
+                }
+
+                //Сотрудники со Средним образованием
+                if ($aV['middle_education'] == 'Yes') {
+                    $aBranch[$iBranchId]['middle_education'] ++;
+                }
+
+                //Сотрудники прошедшие курсы
+                if ($aV['courses_education'] == 'Yes') {
+                    $aBranch[$iBranchId]['courses_education'] ++;
+                }
+
+                //Сотрудники пожилого возраста
+                if ($aV['birthday'] != '' && $this->calculate_age($aV['birthday']) > 50) {
+                    $aBranch[$iBranchId]['elderly'] ++;
+                }
+
+                //Сотрудники с зарубежным Высшим образованием
+                if ($aV['high_location'] != '' && $aV['high_location'] != '38') {
+                    $aBranch[$iBranchId]['high_education_foreign'] ++;
+                }
+
+                //Сотрудники имеющие степень Магистра
+                if ($aV['rank'] == 'Магистр') {
+                    $aBranch[$iBranchId]['master'] ++;
+                }
+
+                //Сотрудники имеющие степень Кандидата наук, доктора, аспиранта
+                if ($aV['rank'] == 'Кандидат наук' || $aV['rank'] == 'Доктор наук' || $aV['rank'] == 'Аспирант') {
+                    $aBranch[$iBranchId]['master+'] ++;
+                }
+            }
+
+            foreach ($aBranch as &$aV) {
+                //Сотрудники с Высшим образованием
+                $aBranch[$iBranchId]['high_education_percent'] = $aV['high_education'] != 0 ? ceil($aV['high_education'] * 100 / $aV['employee_count']) : 0;
+
+                //Сотрудники со Средним образованием
+                $aBranch[$iBranchId]['middle_education_percent'] = $aV['middle_education'] != 0 ? ceil($aV['middle_education'] * 100 / $aV['middle_education']) : 0;
+
+                //Сотрудники прошедшие курсы
+                $aBranch[$iBranchId]['courses_education_percent'] = $aV['courses_education'] != 0 ? ceil($aV['courses_education'] * 100 / $aV['courses_education']) : 0;
+            }
+        }
+
+        return $aBranch;
+    }
+
+    public function calculate_age($birthday) {
+        $birthday_timestamp = strtotime($birthday);
+        $age = date('Y') - date('Y', $birthday_timestamp);
+        if (date('md', $birthday_timestamp) > date('md')) {
+            $age--;
+        }
+        return $age;
+    }
+
+    private function setTitle() {
+        // Rename sheet
+        //        echo date('H:i:s') . " Rename sheet\n";
+        $this->objPHPExcel->getActiveSheet()->setTitle('Simple');
+    }
+
+    public function save() {
+        // Save Excel 2007 file
+        //        echo date('H:i:s') . " Write to Excel2007 format\n";
+        $objWriter = new PHPExcel_Writer_Excel2007($this->objPHPExcel);
+        $this->sFilePath = str_replace('.php', '_' . time() . '.xlsx', __FILE__);
+        $objWriter->save($this->sFilePath);
+    }
+
+    private function view() {
+        $sMime = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        $iFileSize = filesize($this->sFilePath);
+
+        header('Content-type: ' . $sMime);
+        header('Content-Disposition: attachment; filename="' . __CLASS__ . '.xlsx"');
+        header('Content-Length: ' . $iFileSize);
+        readfile($this->sFilePath);
+
+        unlink($this->sFilePath);
+        // Echo done
+        //        echo date('H:i:s') . " Done writing file.\r\n";
+    }
+
+}
