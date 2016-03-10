@@ -57,7 +57,7 @@ $(document).ready(function() {
             editSection = $(".edit-section").html(),
             download = $(".download-all");
 
-        $(".edit-profile, .edit-profile-no-scroll").on("click", function() {
+       $(".edit-profile, .edit-profile-no-scroll").on("click", function() {
             var tag = $(this)[0].tagName;
             if (tag === "SPAN") {
                 $(this).replaceWith(function() {
@@ -134,8 +134,14 @@ $(document).ready(function() {
             oneEdit = section.find(".edit-input input, select"),
             selectings = section.find(".selectings"),
             replacment = section.find(".replacment"),
+            download = $(".download-all"),
+            option = selectings.children('option:selected'),
+            inputFile = $("input:file"),
                 that = $(this),
                 tag = that[0].tagName;
+            // console.log(option = selectings.children('option:selected').html())
+
+           
 
             if (tag === "SPAN") {
                 that.replaceWith(function() {
@@ -143,13 +149,26 @@ $(document).ready(function() {
                 });
                 //$(this).html("Сохранить");
                 oneEdit.removeAttr("disabled");
+                (download.hasClass('none')) ? download.removeClass('none'): true;
                 oneEdit.css({
                     "border": "1px solid #ccc",
                     "padding-left": "10px"
                 });
+                inputFile.css({
+                    "border-width": "0px",
+                    "padding": "0px"
+                });
                 password.attr("type", "text");
                 replacment.hide();
                 selectings.show();
+                 if(option.html() === 'Нет'){
+                    oneEdit.attr("disabled", "disabled");
+                    option.parent().removeAttr("disabled");
+                    oneEdit.css({
+                        "border-width": "1px"
+                    });
+                    console.log("no")
+                }
             }
             if (tag === "BUTTON") {
                 that.replaceWith(function() {
@@ -174,7 +193,7 @@ $(document).ready(function() {
     //Select NO
 
     var selectNo = function() {
-        $("select").on("change", function() {
+    $("select").on("change", function() {
             var
                 section = $(this).parents(".section"),
                 select = section.find("select option:selected"),
@@ -269,10 +288,10 @@ $(document).ready(function() {
     // Searching
 
     var search = function() {
-        $(".search").keyup(function() {
+       $(".search").keyup(function() {
             var word = $(this).val().toLowerCase(),
                 res, searchIndex,
-                aText = $(this).parents(".tree-search").find(".tree-list li a");
+                aText = $(this).parents(".tree-search").find("li a");
 
             aText.each(function(i, elem) {
                 res = $(this).html().toLowerCase();
@@ -285,6 +304,24 @@ $(document).ready(function() {
             });
 
         });
+
+        $(".select_area").change(function(){
+            if($(this).val() == 0) return false;
+            
+            var value = ($(this).val()),
+            aText = $(this).parents(".tree-search").find("li");
+
+            aText.each(function(i, elem) {
+                res = $(this).data('parent');
+                if (value == res) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+        });
+
     };
 
     search();
