@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<!--<![endif]-->
+<script src="/static/bower_components/modernizr/modernizr.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dumk</title>
+    <!-- build:css css/style.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- Main:css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--<link rel="stylesheet" href="css/media.css">-->
+    <!-- endcss -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="cadrs" class="registry">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="home.html" id="topic"><img src="/static/img/logo-min2.png" height="35" width="35" alt="logotip"></a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+                <ul class="left">
+                    <li class="has-dropdown">
+                        <a href="#"><img src="/static/img/icons/kz.png" height="24" width="39" alt="kaz"></a>
+                        <ul class="dropdown">
+                            <li class="active">
+                                <a href="#"><img src="/static/img/icons/rus.png" height="24" width="39" alt="rus"></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="right">
+                    <li>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/calendar.png" height="18" width="18" alt="calendar"> <span>Пт, 11 дек</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="icon-top" src="/static/img/icons/clock.png" height="18" width="18" alt="clock">
+                            <span>12:36</span></a>
+                    </li>
+                    <li>
+                        <a href="#" id="person"><img src="/static/img/person/person1.png" height="32" width="31" alt="person"></a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Арман Ахметов</a>
+                        <ul class="dropdown">
+                            <li><a href="my-profile.html">Профиль</a></li>
+                            <li><a href="index.html">Выход из системы</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+        <div class="large-12 columns" id="content">
+            <div class="top-link">
+                <a href="cadrs.html" class="active">Кадры</a>
+                <a href="#">Учебные заведения и учащиеся</a>
+                <a href="#">Осужденные экстремисты</a>
+                <div class="text-right right maps-text">
+                    <a href="cadrs.html"><img src="/static/img/icons/map-back.png" alt="map"> Карта</a>
+                </div>
+            </div>
+            <div id="tab-container" class="tab-container">
+                <ul class='etabs'>
+                    <li class='tab'><a href="#tabs-emploayee">Реестр сотрудников</a></li>
+                    <li class='tab'><a href="#tabs-statistics">Отчеты и статистика</a></li>
+                    <li class='tab'><a href="#tabs-add">Добавить сотрудника <span class="plus">+</span></a></li>
+                </ul>
+                <div id="tabs-emploayee" class="tab-wrapper">
+                    <div class="large-3 left left-block text-left">
+                        <div class="row tree-block">
+                            <p>Учебные заведения
+                                <a href="#download"><img src="/static/img/icons/download.png" title="Скачать" alt="download"></a>
+                            </p>
+                            <select name="country">
+                                <option value="">Выберите страну</option>
+                                <option value="Казахстан">Казахстан</option>
+                                <option value="Абхазия">Абхазия</option>
+                                <option value="Австралия">Австралия</option>
+                                <option value="Австрия">Австрия</option>
+                                <option value="Азербайджан">Азербайджан</option>
+                                <option value="Албания">Албания</option>
+                                <option value="Алжир">Алжир</option>
+                                <option value="Ангола">Ангола</option>
+                                <option value="Андорра">Андорра</option>
+                                <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+                                <option value="Аргентина">Аргентина</option>
+                                <option value="Армения">Армения</option>
+                                <option value="Афганистан">Афганистан</option>
+                                <option value="Багамские Острова">Багамские Острова</option>
+                                <option value="Бангладеш">Бангладеш</option>
+                                <option value="Барбадос">Барбадос</option>
+                                <option value="Бахрейн">Бахрейн</option>
+                                <option value="Беларусь">Беларусь</option>
+                                <option value="Белиз">Белиз</option>
+                                <option value="Бельгия">Бельгия</option>
+                                <option value="Бенин">Бенин</option>
+                                <option value="Болгария">Болгария</option>
+                                <option value="Боливия">Боливия</option>
+                                <option value="Босния и Герцеговина">Босния и Герцеговина</option>
+                                <option value="Ботсвана">Ботсвана</option>
+                                <option value="Бразилия">Бразилия</option>
+                                <option value="Бруней">Бруней</option>
+                                <option value="Буркина Фасо">Буркина Фасо</option>
+                                <option value="Бурунди">Бурунди</option>
+                                <option value="Бутан">Бутан</option>
+                                <option value="Вануату">Вануату</option>
+                                <option value="Ватикан">Ватикан</option>
+                                <option value="Великобритания">Великобритания</option>
+                                <option value="Венгрия">Венгрия</option>
+                                <option value="Венесуэла">Венесуэла</option>
+                                <option value="Восточный Тимоp">Восточный Тимоp</option>
+                                <option value="Вьетнам">Вьетнам</option>
+                                <option value="Габон">Габон</option>
+                                <option value="Гаити">Гаити</option>
+                                <option value="Гайана">Гайана</option>
+                                <option value="Гамбия">Гамбия</option>
+                                <option value="Гана">Гана</option>
+                                <option value="Гватемала">Гватемала</option>
+                                <option value="Гвинея">Гвинея</option>
+                                <option value="Гвинея-Бисау">Гвинея-Бисау</option>
+                                <option value="Германия">Германия</option>
+                                <option value="Гондурас">Гондурас</option>
+                                <option value="Гренада">Гренада</option>
+                                <option value="Греция">Греция</option>
+                                <option value="Грузия">Грузия</option>
+                                <option value="Дания">Дания</option>
+                                <option value="Демократическая Республика Конго">Демократическая Республика Конго</option>
+                                <option value="Джибути">Джибути</option>
+                                <option value="Доминиканская Республика">Доминиканская Республика</option>
+                                <option value="Доминикана">Доминикана</option>
+                                <option value="Египет">Египет</option>
+                                <option value="Замбия">Замбия</option>
+                                <option value="Зимбабве">Зимбабве</option>
+                                <option value="Израиль">Израиль</option>
+                                <option value="Индия">Индия</option>
+                                <option value="Индонезия">Индонезия</option>
+                                <option value="Иордания">Иордания</option>
+                                <option value="Ирак">Ирак</option>
+                                <option value="Иран">Иран</option>
+                                <option value="Ирландия">Ирландия</option>
+                                <option value="Испания">Испания</option>
+                                <option value="Италия">Италия</option>
+                                <option value="Йемен">Йемен</option>
+                                <option value="Кабо-Верде">Кабо-Верде</option>
+                                <option value="Казахстан">Казахстан</option>
+                                <option value="Камбоджа">Камбоджа</option>
+                                <option value="Камерун">Камерун</option>
+                                <option value="Канада">Канада</option>
+                                <option value="Катар">Катар</option>
+                                <option value="Кения">Кения</option>
+                                <option value="Кипр">Кипр</option>
+                                <option value="Киргизия">Киргизия</option>
+                                <option value="Кирибати">Кирибати</option>
+                                <option value="Китай">Китай</option>
+                                <option value="Колумбия">Колумбия</option>
+                                <option value="Коморские острова">Коморские острова</option>
+                                <option value="КНДР">КНДР</option>
+                                <option value="Коста-Рика">Коста-Рика</option>
+                                <option value="Кот-д’Ивуар">Кот-д’Ивуар</option>
+                                <option value="Куба">Куба</option>
+                                <option value="Кувейт">Кувейт</option>
+                                <option value="Лаос">Лаос</option>
+                                <option value="Латвия">Латвия</option>
+                                <option value="Лесото">Лесото</option>
+                                <option value="Либерия">Либерия</option>
+                                <option value="Ливан">Ливан</option>
+                                <option value="Ливия">Ливия</option>
+                                <option value="Литва">Литва</option>
+                                <option value="Лихтенштейн">Лихтенштейн</option>
+                                <option value="Люксембург">Люксембург</option>
+                                <option value="Маврикий">Маврикий</option>
+                                <option value="Мавритания">Мавритания</option>
+                                <option value="Мадагаскар">Мадагаскар</option>
+                                <option value="Македония">Македония</option>
+                                <option value="Малави">Малави</option>
+                                <option value="Малайзия">Малайзия</option>
+                                <option value="Мали">Мали</option>
+                                <option value="Мальдивы">Мальдивы</option>
+                                <option value="Мальта">Мальта</option>
+                                <option value="Марокко">Марокко</option>
+                                <option value="Маршалловы Острова">Маршалловы Острова</option>
+                                <option value="Мексика">Мексика</option>
+                                <option value="Микронезия">Микронезия</option>
+                                <option value="Мозамбик">Мозамбик</option>
+                                <option value="Молдова">Молдова</option>
+                                <option value="Монако">Монако</option>
+                                <option value="Монголия">Монголия</option>
+                                <option value="Мьянма">Мьянма</option>
+                                <option value="Намибия">Намибия</option>
+                                <option value="Науру">Науру</option>
+                                <option value="Непал">Непал</option>
+                                <option value="Нигер">Нигер</option>
+                                <option value="Нигерия">Нигерия</option>
+                                <option value="Нидерланды">Нидерланды</option>
+                                <option value="Никарагуа">Никарагуа</option>
+                                <option value="Новая Зеландия">Новая Зеландия</option>
+                                <option value="Норвегия">Норвегия</option>
+                                <option value="ОАЭ">ОАЭ</option>
+                                <option value="Оман">Оман</option>
+                                <option value="Пакистан">Пакистан</option>
+                                <option value="Палау">Палау</option>
+                                <option value="Панама">Панама</option>
+                                <option value="Папуа-Новая Гвинея">Папуа-Новая Гвинея</option>
+                                <option value="Парагвай">Парагвай</option>
+                                <option value="Перу">Перу</option>
+                                <option value="Польша">Польша</option>
+                                <option value="Португалия">Португалия</option>
+                                <option value="Республика Конго">Республика Конго</option>
+                                <option value="Республика Корея">Республика Корея</option>
+                                <option value="Россия">Россия</option>
+                                <option value="Руанда">Руанда</option>
+                                <option value="Румыния">Румыния</option>
+                                <option value="Сальвадор">Сальвадор</option>
+                                <option value="Самоа">Самоа</option>
+                                <option value="Сан-Марино">Сан-Марино</option>
+                                <option value="Сан-Томе и Принсипи">Сан-Томе и Принсипи</option>
+                                <option value="Саудовская Аравия">Саудовская Аравия</option>
+                                <option value="Свазиленд">Свазиленд</option>
+                                <option value="Северные Марианские острова">Северные Марианские острова</option>
+                                <option value="Сейшелы">Сейшелы</option>
+                                <option value="Сенегал">Сенегал</option>
+                                <option value="Сент-Винсент и Гренадины">Сент-Винсент и Гренадины</option>
+                                <option value="Сент-Китс и Невис">Сент-Китс и Невис</option>
+                                <option value="Сент-Люсия">Сент-Люсия</option>
+                                <option value="Сербия">Сербия</option>
+                                <option value="Сингапур">Сингапур</option>
+                                <option value="Сирия">Сирия</option>
+                                <option value="Словакия">Словакия</option>
+                                <option value="Словения">Словения</option>
+                                <option value="Соединённые Штаты Америки">Соединённые Штаты Америки</option>
+                                <option value="Соломоновы Острова">Соломоновы Острова</option>
+                                <option value="Сомали">Сомали</option>
+                                <option value="Судан">Судан</option>
+                                <option value="Сьерра-Леоне">Сьерра-Леоне</option>
+                                <option value="Таджикистан">Таджикистан</option>
+                                <option value="Таиланд">Таиланд</option>
+                                <option value="Танзания">Танзания</option>
+                                <option value="Того">Того</option>
+                                <option value="Тонга">Тонга</option>
+                                <option value="Тринидад и Тобаго">Тринидад и Тобаго</option>
+                                <option value="Тувалу">Тувалу</option>
+                                <option value="Тунис">Тунис</option>
+                                <option value="Туркмения">Туркмения</option>
+                                <option value="Турция">Турция</option>
+                                <option value="Уганда">Уганда</option>
+                                <option value="Узбекистан">Узбекистан</option>
+                                <option value="Украина">Украина</option>
+                                <option value="Уругвай">Уругвай</option>
+                                <option value="Фиджи">Фиджи</option>
+                                <option value="Филиппины">Филиппины</option>
+                                <option value="Финляндия">Финляндия</option>
+                                <option value="Франция">Франция</option>
+                                <option value="Хорватия">Хорватия</option>
+                                <option value="Центральноафриканская Республика">Центральноафриканская Республика</option>
+                                <option value="Чад">Чад</option>
+                                <option value="Черногория">Черногория</option>
+                                <option value="Чехия">Чехия</option>
+                                <option value="Чили">Чили</option>
+                                <option value="Швейцария">Швейцария</option>
+                                <option value="Швеция">Швеция</option>
+                                <option value="Шри-Ланка">Шри-Ланка</option>
+                                <option value="Эквадор">Эквадор</option>
+                                <option value="Экваториальная Гвинея">Экваториальная Гвинея</option>
+                                <option value="Эритрея">Эритрея</option>
+                                <option value="Эстония">Эстония</option>
+                                <option value="Эфиопия">Эфиопия</option>
+                                <option value="Южно-Африканская Республика">Южно-Африканская Республика</option>
+                                <option value="Южный Судан">Южный Судан</option>
+                                <option value="Ямайка">Ямайка</option>
+                                <option value="Япония">Япония</option>
+                            </select>
+                            <select class="select_area" name="select_area">
+                                <option value="select-rayon">Категория учебного заведения</option>
+                                <option value="30">Бакалавр</option>
+                                <option value="31">Магистратура</option>
+                                <option value="28">Докторунтура</option>
+                            </select>
+                            <input class="search" type="text" placeholder="Поиск мечети" />
+                            <ul class="mtree mtree-education">
+                                <li><a href="#">Центральный аппарат ДУМК г. Астана</a></li>
+                                <li><a href="#">Представительство Центрального аппарата ДУМК в г. Алматы</a></li>
+                                <li><a href="#">Филиал Акмолинской области </a></li>
+                                <li><a href="#">Филиал Актюбинской области </a></li>
+                                <li><a href="#">Филиал Алматинской области </a></li>
+                                <li><a href="#">Филиал Атырауской области </a></li>
+                                <li><a href="#">Филиал Восточно-Казахстанской области </a></li>
+                                <li><a href="#">Филиал Жамбылской области </a></li>
+                                <li><a href="#">Филиал Западно-Казахстанской области </a></li>
+                                <li><a href="#">Филиал Карагандинской области </a></li>
+                                <li><a href="#">Филиал Костанайской области </a></li>
+                                <li><a href="#">Филиал Кызылординской области </a></li>
+                                <li><a href="#">Филиал Мангистауской области </a></li>
+                                <li><a href="#">Филиал Павлодарской области </a></li>
+                                <li><a href="#">Филиал г. Семей </a></li>
+                                <li><a href="#">Филиал Северо-Казахстанской области </a></li>
+                                <li><a href="#">Филиал г. Талдыкорган </a></li>
+                                <li><a href="#">Филиал Южно-Казахстанской области</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="large-9 columns right right-content text-left">
+                        <input class="search" type="text" placeholder="Поиск по реестру сотрудников...">
+                        <div>
+                            <div class="large-4 left vertical">
+                                <div class="child-ver">
+                                    <p class="">Филиал Актюбинской области</p>
+                                    <small class="">Мечеть Нурдаулет</small>
+                                </div>
+                            </div>
+                            <div class="large-8 right">
+                                <a href="#download" class="right"><img src="/static/img/icons/download.png" alt="download" class="download-all" title="Скачать"></a>
+                                <button class="button secondary right">О филиале</button>
+                                <button class="button secondary right">О мечети</button>
+                            </div>
+                        </div>
+                        <div class="table table-education">
+                            <div class="thead">
+                                <div class="tr header-table">
+                                    <div class="td numbering-symbol arrow-bottom-edu">№</div>
+                                    <div class="td sort-click numbering-symbol region arrow-bottom-edu">
+                                      <b>Регион (откуда прибыл)</b>
+                                      <span class="sorting">
+                                          <p>Астана</p><input type="checkbox" name="yes">
+                                          <p>Алматы</p><input type="checkbox" name="no">
+                                      </span>
+                                    </div>
+                                    <div class="td fio arrow-bottom-edu">
+                                      <b>Ф.И.О.</b>
+                                    </div>
+                                    <div class="td date arrow-bottom-edu">
+                                      <b>Дата рождения</b>
+                                    </div>
+                                    <div class="td sort-click number-phone number-symbol arrow-bottom-edu">
+                                      <b>Факультет</b>
+                                      <span class="sorting">
+                                          <p>Факультет 1</p><input type="checkbox" name="yes">
+                                          <p>Факультет 2</p><input type="checkbox" name="no">
+                                          <p>Факультет 3</p><input type="checkbox" name="no">
+                                      </span>
+                                    </div>
+                                    <div class="td sort-click number-phone number-symbol arrow-bottom-edu">
+                                      <b>Специальность</b>
+                                      <span class="sorting">
+                                        <p>Спец. 1</p><input type="checkbox" name="yes">
+                                        <p>Спец. 2</p><input type="checkbox" name="no">
+                                        <p>Спец. 3</p><input type="checkbox" name="no">
+                                      </span>
+                                    </div>
+                                    <div class="sort-click higher td arrow-bottom-edu">
+                                        <b>Курс обучение</b>
+                                        <span class="sorting">
+                                          <p>Курс 1</p><input type="checkbox" name="yes">
+                                          <p>Курс 2</p><input type="checkbox" name="no">
+                                          <p>Курс 3</p><input type="checkbox" name="no">
+                                        </span>
+                                    </div>
+                                    <div class="sort-click td position arrow-bottom-edu">
+                                        <b>Ученная степень</b>
+                                        <span class="sorting">
+                                          <p>Бакалавр</p><input type="checkbox" name="yes">
+                                          <p>Магистратура</p><input type="checkbox" name="no">
+                                          <p>Докторантура</p><input type="checkbox" name="no">
+                                        </span>
+                                    </div>
+                                    <div class="sort-click td status arrow-bottom-edu">
+                                        <b>Форма обучения</b>
+                                        <span class="sorting">
+                                            <p>Очная</p><input type="checkbox" name="bas_imam">
+                                            <p>Заочная</p><input type="checkbox" name="naib_imam">
+                                        </span>
+                                    </div>
+                                    <div class="sort-click td status arrow-bottom-edu">
+                                        <b>Статус</b>
+                                        <span class="sorting width-text">
+                                            <p>Обучается</p><input type="checkbox" name="bas_imam">
+                                            <p>Каникулярный отпуск</p><input type="checkbox" name="naib_imam">
+                                            <p>Академический отпуск</p><input type="checkbox" name="okil_imam">
+                                            <p>Отчислен</p><input type="checkbox" name="naib_imam">
+                                            <p>Переведен</p><input type="checkbox" name="okil_imam">
+                                        </span>
+                                    </div>
+                                    </div>
+                                <div class="fixed-top">
+                                    <div class="tbody">
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="td numbering-symbol">1</div>
+                                            <div class="td numbering-symbol region text-left">Регион</div>
+                                            <div class="td fio text-left">Утепов Алихан Каиргельдинович</div>
+                                            <div class="td date">Дата</div>
+                                            <div class="td  number-phone number-symbol">Факультет</div>
+                                            <div class="td  number-phone number-symbol">Специальность</div>
+                                            <div class="td higher">	Курс обучение	</div>
+                                            <div class="td position text-left">Ученная степень</div>
+                                            <div class="td status text-left">Форма обучения</div>
+                                            <div class="td status text-left">В отпуске</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="large-9 right columns pagination-centered">
+                                    <ul class="pagination">
+                                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                                        <li class="current"><a href="">1</a></li>
+                                        <li><a href="">2</a></li>
+                                        <li><a href="">3</a></li>
+                                        <li><a href="">4</a></li>
+                                        <li class="unavailable"><a href="">&hellip;</a></li>
+                                        <li><a href="">12</a></li>
+                                        <li><a href="">13</a></li>
+                                        <li class="arrow"><a href="">&raquo;</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="tabs-statistics" class="tab-wrapper">
+
+                  </div>
+                  <div id="tabs-add" class="tab-wrapper">
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+<footer class="text-center">
+    <small>DUMK. Copyright © 2016. All rights reserved</small>
+</footer>
+    <!-- build:js js/vendor.js -->
+    <!-- bower:js -->
+    <script src="/static/bower_components/foundation/js/vendor/jquery.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.topbar.js"></script>
+    <script src="/static/bower_components/foundation/js/foundation/foundation.abide.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script>
+    $(document).foundation();
+    </script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/tabs.js"></script>
+    <script src="/static/js/jquery.tabslet.min.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/js/tree.js"></script>
+    <script src="/static/js/lang.js"></script>
+    <script>
+    $('#tab-container').tabslet({
+        active: 1
+    });
+    </script>
+    <script>
+    (function($) {
+        $(window).load(function() {
+            $(".fixed-top, .tree-list").mCustomScrollbar({
+                setWidth: true,
+                setLeft: 0,
+                theme: "dark"
+            });
+        });
+        if (parseInt($(window).height()) <= 800) {
+            $(".fixed-top").css("height", "300px");
+        }
+    })(jQuery);
+    </script>
+</body>
+
+</html>
