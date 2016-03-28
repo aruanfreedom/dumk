@@ -364,6 +364,14 @@ nav {
 			height: 100%;
 			border-top-right-radius: 5px;
 			font-size: 1em;
+			&.tree-block-edu{
+				select{
+					margin: 5px 0;
+				}
+				.search{
+					margin: 5px 0 0 0;
+				}
+			}
 			select {
 				background: #fff;
 				border: 1px solid #ccc;
@@ -371,7 +379,7 @@ nav {
 				font-size: 0.9em;
 				background-position: 99%;
 				padding: 0 10px;
-				margin: 0;
+				margin: 10px 0;
 				height: 30px;
 				option {
 					&:focus {
@@ -580,7 +588,7 @@ nav {
 				}
 				.fixed-top {
 					margin-bottom: 0;
-					max-height: 480px;
+					max-height: 450px;
 				}
 				.display {
 					width: 800px;
@@ -667,9 +675,13 @@ nav {
 					}
 				}
 				&.table-education{
+					// min-width: 1180px;
 					.td {
 							background: none;
-							width: 10%;
+							width: 11%;
+							@media only screen and(max-width: 1582px){
+								font-size: 0.75em;
+							}
 							&.arrow-bottom-edu{
 								background: url("../img/icons/arrow-bottom.png") 95% no-repeat;
 								b{
@@ -678,27 +690,35 @@ nav {
 								}
 								.width-text{
 									width: 14em;
-									left: -60px;
+							    right: 0;
+							    left: auto;
 								}
 							}
+							&.numbering-symbol {
+								width: 5%;
+							}
+							// &.region {
+							// 	width: 10%;
+							// }
+							// &.fio {
+							// 	min-width: 15%;
+							// }
+							// }
+							// &.date {
+							// 	width: 12%;
+							// }
 						}
 						&.higher{
 							background: none;
 							width: 10%;
 						}
-						&.numbering-symbol {
-							background: none;
-							width: 4%;
-						}
+
 						&.fio-symbol{
 							background: none;
 							width: 26%;
 						}
 						&.region{
 								width: 10%;
-						}
-						&.fio {
-							width: 22%;
 						}
 						&.number-phone {
 							width: 12%;
@@ -715,6 +735,20 @@ nav {
 						}
 						&.status {
 							width: 15%;
+						}
+						.sorting{
+							background: #fff;
+					    border-radius: 0px;
+					    border: 1px solid #9E9E9E;
+					    box-shadow: 0px 6px 23px 0px rgba(0,0,0,0.75);
+					    text-align: left;
+					    padding: 6px;
+					    position: absolute;
+					    top: 100%;
+					    left: auto;
+					    right: 0;
+					    width: 11em;
+					    z-index: 3;
 						}
 					}
 				}
