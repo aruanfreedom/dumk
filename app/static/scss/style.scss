@@ -479,6 +479,9 @@ nav {
 		.right-content {
 			height: 100%;
 			overflow: hidden;
+			.radio{
+				padding: 2% 0px;
+			}
 			.vertical{
 				display: table;
 				height: 50px;
@@ -679,8 +682,9 @@ nav {
 					.td {
 							background: none;
 							width: 11%;
+							font-size: 0.75em;
 							@media only screen and(max-width: 1582px){
-								font-size: 0.75em;
+								font-size: 0.5em;
 							}
 							&.arrow-bottom-edu{
 								background: url("../img/icons/arrow-bottom.png") 95% no-repeat;
@@ -747,7 +751,7 @@ nav {
 					    top: 100%;
 					    left: auto;
 					    right: 0;
-					    width: 11em;
+					    width: 100%;
 					    z-index: 3;
 						}
 					}
