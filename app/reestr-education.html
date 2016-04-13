@@ -328,6 +328,7 @@
                                 <button class="button secondary right">О мечети</button>
                             </div>
                         </div>
+                        <div class="scroll-x">
                         <div class="table table-education">
                             <div class="thead">
                                 <div class="tr header-table">
@@ -535,6 +536,7 @@
                               </div>
                           </div>
                       </div>
+                      </div>
                   </div>
                   <div id="tabs-statistics" class="tab-wrapper">
 
@@ -577,11 +579,15 @@
             $(".fixed-top, .tree-list").mCustomScrollbar({
                 setWidth: true,
                 setLeft: 0,
+                axis:"y",
                 theme: "dark"
             });
         });
         if (parseInt($(window).height()) <= 800) {
-            $(".fixed-top").css("height", "300px");
+            $(".fixed-top").css("height", "160px");
+        }
+        else{
+            $(".fixed-top").css("height", "100%");
         }
     })(jQuery);
     </script>
